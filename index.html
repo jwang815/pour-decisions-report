@@ -1,1 +1,1662 @@
-PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CjxtZXRhIGNoYXJzZXQ9IlVURi04Ij4KPG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPgo8dGl0bGU+UG91ciBEZWNpc2lvbnMg4oCTIFdlZWtseSBQZXJmb3JtYW5jZSBSZXBvcnQgwrcgRmViIDE34oCTMjMsIDIwMjY8L3RpdGxlPgo8c3R5bGU+CiAgOnJvb3QgewogICAgLS1uYXZ5OiAjMWExYTJlOwogICAgLS1uYXZ5LW1pZDogIzJkMmQ1ZTsKICAgIC0tYW1iZXI6ICNENEE4NTM7CiAgICAtLWFtYmVyLWxpZ2h0OiAjRjBDQzg3OwogICAgLS1hbWJlci1kYXJrOiAjQTA3ODMwOwogICAgLS1ncmVlbjogIzIyYzU1ZTsKICAgIC0teWVsbG93OiAjZWFiMzA4OwogICAgLS1yZWQ6ICNlZjQ0NDQ7CiAgICAtLXBhZ2UtYmc6ICNmNWY2ZmE7CiAgICAtLWNhcmQtYmc6ICNmZmZmZmY7CiAgICAtLXRleHQtZGFyazogIzFhMWEyZTsKICAgIC0tdGV4dC1taWQ6ICM0NDQ7CiAgICAtLXRleHQtbXV0ZWQ6ICM4ODg7CiAgICAtLXRleHQtbGFiZWw6ICM2NjY7CiAgICAtLWJvcmRlci1saWdodDogI2VlZTsKICAgIC0tcm93LWFsdDogI2Y5ZjlmYjsKICAgIC0tc2hhZG93OiAwIDFweCA0cHggcmdiYSgwLDAsMCwwLjA2KTsKICAgIC0tc2hhZG93LW1kOiAwIDJweCAxMnB4IHJnYmEoMCwwLDAsMC4wOCk7CiAgICAtLXJhZGl1czogMTJweDsKICAgIC0tcmFkaXVzLWxnOiAxNnB4OwogIH0KCiAgKiB7IGJveC1zaXppbmc6IGJvcmRlci1ib3g7IG1hcmdpbjogMDsgcGFkZGluZzogMDsgfQoKICBib2R5IHsKICAgIGZvbnQtZmFtaWx5OiAtYXBwbGUtc3lzdGVtLCBCbGlua01hY1N5c3RlbUZvbnQsICdTZWdvZSBVSScsIFJvYm90bywgc2Fucy1zZXJpZjsKICAgIGJhY2tncm91bmQ6IHZhcigtLXBhZ2UtYmcpOwogICAgY29sb3I6IHZhcigtLXRleHQtZGFyayk7CiAgICBmb250LXNpemU6IDE0cHg7CiAgICBsaW5lLWhlaWdodDogMS41OwogIH0KCiAgLmNvbnRhaW5lciB7CiAgICBtYXgtd2lkdGg6IDExNDBweDsKICAgIG1hcmdpbjogMCBhdXRvOwogICAgcGFkZGluZzogMjRweCAyMHB4OwogIH0KCiAgLyog4pSA4pSAIEhFQURFUiDilIDilIAgKi8KICAuaGVhZGVyLWJhbm5lciB7CiAgICBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoMTM1ZGVnLCB2YXIoLS1uYXZ5KSAwJSwgdmFyKC0tbmF2eS1taWQpIDEwMCUpOwogICAgYm9yZGVyLXJhZGl1czogdmFyKC0tcmFkaXVzLWxnKTsKICAgIHBhZGRpbmc6IDMycHggMzZweDsKICAgIG1hcmdpbi1ib3R0b206IDI4cHg7CiAgICBjb2xvcjogI2ZmZjsKICAgIGJveC1zaGFkb3c6IDAgNHB4IDI0cHggcmdiYSgyNiwyNiw0NiwwLjI1KTsKICB9CiAgLmhlYWRlci1icmFuZCB7CiAgICBmb250LXNpemU6IDI4cHg7CiAgICBmb250LXdlaWdodDogNzAwOwogICAgbGV0dGVyLXNwYWNpbmc6IC0wLjVweDsKICAgIG1hcmdpbi1ib3R0b206IDRweDsKICB9CiAgLmhlYWRlci1zdWJ0aXRsZSB7CiAgICBjb2xvcjogdmFyKC0tYW1iZXIpOwogICAgZm9udC1zaXplOiAxNnB4OwogICAgZm9udC13ZWlnaHQ6IDYwMDsKICAgIG1hcmdpbi1ib3R0b206IDhweDsKICB9CiAgLmhlYWRlci1tZXRhIHsKICAgIGZvbnQtc2l6ZTogMTNweDsKICAgIGNvbG9yOiByZ2JhKDI1NSwyNTUsMjU1LDAuNjUpOwogICAgbWFyZ2luLWJvdHRvbTogMTZweDsKICB9CiAgLmhlYWRlci1waWxscyB7CiAgICBkaXNwbGF5OiBmbGV4OwogICAgZ2FwOiAxMHB4OwogICAgZmxleC13cmFwOiB3cmFwOwogIH0KICAucGlsbCB7CiAgICBib3JkZXI6IDEuNXB4IHNvbGlkIHZhcigtLWFtYmVyKTsKICAgIGNvbG9yOiAjZmZmOwogICAgYm9yZGVyLXJhZGl1czogMjBweDsKICAgIHBhZGRpbmc6IDRweCAxNHB4OwogICAgZm9udC1zaXplOiAxMnB4OwogICAgZm9udC13ZWlnaHQ6IDUwMDsKICAgIGxldHRlci1zcGFjaW5nOiAwLjJweDsKICB9CgogIC8qIOKUgOKUgCBTRUNUSU9OIEhFQURFUlMg4pSA4pSAICovCiAgLnNlY3Rpb24tdGl0bGUgewogICAgZm9udC1zaXplOiAxOHB4OwogICAgZm9udC13ZWlnaHQ6IDcwMDsKICAgIGNvbG9yOiB2YXIoLS10ZXh0LWRhcmspOwogICAgbWFyZ2luLWJvdHRvbTogMTZweDsKICAgIGRpc3BsYXk6IGZsZXg7CiAgICBhbGlnbi1pdGVtczogY2VudGVyOwogICAgZ2FwOiA4cHg7CiAgfQogIC5zZWN0aW9uLWJ1bGxldCB7CiAgICBjb2xvcjogdmFyKC0tYW1iZXIpOwogICAgZm9udC1zaXplOiAxNHB4OwogICAgbGluZS1oZWlnaHQ6IDE7CiAgfQoKICAvKiDilIDilIAgU0VDVElPTlMg4pSA4pSAICovCiAgLnNlY3Rpb24gewogICAgbWFyZ2luLWJvdHRvbTogMzJweDsKICB9CgogIC8qIOKUgOKUgCBLUEkgQ0FSRFMg4pSA4pSAICovCiAgLmtwaS1ncmlkIHsKICAgIGRpc3BsYXk6IGdyaWQ7CiAgICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IHJlcGVhdCg0LCAxZnIpOwogICAgZ2FwOiAxNnB4OwogIH0KICAua3BpLWNhcmQgewogICAgYmFja2dyb3VuZDogdmFyKC0tY2FyZC1iZyk7CiAgICBib3JkZXItcmFkaXVzOiB2YXIoLS1yYWRpdXMpOwogICAgYm9yZGVyLWxlZnQ6IDNweCBzb2xpZCB2YXIoLS1hbWJlcik7CiAgICBib3gtc2hhZG93OiB2YXIoLS1zaGFkb3ctbWQpOwogICAgcGFkZGluZzogMjBweCAyMHB4IDE4cHg7CiAgfQogIC5rcGktbGFiZWwgewogICAgZm9udC1zaXplOiAxMHB4OwogICAgZm9udC13ZWlnaHQ6IDcwMDsKICAgIHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7CiAgICBsZXR0ZXItc3BhY2luZzogMC44cHg7CiAgICBjb2xvcjogdmFyKC0tdGV4dC1sYWJlbCk7CiAgICBtYXJnaW4tYm90dG9tOiA4cHg7CiAgfQogIC5rcGktdmFsdWUgewogICAgZm9udC1zaXplOiAzNnB4OwogICAgZm9udC13ZWlnaHQ6IDcwMDsKICAgIGNvbG9yOiB2YXIoLS10ZXh0LWRhcmspOwogICAgbGluZS1oZWlnaHQ6IDEuMTsKICAgIG1hcmdpbi1ib3R0b206IDZweDsKICB9CiAgLmtwaS1zdWIgewogICAgZm9udC1zaXplOiAxMnB4OwogICAgY29sb3I6IHZhcigtLXRleHQtbXV0ZWQpOwogICAgbGluZS1oZWlnaHQ6IDEuNTsKICB9CiAgLmtwaS1zdWIgc3Ryb25nIHsgY29sb3I6IHZhcigtLXRleHQtbWlkKTsgfQoKICAvKiDilIDilIAgTVREIC8gWVREIOKUgOKUgCAqLwogIC5wZXJpb2QtZ3JpZC0yIHsKICAgIGRpc3BsYXk6IGdyaWQ7CiAgICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmciAxZnI7CiAgICBnYXA6IDE2cHg7CiAgfQogIC5wZXJpb2QtY2FyZCB7CiAgICBiYWNrZ3JvdW5kOiB2YXIoLS1jYXJkLWJnKTsKICAgIGJvcmRlci1yYWRpdXM6IHZhcigtLXJhZGl1cyk7CiAgICBib3gtc2hhZG93OiB2YXIoLS1zaGFkb3ctbWQpOwogICAgcGFkZGluZzogMjBweCAyNHB4OwogICAgYm9yZGVyLXRvcDogM3B4IHNvbGlkIHZhcigtLWFtYmVyKTsKICB9CiAgLnBlcmlvZC1jYXJkLXRpdGxlIHsKICAgIGZvbnQtc2l6ZTogMTFweDsKICAgIGZvbnQtd2VpZ2h0OiA3MDA7CiAgICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlOwogICAgbGV0dGVyLXNwYWNpbmc6IDAuOHB4OwogICAgY29sb3I6IHZhcigtLXRleHQtbGFiZWwpOwogICAgbWFyZ2luLWJvdHRvbTogMTRweDsKICB9CiAgLnBlcmlvZC1yb3dzIHsKICAgIGRpc3BsYXk6IGZsZXg7CiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uOwogICAgZ2FwOiAxMHB4OwogIH0KICAucGVyaW9kLXJvdyB7CiAgICBkaXNwbGF5OiBmbGV4OwogICAgYWxpZ24taXRlbXM6IGJhc2VsaW5lOwogICAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuOwogICAgZ2FwOiAxMnB4OwogIH0KICAucGVyaW9kLWxvYy1sYWJlbCB7CiAgICBmb250LXNpemU6IDEzcHg7CiAgICBjb2xvcjogdmFyKC0tdGV4dC1tdXRlZCk7CiAgICBtaW4td2lkdGg6IDEyMHB4OwogIH0KICAucGVyaW9kLWxvYy12YWwgewogICAgZm9udC1zaXplOiAyMHB4OwogICAgZm9udC13ZWlnaHQ6IDcwMDsKICAgIGNvbG9yOiB2YXIoLS10ZXh0LWRhcmspOwogIH0KICAucGVyaW9kLWxvYy1zdWIgewogICAgZm9udC1zaXplOiAxMXB4OwogICAgY29sb3I6IHZhcigtLXRleHQtbXV0ZWQpOwogIH0KICAucGVyaW9kLWNvbWJpbmVkIHsKICAgIGJvcmRlci10b3A6IDFweCBzb2xpZCB2YXIoLS1ib3JkZXItbGlnaHQpOwogICAgbWFyZ2luLXRvcDogMTJweDsKICAgIHBhZGRpbmctdG9wOiAxMnB4OwogICAgZGlzcGxheTogZmxleDsKICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjsKICAgIGFsaWduLWl0ZW1zOiBiYXNlbGluZTsKICB9CiAgLnBlcmlvZC1jb21iaW5lZC1sYWJlbCB7CiAgICBmb250LXNpemU6IDEycHg7CiAgICBmb250LXdlaWdodDogNjAwOwogICAgY29sb3I6IHZhcigtLXRleHQtbWlkKTsKICB9CiAgLnBlcmlvZC1jb21iaW5lZC12YWwgewogICAgZm9udC1zaXplOiAyMnB4OwogICAgZm9udC13ZWlnaHQ6IDcwMDsKICAgIGNvbG9yOiB2YXIoLS1hbWJlci1kYXJrKTsKICB9CgogIC8qIFlURCBzZWN0aW9uICovCiAgLnl0ZC1ncmlkIHsKICAgIGRpc3BsYXk6IGdyaWQ7CiAgICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IHJlcGVhdCgzLCAxZnIpOwogICAgZ2FwOiAxNnB4OwogIH0KICAueXRkLWNhcmQgewogICAgYmFja2dyb3VuZDogdmFyKC0tY2FyZC1iZyk7CiAgICBib3JkZXItcmFkaXVzOiB2YXIoLS1yYWRpdXMpOwogICAgYm94LXNoYWRvdzogdmFyKC0tc2hhZG93LW1kKTsKICAgIHBhZGRpbmc6IDIwcHggMjBweCAxNnB4OwogICAgYm9yZGVyLXRvcDogM3B4IHNvbGlkIHZhcigtLW5hdnktbWlkKTsKICAgIHRleHQtYWxpZ246IGNlbnRlcjsKICB9CiAgLnl0ZC1jYXJkLWxhYmVsIHsKICAgIGZvbnQtc2l6ZTogMTBweDsKICAgIGZvbnQtd2VpZ2h0OiA3MDA7CiAgICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlOwogICAgbGV0dGVyLXNwYWNpbmc6IDAuOHB4OwogICAgY29sb3I6IHZhcigtLXRleHQtbGFiZWwpOwogICAgbWFyZ2luLWJvdHRvbTogOHB4OwogIH0KICAueXRkLWNhcmQtdmFsdWUgewogICAgZm9udC1zaXplOiAyOHB4OwogICAgZm9udC13ZWlnaHQ6IDcwMDsKICAgIGNvbG9yOiB2YXIoLS10ZXh0LWRhcmspOwogICAgbWFyZ2luLWJvdHRvbTogNHB4OwogIH0KICAueXRkLWNhcmQtc3ViIHsKICAgIGZvbnQtc2l6ZTogMTJweDsKICAgIGNvbG9yOiB2YXIoLS10ZXh0LW11dGVkKTsKICB9CiAgLnl0ZC1tb250aC1icmVha2Rvd24gewogICAgZm9udC1zaXplOiAxMnB4OwogICAgY29sb3I6IHZhcigtLXRleHQtbXV0ZWQpOwogICAgdGV4dC1hbGlnbjogY2VudGVyOwogICAgbWFyZ2luLXRvcDogMTBweDsKICB9CgogIC8qIOKUgOKUgCBMT0NBVElPTiBDT01QQVJJU09OIOKUgOKUgCAqLwogIC5sb2MtZ3JpZCB7CiAgICBkaXNwbGF5OiBncmlkOwogICAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiAxZnIgMWZyOwogICAgZ2FwOiAxNnB4OwogIH0KICAubG9jLWNhcmQgewogICAgYmFja2dyb3VuZDogdmFyKC0tY2FyZC1iZyk7CiAgICBib3JkZXItcmFkaXVzOiB2YXIoLS1yYWRpdXMpOwogICAgYm94LXNoYWRvdzogdmFyKC0tc2hhZG93LW1kKTsKICAgIG92ZXJmbG93OiBoaWRkZW47CiAgfQogIC5sb2MtY2FyZC1oZWFkZXIgewogICAgYmFja2dyb3VuZDogdmFyKC0tbmF2eSk7CiAgICBjb2xvcjogI2ZmZjsKICAgIHBhZGRpbmc6IDE0cHggMjBweDsKICAgIGZvbnQtc2l6ZTogMTVweDsKICAgIGZvbnQtd2VpZ2h0OiA3MDA7CiAgICBkaXNwbGF5OiBmbGV4OwogICAgYWxpZ24taXRlbXM6IGNlbnRlcjsKICAgIGdhcDogOHB4OwogIH0KICAubG9jLWNhcmQtaGVhZGVyLm12IHsgYmFja2dyb3VuZDogdmFyKC0tbmF2eS1taWQpOyB9CiAgLmxvYy1pY29uIHsgZm9udC1zaXplOiAxOHB4OyB9CiAgLmxvYy1yb3dzIHsgcGFkZGluZzogMDsgfQogIC5sb2Mtcm93IHsKICAgIGRpc3BsYXk6IGZsZXg7CiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47CiAgICBhbGlnbi1pdGVtczogY2VudGVyOwogICAgcGFkZGluZzogMTBweCAyMHB4OwogICAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICNmM2YzZjM7CiAgfQogIC5sb2Mtcm93Omxhc3QtY2hpbGQgeyBib3JkZXItYm90dG9tOiBub25lOyB9CiAgLmxvYy1yb3c6bnRoLWNoaWxkKGV2ZW4pIHsgYmFja2dyb3VuZDogdmFyKC0tcm93LWFsdCk7IH0KICAubG9jLXJvdy1sYWJlbCB7CiAgICBmb250LXNpemU6IDEycHg7CiAgICBjb2xvcjogdmFyKC0tdGV4dC1tdXRlZCk7CiAgICBmb250LXdlaWdodDogNTAwOwogIH0KICAubG9jLXJvdy12YWwgewogICAgZm9udC1zaXplOiAxNHB4OwogICAgZm9udC13ZWlnaHQ6IDcwMDsKICAgIGNvbG9yOiB2YXIoLS10ZXh0LWRhcmspOwogIH0KICAubG9jLXJvdy1zdWIgewogICAgZm9udC1zaXplOiAxMXB4OwogICAgY29sb3I6IHZhcigtLXRleHQtbXV0ZWQpOwogIH0KCiAgLyog4pSA4pSAIEJBUiBDSEFSVCDilIDilIAgKi8KICAuYmFyLWNoYXJ0LXdyYXAgewogICAgYmFja2dyb3VuZDogdmFyKC0tY2FyZC1iZyk7CiAgICBib3JkZXItcmFkaXVzOiB2YXIoLS1yYWRpdXMpOwogICAgYm94LXNoYWRvdzogdmFyKC0tc2hhZG93LW1kKTsKICAgIHBhZGRpbmc6IDI0cHg7CiAgfQogIC5iYXItY2hhcnQtbGVnZW5kIHsKICAgIGRpc3BsYXk6IGZsZXg7CiAgICBnYXA6IDIwcHg7CiAgICBtYXJnaW4tYm90dG9tOiAyMHB4OwogICAgZm9udC1zaXplOiAxMnB4OwogIH0KICAubGVnZW5kLWl0ZW0geyBkaXNwbGF5OiBmbGV4OyBhbGlnbi1pdGVtczogY2VudGVyOyBnYXA6IDZweDsgfQogIC5sZWdlbmQtZG90IHsKICAgIHdpZHRoOiAxMnB4OyBoZWlnaHQ6IDEycHg7CiAgICBib3JkZXItcmFkaXVzOiAycHg7CiAgICBmbGV4LXNocmluazogMDsKICB9CiAgLmxlZ2VuZC1kb3Quc2ogeyBiYWNrZ3JvdW5kOiB2YXIoLS1hbWJlcik7IH0KICAubGVnZW5kLWRvdC5tdiB7IGJhY2tncm91bmQ6IHZhcigtLW5hdnkpOyB9CgogIC5iYXItZGF5LXJvdyB7CiAgICBkaXNwbGF5OiBmbGV4OwogICAgYWxpZ24taXRlbXM6IGNlbnRlcjsKICAgIG1hcmdpbi1ib3R0b206IDE0cHg7CiAgICBnYXA6IDEycHg7CiAgfQogIC5iYXItZGF5LWxhYmVsIHsKICAgIHdpZHRoOiA2OHB4OwogICAgZmxleC1zaHJpbms6IDA7CiAgICBmb250LXNpemU6IDEycHg7CiAgICBjb2xvcjogdmFyKC0tdGV4dC1tdXRlZCk7CiAgICBmb250LXdlaWdodDogNjAwOwogICAgdGV4dC1hbGlnbjogcmlnaHQ7CiAgfQogIC5iYXItYmFycyB7CiAgICBmbGV4OiAxOwogICAgZGlzcGxheTogZmxleDsKICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47CiAgICBnYXA6IDRweDsKICB9CiAgLmJhci10cmFjayB7CiAgICBkaXNwbGF5OiBmbGV4OwogICAgYWxpZ24taXRlbXM6IGNlbnRlcjsKICAgIGhlaWdodDogMjhweDsKICB9CiAgLmJhci1maWxsIHsKICAgIGhlaWdodDogMTAwJTsKICAgIGJvcmRlci1yYWRpdXM6IDAgNHB4IDRweCAwOwogICAgZGlzcGxheTogZmxleDsKICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7CiAgICBwYWRkaW5nOiAwIDhweDsKICAgIG1pbi13aWR0aDogNjBweDsKICAgIHRyYW5zaXRpb246IHdpZHRoIDAuM3MgZWFzZTsKICAgIHBvc2l0aW9uOiByZWxhdGl2ZTsKICB9CiAgLmJhci1maWxsLnNqIHsgYmFja2dyb3VuZDogdmFyKC0tYW1iZXIpOyB9CiAgLmJhci1maWxsLm12IHsgYmFja2dyb3VuZDogdmFyKC0tbmF2eSk7IH0KICAuYmFyLWxhYmVsIHsKICAgIGNvbG9yOiAjZmZmOwogICAgZm9udC1zaXplOiAxMXB4OwogICAgZm9udC13ZWlnaHQ6IDYwMDsKICAgIHdoaXRlLXNwYWNlOiBub3dyYXA7CiAgfQogIC5iYXItdHhuIHsKICAgIGZvbnQtc2l6ZTogMTBweDsKICAgIGNvbG9yOiB2YXIoLS10ZXh0LW11dGVkKTsKICAgIG1hcmdpbi1sZWZ0OiA4cHg7CiAgICB3aGl0ZS1zcGFjZTogbm93cmFwOwogIH0KCiAgLyog4pSA4pSAIFBFUkZPUk1BTkNFIFRBQkxFIOKUgOKUgCAqLwogIC5kYXRhLXRhYmxlLXdyYXAgewogICAgYmFja2dyb3VuZDogdmFyKC0tY2FyZC1iZyk7CiAgICBib3JkZXItcmFkaXVzOiB2YXIoLS1yYWRpdXMpOwogICAgYm94LXNoYWRvdzogdmFyKC0tc2hhZG93LW1kKTsKICAgIG92ZXJmbG93OiBoaWRkZW47CiAgfQogIHRhYmxlIHsKICAgIHdpZHRoOiAxMDAlOwogICAgYm9yZGVyLWNvbGxhcHNlOiBjb2xsYXBzZTsKICB9CiAgdGhlYWQgdGggewogICAgZm9udC1zaXplOiAxMHB4OwogICAgZm9udC13ZWlnaHQ6IDcwMDsKICAgIHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7CiAgICBsZXR0ZXItc3BhY2luZzogMC41cHg7CiAgICBjb2xvcjogdmFyKC0tdGV4dC1sYWJlbCk7CiAgICBwYWRkaW5nOiAxMnB4IDE0cHg7CiAgICB0ZXh0LWFsaWduOiBsZWZ0OwogICAgYmFja2dyb3VuZDogI2Y4ZjhmYjsKICAgIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCB2YXIoLS1ib3JkZXItbGlnaHQpOwogIH0KICB0Ym9keSB0ZCB7CiAgICBwYWRkaW5nOiAxMXB4IDE0cHg7CiAgICBmb250LXNpemU6IDEzcHg7CiAgICBib3JkZXItYm90dG9tOiAxcHggc29saWQgI2YzZjNmMzsKICB9CiAgdGJvZHkgdHI6bGFzdC1jaGlsZCB0ZCB7IGJvcmRlci1ib3R0b206IG5vbmU7IH0KICB0Ym9keSB0cjpudGgtY2hpbGQoZXZlbikgdGQgeyBiYWNrZ3JvdW5kOiB2YXIoLS1yb3ctYWx0KTsgfQogIC50ZC1kYXkgeyBmb250LXdlaWdodDogNjAwOyBjb2xvcjogdmFyKC0tdGV4dC1kYXJrKTsgfQogIC50ZC1kYXRlIHsgZm9udC1zaXplOiAxMXB4OyBjb2xvcjogdmFyKC0tdGV4dC1tdXRlZCk7IGZvbnQtd2VpZ2h0OiA0MDA7IGRpc3BsYXk6IGJsb2NrOyB9CiAgLnRkLW51bSB7IGZvbnQtd2VpZ2h0OiA2MDA7IH0KICAudGQtdG90YWwgeyBmb250LXdlaWdodDogNzAwOyBjb2xvcjogdmFyKC0tbmF2eSk7IH0KICAudGQtbXV0ZWQgeyBjb2xvcjogdmFyKC0tdGV4dC1tdXRlZCk7IGZvbnQtc2l6ZTogMTJweDsgfQoKICAvKiDilIDilIAgSEVBVE1BUCDilIDilIAgKi8KICAuaGVhdG1hcC13cmFwIHsKICAgIGJhY2tncm91bmQ6IHZhcigtLWNhcmQtYmcpOwogICAgYm9yZGVyLXJhZGl1czogdmFyKC0tcmFkaXVzKTsKICAgIGJveC1zaGFkb3c6IHZhcigtLXNoYWRvdy1tZCk7CiAgICBwYWRkaW5nOiAyMHB4OwogICAgb3ZlcmZsb3cteDogYXV0bzsKICB9CiAgLmhlYXRtYXAtbm90ZSB7CiAgICBmb250LXNpemU6IDExcHg7CiAgICBjb2xvcjogdmFyKC0tdGV4dC1tdXRlZCk7CiAgICBtYXJnaW4tYm90dG9tOiAxNHB4OwogIH0KICAuaGVhdG1hcC10YWJsZSB7CiAgICB3aWR0aDogMTAwJTsKICAgIGJvcmRlci1jb2xsYXBzZTogc2VwYXJhdGU7CiAgICBib3JkZXItc3BhY2luZzogM3B4OwogIH0KICAuaGVhdG1hcC10YWJsZSB0aCB7CiAgICBmb250LXNpemU6IDEwcHg7CiAgICBmb250LXdlaWdodDogNjAwOwogICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTsKICAgIGxldHRlci1zcGFjaW5nOiAwLjNweDsKICAgIGNvbG9yOiB2YXIoLS10ZXh0LWxhYmVsKTsKICAgIHRleHQtYWxpZ246IGNlbnRlcjsKICAgIHBhZGRpbmc6IDRweCAycHg7CiAgICBiYWNrZ3JvdW5kOiB0cmFuc3BhcmVudDsKICAgIGJvcmRlci1ib3R0b206IG5vbmU7CiAgfQogIC5oZWF0bWFwLXRhYmxlIHRkIHsKICAgIHRleHQtYWxpZ246IGNlbnRlcjsKICAgIGZvbnQtc2l6ZTogMTFweDsKICAgIGZvbnQtd2VpZ2h0OiA2MDA7CiAgICBwYWRkaW5nOiA4cHggNHB4OwogICAgYm9yZGVyLXJhZGl1czogNHB4OwogICAgYm9yZGVyLWJvdHRvbTogbm9uZTsKICAgIGJhY2tncm91bmQ6ICNmNWY1ZjU7CiAgfQogIC5obS1yb3ctbGFiZWwgewogICAgZm9udC1zaXplOiAxMXB4OwogICAgZm9udC13ZWlnaHQ6IDcwMDsKICAgIGNvbG9yOiB2YXIoLS10ZXh0LW1pZCk7CiAgICB0ZXh0LWFsaWduOiBsZWZ0ICFpbXBvcnRhbnQ7CiAgICBwYWRkaW5nLWxlZnQ6IDRweCAhaW1wb3J0YW50OwogICAgd2hpdGUtc3BhY2U6IG5vd3JhcDsKICAgIGJhY2tncm91bmQ6IHRyYW5zcGFyZW50ICFpbXBvcnRhbnQ7CiAgfQoKICAvKiDilIDilIAgUEFZTUVOVCBNRVRIT0RTIOKUgOKUgCAqLwogIC5wYXltZW50LWdyaWQgewogICAgZGlzcGxheTogZ3JpZDsKICAgIGdyaWQtdGVtcGxhdGUtY29sdW1uczogMWZyIDFmcjsKICAgIGdhcDogMTZweDsKICB9CiAgLnBheW1lbnQtY2FyZCB7CiAgICBiYWNrZ3JvdW5kOiB2YXIoLS1jYXJkLWJnKTsKICAgIGJvcmRlci1yYWRpdXM6IHZhcigtLXJhZGl1cyk7CiAgICBib3gtc2hhZG93OiB2YXIoLS1zaGFkb3ctbWQpOwogICAgcGFkZGluZzogMjBweCAyNHB4OwogIH0KICAucGF5bWVudC1sb2MtdGl0bGUgewogICAgZm9udC1zaXplOiAxNHB4OwogICAgZm9udC13ZWlnaHQ6IDcwMDsKICAgIGNvbG9yOiB2YXIoLS10ZXh0LWRhcmspOwogICAgbWFyZ2luLWJvdHRvbTogMTZweDsKICB9CiAgLnBheW1lbnQtbWV0aG9kLXJvdyB7CiAgICBtYXJnaW4tYm90dG9tOiAxNHB4OwogIH0KICAucGF5bWVudC1tZXRob2QtaGVhZGVyIHsKICAgIGRpc3BsYXk6IGZsZXg7CiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47CiAgICBhbGlnbi1pdGVtczogY2VudGVyOwogICAgbWFyZ2luLWJvdHRvbTogNnB4OwogIH0KICAucGF5bWVudC1tZXRob2QtbmFtZSB7CiAgICBmb250LXNpemU6IDEzcHg7CiAgICBmb250LXdlaWdodDogNjAwOwogICAgY29sb3I6IHZhcigtLXRleHQtbWlkKTsKICB9CiAgLnBheW1lbnQtbWV0aG9kLXN0YXQgewogICAgZm9udC1zaXplOiAxMnB4OwogICAgY29sb3I6IHZhcigtLXRleHQtbXV0ZWQpOwogIH0KICAucGF5bWVudC1iYXItdHJhY2sgewogICAgaGVpZ2h0OiAxMHB4OwogICAgYmFja2dyb3VuZDogI2VlZTsKICAgIGJvcmRlci1yYWRpdXM6IDVweDsKICAgIG92ZXJmbG93OiBoaWRkZW47CiAgfQogIC5wYXltZW50LWJhci1maWxsIHsKICAgIGhlaWdodDogMTAwJTsKICAgIGJvcmRlci1yYWRpdXM6IDVweDsKICB9CiAgLnBheW1lbnQtYmFyLWZpbGwuY2FyZCB7IGJhY2tncm91bmQ6IHZhcigtLW5hdnkpOyB9CiAgLnBheW1lbnQtYmFyLWZpbGwuY2FzaCB7IGJhY2tncm91bmQ6IHZhcigtLWFtYmVyKTsgfQogIC5wYXltZW50LWJhci1maWxsLmV4dGVybmFsIHsgYmFja2dyb3VuZDogIzZiNzI4MDsgfQoKICAvKiDilIDilIAgUFJPRFVDVFMg4pSA4pSAICovCiAgLnByb2R1Y3RzLWdyaWQgewogICAgZGlzcGxheTogZ3JpZDsKICAgIGdyaWQtdGVtcGxhdGUtY29sdW1uczogMWZyIDFmcjsKICAgIGdhcDogMTZweDsKICB9CiAgLnByb2R1Y3QtdGFibGUtd3JhcCB7CiAgICBiYWNrZ3JvdW5kOiB2YXIoLS1jYXJkLWJnKTsKICAgIGJvcmRlci1yYWRpdXM6IHZhcigtLXJhZGl1cyk7CiAgICBib3gtc2hhZG93OiB2YXIoLS1zaGFkb3ctbWQpOwogICAgb3ZlcmZsb3c6IGhpZGRlbjsKICB9CiAgLnByb2R1Y3QtdGFibGUtdGl0bGUgewogICAgcGFkZGluZzogMTRweCAxNnB4OwogICAgZm9udC1zaXplOiAxM3B4OwogICAgZm9udC13ZWlnaHQ6IDcwMDsKICAgIGNvbG9yOiB2YXIoLS10ZXh0LWRhcmspOwogICAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkIHZhcigtLWJvcmRlci1saWdodCk7CiAgICBiYWNrZ3JvdW5kOiAjZjhmOGZiOwogIH0KICAucmFuay1iYWRnZSB7CiAgICBkaXNwbGF5OiBpbmxpbmUtZmxleDsKICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7CiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjsKICAgIHdpZHRoOiAyMHB4OwogICAgaGVpZ2h0OiAyMHB4OwogICAgYm9yZGVyLXJhZGl1czogNTAlOwogICAgZm9udC1zaXplOiAxMHB4OwogICAgZm9udC13ZWlnaHQ6IDcwMDsKICAgIGJhY2tncm91bmQ6IHZhcigtLWFtYmVyKTsKICAgIGNvbG9yOiAjZmZmOwogIH0KICAucmFuay1iYWRnZS50b3AzIHsgYmFja2dyb3VuZDogdmFyKC0tbmF2eSk7IH0KCiAgLyog4pSA4pSAIExBQk9SIE9WRVJWSUVXIOKUgOKUgCAqLwogIC5sYWJvci1rcGktZ3JpZCB7CiAgICBkaXNwbGF5OiBncmlkOwogICAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiByZXBlYXQoNCwgMWZyKTsKICAgIGdhcDogMTRweDsKICAgIG1hcmdpbi1ib3R0b206IDE2cHg7CiAgfQogIC5sYWJvci1rcGktY2FyZCB7CiAgICBiYWNrZ3JvdW5kOiB2YXIoLS1jYXJkLWJnKTsKICAgIGJvcmRlci1yYWRpdXM6IHZhcigtLXJhZGl1cyk7CiAgICBib3gtc2hhZG93OiB2YXIoLS1zaGFkb3ctbWQpOwogICAgcGFkZGluZzogMThweCAyMHB4OwogICAgYm9yZGVyLWxlZnQ6IDNweCBzb2xpZCB2YXIoLS1hbWJlcik7CiAgfQogIC5sYWJvci1rcGktbGFiZWwgewogICAgZm9udC1zaXplOiAxMHB4OwogICAgZm9udC13ZWlnaHQ6IDcwMDsKICAgIHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7CiAgICBsZXR0ZXItc3BhY2luZzogMC44cHg7CiAgICBjb2xvcjogdmFyKC0tdGV4dC1sYWJlbCk7CiAgICBtYXJnaW4tYm90dG9tOiA4cHg7CiAgfQogIC5sYWJvci1rcGktdmFsdWUgewogICAgZm9udC1zaXplOiAzMnB4OwogICAgZm9udC13ZWlnaHQ6IDcwMDsKICAgIGxpbmUtaGVpZ2h0OiAxLjE7CiAgICBtYXJnaW4tYm90dG9tOiA0cHg7CiAgfQogIC5sYWJvci1rcGktc3ViIHsKICAgIGZvbnQtc2l6ZTogMTFweDsKICAgIGNvbG9yOiB2YXIoLS10ZXh0LW11dGVkKTsKICB9CiAgLmNvbG9yLWdyZWVuIHsgY29sb3I6IHZhcigtLWdyZWVuKTsgfQogIC5jb2xvci15ZWxsb3cgeyBjb2xvcjogdmFyKC0teWVsbG93KTsgfQogIC5jb2xvci1yZWQgeyBjb2xvcjogdmFyKC0tcmVkKTsgfQoKICAubGFib3ItbGVnZW5kIHsKICAgIGRpc3BsYXk6IGZsZXg7CiAgICBnYXA6IDIwcHg7CiAgICBmb250LXNpemU6IDEycHg7CiAgICBjb2xvcjogdmFyKC0tdGV4dC1tdXRlZCk7CiAgICBtYXJnaW4tYm90dG9tOiAxNnB4OwogICAgZmxleC13cmFwOiB3cmFwOwogIH0KICAubGFib3ItbGVnZW5kLWl0ZW0geyBkaXNwbGF5OiBmbGV4OyBhbGlnbi1pdGVtczogY2VudGVyOyBnYXA6IDRweDsgfQogIC5sYWJvci1sZWdlbmQtZG90IHsKICAgIHdpZHRoOiA4cHg7IGhlaWdodDogOHB4OwogICAgYm9yZGVyLXJhZGl1czogNTAlOwogICAgZmxleC1zaHJpbms6IDA7CiAgfQoKICAvKiDilIDilIAgTEFCT1IgRUZGSUNJRU5DWSBUQUJMRSDilIDilIAgKi8KICAubGFib3ItZWZmLXdyYXAgewogICAgYmFja2dyb3VuZDogdmFyKC0tY2FyZC1iZyk7CiAgICBib3JkZXItcmFkaXVzOiB2YXIoLS1yYWRpdXMpOwogICAgYm94LXNoYWRvdzogdmFyKC0tc2hhZG93LW1kKTsKICAgIG92ZXJmbG93OiBoaWRkZW47CiAgfQogIC5sYWJvci1ncm91cC1oZWFkZXIgewogICAgYmFja2dyb3VuZDogdmFyKC0tbmF2eSk7CiAgICBjb2xvcjogI2ZmZjsKICAgIHRleHQtYWxpZ246IGNlbnRlcjsKICAgIGZvbnQtc2l6ZTogMTFweDsKICAgIGZvbnQtd2VpZ2h0OiA3MDA7CiAgICBsZXR0ZXItc3BhY2luZzogMC41cHg7CiAgICBwYWRkaW5nOiA4cHg7CiAgfQogIC5wY3QtYmFkZ2UgewogICAgZGlzcGxheTogaW5saW5lLWJsb2NrOwogICAgcGFkZGluZzogMnB4IDhweDsKICAgIGJvcmRlci1yYWRpdXM6IDEwcHg7CiAgICBmb250LXNpemU6IDExcHg7CiAgICBmb250LXdlaWdodDogNzAwOwogIH0KICAucGN0LWdyZWVuIHsgYmFja2dyb3VuZDogI2RjZmNlNzsgY29sb3I6ICMxNjY1MzQ7IH0KICAucGN0LXllbGxvdyB7IGJhY2tncm91bmQ6ICNmZWY5YzM7IGNvbG9yOiAjODU0ZDBlOyB9CiAgLnBjdC1yZWQgeyBiYWNrZ3JvdW5kOiAjZmVlMmUyOyBjb2xvcjogIzk5MWIxYjsgfQoKICAvKiDilIDilIAgVEVBTSBUQUJMRSDilIDilIAgKi8KICAubG9jLWJhZGdlIHsKICAgIGRpc3BsYXk6IGlubGluZS1ibG9jazsKICAgIGJhY2tncm91bmQ6IHZhcigtLXJvdy1hbHQpOwogICAgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tYm9yZGVyLWxpZ2h0KTsKICAgIGJvcmRlci1yYWRpdXM6IDEwcHg7CiAgICBwYWRkaW5nOiAxcHggN3B4OwogICAgZm9udC1zaXplOiAxMHB4OwogICAgZm9udC13ZWlnaHQ6IDYwMDsKICAgIGNvbG9yOiB2YXIoLS10ZXh0LW1pZCk7CiAgfQogIC5sb2MtYmFkZ2Uuc2ogeyBiYWNrZ3JvdW5kOiAjZmZmM2Q2OyBib3JkZXItY29sb3I6IHZhcigtLWFtYmVyLWxpZ2h0KTsgY29sb3I6IHZhcigtLWFtYmVyLWRhcmspOyB9CiAgLmxvYy1iYWRnZS5tdiB7IGJhY2tncm91bmQ6ICNlOGU4ZjQ7IGJvcmRlci1jb2xvcjogI2MwYzBlMDsgY29sb3I6IHZhcigtLW5hdnktbWlkKTsgfQoKICAvKiDilIDilIAgTEFCT1IgQlkgTE9DQVRJT04g4pSA4pSAICovCiAgLmxhYm9yLWxvYy1ncmlkIHsKICAgIGRpc3BsYXk6IGdyaWQ7CiAgICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmciAxZnI7CiAgICBnYXA6IDE2cHg7CiAgfQogIC5sYWJvci1sb2MtY2FyZCB7CiAgICBiYWNrZ3JvdW5kOiB2YXIoLS1jYXJkLWJnKTsKICAgIGJvcmRlci1yYWRpdXM6IHZhcigtLXJhZGl1cyk7CiAgICBib3gtc2hhZG93OiB2YXIoLS1zaGFkb3ctbWQpOwogICAgb3ZlcmZsb3c6IGhpZGRlbjsKICB9CiAgLmxhYm9yLWxvYy1oZWFkZXIgewogICAgYmFja2dyb3VuZDogdmFyKC0tbmF2eSk7CiAgICBjb2xvcjogI2ZmZjsKICAgIHBhZGRpbmc6IDEycHggMTZweDsKICAgIGZvbnQtc2l6ZTogMTNweDsKICAgIGZvbnQtd2VpZ2h0OiA3MDA7CiAgfQogIC5sYWJvci1sb2MtaGVhZGVyLm12IHsgYmFja2dyb3VuZDogdmFyKC0tbmF2eS1taWQpOyB9CiAgLmxhYm9yLWxvYy1zdWJoZWFkZXIgewogICAgZm9udC1zaXplOiAxMXB4OwogICAgY29sb3I6IHJnYmEoMjU1LDI1NSwyNTUsMC43KTsKICAgIGZvbnQtd2VpZ2h0OiA0MDA7CiAgICBtYXJnaW4tdG9wOiAycHg7CiAgfQoKICAvKiDilIDilIAgUkVGVU5EUyDilIDilIAgKi8KICAucmVmdW5kLXN1bW1hcnkgewogICAgYmFja2dyb3VuZDogI2ZmZjNkNjsKICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWFtYmVyLWxpZ2h0KTsKICAgIGJvcmRlci1yYWRpdXM6IDhweDsKICAgIHBhZGRpbmc6IDEwcHggMTZweDsKICAgIG1hcmdpbi1ib3R0b206IDE0cHg7CiAgICBmb250LXNpemU6IDEzcHg7CiAgICBjb2xvcjogdmFyKC0tYW1iZXItZGFyayk7CiAgICBmb250LXdlaWdodDogNjAwOwogICAgZGlzcGxheTogZmxleDsKICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7CiAgICBnYXA6IDhweDsKICB9CiAgLnJlZnVuZC1sb2Mtc2ogeyBjb2xvcjogdmFyKC0tbmF2eSk7IGZvbnQtd2VpZ2h0OiA3MDA7IH0KICAucmVmdW5kLWxvYy1tdiB7IGNvbG9yOiB2YXIoLS1uYXZ5LW1pZCk7IGZvbnQtd2VpZ2h0OiA3MDA7IH0KCiAgLyog4pSA4pSAIFJFQ09NTUVOREFUSU9OUyDilIDilIAgKi8KICAucmVjby1ncmlkIHsKICAgIGRpc3BsYXk6IGZsZXg7CiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uOwogICAgZ2FwOiAxMnB4OwogIH0KICAucmVjby1jYXJkIHsKICAgIGJhY2tncm91bmQ6IHZhcigtLWNhcmQtYmcpOwogICAgYm9yZGVyLXJhZGl1czogdmFyKC0tcmFkaXVzKTsKICAgIGJveC1zaGFkb3c6IHZhcigtLXNoYWRvdy1tZCk7CiAgICBwYWRkaW5nOiAxOHB4IDIwcHg7CiAgICBkaXNwbGF5OiBmbGV4OwogICAgZ2FwOiAxNnB4OwogICAgYWxpZ24taXRlbXM6IGZsZXgtc3RhcnQ7CiAgICBib3JkZXItbGVmdDogNHB4IHNvbGlkIHZhcigtLWFtYmVyKTsKICB9CiAgLnJlY28tY2FyZC5ibHVlIHsgYm9yZGVyLWxlZnQtY29sb3I6ICMzYjgyZjY7IH0KICAucmVjby1jYXJkLmdyZWVuIHsgYm9yZGVyLWxlZnQtY29sb3I6ICMyMmM1NWU7IH0KICAucmVjby1jYXJkLmFtYmVyIHsgYm9yZGVyLWxlZnQtY29sb3I6IHZhcigtLWFtYmVyKTsgfQogIC5yZWNvLWNhcmQucHVycGxlIHsgYm9yZGVyLWxlZnQtY29sb3I6ICNhODU1Zjc7IH0KICAucmVjby1jYXJkLmdyYXkgeyBib3JkZXItbGVmdC1jb2xvcjogIzZiNzI4MDsgfQogIC5yZWNvLWljb24geyBmb250LXNpemU6IDIycHg7IGZsZXgtc2hyaW5rOiAwOyBsaW5lLWhlaWdodDogMTsgfQogIC5yZWNvLWJvZHkge30KICAucmVjby10aXRsZSB7IGZvbnQtc2l6ZTogMTRweDsgZm9udC13ZWlnaHQ6IDcwMDsgY29sb3I6IHZhcigtLXRleHQtZGFyayk7IG1hcmdpbi1ib3R0b206IDRweDsgfQogIC5yZWNvLXRleHQgeyBmb250LXNpemU6IDEzcHg7IGNvbG9yOiB2YXIoLS10ZXh0LW1pZCk7IGxpbmUtaGVpZ2h0OiAxLjU1OyB9CgogIC8qIOKUgOKUgCBSRVNQT05TSVZFIOKUgOKUgCAqLwogIEBtZWRpYSAobWF4LXdpZHRoOiA5MDBweCkgewogICAgLmtwaS1ncmlkIHsgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiAxZnIgMWZyOyB9CiAgICAubG9jLWdyaWQsIC5wYXltZW50LWdyaWQsIC5wcm9kdWN0cy1ncmlkLCAubGFib3ItbG9jLWdyaWQgeyBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmcjsgfQogICAgLmxhYm9yLWtwaS1ncmlkIHsgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiAxZnIgMWZyOyB9CiAgICAueXRkLWdyaWQgeyBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmciAxZnI7IH0KICB9CiAgQG1lZGlhIChtYXgtd2lkdGg6IDYwMHB4KSB7CiAgICAua3BpLWdyaWQgeyBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmcjsgfQogICAgLnBlcmlvZC1ncmlkLTIgeyBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmcjsgfQogICAgLmxhYm9yLWtwaS1ncmlkIHsgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiAxZnI7IH0KICB9CgogIEBtZWRpYSBwcmludCB7CiAgICBib2R5IHsgYmFja2dyb3VuZDogd2hpdGU7IH0KICAgIC5jb250YWluZXIgeyBwYWRkaW5nOiAwOyB9CiAgICAuc2VjdGlvbiB7IGJyZWFrLWluc2lkZTogYXZvaWQ7IH0KICB9Cjwvc3R5bGU+CjwvaGVhZD4KPGJvZHk+CjxkaXYgY2xhc3M9ImNvbnRhaW5lciI+CgogIDwhLS0g4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQIC0tPgogIDwhLS0gSEVBREVSIEJBTk5FUiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC0tPgogIDwhLS0g4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQIC0tPgogIDxkaXYgY2xhc3M9ImhlYWRlci1iYW5uZXIiPgogICAgPGRpdiBjbGFzcz0iaGVhZGVyLWJyYW5kIj5Qb3VyIERlY2lzaW9ucyBDcmFmdCBDb2ZmZWUgJmFtcDsgQmVlcjwvZGl2PgogICAgPGRpdiBjbGFzcz0iaGVhZGVyLXN1YnRpdGxlIj5XZWVrbHkgUGVyZm9ybWFuY2UgUmVwb3J0PC9kaXY+CiAgICA8ZGl2IGNsYXNzPSJoZWFkZXItbWV0YSI+V2VlayBvZiBGZWJydWFyeSAxNyDigJMgMjMsIDIwMjYgJmJ1bGw7IEdlbmVyYXRlZCBGZWIgMjYsIDIwMjYgYXQgMzoyNiBBTSBQU1Q8L2Rpdj4KICAgIDxkaXYgY2xhc3M9ImhlYWRlci1waWxscyI+CiAgICAgIDxzcGFuIGNsYXNzPSJwaWxsIj7wn4+qIFNKICZuYnNwOzU3MDAgVmlsbGFnZSBPYWtzIERyLCBTYW4gSm9zZTwvc3Bhbj4KICAgICAgPHNwYW4gY2xhc3M9InBpbGwiPvCfj5QgTVYgJm5ic3A7MTA0MCBHcmFudCBSZCwgTW91bnRhaW4gVmlldzwvc3Bhbj4KICAgIDwvZGl2PgogIDwvZGl2PgoKICA8IS0tIOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkCAtLT4KICA8IS0tIEtQSSBDQVJEUyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAtLT4KICA8IS0tIOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkCAtLT4KICA8ZGl2IGNsYXNzPSJzZWN0aW9uIj4KICAgIDxkaXYgY2xhc3M9InNlY3Rpb24tdGl0bGUiPjxzcGFuIGNsYXNzPSJzZWN0aW9uLWJ1bGxldCI+4pePPC9zcGFuPiBXZWVrbHkgS1BJIFN1bW1hcnk8L2Rpdj4KICAgIDxkaXYgY2xhc3M9ImtwaS1ncmlkIj4KICAgICAgPGRpdiBjbGFzcz0ia3BpLWNhcmQiPgogICAgICAgIDxkaXYgY2xhc3M9ImtwaS1sYWJlbCI+R3Jvc3MgUmV2ZW51ZTwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9ImtwaS12YWx1ZSI+JDM2LDkxOC44NTwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9ImtwaS1zdWIiPlNKIDxzdHJvbmc+JDI1LDEzNy43Mzwvc3Ryb25nPiAmbmJzcDt8Jm5ic3A7IE1WIDxzdHJvbmc+JDExLDc4MS4xMjwvc3Ryb25nPjwvZGl2PgogICAgICA8L2Rpdj4KICAgICAgPGRpdiBjbGFzcz0ia3BpLWNhcmQiPgogICAgICAgIDxkaXYgY2xhc3M9ImtwaS1sYWJlbCI+VHJhbnNhY3Rpb25zPC9kaXY+CiAgICAgICAgPGRpdiBjbGFzcz0ia3BpLXZhbHVlIj4yLDM5NTwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9ImtwaS1zdWIiPlNKIDxzdHJvbmc+MSw1Njc8L3N0cm9uZz4gJm5ic3A7fCZuYnNwOyBNViA8c3Ryb25nPjgyODwvc3Ryb25nPjwvZGl2PgogICAgICA8L2Rpdj4KICAgICAgPGRpdiBjbGFzcz0ia3BpLWNhcmQiPgogICAgICAgIDxkaXYgY2xhc3M9ImtwaS1sYWJlbCI+QXZnIE9yZGVyIFZhbHVlPC9kaXY+CiAgICAgICAgPGRpdiBjbGFzcz0ia3BpLXZhbHVlIj4kMTUuNDE8L2Rpdj4KICAgICAgICA8ZGl2IGNsYXNzPSJrcGktc3ViIj5TSiA8c3Ryb25nPiQxNi4wNDwvc3Ryb25nPiAmbmJzcDt8Jm5ic3A7IE1WIDxzdHJvbmc+JDE0LjIzPC9zdHJvbmc+PC9kaXY+CiAgICAgIDwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJrcGktY2FyZCI+CiAgICAgICAgPGRpdiBjbGFzcz0ia3BpLWxhYmVsIj5Ub3RhbCBMYWJvciBDb3N0PC9kaXY+CiAgICAgICAgPGRpdiBjbGFzcz0ia3BpLXZhbHVlIj4kMTAsOTgwLjg4PC9kaXY+CiAgICAgICAgPGRpdiBjbGFzcz0ia3BpLXN1YiI+PHN0cm9uZz4yOS43JTwvc3Ryb25nPiBvZiByZXZlbnVlICZuYnNwO3wmbmJzcDsgPHN0cm9uZz41NDggaHJzPC9zdHJvbmc+PC9kaXY+CiAgICAgIDwvZGl2PgogICAgPC9kaXY+CiAgPC9kaXY+CgogIDwhLS0g4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQIC0tPgogIDwhLS0gTVREIFFVSUNLIFZJRVcgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC0tPgogIDwhLS0g4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQIC0tPgogIDxkaXYgY2xhc3M9InNlY3Rpb24iPgogICAgPGRpdiBjbGFzcz0ic2VjdGlvbi10aXRsZSI+PHNwYW4gY2xhc3M9InNlY3Rpb24tYnVsbGV0Ij7il488L3NwYW4+IE1vbnRoLXRvLURhdGUgUmV2ZW51ZSA8c3BhbiBzdHlsZT0iZm9udC1zaXplOjEzcHg7Zm9udC13ZWlnaHQ6NDAwO2NvbG9yOnZhcigtLXRleHQtbXV0ZWQpO21hcmdpbi1sZWZ0OjZweDsiPkZlYiAx4oCTMjYsIDIwMjY8L3NwYW4+PC9kaXY+CiAgICA8ZGl2IGNsYXNzPSJwZXJpb2QtZ3JpZC0yIj4KICAgICAgPGRpdiBjbGFzcz0icGVyaW9kLWNhcmQiPgogICAgICAgIDxkaXYgY2xhc3M9InBlcmlvZC1jYXJkLXRpdGxlIj5CeSBMb2NhdGlvbiDigJQgRmVicnVhcnkgTVREPC9kaXY+CiAgICAgICAgPGRpdiBjbGFzcz0icGVyaW9kLXJvd3MiPgogICAgICAgICAgPGRpdiBjbGFzcz0icGVyaW9kLXJvdyI+CiAgICAgICAgICAgIDxkaXY+CiAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icGVyaW9kLWxvYy1sYWJlbCI+8J+PqiBTYW4gSm9zZTwvZGl2PgogICAgICAgICAgICAgIDxkaXYgY2xhc3M9InBlcmlvZC1sb2Mtc3ViIj42LDUzNiBvcmRlcnM8L2Rpdj4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgIDxkaXYgc3R5bGU9InRleHQtYWxpZ246cmlnaHQ7Ij4KICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwZXJpb2QtbG9jLXZhbCI+JDEwMSw4MTEuNjU8L2Rpdj4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICAgIDxkaXYgY2xhc3M9InBlcmlvZC1yb3ciPgogICAgICAgICAgICA8ZGl2PgogICAgICAgICAgICAgIDxkaXYgY2xhc3M9InBlcmlvZC1sb2MtbGFiZWwiPvCfj5QgTW91bnRhaW4gVmlldzwvZGl2PgogICAgICAgICAgICAgIDxkaXYgY2xhc3M9InBlcmlvZC1sb2Mtc3ViIj4zLDAxNCBvcmRlcnM8L2Rpdj4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgIDxkaXYgc3R5bGU9InRleHQtYWxpZ246cmlnaHQ7Ij4KICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwZXJpb2QtbG9jLXZhbCI+JDQyLDY1Ni4yNzwvZGl2PgogICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgIDwvZGl2PgogICAgICAgIDwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9InBlcmlvZC1jb21iaW5lZCI+CiAgICAgICAgICA8c3BhbiBjbGFzcz0icGVyaW9kLWNvbWJpbmVkLWxhYmVsIj5Db21iaW5lZCBNVEQ8L3NwYW4+CiAgICAgICAgICA8c3BhbiBjbGFzcz0icGVyaW9kLWNvbWJpbmVkLXZhbCI+JDE0NCw0NjcuOTI8L3NwYW4+CiAgICAgICAgPC9kaXY+CiAgICAgIDwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJwZXJpb2QtY2FyZCIgc3R5bGU9ImJvcmRlci10b3AtY29sb3I6dmFyKC0tbmF2eS1taWQpOyI+CiAgICAgICAgPGRpdiBjbGFzcz0icGVyaW9kLWNhcmQtdGl0bGUiPk1URCB2cyBQcmlvciBNb250aCBDb250ZXh0PC9kaXY+CiAgICAgICAgPGRpdiBzdHlsZT0iZGlzcGxheTpmbGV4O2FsaWduLWl0ZW1zOmNlbnRlcjtoZWlnaHQ6ODBweDsiPgogICAgICAgICAgPGRpdiBzdHlsZT0iZmxleDoxO3RleHQtYWxpZ246Y2VudGVyOyI+CiAgICAgICAgICAgIDxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMXB4O2NvbG9yOnZhcigtLXRleHQtbXV0ZWQpO21hcmdpbi1ib3R0b206NHB4OyI+RmViICgyNiBkYXlzIHNvIGZhcik8L2Rpdj4KICAgICAgICAgICAgPGRpdiBzdHlsZT0iZm9udC1zaXplOjI2cHg7Zm9udC13ZWlnaHQ6NzAwO2NvbG9yOnZhcigtLW5hdnkpOyI+JDE0NCw0NjcuOTI8L2Rpdj4KICAgICAgICAgICAgPGRpdiBzdHlsZT0iZm9udC1zaXplOjExcHg7Y29sb3I6dmFyKC0tdGV4dC1tdXRlZCk7Ij45LDU1MCBvcmRlcnM8L2Rpdj4KICAgICAgICAgIDwvZGl2PgogICAgICAgICAgPGRpdiBzdHlsZT0id2lkdGg6MXB4O2JhY2tncm91bmQ6dmFyKC0tYm9yZGVyLWxpZ2h0KTtoZWlnaHQ6NjBweDsiPjwvZGl2PgogICAgICAgICAgPGRpdiBzdHlsZT0iZmxleDoxO3RleHQtYWxpZ246Y2VudGVyOyI+CiAgICAgICAgICAgIDxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMXB4O2NvbG9yOnZhcigtLXRleHQtbXV0ZWQpO21hcmdpbi1ib3R0b206NHB4OyI+SmFudWFyeSAoZnVsbCBtb250aCk8L2Rpdj4KICAgICAgICAgICAgPGRpdiBzdHlsZT0iZm9udC1zaXplOjI2cHg7Zm9udC13ZWlnaHQ6NzAwO2NvbG9yOnZhcigtLXRleHQtbWlkKTsiPiQxNTcsMDA4LjMwPC9kaXY+CiAgICAgICAgICAgIDxkaXYgc3R5bGU9ImZvbnQtc2l6ZToxMXB4O2NvbG9yOnZhcigtLXRleHQtbXV0ZWQpOyI+MTAsNDMwIG9yZGVyczwvZGl2PgogICAgICAgICAgPC9kaXY+CiAgICAgICAgPC9kaXY+CiAgICAgICAgPGRpdiBzdHlsZT0ibWFyZ2luLXRvcDoxMnB4O2ZvbnQtc2l6ZToxMXB4O2NvbG9yOnZhcigtLXRleHQtbXV0ZWQpO2JvcmRlci10b3A6MXB4IHNvbGlkIHZhcigtLWJvcmRlci1saWdodCk7cGFkZGluZy10b3A6MTBweDsiPgogICAgICAgICAgRGFpbHkgYXZnIEZlYjogPHN0cm9uZyBzdHlsZT0iY29sb3I6dmFyKC0tbmF2eSk7Ij4kNSw1NTYuNDYvZGF5PC9zdHJvbmc+ICZuYnNwOyZidWxsOyZuYnNwOyBEYWlseSBhdmcgSmFuOiA8c3Ryb25nIHN0eWxlPSJjb2xvcjp2YXIoLS10ZXh0LW1pZCk7Ij4kNSwwNjQuNzgvZGF5PC9zdHJvbmc+CiAgICAgICAgICAmbmJzcDs8c3BhbiBzdHlsZT0iY29sb3I6dmFyKC0tZ3JlZW4pO2ZvbnQtd2VpZ2h0OjcwMDsiPuKWsiArOS43JTwvc3Bhbj4KICAgICAgICA8L2Rpdj4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICA8L2Rpdj4KCiAgPCEtLSDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZAgLS0+CiAgPCEtLSBZVEQgUVVJQ0sgVklFVyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgLS0+CiAgPCEtLSDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDi
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pour Decisions – Weekly Performance Report · Feb 17–23, 2026</title>
+<style>
+  :root {
+    --navy: #1a1a2e;
+    --navy-mid: #2d2d5e;
+    --amber: #D4A853;
+    --amber-light: #F0CC87;
+    --amber-dark: #A07830;
+    --green: #22c55e;
+    --yellow: #eab308;
+    --red: #ef4444;
+    --page-bg: #f5f6fa;
+    --card-bg: #ffffff;
+    --text-dark: #1a1a2e;
+    --text-mid: #444;
+    --text-muted: #888;
+    --text-label: #666;
+    --border-light: #eee;
+    --row-alt: #f9f9fb;
+    --shadow: 0 1px 4px rgba(0,0,0,0.06);
+    --shadow-md: 0 2px 12px rgba(0,0,0,0.08);
+    --radius: 12px;
+    --radius-lg: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--page-bg);
+    color: var(--text-dark);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 24px 20px;
+  }
+
+  /* ── HEADER ── */
+  .header-banner {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    border-radius: var(--radius-lg);
+    padding: 32px 36px;
+    margin-bottom: 28px;
+    color: #fff;
+    box-shadow: 0 4px 24px rgba(26,26,46,0.25);
+  }
+  .header-brand {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+  .header-subtitle {
+    color: var(--amber);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .header-meta {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 16px;
+  }
+  .header-pills {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .pill {
+    border: 1.5px solid var(--amber);
+    color: #fff;
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-bullet {
+    color: var(--amber);
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    margin-bottom: 32px;
+  }
+
+  /* ── KPI CARDS ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .kpi-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    border-left: 3px solid var(--amber);
+    box-shadow: var(--shadow-md);
+    padding: 20px 20px 18px;
+  }
+  .kpi-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-label);
+    margin-bottom: 8px;
+  }
+  .kpi-value {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.1;
+    margin-bottom: 6px;
+  }
+  .kpi-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .kpi-sub strong { color: var(--text-mid); }
+
+  /* ── MTD / YTD ── */
+  .period-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .period-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 20px 24px;
+    border-top: 3px solid var(--amber);
+  }
+  .period-card-title {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-label);
+    margin-bottom: 14px;
+  }
+  .period-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .period-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .period-loc-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    min-width: 120px;
+  }
+  .period-loc-val {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-dark);
+  }
+  .period-loc-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .period-combined {
+    border-top: 1px solid var(--border-light);
+    margin-top: 12px;
+    padding-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .period-combined-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-mid);
+  }
+  .period-combined-val {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--amber-dark);
+  }
+
+  /* YTD section */
+  .ytd-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .ytd-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 20px 20px 16px;
+    border-top: 3px solid var(--navy-mid);
+    text-align: center;
+  }
+  .ytd-card-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-label);
+    margin-bottom: 8px;
+  }
+  .ytd-card-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+  }
+  .ytd-card-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .ytd-month-breakdown {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  /* ── LOCATION COMPARISON ── */
+  .loc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .loc-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+  .loc-card-header {
+    background: var(--navy);
+    color: #fff;
+    padding: 14px 20px;
+    font-size: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .loc-card-header.mv { background: var(--navy-mid); }
+  .loc-icon { font-size: 18px; }
+  .loc-rows { padding: 0; }
+  .loc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #f3f3f3;
+  }
+  .loc-row:last-child { border-bottom: none; }
+  .loc-row:nth-child(even) { background: var(--row-alt); }
+  .loc-row-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .loc-row-val {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-dark);
+  }
+  .loc-row-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  /* ── BAR CHART ── */
+  .bar-chart-wrap {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 24px;
+  }
+  .bar-chart-legend {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    font-size: 12px;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot {
+    width: 12px; height: 12px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .legend-dot.sj { background: var(--amber); }
+  .legend-dot.mv { background: var(--navy); }
+
+  .bar-day-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+    gap: 12px;
+  }
+  .bar-day-label {
+    width: 68px;
+    flex-shrink: 0;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-align: right;
+  }
+  .bar-bars {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .bar-track {
+    display: flex;
+    align-items: center;
+    height: 28px;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 0 4px 4px 0;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    min-width: 60px;
+    transition: width 0.3s ease;
+    position: relative;
+  }
+  .bar-fill.sj { background: var(--amber); }
+  .bar-fill.mv { background: var(--navy); }
+  .bar-label {
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .bar-txn {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-left: 8px;
+    white-space: nowrap;
+  }
+
+  /* ── PERFORMANCE TABLE ── */
+  .data-table-wrap {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  thead th {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-label);
+    padding: 12px 14px;
+    text-align: left;
+    background: #f8f8fb;
+    border-bottom: 1px solid var(--border-light);
+  }
+  tbody td {
+    padding: 11px 14px;
+    font-size: 13px;
+    border-bottom: 1px solid #f3f3f3;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:nth-child(even) td { background: var(--row-alt); }
+  .td-day { font-weight: 600; color: var(--text-dark); }
+  .td-date { font-size: 11px; color: var(--text-muted); font-weight: 400; display: block; }
+  .td-num { font-weight: 600; }
+  .td-total { font-weight: 700; color: var(--navy); }
+  .td-muted { color: var(--text-muted); font-size: 12px; }
+
+  /* ── HEATMAP ── */
+  .heatmap-wrap {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 20px;
+    overflow-x: auto;
+  }
+  .heatmap-note {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+  }
+  .heatmap-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 3px;
+  }
+  .heatmap-table th {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: var(--text-label);
+    text-align: center;
+    padding: 4px 2px;
+    background: transparent;
+    border-bottom: none;
+  }
+  .heatmap-table td {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 8px 4px;
+    border-radius: 4px;
+    border-bottom: none;
+    background: #f5f5f5;
+  }
+  .hm-row-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-mid);
+    text-align: left !important;
+    padding-left: 4px !important;
+    white-space: nowrap;
+    background: transparent !important;
+  }
+
+  /* ── PAYMENT METHODS ── */
+  .payment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .payment-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 20px 24px;
+  }
+  .payment-loc-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+  }
+  .payment-method-row {
+    margin-bottom: 14px;
+  }
+  .payment-method-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  .payment-method-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-mid);
+  }
+  .payment-method-stat {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .payment-bar-track {
+    height: 10px;
+    background: #eee;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .payment-bar-fill {
+    height: 100%;
+    border-radius: 5px;
+  }
+  .payment-bar-fill.card { background: var(--navy); }
+  .payment-bar-fill.cash { background: var(--amber); }
+  .payment-bar-fill.external { background: #6b7280; }
+
+  /* ── PRODUCTS ── */
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .product-table-wrap {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+  .product-table-title {
+    padding: 14px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-dark);
+    border-bottom: 1px solid var(--border-light);
+    background: #f8f8fb;
+  }
+  .rank-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    background: var(--amber);
+    color: #fff;
+  }
+  .rank-badge.top3 { background: var(--navy); }
+
+  /* ── LABOR OVERVIEW ── */
+  .labor-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .labor-kpi-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 18px 20px;
+    border-left: 3px solid var(--amber);
+  }
+  .labor-kpi-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-label);
+    margin-bottom: 8px;
+  }
+  .labor-kpi-value {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .labor-kpi-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .color-green { color: var(--green); }
+  .color-yellow { color: var(--yellow); }
+  .color-red { color: var(--red); }
+
+  .labor-legend {
+    display: flex;
+    gap: 20px;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .labor-legend-item { display: flex; align-items: center; gap: 4px; }
+  .labor-legend-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── LABOR EFFICIENCY TABLE ── */
+  .labor-eff-wrap {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+  .labor-group-header {
+    background: var(--navy);
+    color: #fff;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 8px;
+  }
+  .pct-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .pct-green { background: #dcfce7; color: #166534; }
+  .pct-yellow { background: #fef9c3; color: #854d0e; }
+  .pct-red { background: #fee2e2; color: #991b1b; }
+
+  /* ── TEAM TABLE ── */
+  .loc-badge {
+    display: inline-block;
+    background: var(--row-alt);
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    padding: 1px 7px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-mid);
+  }
+  .loc-badge.sj { background: #fff3d6; border-color: var(--amber-light); color: var(--amber-dark); }
+  .loc-badge.mv { background: #e8e8f4; border-color: #c0c0e0; color: var(--navy-mid); }
+
+  /* ── LABOR BY LOCATION ── */
+  .labor-loc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .labor-loc-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+  .labor-loc-header {
+    background: var(--navy);
+    color: #fff;
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .labor-loc-header.mv { background: var(--navy-mid); }
+  .labor-loc-subheader {
+    font-size: 11px;
+    color: rgba(255,255,255,0.7);
+    font-weight: 400;
+    margin-top: 2px;
+  }
+
+  /* ── REFUNDS ── */
+  .refund-summary {
+    background: #fff3d6;
+    border: 1px solid var(--amber-light);
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    color: var(--amber-dark);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .refund-loc-sj { color: var(--navy); font-weight: 700; }
+  .refund-loc-mv { color: var(--navy-mid); font-weight: 700; }
+
+  /* ── RECOMMENDATIONS ── */
+  .reco-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .reco-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 18px 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    border-left: 4px solid var(--amber);
+  }
+  .reco-card.blue { border-left-color: #3b82f6; }
+  .reco-card.green { border-left-color: #22c55e; }
+  .reco-card.amber { border-left-color: var(--amber); }
+  .reco-card.purple { border-left-color: #a855f7; }
+  .reco-card.gray { border-left-color: #6b7280; }
+  .reco-icon { font-size: 22px; flex-shrink: 0; line-height: 1; }
+  .reco-body {}
+  .reco-title { font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
+  .reco-text { font-size: 13px; color: var(--text-mid); line-height: 1.55; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+    .loc-grid, .payment-grid, .products-grid, .labor-loc-grid { grid-template-columns: 1fr; }
+    .labor-kpi-grid { grid-template-columns: 1fr 1fr; }
+    .ytd-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .kpi-grid { grid-template-columns: 1fr; }
+    .period-grid-2 { grid-template-columns: 1fr; }
+    .labor-kpi-grid { grid-template-columns: 1fr; }
+  }
+
+  @media print {
+    body { background: white; }
+    .container { padding: 0; }
+    .section { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- HEADER BANNER                              -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="header-banner">
+    <div class="header-brand">Pour Decisions Craft Coffee &amp; Beer</div>
+    <div class="header-subtitle">Weekly Performance Report</div>
+    <div class="header-meta">Week of February 17 – 23, 2026 &bull; Generated Feb 26, 2026 at 3:26 AM PST</div>
+    <div class="header-pills">
+      <span class="pill">🏢 SJ &nbsp;5700 Village Oaks Dr, San Jose</span>
+      <span class="pill">🏔 MV &nbsp;1040 Grant Rd, Mountain View</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- KPI CARDS                                  -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">●</span> Weekly KPI Summary</div>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Gross Revenue</div>
+        <div class="kpi-value">$36,918.85</div>
+        <div class="kpi-sub">SJ <strong>$25,137.73</strong> &nbsp;|&nbsp; MV <strong>$11,781.12</strong></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Transactions</div>
+        <div class="kpi-value">2,395</div>
+        <div class="kpi-sub">SJ <strong>1,567</strong> &nbsp;|&nbsp; MV <strong>828</strong></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Avg Order Value</div>
+        <div class="kpi-value">$15.41</div>
+        <div class="kpi-sub">SJ <strong>$16.04</strong> &nbsp;|&nbsp; MV <strong>$14.23</strong></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Total Labor Cost</div>
+        <div class="kpi-value">$10,980.88</div>
+        <div class="kpi-sub"><strong>29.7%</strong> of revenue &nbsp;|&nbsp; <strong>548 hrs</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- MTD QUICK VIEW                             -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">●</span> Month-to-Date Revenue <span style="font-size:13px;font-weight:400;color:var(--text-muted);margin-left:6px;">Feb 1–26, 2026</span></div>
+    <div class="period-grid-2">
+      <div class="period-card">
+        <div class="period-card-title">By Location — February MTD</div>
+        <div class="period-rows">
+          <div class="period-row">
+            <div>
+              <div class="period-loc-label">🏢 San Jose</div>
+              <div class="period-loc-sub">6,536 orders</div>
+            </div>
+            <div style="text-align:right;">
+              <div class="period-loc-val">$101,811.65</div>
+            </div>
+          </div>
+          <div class="period-row">
+            <div>
+              <div class="period-loc-label">🏔 Mountain View</div>
+              <div class="period-loc-sub">3,014 orders</div>
+            </div>
+            <div style="text-align:right;">
+              <div class="period-loc-val">$42,656.27</div>
+            </div>
+          </div>
+        </div>
+        <div class="period-combined">
+          <span class="period-combined-label">Combined MTD</span>
+          <span class="period-combined-val">$144,467.92</span>
+        </div>
+      </div>
+      <div class="period-card" style="border-top-color:var(--navy-mid);">
+        <div class="period-card-title">MTD vs Prior Month Context</div>
+        <div style="display:flex;align-items:center;height:80px;">
+          <div style="flex:1;text-align:center;">
+            <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">Feb (26 days so far)</div>
+            <div style="font-size:26px;font-weight:700;color:var(--navy);">$144,467.92</div>
+            <div style="font-size:11px;color:var(--text-muted);">9,550 orders</div>
+          </div>
+          <div style="width:1px;background:var(--border-light);height:60px;"></div>
+          <div style="flex:1;text-align:center;">
+            <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">January (full month)</div>
+            <div style="font-size:26px;font-weight:700;color:var(--text-mid);">$157,008.30</div>
+            <div style="font-size:11px;color:var(--text-muted);">10,430 orders</div>
+          </div>
+        </div>
+        <div style="margin-top:12px;font-size:11px;color:var(--text-muted);border-top:1px solid var(--border-light);padding-top:10px;">
+          Daily avg Feb: <strong style="color:var(--navy);">$5,556.46/day</strong> &nbsp;&bull;&nbsp; Daily avg Jan: <strong style="color:var(--text-mid);">$5,064.78/day</strong>
+          &nbsp;<span style="color:var(--green);font-weight:700;">▲ +9.7%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- YTD QUICK VIEW                             -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">●</span> Year-to-Date Revenue <span style="font-size:13px;font-weight:400;color:var(--text-muted);margin-left:6px;">Jan 1–Feb 26, 2026</span></div>
+    <div class="ytd-grid">
+      <div class="ytd-card" style="border-top-color:var(--amber);">
+        <div class="ytd-card-label">🏢 San Jose — YTD</div>
+        <div class="ytd-card-value">$214,549.27</div>
+        <div class="ytd-card-sub">13,634 orders</div>
+      </div>
+      <div class="ytd-card" style="border-top-color:var(--navy-mid);">
+        <div class="ytd-card-label">🏔 Mountain View — YTD</div>
+        <div class="ytd-card-value">$86,926.95</div>
+        <div class="ytd-card-sub">6,346 orders</div>
+      </div>
+      <div class="ytd-card" style="border-top-color:var(--green);">
+        <div class="ytd-card-label">Combined — YTD</div>
+        <div class="ytd-card-value" style="color:var(--navy);">$301,476.22</div>
+        <div class="ytd-card-sub">19,980 orders total</div>
+      </div>
+    </div>
+    <div class="ytd-month-breakdown" style="background:var(--card-bg);border-radius:8px;padding:10px 16px;margin-top:10px;box-shadow:var(--shadow);font-size:12px;color:var(--text-muted);text-align:left;">
+      Monthly breakdown: &nbsp;<strong style="color:var(--text-mid);">January</strong> $157,008.30 (10,430 orders)
+      &nbsp;&bull;&nbsp;
+      <strong style="color:var(--text-mid);">February</strong> $144,467.92 (9,550 orders, 26 days)
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- LOCATION COMPARISON                        -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">●</span> Location Comparison</div>
+    <div class="loc-grid">
+      <div class="loc-card">
+        <div class="loc-card-header">
+          <span class="loc-icon">🏢</span>
+          <span>San Jose — Flagship</span>
+        </div>
+        <div class="loc-rows">
+          <div class="loc-row"><span class="loc-row-label">Gross Revenue</span><span class="loc-row-val">$25,137.73</span></div>
+          <div class="loc-row"><span class="loc-row-label">Net Revenue</span><span class="loc-row-val">$25,116.37</span></div>
+          <div class="loc-row"><span class="loc-row-label">Transactions</span><span class="loc-row-val">1,567</span></div>
+          <div class="loc-row"><span class="loc-row-label">Avg Order Value</span><span class="loc-row-val">$16.04</span></div>
+          <div class="loc-row"><span class="loc-row-label">Items per Order</span><span class="loc-row-val">1.8</span></div>
+          <div class="loc-row"><span class="loc-row-label">Peak Day</span><span class="loc-row-val">Saturday</span></div>
+          <div class="loc-row"><span class="loc-row-label">Slowest Day</span><span class="loc-row-val">Monday</span></div>
+          <div class="loc-row"><span class="loc-row-label">Busiest Hour</span><span class="loc-row-val">12:00 PST</span></div>
+          <div class="loc-row"><span class="loc-row-label">Total Refunds</span><div style="text-align:right;"><span class="loc-row-val">$21.36</span><div class="loc-row-sub">3 refunds</div></div></div>
+        </div>
+      </div>
+      <div class="loc-card">
+        <div class="loc-card-header mv">
+          <span class="loc-icon">🏔</span>
+          <span>Mountain View</span>
+        </div>
+        <div class="loc-rows">
+          <div class="loc-row"><span class="loc-row-label">Gross Revenue</span><span class="loc-row-val">$11,781.12</span></div>
+          <div class="loc-row"><span class="loc-row-label">Net Revenue</span><span class="loc-row-val">$11,752.82</span></div>
+          <div class="loc-row"><span class="loc-row-label">Transactions</span><span class="loc-row-val">828</span></div>
+          <div class="loc-row"><span class="loc-row-label">Avg Order Value</span><span class="loc-row-val">$14.23</span></div>
+          <div class="loc-row"><span class="loc-row-label">Items per Order</span><span class="loc-row-val">1.8</span></div>
+          <div class="loc-row"><span class="loc-row-label">Peak Day</span><span class="loc-row-val">Sunday</span></div>
+          <div class="loc-row"><span class="loc-row-label">Slowest Day</span><span class="loc-row-val">Tuesday</span></div>
+          <div class="loc-row"><span class="loc-row-label">Busiest Hour</span><span class="loc-row-val">12:00 PST</span></div>
+          <div class="loc-row"><span class="loc-row-label">Total Refunds</span><div style="text-align:right;"><span class="loc-row-val">$28.30</span><div class="loc-row-sub">4 refunds</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- DAILY REVENUE BREAKDOWN (bar chart)        -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">●</span> Daily Revenue Breakdown</div>
+    <div class="bar-chart-wrap">
+      <div class="bar-chart-legend">
+        <div class="legend-item"><div class="legend-dot sj"></div><span>San Jose</span></div>
+        <div class="legend-item"><div class="legend-dot mv"></div><span>Mountain View</span></div>
+      </div>
+      <!-- Max SJ value = 6284.25 (Fri), scale to ~100% of bar area -->
+      <!-- Bar width: (value / 8600) * 100% to leave room for labels -->
+
+      <div class="bar-day-row">
+        <div class="bar-day-label">Mon<br><span style="font-size:10px;font-weight:400;">Feb 17</span></div>
+        <div class="bar-bars">
+          <div class="bar-track">
+            <div class="bar-fill sj" style="width:calc(1904.37 / 8600 * 100%)"><span class="bar-label">$1,904</span></div>
+            <span class="bar-txn">108 txns</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill mv" style="width:calc(1159.34 / 8600 * 100%)"><span class="bar-label">$1,159</span></div>
+            <span class="bar-txn">77 txns</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bar-day-row">
+        <div class="bar-day-label">Tue<br><span style="font-size:10px;font-weight:400;">Feb 18</span></div>
+        <div class="bar-bars">
+          <div class="bar-track">
+            <div class="bar-fill sj" style="width:calc(2450.48 / 8600 * 100%)"><span class="bar-label">$2,450</span></div>
+            <span class="bar-txn">160 txns</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill mv" style="width:calc(1385.82 / 8600 * 100%)"><span class="bar-label">$1,386</span></div>
+            <span class="bar-txn">102 txns</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bar-day-row">
+        <div class="bar-day-label">Wed<br><span style="font-size:10px;font-weight:400;">Feb 19</span></div>
+        <div class="bar-bars">
+          <div class="bar-track">
+            <div class="bar-fill sj" style="width:calc(2620.73 / 8600 * 100%)"><span class="bar-label">$2,621</span></div>
+            <span class="bar-txn">165 txns</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill mv" style="width:calc(1572.49 / 8600 * 100%)"><span class="bar-label">$1,572</span></div>
+            <span class="bar-txn">111 txns</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bar-day-row">
+        <div class="bar-day-label">Thu<br><span style="font-size:10px;font-weight:400;">Feb 20</span></div>
+        <div class="bar-bars">
+          <div class="bar-track">
+            <div class="bar-fill sj" style="width:calc(4271.91 / 8600 * 100%)"><span class="bar-label">$4,272</span></div>
+            <span class="bar-txn">268 txns</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill mv" style="width:calc(1685.86 / 8600 * 100%)"><span class="bar-label">$1,686</span></div>
+            <span class="bar-txn">125 txns</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bar-day-row">
+        <div class="bar-day-label">Fri<br><span style="font-size:10px;font-weight:400;">Feb 21</span></div>
+        <div class="bar-bars">
+          <div class="bar-track">
+            <div class="bar-fill sj" style="width:calc(6284.25 / 8600 * 100%)"><span class="bar-label">$6,284</span></div>
+            <span class="bar-txn">378 txns</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill mv" style="width:calc(2220.06 / 8600 * 100%)"><span class="bar-label">$2,220</span></div>
+            <span class="bar-txn">159 txns</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bar-day-row">
+        <div class="bar-day-label">Sat<br><span style="font-size:10px;font-weight:400;">Feb 22</span></div>
+        <div class="bar-bars">
+          <div class="bar-track">
+            <div class="bar-fill sj" style="width:calc(5847.83 / 8600 * 100%)"><span class="bar-label">$5,848</span></div>
+            <span class="bar-txn">355 txns</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill mv" style="width:calc(2380.99 / 8600 * 100%)"><span class="bar-label">$2,381</span></div>
+            <span class="bar-txn">161 txns</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="bar-day-row">
+        <div class="bar-day-label">Sun<br><span style="font-size:10px;font-weight:400;">Feb 23</span></div>
+        <div class="bar-bars">
+          <div class="bar-track">
+            <div class="bar-fill sj" style="width:calc(1758.16 / 8600 * 100%)"><span class="bar-label">$1,758</span></div>
+            <span class="bar-txn">133 txns</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill mv" style="width:calc(1376.56 / 8600 * 100%)"><span class="bar-label">$1,377</span></div>
+            <span class="bar-txn">93 txns</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- DAILY PERFORMANCE DETAIL TABLE             -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">●</span> Daily Performance Detail</div>
+    <div class="data-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>SJ Revenue</th>
+            <th>SJ Txns</th>
+            <th>MV Revenue</th>
+            <th>MV Txns</th>
+            <th>Combined</th>
+            <th>Total Txns</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-day">Mon<span class="td-date">Feb 17</span></td>
+            <td class="td-num">$1,904.37</td>
+            <td class="td-muted">108</td>
+            <td class="td-num">$1,159.34</td>
+            <td class="td-muted">77</td>
+            <td class="td-total">$3,063.71</td>
+            <td class="td-muted">185</td>
+          </tr>
+          <tr>
+            <td class="td-day">Tue<span class="td-date">Feb 18</span></td>
+            <td class="td-num">$2,450.48</td>
+            <td class="td-muted">160</td>
+            <td class="td-num">$1,385.82</td>
+            <td class="td-muted">102</td>
+            <td class="td-total">$3,836.30</td>
+            <td class="td-muted">262</td>
+          </tr>
+          <tr>
+            <td class="td-day">Wed<span class="td-date">Feb 19</span></td>
+            <td class="td-num">$2,620.73</td>
+            <td class="td-muted">165</td>
+            <td class="td-num">$1,572.49</td>
+            <td class="td-muted">111</td>
+            <td class="td-total">$4,193.22</td>
+            <td class="td-muted">276</td>
+          </tr>
+          <tr>
+            <td class="td-day">Thu<span class="td-date">Feb 20</span></td>
+            <td class="td-num">$4,271.91</td>
+            <td class="td-muted">268</td>
+            <td class="td-num">$1,685.86</td>
+            <td class="td-muted">125</td>
+            <td class="td-total">$5,957.77</td>
+            <td class="td-muted">393</td>
+          </tr>
+          <tr>
+            <td class="td-day">Fri<span class="td-date">Feb 21</span></td>
+            <td class="td-num">$6,284.25</td>
+            <td class="td-muted">378</td>
+            <td class="td-num">$2,220.06</td>
+            <td class="td-muted">159</td>
+            <td class="td-total">$8,504.31</td>
+            <td class="td-muted">537</td>
+          </tr>
+          <tr>
+            <td class="td-day">Sat<span class="td-date">Feb 22</span></td>
+            <td class="td-num">$5,847.83</td>
+            <td class="td-muted">355</td>
+            <td class="td-num">$2,380.99</td>
+            <td class="td-muted">161</td>
+            <td class="td-total">$8,228.82</td>
+            <td class="td-muted">516</td>
+          </tr>
+          <tr>
+            <td class="td-day">Sun<span class="td-date">Feb 23</span></td>
+            <td class="td-num">$1,758.16</td>
+            <td class="td-muted">133</td>
+            <td class="td-num">$1,376.56</td>
+            <td class="td-muted">93</td>
+            <td class="td-total">$3,134.72</td>
+            <td class="td-muted">226</td>
+          </tr>
+          <tr style="background:#f0f0f8;">
+            <td class="td-day" style="color:var(--navy);font-weight:700;">TOTAL</td>
+            <td style="font-weight:700;color:var(--amber-dark);">$25,137.73</td>
+            <td style="font-weight:700;">1,567</td>
+            <td style="font-weight:700;color:var(--navy-mid);">$11,781.12</td>
+            <td style="font-weight:700;">828</td>
+            <td style="font-weight:700;color:var(--navy);font-size:14px;">$36,918.85</td>
+            <td style="font-weight:700;">2,395</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- HOURLY TRANSACTION HEATMAP                 -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">●</span> Hourly Transaction Heatmap</div>
+    <div class="heatmap-wrap">
+      <div class="heatmap-note">Darker cells = busier hours. All times in PST.</div>
+      <table class="heatmap-table" id="heatmap-tbl">
+        <thead>
+          <tr>
+            <th style="text-align:left;">Loc</th>
+            <th>6a</th><th>7a</th><th>8a</th><th>9a</th><th>10a</th><th>11a</th>
+            <th>12p</th><th>1p</th><th>2p</th><th>3p</th><th>4p</th><th>5p</th>
+            <th>6p</th><th>7p</th><th>8p</th><th>9p</th>
+          </tr>
+        </thead>
+        <tbody id="heatmap-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- PAYMENT METHOD BREAKDOWN                   -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">●</span> Payment Method Breakdown</div>
+    <div class="payment-grid">
+      <div class="payment-card">
+        <div class="payment-loc-title">🏢 San Jose <span style="font-size:12px;font-weight:400;color:var(--text-muted);">(1,567 payments)</span></div>
+        <div class="payment-method-row">
+          <div class="payment-method-header">
+            <span class="payment-method-name">Card / Digital</span>
+            <span class="payment-method-stat">1,434 &nbsp;(91.5%)</span>
+          </div>
+          <div class="payment-bar-track">
+            <div class="payment-bar-fill card" style="width:91.5%"></div>
+          </div>
+        </div>
+        <div class="payment-method-row">
+          <div class="payment-method-header">
+            <span class="payment-method-name">External / 3rd Party</span>
+            <span class="payment-method-stat">249 &nbsp;(15.9%)</span>
+          </div>
+          <div class="payment-bar-track">
+            <div class="payment-bar-fill external" style="width:15.9%"></div>
+          </div>
+        </div>
+        <div class="payment-method-row">
+          <div class="payment-method-header">
+            <span class="payment-method-name">Cash</span>
+            <span class="payment-method-stat">114 &nbsp;(7.3%)</span>
+          </div>
+          <div class="payment-bar-track">
+            <div class="payment-bar-fill cash" style="width:7.3%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="payment-card">
+        <div class="payment-loc-title">🏔 Mountain View <span style="font-size:12px;font-weight:400;color:var(--text-muted);">(828 payments)</span></div>
+        <div class="payment-method-row">
+          <div class="payment-method-header">
+            <span class="payment-method-name">Card / Digital</span>
+            <span class="payment-method-stat">728 &nbsp;(88.0%)</span>
+          </div>
+          <div class="payment-bar-track">
+            <div class="payment-bar-fill card" style="width:88%"></div>
+          </div>
+        </div>
+        <div class="payment-method-row">
+          <div class="payment-method-header">
+            <span class="payment-method-name">External / 3rd Party</span>
+            <span class="payment-method-stat">160 &nbsp;(19.3%)</span>
+          </div>
+          <div class="payment-bar-track">
+            <div class="payment-bar-fill external" style="width:19.3%"></div>
+          </div>
+        </div>
+        <div class="payment-method-row">
+          <div class="payment-method-header">
+            <span class="payment-method-name">Cash</span>
+            <span class="payment-method-stat">48 &nbsp;(5.8%)</span>
+          </div>
+          <div class="payment-bar-track">
+            <div class="payment-bar-fill cash" style="width:5.8%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- TOP PRODUCTS                               -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">●</span> Top Products</div>
+    <div class="products-grid">
+      <div class="product-table-wrap">
+        <div class="product-table-title">By Units Sold</div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width:32px;">#</th>
+              <th>Product</th>
+              <th style="text-align:right;">Qty</th>
+              <th style="text-align:right;">Revenue</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="rank-badge top3">1</span></td><td>Peanut Butter Latte</td><td style="text-align:right;" class="td-num">436</td><td style="text-align:right;" class="td-num">$3,859.69</td></tr>
+            <tr><td><span class="rank-badge top3">2</span></td><td>Banana Matcha</td><td style="text-align:right;" class="td-num">358</td><td style="text-align:right;" class="td-num">$3,185.29</td></tr>
+            <tr><td><span class="rank-badge top3">3</span></td><td>Hawaiian Latte</td><td style="text-align:right;" class="td-num">269</td><td style="text-align:right;" class="td-num">$1,993.14</td></tr>
+            <tr><td><span class="rank-badge">4</span></td><td>Banana Latte</td><td style="text-align:right;" class="td-num">257</td><td style="text-align:right;" class="td-num">$2,320.37</td></tr>
+            <tr><td><span class="rank-badge">5</span></td><td>Ube Coffee</td><td style="text-align:right;" class="td-num">242</td><td style="text-align:right;" class="td-num">$1,768.08</td></tr>
+            <tr><td><span class="rank-badge">6</span></td><td>IPA</td><td style="text-align:right;" class="td-num">215</td><td style="text-align:right;" class="td-num">$2,179.99</td></tr>
+            <tr><td><span class="rank-badge">7</span></td><td>Traditional Viet Coffee</td><td style="text-align:right;" class="td-num">165</td><td style="text-align:right;" class="td-num">$1,156.24</td></tr>
+            <tr><td><span class="rank-badge">8</span></td><td>Horchata Latte</td><td style="text-align:right;" class="td-num">155</td><td style="text-align:right;" class="td-num">$1,216.23</td></tr>
+            <tr><td><span class="rank-badge">9</span></td><td>Matcha Latte</td><td style="text-align:right;" class="td-num">135</td><td style="text-align:right;" class="td-num">$1,080.60</td></tr>
+            <tr><td><span class="rank-badge">10</span></td><td>Salted Cream Coffee</td><td style="text-align:right;" class="td-num">130</td><td style="text-align:right;" class="td-num">$990.60</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="product-table-wrap">
+        <div class="product-table-title">By Revenue</div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width:32px;">#</th>
+              <th>Product</th>
+              <th style="text-align:right;">Qty</th>
+              <th style="text-align:right;">Revenue</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="rank-badge top3">1</span></td><td>Peanut Butter Latte</td><td style="text-align:right;" class="td-num">436</td><td style="text-align:right;" class="td-num">$3,859.69</td></tr>
+            <tr><td><span class="rank-badge top3">2</span></td><td>Banana Matcha</td><td style="text-align:right;" class="td-num">358</td><td style="text-align:right;" class="td-num">$3,185.29</td></tr>
+            <tr><td><span class="rank-badge top3">3</span></td><td>Banana Latte</td><td style="text-align:right;" class="td-num">257</td><td style="text-align:right;" class="td-num">$2,320.37</td></tr>
+            <tr><td><span class="rank-badge">4</span></td><td>IPA</td><td style="text-align:right;" class="td-num">215</td><td style="text-align:right;" class="td-num">$2,179.99</td></tr>
+            <tr><td><span class="rank-badge">5</span></td><td>Hawaiian Latte</td><td style="text-align:right;" class="td-num">269</td><td style="text-align:right;" class="td-num">$1,993.14</td></tr>
+            <tr><td><span class="rank-badge">6</span></td><td>Ube Coffee</td><td style="text-align:right;" class="td-num">242</td><td style="text-align:right;" class="td-num">$1,768.08</td></tr>
+            <tr><td><span class="rank-badge">7</span></td><td>Horchata Latte</td><td style="text-align:right;" class="td-num">155</td><td style="text-align:right;" class="td-num">$1,216.23</td></tr>
+            <tr><td><span class="rank-badge">8</span></td><td>Traditional Viet Coffee</td><td style="text-align:right;" class="td-num">165</td><td style="text-align:right;" class="td-num">$1,156.24</td></tr>
+            <tr><td><span class="rank-badge">9</span></td><td>Matcha Latte</td><td style="text-align:right;" class="td-num">135</td><td style="text-align:right;" class="td-num">$1,080.60</td></tr>
+            <tr><td><span class="rank-badge">10</span></td><td>Salted Cream Coffee</td><td style="text-align:right;" class="td-num">130</td><td style="text-align:right;" class="td-num">$990.60</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- LABOR OVERVIEW                             -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">●</span> Labor Overview &amp; Efficiency</div>
+    <div class="labor-kpi-grid">
+      <div class="labor-kpi-card">
+        <div class="labor-kpi-label">SJ Labor % of Revenue</div>
+        <div class="labor-kpi-value color-green">27.2%</div>
+        <div class="labor-kpi-sub">$6,846.37 labor &nbsp;&bull;&nbsp; $25,137.73 rev</div>
+        <div class="labor-kpi-sub">342.4 total hours</div>
+      </div>
+      <div class="labor-kpi-card" style="border-left-color:#eab308;">
+        <div class="labor-kpi-label">MV Labor % of Revenue</div>
+        <div class="labor-kpi-value color-yellow">35.1%</div>
+        <div class="labor-kpi-sub">$4,134.51 labor &nbsp;&bull;&nbsp; $11,781.12 rev</div>
+        <div class="labor-kpi-sub">206.0 total hours</div>
+      </div>
+      <div class="labor-kpi-card">
+        <div class="labor-kpi-label">SJ Revenue / Labor Hour</div>
+        <div class="labor-kpi-value">$73.42</div>
+        <div class="labor-kpi-sub">San Jose flagship</div>
+      </div>
+      <div class="labor-kpi-card">
+        <div class="labor-kpi-label">MV Revenue / Labor Hour</div>
+        <div class="labor-kpi-value">$57.19</div>
+        <div class="labor-kpi-sub">Mountain View</div>
+      </div>
+    </div>
+    <div class="labor-legend">
+      <div class="labor-legend-item"><div class="labor-legend-dot" style="background:#22c55e;"></div><span>🟢 &lt;30% = Efficient</span></div>
+      <div class="labor-legend-item"><div class="labor-legend-dot" style="background:#eab308;"></div><span>🟡 30–40% = Watch</span></div>
+      <div class="labor-legend-item"><div class="labor-legend-dot" style="background:#ef4444;"></div><span>🔴 &gt;40% = Overstaffed</span></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- DAILY LABOR EFFICIENCY TABLE               -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">●</span> Daily Labor Efficiency</div>
+    <div class="labor-eff-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th rowspan="2" style="vertical-align:bottom;">Day</th>
+            <th colspan="4" style="text-align:center;background:#1a1a2e;color:#fff;border-right:2px solid #fff;">San Jose</th>
+            <th colspan="4" style="text-align:center;background:#2d2d5e;color:#fff;">Mountain View</th>
+          </tr>
+          <tr>
+            <th>Hours</th><th>Cost</th><th>Rev/Hr</th><th style="border-right:2px solid #dde;">Labor %</th>
+            <th>Hours</th><th>Cost</th><th>Rev/Hr</th><th>Labor %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="td-day">Mon<span class="td-date">Feb 17</span></td>
+            <td>39.2</td><td>$775.47</td><td>$48.58</td><td style="border-right:2px solid #eee;"><span class="pct-badge pct-red">40.7%</span></td>
+            <td>31.2</td><td>$634.30</td><td>$37.16</td><td><span class="pct-badge pct-red">54.7%</span></td>
+          </tr>
+          <tr>
+            <td class="td-day">Tue<span class="td-date">Feb 18</span></td>
+            <td>35.5</td><td>$696.25</td><td>$69.03</td><td style="border-right:2px solid #eee;"><span class="pct-badge pct-green">28.4%</span></td>
+            <td>23.8</td><td>$468.20</td><td>$58.23</td><td><span class="pct-badge pct-yellow">33.8%</span></td>
+          </tr>
+          <tr>
+            <td class="td-day">Wed<span class="td-date">Feb 19</span></td>
+            <td>62.1</td><td>$1,249.91</td><td>$42.20</td><td style="border-right:2px solid #eee;"><span class="pct-badge pct-red">47.7%</span></td>
+            <td>29.0</td><td>$589.03</td><td>$54.22</td><td><span class="pct-badge pct-yellow">37.5%</span></td>
+          </tr>
+          <tr>
+            <td class="td-day">Thu<span class="td-date">Feb 20</span></td>
+            <td>49.8</td><td>$987.47</td><td>$85.78</td><td style="border-right:2px solid #eee;"><span class="pct-badge pct-green">23.1%</span></td>
+            <td>30.8</td><td>$626.44</td><td>$54.74</td><td><span class="pct-badge pct-yellow">37.2%</span></td>
+          </tr>
+          <tr>
+            <td class="td-day">Fri<span class="td-date">Feb 21</span></td>
+            <td>52.9</td><td>$1,038.45</td><td>$118.79</td><td style="border-right:2px solid #eee;"><span class="pct-badge pct-green">16.5%</span></td>
+            <td>29.3</td><td>$579.42</td><td>$75.77</td><td><span class="pct-badge pct-green">26.1%</span></td>
+          </tr>
+          <tr>
+            <td class="td-day">Sat<span class="td-date">Feb 22</span></td>
+            <td>53.4</td><td>$1,025.01</td><td>$109.51</td><td style="border-right:2px solid #eee;"><span class="pct-badge pct-green">17.5%</span></td>
+            <td>35.7</td><td>$719.99</td><td>$66.69</td><td><span class="pct-badge pct-yellow">30.2%</span></td>
+          </tr>
+          <tr>
+            <td class="td-day">Sun<span class="td-date">Feb 23</span></td>
+            <td>26.0</td><td>$547.94</td><td>$67.62</td><td style="border-right:2px solid #eee;"><span class="pct-badge pct-yellow">31.2%</span></td>
+            <td>15.7</td><td>$309.95</td><td>$87.68</td><td><span class="pct-badge pct-green">22.5%</span></td>
+          </tr>
+          <tr style="background:#f0f0f8;font-weight:700;">
+            <td class="td-day" style="color:var(--navy);">TOTAL</td>
+            <td>318.9</td><td>$6,320.50</td><td>$78.81</td><td style="border-right:2px solid #dde;"><span class="pct-badge pct-green">25.1%</span></td>
+            <td>195.5</td><td>$3,927.33</td><td>$60.26</td><td><span class="pct-badge pct-yellow">33.3%</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- TOP TEAM MEMBERS (COMPANY-WIDE)            -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">●</span> Top Team Members by Hours — Company-Wide</div>
+    <div class="data-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th style="text-align:right;">Hours</th>
+            <th style="text-align:right;">Shifts</th>
+            <th style="text-align:right;">Cost</th>
+            <th>Location(s)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td style="color:var(--text-muted);font-size:11px;">1</td><td style="font-weight:600;">Carlos Martinez</td><td class="td-muted">Kitchen</td><td style="text-align:right;" class="td-num">36.9h</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-num">$811.43</td><td><span class="loc-badge sj">SJ</span></td></tr>
+          <tr><td style="color:var(--text-muted);font-size:11px;">2</td><td style="font-weight:600;">Jose Montoya</td><td class="td-muted">Kitchen</td><td style="text-align:right;" class="td-num">36.5h</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-num">$803.73</td><td><span class="loc-badge mv">MV</span> <span class="loc-badge sj">SJ</span></td></tr>
+          <tr><td style="color:var(--text-muted);font-size:11px;">3</td><td style="font-weight:600;">Angel De Guzman</td><td class="td-muted">Shift Lead</td><td style="text-align:right;" class="td-num">33.8h</td><td style="text-align:right;" class="td-muted">6</td><td style="text-align:right;" class="td-num">$675.00</td><td><span class="loc-badge sj">SJ</span></td></tr>
+          <tr><td style="color:var(--text-muted);font-size:11px;">4</td><td style="font-weight:600;">Ashlyn Kanemoto</td><td class="td-muted">Pourista</td><td style="text-align:right;" class="td-num">32.5h</td><td style="text-align:right;" class="td-muted">6</td><td style="text-align:right;" class="td-num">$617.18</td><td><span class="loc-badge sj">SJ</span></td></tr>
+          <tr><td style="color:var(--text-muted);font-size:11px;">5</td><td style="font-weight:600;">Diana Castaneda</td><td class="td-muted">Pourista</td><td style="text-align:right;" class="td-num">31.6h</td><td style="text-align:right;" class="td-muted">6</td><td style="text-align:right;" class="td-num">$622.85</td><td><span class="loc-badge mv">MV</span> <span class="loc-badge sj">SJ</span></td></tr>
+          <tr><td style="color:var(--text-muted);font-size:11px;">6</td><td style="font-weight:600;">Sydney Indra</td><td class="td-muted">Pourista</td><td style="text-align:right;" class="td-num">30.0h</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-num">$554.69</td><td><span class="loc-badge sj">SJ</span></td></tr>
+          <tr><td style="color:var(--text-muted);font-size:11px;">7</td><td style="font-weight:600;">Jaredzy Huerta</td><td class="td-muted">Pourista</td><td style="text-align:right;" class="td-num">27.7h</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-num">$546.02</td><td><span class="loc-badge mv">MV</span></td></tr>
+          <tr><td style="color:var(--text-muted);font-size:11px;">8</td><td style="font-weight:600;">Christina Wong</td><td class="td-muted">Shift Lead</td><td style="text-align:right;" class="td-num">26.5h</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-num">$529.00</td><td><span class="loc-badge mv">MV</span> <span class="loc-badge sj">SJ</span></td></tr>
+          <tr><td style="color:var(--text-muted);font-size:11px;">9</td><td style="font-weight:600;">Samantha Perez</td><td class="td-muted">Pourista</td><td style="text-align:right;" class="td-num">25.7h</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-num">$506.29</td><td><span class="loc-badge mv">MV</span></td></tr>
+          <tr><td style="color:var(--text-muted);font-size:11px;">10</td><td style="font-weight:600;">Violet Asuncion</td><td class="td-muted">Pourista</td><td style="text-align:right;" class="td-num">24.9h</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-num">$460.96</td><td><span class="loc-badge sj">SJ</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- LABOR BREAKDOWN BY LOCATION                -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">●</span> Labor Breakdown by Location</div>
+    <div class="labor-loc-grid">
+      <!-- SAN JOSE -->
+      <div class="labor-loc-card">
+        <div class="labor-loc-header">
+          🏢 San Jose — 342.4 hrs, $6,846.37
+          <div class="labor-loc-subheader">21 team members</div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th><th>Role</th>
+              <th style="text-align:right;">Hrs</th>
+              <th style="text-align:right;">Shifts</th>
+              <th style="text-align:right;">Rate</th>
+              <th style="text-align:right;">Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="font-weight:600;font-size:12px;">Carlos Martinez</td><td class="td-muted">Kitchen</td><td style="text-align:right;">36.9</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$22.00</td><td style="text-align:right;" class="td-num">$811.43</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Angel De Guzman</td><td class="td-muted">Shift Lead</td><td style="text-align:right;">33.8</td><td style="text-align:right;" class="td-muted">6</td><td style="text-align:right;" class="td-muted">$20.00</td><td style="text-align:right;" class="td-num">$675.00</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Ashlyn Kanemoto</td><td class="td-muted">Pourista</td><td style="text-align:right;">32.5</td><td style="text-align:right;" class="td-muted">6</td><td style="text-align:right;" class="td-muted">$19.00</td><td style="text-align:right;" class="td-num">$617.18</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Sydney Indra</td><td class="td-muted">Pourista</td><td style="text-align:right;">30.0</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$18.50</td><td style="text-align:right;" class="td-num">$554.69</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Violet Asuncion</td><td class="td-muted">Pourista</td><td style="text-align:right;">24.9</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$18.50</td><td style="text-align:right;" class="td-num">$460.96</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Jherard Magnampo</td><td class="td-muted">Pourista</td><td style="text-align:right;">23.8</td><td style="text-align:right;" class="td-muted">4</td><td style="text-align:right;" class="td-muted">$19.50</td><td style="text-align:right;" class="td-num">$463.77</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Christina Wong</td><td class="td-muted">Shift Lead</td><td style="text-align:right;">20.9</td><td style="text-align:right;" class="td-muted">4</td><td style="text-align:right;" class="td-muted">$20.00</td><td style="text-align:right;" class="td-num">$418.67</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Ian Chung</td><td class="td-muted">Pourista</td><td style="text-align:right;">20.6</td><td style="text-align:right;" class="td-muted">4</td><td style="text-align:right;" class="td-muted">$19.50</td><td style="text-align:right;" class="td-num">$401.37</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Angel Hernandez</td><td class="td-muted">Pourista</td><td style="text-align:right;">16.6</td><td style="text-align:right;" class="td-muted">3</td><td style="text-align:right;" class="td-muted">$18.50</td><td style="text-align:right;" class="td-num">$306.17</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Diana Castaneda</td><td class="td-muted">Pourista</td><td style="text-align:right;">15.5</td><td style="text-align:right;" class="td-muted">3</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$304.69</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Brenna O'Neill</td><td class="td-muted">Supervisor</td><td style="text-align:right;">12.3</td><td style="text-align:right;" class="td-muted">3</td><td style="text-align:right;" class="td-muted">$25.00</td><td style="text-align:right;" class="td-num">$307.92</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Jose Soto</td><td class="td-muted">Kitchen</td><td style="text-align:right;">11.0</td><td style="text-align:right;" class="td-muted">2</td><td style="text-align:right;" class="td-muted">$21.00</td><td style="text-align:right;" class="td-num">$231.70</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Yuji Kinoshita</td><td class="td-muted">Pourista</td><td style="text-align:right;">9.7</td><td style="text-align:right;" class="td-muted">2</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$190.11</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Declan Murphy</td><td class="td-muted">Pourista</td><td style="text-align:right;">8.6</td><td style="text-align:right;" class="td-muted">2</td><td style="text-align:right;" class="td-muted">$18.50</td><td style="text-align:right;" class="td-num">$159.10</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Anh Kim Nguyen</td><td class="td-muted">Pourista</td><td style="text-align:right;">8.0</td><td style="text-align:right;" class="td-muted">2</td><td style="text-align:right;" class="td-muted">$19.00</td><td style="text-align:right;" class="td-num">$151.05</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Jose Montoya</td><td class="td-muted">Kitchen</td><td style="text-align:right;">6.7</td><td style="text-align:right;" class="td-muted">1</td><td style="text-align:right;" class="td-muted">$22.00</td><td style="text-align:right;" class="td-num">$147.77</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Tommy Duong</td><td class="td-muted">Pourista</td><td style="text-align:right;">7.0</td><td style="text-align:right;" class="td-muted">3</td><td style="text-align:right;" class="td-muted">$21.00</td><td style="text-align:right;" class="td-num">$146.65</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Sophia Avila</td><td class="td-muted">Pourista</td><td style="text-align:right;">5.7</td><td style="text-align:right;" class="td-muted">2</td><td style="text-align:right;" class="td-muted">$18.45</td><td style="text-align:right;" class="td-num">$104.85</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Jacob Ley-Sanchez</td><td class="td-muted">Pourista</td><td style="text-align:right;">5.2</td><td style="text-align:right;" class="td-muted">1</td><td style="text-align:right;" class="td-muted">$18.50</td><td style="text-align:right;" class="td-num">$96.51</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Billy Nguyen</td><td class="td-muted">Shift Lead</td><td style="text-align:right;">5.2</td><td style="text-align:right;" class="td-muted">1</td><td style="text-align:right;" class="td-muted">$20.00</td><td style="text-align:right;" class="td-num">$103.00</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Alissa Yoshida</td><td class="td-muted">Shift Lead</td><td style="text-align:right;">2.2</td><td style="text-align:right;" class="td-muted">1</td><td style="text-align:right;" class="td-muted">$20.00</td><td style="text-align:right;" class="td-num">$44.67</td></tr>
+            <tr style="background:#f5f5fa;font-weight:700;">
+              <td colspan="2" style="font-size:12px;color:var(--navy);">SJ Total</td>
+              <td style="text-align:right;">336.9</td>
+              <td style="text-align:right;color:var(--text-muted);">&#x2014;</td>
+              <td style="text-align:right;">&#x2014;</td>
+              <td style="text-align:right;color:var(--amber-dark);">$6,697.44</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- MOUNTAIN VIEW -->
+      <div class="labor-loc-card">
+        <div class="labor-loc-header mv">
+          🏔 Mountain View — 206.0 hrs, $4,134.51
+          <div class="labor-loc-subheader">13 team members</div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th><th>Role</th>
+              <th style="text-align:right;">Hrs</th>
+              <th style="text-align:right;">Shifts</th>
+              <th style="text-align:right;">Rate</th>
+              <th style="text-align:right;">Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td style="font-weight:600;font-size:12px;">Jose Montoya</td><td class="td-muted">Kitchen</td><td style="text-align:right;">30.4</td><td style="text-align:right;" class="td-muted">4</td><td style="text-align:right;" class="td-muted">$22.00</td><td style="text-align:right;" class="td-num">$669.16</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Jaredzy Huerta</td><td class="td-muted">Pourista</td><td style="text-align:right;">22.6</td><td style="text-align:right;" class="td-muted">4</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$444.23</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Samantha Perez</td><td class="td-muted">Pourista</td><td style="text-align:right;">25.5</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$502.02</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Nathaniel De La Cruz</td><td class="td-muted">Pourista</td><td style="text-align:right;">25.3</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$498.42</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Liberty Guerrero</td><td class="td-muted">Pourista</td><td style="text-align:right;">19.7</td><td style="text-align:right;" class="td-muted">4</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$388.09</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Billy Nguyen</td><td class="td-muted">Shift Lead</td><td style="text-align:right;">17.7</td><td style="text-align:right;" class="td-muted">3</td><td style="text-align:right;" class="td-muted">$20.00</td><td style="text-align:right;" class="td-num">$354.67</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Mariaelena Huerta</td><td class="td-muted">Pourista</td><td style="text-align:right;">16.3</td><td style="text-align:right;" class="td-muted">3</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$320.12</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Diana Castaneda</td><td class="td-muted">Pourista</td><td style="text-align:right;">15.9</td><td style="text-align:right;" class="td-muted">3</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$312.57</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Yuji Kinoshita</td><td class="td-muted">Pourista</td><td style="text-align:right;">10.4</td><td style="text-align:right;" class="td-muted">2</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$204.55</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Angela Ruiz</td><td class="td-muted">Pourista</td><td style="text-align:right;">9.3</td><td style="text-align:right;" class="td-muted">2</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$182.89</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Christina Wong</td><td class="td-muted">Shift Lead</td><td style="text-align:right;">5.4</td><td style="text-align:right;" class="td-muted">1</td><td style="text-align:right;" class="td-muted">$20.00</td><td style="text-align:right;" class="td-num">$108.67</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Alissa Yoshida</td><td class="td-muted">Shift Lead</td><td style="text-align:right;">4.1</td><td style="text-align:right;" class="td-muted">1</td><td style="text-align:right;" class="td-muted">$20.00</td><td style="text-align:right;" class="td-num">$82.33</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Lara Nguyen</td><td class="td-muted">Pourista</td><td style="text-align:right;">3.9</td><td style="text-align:right;" class="td-muted">1</td><td style="text-align:right;" class="td-muted">$19.50</td><td style="text-align:right;" class="td-num">$76.05</td></tr>
+            <tr style="background:#f5f5fa;font-weight:700;">
+              <td colspan="2" style="font-size:12px;color:var(--navy-mid);">MV Total</td>
+              <td style="text-align:right;">206.4</td>
+              <td style="text-align:right;color:var(--text-muted);">&#x2014;</td>
+              <td style="text-align:right;">&#x2014;</td>
+              <td style="text-align:right;color:var(--navy-mid);">$4,143.77</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- REFUNDS DETAIL                             -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">●</span> Refunds Detail</div>
+    <div class="refund-summary">
+      ⚠️ Total refunds this week: <strong>$65.97</strong> across 9 transactions &nbsp;
+      <span class="refund-loc-sj">&nbsp;SJ: $29.56</span> (4 refunds) &nbsp;
+      <span class="refund-loc-mv">&nbsp;MV: $36.41</span> (5 refunds)
+    </div>
+    <div class="data-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Location</th>
+            <th>Amount</th>
+            <th>Reason</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="loc-badge sj">SJ</span></td>
+            <td class="td-num">$7.66</td>
+            <td>Returned Goods</td>
+            <td class="td-muted">Feb 22</td>
+          </tr>
+          <tr>
+            <td><span class="loc-badge sj">SJ</span></td>
+            <td class="td-num">$5.00</td>
+            <td>Changed Mind To Small Size</td>
+            <td class="td-muted">Feb 21</td>
+          </tr>
+          <tr>
+            <td><span class="loc-badge sj">SJ</span></td>
+            <td class="td-num">$8.70</td>
+            <td>Long Wait Time</td>
+            <td class="td-muted">Feb 20</td>
+          </tr>
+          <tr>
+            <td><span class="loc-badge sj">SJ</span></td>
+            <td class="td-num">$8.20</td>
+            <td>Returned Goods</td>
+            <td class="td-muted">Feb 16</td>
+          </tr>
+          <tr>
+            <td><span class="loc-badge mv">MV</span></td>
+            <td class="td-num">$6.82</td>
+            <td>Returned Goods</td>
+            <td class="td-muted">Feb 21</td>
+          </tr>
+          <tr>
+            <td><span class="loc-badge mv">MV</span></td>
+            <td class="td-num">$7.58</td>
+            <td>Not Enough Cash</td>
+            <td class="td-muted">Feb 21</td>
+          </tr>
+          <tr>
+            <td><span class="loc-badge mv">MV</span></td>
+            <td class="td-num">$7.91</td>
+            <td>Accidental Charge</td>
+            <td class="td-muted">Feb 19</td>
+          </tr>
+          <tr>
+            <td><span class="loc-badge mv">MV</span></td>
+            <td class="td-num">$5.99</td>
+            <td>Accidental Charge</td>
+            <td class="td-muted">Feb 17</td>
+          </tr>
+          <tr>
+            <td><span class="loc-badge mv">MV</span></td>
+            <td class="td-num">$8.11</td>
+            <td>Canceled Order</td>
+            <td class="td-muted">Feb 17</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- ACTIONABLE RECOMMENDATIONS                 -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">●</span> Actionable Recommendations</div>
+    <div class="reco-grid">
+      <div class="reco-card blue">
+        <div class="reco-icon">⚡</div>
+        <div class="reco-body">
+          <div class="reco-title">Mountain View Labor Optimization</div>
+          <div class="reco-text">MV's labor cost is 35.1% of revenue vs SJ's 27.2%. Consider reviewing shift scheduling at MV — reducing 1–2 hours on slower days (Mon, Sun) could save ~$200–400/week without impacting service.</div>
+        </div>
+      </div>
+      <div class="reco-card green">
+        <div class="reco-icon">📋</div>
+        <div class="reco-body">
+          <div class="reco-title">Double Down on Fri/Sat Revenue</div>
+          <div class="reco-text">Friday and Saturday drive 49% of SJ revenue and 39% of MV revenue. Consider weekend-specific promotions, extended hours, or additional menu items to maximize these peak days.</div>
+        </div>
+      </div>
+      <div class="reco-card amber">
+        <div class="reco-icon">💡</div>
+        <div class="reco-body">
+          <div class="reco-title">Signature Drinks Are Winners</div>
+          <div class="reco-text">Peanut Butter Latte (436 units, $3,860) and Banana Matcha (358 units) are clear bestsellers. Consider a 'Signature Duo' combo deal or loyalty punch card for these items to increase repeat visits.</div>
+        </div>
+      </div>
+      <div class="reco-card purple">
+        <div class="reco-icon">🎯</div>
+        <div class="reco-body">
+          <div class="reco-title">Mountain View Growth Opportunity</div>
+          <div class="reco-text">MV generates 47% of SJ's revenue with fewer transactions. MV's AOV ($14.23) is slightly lower than SJ ($16.04). Upselling and menu promotion could close this gap — even a $1 AOV increase would add ~$830/week.</div>
+        </div>
+      </div>
+      <div class="reco-card gray">
+        <div class="reco-icon">📅</div>
+        <div class="reco-body">
+          <div class="reco-title">Slow Day Strategy for Mon &amp; Sun</div>
+          <div class="reco-text">Monday and Sunday show significantly lower revenue. Consider "Monday Motivation" specials or "Sunday Brunch" pairings to boost traffic on these traditionally slower days.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <div style="text-align:center;padding:24px 0 16px;font-size:11px;color:var(--text-muted);">
+    Pour Decisions Craft Coffee &amp; Beer &bull; Weekly Report &bull; Feb 17–23, 2026 &bull; Generated Feb 26, 2026
+  </div>
+
+</div><!-- /container -->
+
+<script>
+// ── Heatmap rendering ─────────────────────────────────────────────────────────
+const sjData = [20, 42, 77, 145, 127, 145, 165, 161, 147, 131, 117, 99, 67, 57, 35, 13];
+const mvData = [1,  28, 63, 73,  82,  93,  97,  77,  75,  78,  51,  32, 29, 21, 7,  4 ];
+
+function heatColor(val, max) {
+  if (!val) return '#f5f5f5';
+  const ratio = Math.min(val / max, 1);
+  // amber gradient: low = #FFF8E7, high = #8B5E1A
+  const r = Math.round(255 - ratio * (255 - 139));
+  const g = Math.round(248 - ratio * (248 - 94));
+  const b = Math.round(231 - ratio * (231 - 26));
+  return `rgb(${r},${g},${b})`;
+}
+
+function textColor(val, max) {
+  const ratio = Math.min(val / max, 1);
+  return ratio > 0.55 ? '#fff' : '#444';
+}
+
+const maxSJ = Math.max(...sjData);
+const maxMV = Math.max(...mvData);
+const globalMax = Math.max(maxSJ, maxMV);
+
+const tbody = document.getElementById('heatmap-body');
+const rows = [
+  { label: '🏢 SJ', data: sjData, max: globalMax },
+  { label: '🏔 MV', data: mvData, max: globalMax }
+];
+
+rows.forEach(row => {
+  const tr = document.createElement('tr');
+  const th = document.createElement('td');
+  th.className = 'hm-row-label';
+  th.textContent = row.label;
+  tr.appendChild(th);
+
+  row.data.forEach(val => {
+    const td = document.createElement('td');
+    td.textContent = val || '—';
+    td.style.background = heatColor(val, row.max);
+    td.style.color = textColor(val, row.max);
+    td.style.fontWeight = '600';
+    tr.appendChild(td);
+  });
+  tbody.appendChild(tr);
+});
+</script>
+</body>
+</html>
