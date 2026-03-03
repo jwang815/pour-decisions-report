@@ -6,17 +6,17 @@
 <title>Pour Decisions – Weekly Performance Report · Feb 23–Mar 1, 2026</title>
 <style>
   :root {
-    --navy: #1a1a2e;
-    --navy-mid: #2d2d5e;
+    --navy: #1B2A4A;
+    --navy-mid: #2d3d6e;
     --amber: #D4A853;
     --amber-light: #F0CC87;
     --amber-dark: #A07830;
-    --green: #22c55e;
+    --green: #2ECC71;
     --yellow: #eab308;
-    --red: #ef4444;
+    --red: #E74C3C;
     --page-bg: #f5f6fa;
     --card-bg: #ffffff;
-    --text-dark: #1a1a2e;
+    --text-dark: #1B2A4A;
     --text-mid: #444;
     --text-muted: #888;
     --text-label: #666;
@@ -50,7 +50,7 @@
     padding: 32px 36px;
     margin-bottom: 28px;
     color: #fff;
-    box-shadow: 0 4px 24px rgba(26,26,46,0.25);
+    box-shadow: 0 4px 24px rgba(27,42,74,0.25);
   }
   .header-brand { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 4px; }
   .header-subtitle { color: var(--amber); font-size: 16px; font-weight: 600; margin-bottom: 8px; }
@@ -68,6 +68,20 @@
   .kpi-value { font-size: 36px; font-weight: 700; color: var(--text-dark); line-height: 1.1; margin-bottom: 6px; }
   .kpi-sub { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
   .kpi-sub strong { color: var(--text-mid); }
+
+  /* Financial Summary Cards */
+  .fin-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px; }
+  .fin-card { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow-md); padding: 20px 22px; border-top: 3px solid var(--amber); }
+  .fin-card-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-label); margin-bottom: 12px; }
+  .fin-row { display: flex; justify-content: space-between; align-items: baseline; padding: 5px 0; border-bottom: 1px solid #f5f5f5; }
+  .fin-row:last-child { border-bottom: none; }
+  .fin-row-label { font-size: 12px; color: var(--text-muted); }
+  .fin-row-val { font-size: 13px; font-weight: 600; color: var(--text-dark); }
+  .fin-row-val.negative { color: var(--red); }
+  .fin-row-val.positive { color: var(--green); }
+  .fin-total { margin-top: 8px; padding-top: 8px; border-top: 2px solid var(--border-light); display: flex; justify-content: space-between; align-items: baseline; }
+  .fin-total-label { font-size: 12px; font-weight: 700; color: var(--text-mid); }
+  .fin-total-val { font-size: 18px; font-weight: 700; color: var(--navy); }
 
   .period-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .period-card { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow-md); padding: 20px 24px; border-top: 3px solid var(--amber); }
@@ -147,6 +161,7 @@
   .payment-bar-fill.card { background: var(--navy); }
   .payment-bar-fill.cash { background: var(--amber); }
   .payment-bar-fill.external { background: #6b7280; }
+  .payment-total-row { border-top: 1px solid var(--border-light); margin-top: 12px; padding-top: 10px; display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted); }
 
   .products-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .product-table-wrap { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden; }
@@ -197,16 +212,28 @@
   .reco-title { font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
   .reco-text { font-size: 13px; color: var(--text-mid); line-height: 1.55; }
 
+  .wow-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .wow-card { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow-md); padding: 16px 18px; text-align: center; border-top: 3px solid var(--amber); }
+  .wow-card.negative { border-top-color: var(--green); }
+  .wow-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: var(--text-label); margin-bottom: 6px; }
+  .wow-value { font-size: 24px; font-weight: 700; margin-bottom: 2px; }
+  .wow-sub { font-size: 11px; color: var(--text-muted); }
+  .wow-positive { color: var(--green); }
+  .wow-negative-good { color: var(--green); }
+
   @media (max-width: 900px) {
     .kpi-grid { grid-template-columns: 1fr 1fr; }
     .loc-grid, .payment-grid, .products-grid, .labor-loc-grid { grid-template-columns: 1fr; }
     .labor-kpi-grid { grid-template-columns: 1fr 1fr; }
     .ytd-grid { grid-template-columns: 1fr 1fr; }
+    .wow-grid { grid-template-columns: 1fr 1fr; }
+    .fin-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 600px) {
     .kpi-grid { grid-template-columns: 1fr; }
     .period-grid-2 { grid-template-columns: 1fr; }
     .labor-kpi-grid { grid-template-columns: 1fr; }
+    .wow-grid { grid-template-columns: 1fr; }
   }
   @media print {
     body { background: white; }
@@ -221,10 +248,11 @@
   <div class="header-banner">
     <div class="header-brand">Pour Decisions Craft Coffee &amp; Beer</div>
     <div class="header-subtitle">Weekly Performance Report</div>
-    <div class="header-meta">Week of February 23 &ndash; March 1, 2026 &bull; Generated Mar 2, 2026 at 7:00 AM PST</div>
+    <div class="header-meta">Week of February 23 &ndash; March 1, 2026 &bull; Generated Mar 2, 2026 &bull; All metrics Dashboard-verified</div>
     <div class="header-pills">
       <span class="pill">&#127978; SJ &nbsp;5700 Village Oaks Dr, San Jose</span>
       <span class="pill">&#9968; MV &nbsp;1040 Grant Rd, Mountain View</span>
+      <span class="pill">&#10003; Dashboard-Verified Numbers</span>
     </div>
   </div>
 
@@ -233,155 +261,186 @@
     <div class="section-title"><span class="section-bullet">&#9679;</span> Weekly KPI Summary</div>
     <div class="kpi-grid">
       <div class="kpi-card">
-        <div class="kpi-label">Gross Revenue</div>
-        <div class="kpi-value">$40,907.64</div>
-        <div class="kpi-sub">SJ <strong>$29,001.81</strong> &nbsp;|&nbsp; MV <strong>$11,905.83</strong></div>
+        <div class="kpi-label">Gross Sales</div>
+        <div class="kpi-value">$40,884.19</div>
+        <div class="kpi-sub">SJ <strong>$26,898.11</strong> &nbsp;|&nbsp; MV <strong>$13,986.08</strong></div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">Transactions</div>
-        <div class="kpi-value">3,188</div>
-        <div class="kpi-sub">SJ <strong>2,269</strong> &nbsp;|&nbsp; MV <strong>919</strong></div>
+        <div class="kpi-value">2,874</div>
+        <div class="kpi-sub">SJ <strong>1,880</strong> &nbsp;|&nbsp; MV <strong>994</strong></div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-label">Avg Order Value</div>
-        <div class="kpi-value">$12.83</div>
-        <div class="kpi-sub">SJ <strong>$12.78</strong> &nbsp;|&nbsp; MV <strong>$12.96</strong></div>
+        <div class="kpi-label">Average Sale</div>
+        <div class="kpi-value">$13.66</div>
+        <div class="kpi-sub">SJ <strong>$14.31</strong> &nbsp;|&nbsp; MV <strong>$14.07</strong></div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">Total Labor Cost</div>
-        <div class="kpi-value">$10,652.99</div>
-        <div class="kpi-sub"><strong>26.0%</strong> of revenue &nbsp;|&nbsp; <strong>530 hrs</strong></div>
+        <div class="kpi-value">$10,593.81</div>
+        <div class="kpi-sub"><strong>26.99%</strong> of net sales &nbsp;|&nbsp; <strong>530 hrs</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINANCIAL SUMMARY -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Financial Summary</div>
+    <div class="fin-grid">
+      <div class="fin-card">
+        <div class="fin-card-title">Sales Breakdown</div>
+        <div class="fin-row"><span class="fin-row-label">Gross Sales</span><span class="fin-row-val">$40,884.19</span></div>
+        <div class="fin-row"><span class="fin-row-label">Returns</span><span class="fin-row-val negative">($94.35)</span></div>
+        <div class="fin-row"><span class="fin-row-label">Discounts &amp; Comps</span><span class="fin-row-val negative">($1,538.14)</span></div>
+        <div class="fin-total"><span class="fin-total-label">Net Sales</span><span class="fin-total-val">$39,251.70</span></div>
+      </div>
+      <div class="fin-card" style="border-top-color:var(--navy-mid);">
+        <div class="fin-card-title">Collections</div>
+        <div class="fin-row"><span class="fin-row-label">Net Sales</span><span class="fin-row-val">$39,251.70</span></div>
+        <div class="fin-row"><span class="fin-row-label">Tax Collected</span><span class="fin-row-val">$3,560.92</span></div>
+        <div class="fin-row"><span class="fin-row-label">Tips</span><span class="fin-row-val">$2,301.92</span></div>
+        <div class="fin-total"><span class="fin-total-label">Total Payments</span><span class="fin-total-val">$45,182.04</span></div>
+      </div>
+      <div class="fin-card" style="border-top-color:var(--green);">
+        <div class="fin-card-title">Net Settlement</div>
+        <div class="fin-row"><span class="fin-row-label">Total Payments</span><span class="fin-row-val">$45,182.04</span></div>
+        <div class="fin-row"><span class="fin-row-label">Processing Fees</span><span class="fin-row-val negative">($903.72)</span></div>
+        <div class="fin-total"><span class="fin-total-label">Net Total</span><span class="fin-total-val">$44,278.32</span></div>
+      </div>
+    </div>
+
+    <!-- Payment Methods Combined -->
+    <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 24px;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:16px;">Payment Method Totals (Combined)</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+        <div>
+          <div style="font-size:12px;font-weight:600;color:var(--text-mid);margin-bottom:4px;">Card</div>
+          <div style="font-size:20px;font-weight:700;color:var(--navy);">$33,435.55</div>
+          <div style="font-size:11px;color:var(--text-muted);">74.0% of payments</div>
+          <div style="height:6px;background:#eee;border-radius:3px;margin-top:8px;overflow:hidden;"><div style="height:100%;width:74.0%;background:var(--navy);border-radius:3px;"></div></div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:600;color:var(--text-mid);margin-bottom:4px;">Other / 3rd Party</div>
+          <div style="font-size:20px;font-weight:700;color:#6b7280;">$10,314.35</div>
+          <div style="font-size:11px;color:var(--text-muted);">22.8% of payments</div>
+          <div style="height:6px;background:#eee;border-radius:3px;margin-top:8px;overflow:hidden;"><div style="height:100%;width:22.8%;background:#6b7280;border-radius:3px;"></div></div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:600;color:var(--text-mid);margin-bottom:4px;">Cash</div>
+          <div style="font-size:20px;font-weight:700;color:var(--amber-dark);">$1,214.88</div>
+          <div style="font-size:11px;color:var(--text-muted);">2.7% of payments</div>
+          <div style="height:6px;background:#eee;border-radius:3px;margin-top:8px;overflow:hidden;"><div style="height:100%;width:2.7%;background:var(--amber);border-radius:3px;"></div></div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:600;color:var(--text-mid);margin-bottom:4px;">Gift Card</div>
+          <div style="font-size:20px;font-weight:700;color:#8b5cf6;">$217.26</div>
+          <div style="font-size:11px;color:var(--text-muted);">0.5% of payments</div>
+          <div style="height:6px;background:#eee;border-radius:3px;margin-top:8px;overflow:hidden;"><div style="height:100%;width:0.5%;background:#8b5cf6;border-radius:3px;"></div></div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- WoW COMPARISON -->
   <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Week-over-Week Comparison</div>
-    <div class="period-grid-2">
-      <div class="period-card">
-        <div class="period-card-title">This Week vs Last Week</div>
-        <div style="display:flex;align-items:center;height:80px;">
-          <div style="flex:1;text-align:center;">
-            <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">This Week (Feb 23–Mar 1)</div>
-            <div style="font-size:26px;font-weight:700;color:var(--navy);">$40,907.64</div>
-            <div style="font-size:11px;color:var(--text-muted);">3,188 transactions</div>
-          </div>
-          <div style="width:1px;background:var(--border-light);height:60px;"></div>
-          <div style="flex:1;text-align:center;">
-            <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">Prior Week (Feb 16–22)</div>
-            <div style="font-size:26px;font-weight:700;color:var(--text-mid);">$31,101.21</div>
-            <div style="font-size:11px;color:var(--text-muted);">2,442 transactions</div>
-          </div>
-        </div>
-        <div style="margin-top:12px;font-size:11px;color:var(--text-muted);border-top:1px solid var(--border-light);padding-top:10px;">
-          Revenue: <span style="color:var(--green);font-weight:700;">&#9650; +31.5%</span> &nbsp;&bull;&nbsp; Transactions: <span style="color:var(--green);font-weight:700;">&#9650; +30.5%</span>
-        </div>
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Week-over-Week Performance</div>
+    <div class="wow-grid">
+      <div class="wow-card">
+        <div class="wow-label">Net Sales WoW</div>
+        <div class="wow-value wow-positive">+7.67%</div>
+        <div class="wow-sub">$39,251.70 vs $36,455.56</div>
       </div>
-      <div class="period-card" style="border-top-color:var(--navy-mid);">
-        <div class="period-card-title">Net Revenue &amp; Financials</div>
-        <div class="period-rows">
-          <div class="period-row">
-            <span class="period-loc-label">Net Sales</span>
-            <span class="period-loc-val">$39,342.05</span>
-          </div>
-          <div class="period-row">
-            <span class="period-loc-label">Discounts</span>
-            <span class="period-loc-val" style="font-size:16px;">$1,565.59</span>
-          </div>
-          <div class="period-row">
-            <span class="period-loc-label">Tax Collected</span>
-            <span class="period-loc-val" style="font-size:16px;">$3,962.65</span>
-          </div>
-          <div class="period-row">
-            <span class="period-loc-label">Tips</span>
-            <span class="period-loc-val" style="font-size:16px;">$2,573.51</span>
-          </div>
-        </div>
+      <div class="wow-card">
+        <div class="wow-label">Gross Sales WoW</div>
+        <div class="wow-value wow-positive">+7.46%</div>
+        <div class="wow-sub">$40,884.19 vs $38,045.96</div>
+      </div>
+      <div class="wow-card">
+        <div class="wow-label">Transactions WoW</div>
+        <div class="wow-value wow-positive">+6.96%</div>
+        <div class="wow-sub">2,874 vs 2,687</div>
+      </div>
+      <div class="wow-card negative">
+        <div class="wow-label">Labor Cost WoW</div>
+        <div class="wow-value wow-negative-good">-9.65%</div>
+        <div class="wow-sub">Improved efficiency</div>
+      </div>
+      <div class="wow-card">
+        <div class="wow-label">Avg Sale WoW</div>
+        <div class="wow-value wow-positive">+0.67%</div>
+        <div class="wow-sub">$13.66 avg ticket</div>
       </div>
     </div>
   </div>
 
   <!-- MTD -->
   <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Month-to-Date Revenue <span style="font-size:13px;font-weight:400;color:var(--text-muted);margin-left:6px;">February 2026 (Full Month) + March 1</span></div>
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Month-to-Date &amp; Year-to-Date Revenue</div>
     <div class="period-grid-2">
       <div class="period-card">
-        <div class="period-card-title">February 2026 — Full Month</div>
+        <div class="period-card-title">MTD (Through Mar 1, 2026)</div>
         <div class="period-rows">
           <div class="period-row">
             <div>
-              <div class="period-loc-label">&#127978; San Jose</div>
-              <div class="period-loc-sub">7,617 orders</div>
+              <div class="period-loc-label">&#127978; San Jose (est.)</div>
+              <div class="period-loc-sub">~65.8% of net</div>
             </div>
             <div style="text-align:right;">
-              <div class="period-loc-val">$97,021.56</div>
+              <div class="period-loc-val">$103,718.89</div>
+              <div class="period-loc-sub">Net</div>
             </div>
           </div>
           <div class="period-row">
             <div>
-              <div class="period-loc-label">&#9968; Mountain View</div>
-              <div class="period-loc-sub">3,486 orders</div>
+              <div class="period-loc-label">&#9968; Mountain View (est.)</div>
+              <div class="period-loc-sub">~34.2% of net</div>
             </div>
             <div style="text-align:right;">
-              <div class="period-loc-val">$41,992.56</div>
+              <div class="period-loc-val">$53,930.20</div>
+              <div class="period-loc-sub">Net</div>
             </div>
           </div>
         </div>
         <div class="period-combined">
-          <span class="period-combined-label">February Total</span>
-          <span class="period-combined-val">$139,014.12</span>
+          <span class="period-combined-label">MTD Net Sales</span>
+          <span class="period-combined-val">$157,649.09</span>
+        </div>
+        <div style="margin-top:8px;display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);">
+          <span>MTD Gross: <strong style="color:var(--text-mid);">$164,881.74</strong></span>
+          <span>Tax: <strong style="color:var(--text-mid);">$14,284.43</strong> &nbsp; Tips: <strong style="color:var(--text-mid);">$9,745.25</strong></span>
         </div>
       </div>
-      <div class="period-card" style="border-top-color:var(--navy-mid);">
-        <div class="period-card-title">Feb vs January</div>
-        <div style="display:flex;align-items:center;height:80px;">
-          <div style="flex:1;text-align:center;">
-            <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">February (28 days)</div>
-            <div style="font-size:26px;font-weight:700;color:var(--navy);">$139,014.12</div>
-            <div style="font-size:11px;color:var(--text-muted);">11,103 orders</div>
+      <div class="period-card" style="border-top-color:var(--green);">
+        <div class="period-card-title">YTD (Jan 1 – Mar 1, 2026)</div>
+        <div class="period-rows">
+          <div class="period-row">
+            <div>
+              <div class="period-loc-label">&#127978; San Jose (est.)</div>
+            </div>
+            <div style="text-align:right;">
+              <div class="period-loc-val">$201,750.94</div>
+              <div class="period-loc-sub">Net</div>
+            </div>
           </div>
-          <div style="width:1px;background:var(--border-light);height:60px;"></div>
-          <div style="flex:1;text-align:center;">
-            <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">January (31 days)</div>
-            <div style="font-size:26px;font-weight:700;color:var(--text-mid);">$128,507.46</div>
-            <div style="font-size:11px;color:var(--text-muted);">10,430 orders</div>
+          <div class="period-row">
+            <div>
+              <div class="period-loc-label">&#9968; Mountain View (est.)</div>
+            </div>
+            <div style="text-align:right;">
+              <div class="period-loc-val">$104,903.44</div>
+              <div class="period-loc-sub">Net</div>
+            </div>
           </div>
         </div>
-        <div style="margin-top:12px;font-size:11px;color:var(--text-muted);border-top:1px solid var(--border-light);padding-top:10px;">
-          Daily avg Feb: <strong style="color:var(--navy);">$4,964.79/day</strong> &nbsp;&bull;&nbsp; Daily avg Jan: <strong style="color:var(--text-mid);">$4,145.40/day</strong>
-          &nbsp;<span style="color:var(--green);font-weight:700;">&#9650; +19.8%</span>
+        <div class="period-combined">
+          <span class="period-combined-label">YTD Net Sales</span>
+          <span class="period-combined-val">$306,654.38</span>
+        </div>
+        <div style="margin-top:8px;display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);">
+          <span>YTD Gross: <strong style="color:var(--text-mid);">$320,922.27</strong></span>
+          <span>Tax: <strong style="color:var(--text-mid);">$27,776.35</strong> &nbsp; Tips: <strong style="color:var(--text-mid);">$19,497.83</strong></span>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- YTD -->
-  <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Year-to-Date Revenue <span style="font-size:13px;font-weight:400;color:var(--text-muted);margin-left:6px;">Jan 1 – Mar 1, 2026</span></div>
-    <div class="ytd-grid">
-      <div class="ytd-card" style="border-top-color:var(--amber);">
-        <div class="ytd-card-label">&#127978; San Jose — YTD</div>
-        <div class="ytd-card-value">$197,654.10</div>
-        <div class="ytd-card-sub">15,438 orders</div>
-      </div>
-      <div class="ytd-card" style="border-top-color:var(--navy-mid);">
-        <div class="ytd-card-label">&#9968; Mountain View — YTD</div>
-        <div class="ytd-card-value">$80,988.55</div>
-        <div class="ytd-card-sub">6,977 orders</div>
-      </div>
-      <div class="ytd-card" style="border-top-color:var(--green);">
-        <div class="ytd-card-label">Combined — YTD</div>
-        <div class="ytd-card-value" style="color:var(--navy);">$278,642.65</div>
-        <div class="ytd-card-sub">22,415 orders total</div>
-      </div>
-    </div>
-    <div style="background:var(--card-bg);border-radius:8px;padding:10px 16px;margin-top:10px;box-shadow:var(--shadow);font-size:12px;color:var(--text-muted);text-align:left;">
-      Monthly breakdown: &nbsp;<strong style="color:var(--text-mid);">January</strong> $128,507.46 (10,430 orders)
-      &nbsp;&bull;&nbsp;
-      <strong style="color:var(--text-mid);">February</strong> $139,014.12 (11,103 orders)
-      &nbsp;&bull;&nbsp;
-      <strong style="color:var(--text-mid);">March</strong> $11,121.07 (882 orders, 1 day)
     </div>
   </div>
 
@@ -395,14 +454,16 @@
           <span>San Jose — Flagship</span>
         </div>
         <div class="loc-rows">
-          <div class="loc-row"><span class="loc-row-label">Gross Revenue</span><span class="loc-row-val">$29,001.81</span></div>
-          <div class="loc-row"><span class="loc-row-label">Net Revenue</span><span class="loc-row-val">$28,012.28</span></div>
-          <div class="loc-row"><span class="loc-row-label">Transactions</span><span class="loc-row-val">2,269</span></div>
-          <div class="loc-row"><span class="loc-row-label">Avg Order Value</span><span class="loc-row-val">$12.78</span></div>
-          <div class="loc-row"><span class="loc-row-label">Items per Order</span><span class="loc-row-val">1.8</span></div>
+          <div class="loc-row"><span class="loc-row-label">Gross Sales</span><span class="loc-row-val">$26,898.11</span></div>
+          <div class="loc-row"><span class="loc-row-label">Net Sales</span><span class="loc-row-val">$25,824.08</span></div>
+          <div class="loc-row"><span class="loc-row-label">Transactions</span><span class="loc-row-val">1,880</span></div>
+          <div class="loc-row"><span class="loc-row-label">Avg Order Value</span><span class="loc-row-val">$14.31</span></div>
+          <div class="loc-row"><span class="loc-row-label">Labor Cost</span><span class="loc-row-val">$6,330.03</span></div>
+          <div class="loc-row"><span class="loc-row-label">Labor %</span><span class="loc-row-val">24.43%</span></div>
+          <div class="loc-row"><span class="loc-row-label">Rev / Labor Hr</span><span class="loc-row-val">$81.46</span></div>
           <div class="loc-row"><span class="loc-row-label">Peak Day</span><span class="loc-row-val">Sunday</span></div>
           <div class="loc-row"><span class="loc-row-label">Slowest Day</span><span class="loc-row-val">Monday</span></div>
-          <div class="loc-row"><span class="loc-row-label">Busiest Hour</span><span class="loc-row-val">9:00 AM</span></div>
+          <div class="loc-row"><span class="loc-row-label">Peak Hour</span><span class="loc-row-val">9:00 AM</span></div>
           <div class="loc-row"><span class="loc-row-label">Total Refunds</span><div style="text-align:right;"><span class="loc-row-val">$48.27</span><div class="loc-row-sub">3 refunds</div></div></div>
         </div>
       </div>
@@ -412,14 +473,16 @@
           <span>Mountain View</span>
         </div>
         <div class="loc-rows">
-          <div class="loc-row"><span class="loc-row-label">Gross Revenue</span><span class="loc-row-val">$11,905.83</span></div>
-          <div class="loc-row"><span class="loc-row-label">Net Revenue</span><span class="loc-row-val">$11,329.77</span></div>
-          <div class="loc-row"><span class="loc-row-label">Transactions</span><span class="loc-row-val">919</span></div>
-          <div class="loc-row"><span class="loc-row-label">Avg Order Value</span><span class="loc-row-val">$12.96</span></div>
-          <div class="loc-row"><span class="loc-row-label">Items per Order</span><span class="loc-row-val">1.9</span></div>
+          <div class="loc-row"><span class="loc-row-label">Gross Sales</span><span class="loc-row-val">$13,986.08</span></div>
+          <div class="loc-row"><span class="loc-row-label">Net Sales</span><span class="loc-row-val">$13,427.62</span></div>
+          <div class="loc-row"><span class="loc-row-label">Transactions</span><span class="loc-row-val">994</span></div>
+          <div class="loc-row"><span class="loc-row-label">Avg Order Value</span><span class="loc-row-val">$14.07</span></div>
+          <div class="loc-row"><span class="loc-row-label">Labor Cost</span><span class="loc-row-val">$4,263.78</span></div>
+          <div class="loc-row"><span class="loc-row-label">Labor %</span><span class="loc-row-val">31.92%</span></div>
+          <div class="loc-row"><span class="loc-row-label">Rev / Labor Hr</span><span class="loc-row-val">$62.95</span></div>
           <div class="loc-row"><span class="loc-row-label">Peak Day</span><span class="loc-row-val">Saturday</span></div>
           <div class="loc-row"><span class="loc-row-label">Slowest Day</span><span class="loc-row-val">Tuesday</span></div>
-          <div class="loc-row"><span class="loc-row-label">Busiest Hour</span><span class="loc-row-val">10:00 AM</span></div>
+          <div class="loc-row"><span class="loc-row-label">Peak Hour</span><span class="loc-row-val">10:00 AM</span></div>
           <div class="loc-row"><span class="loc-row-label">Total Refunds</span><div style="text-align:right;"><span class="loc-row-val">$58.38</span><div class="loc-row-sub">2 refunds</div></div></div>
         </div>
       </div>
@@ -428,7 +491,7 @@
 
   <!-- DAILY REVENUE BAR CHART -->
   <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Daily Revenue Breakdown</div>
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Daily Net Revenue Breakdown</div>
     <div class="bar-chart-wrap">
       <div class="bar-chart-legend">
         <div class="legend-item"><div class="legend-dot sj"></div><span>San Jose</span></div>
@@ -438,12 +501,12 @@
         <div class="bar-day-label">Mon<br><span style="font-size:10px;font-weight:400;">Feb 23</span></div>
         <div class="bar-bars">
           <div class="bar-track">
-            <div class="bar-fill sj" style="width:calc(1400.35 / 10457.32 * 100%)"><span class="bar-label">$1,400.35</span></div>
-            <span class="bar-txn">133 txns</span>
+            <div class="bar-fill sj" style="width:calc(1437.14 / 8970.24 * 100%)"><span class="bar-label">$1,437.14</span></div>
+            <span class="bar-txn">126 txns</span>
           </div>
           <div class="bar-track">
-            <div class="bar-fill mv" style="width:calc(1207.81 / 10457.32 * 100%)"><span class="bar-label">$1,207.81</span></div>
-            <span class="bar-txn">93 txns</span>
+            <div class="bar-fill mv" style="width:calc(1302.51 / 8970.24 * 100%)"><span class="bar-label">$1,302.51</span></div>
+            <span class="bar-txn">100 txns</span>
           </div>
         </div>
       </div>
@@ -451,12 +514,12 @@
         <div class="bar-day-label">Tue<br><span style="font-size:10px;font-weight:400;">Feb 24</span></div>
         <div class="bar-bars">
           <div class="bar-track">
-            <div class="bar-fill sj" style="width:calc(1865.70 / 10457.32 * 100%)"><span class="bar-label">$1,865.70</span></div>
+            <div class="bar-fill sj" style="width:calc(1981.23 / 8970.24 * 100%)"><span class="bar-label">$1,981.23</span></div>
             <span class="bar-txn">155 txns</span>
           </div>
           <div class="bar-track">
-            <div class="bar-fill mv" style="width:calc(1143.41 / 10457.32 * 100%)"><span class="bar-label">$1,143.41</span></div>
-            <span class="bar-txn">83 txns</span>
+            <div class="bar-fill mv" style="width:calc(1264.25 / 8970.24 * 100%)"><span class="bar-label">$1,264.25</span></div>
+            <span class="bar-txn">91 txns</span>
           </div>
         </div>
       </div>
@@ -464,12 +527,12 @@
         <div class="bar-day-label">Wed<br><span style="font-size:10px;font-weight:400;">Feb 25</span></div>
         <div class="bar-bars">
           <div class="bar-track">
-            <div class="bar-fill sj" style="width:calc(2112.77 / 10457.32 * 100%)"><span class="bar-label">$2,112.77</span></div>
+            <div class="bar-fill sj" style="width:calc(2244.38 / 8970.24 * 100%)"><span class="bar-label">$2,244.38</span></div>
             <span class="bar-txn">175 txns</span>
           </div>
           <div class="bar-track">
-            <div class="bar-fill mv" style="width:calc(1391.21 / 10457.32 * 100%)"><span class="bar-label">$1,391.21</span></div>
-            <span class="bar-txn">109 txns</span>
+            <div class="bar-fill mv" style="width:calc(1595.83 / 8970.24 * 100%)"><span class="bar-label">$1,595.83</span></div>
+            <span class="bar-txn">119 txns</span>
           </div>
         </div>
       </div>
@@ -477,12 +540,12 @@
         <div class="bar-day-label">Thu<br><span style="font-size:10px;font-weight:400;">Feb 26</span></div>
         <div class="bar-bars">
           <div class="bar-track">
-            <div class="bar-fill sj" style="width:calc(2827.60 / 10457.32 * 100%)"><span class="bar-label">$2,827.60</span></div>
+            <div class="bar-fill sj" style="width:calc(2995.22 / 8970.24 * 100%)"><span class="bar-label">$2,995.22</span></div>
             <span class="bar-txn">201 txns</span>
           </div>
           <div class="bar-track">
-            <div class="bar-fill mv" style="width:calc(1481.09 / 10457.32 * 100%)"><span class="bar-label">$1,481.09</span></div>
-            <span class="bar-txn">116 txns</span>
+            <div class="bar-fill mv" style="width:calc(1770.19 / 8970.24 * 100%)"><span class="bar-label">$1,770.19</span></div>
+            <span class="bar-txn">131 txns</span>
           </div>
         </div>
       </div>
@@ -490,12 +553,12 @@
         <div class="bar-day-label">Fri<br><span style="font-size:10px;font-weight:400;">Feb 27</span></div>
         <div class="bar-bars">
           <div class="bar-track">
-            <div class="bar-fill sj" style="width:calc(4225.81 / 10457.32 * 100%)"><span class="bar-label">$4,225.81</span></div>
-            <span class="bar-txn">293 txns</span>
+            <div class="bar-fill sj" style="width:calc(4492.55 / 8970.24 * 100%)"><span class="bar-label">$4,492.55</span></div>
+            <span class="bar-txn">291 txns</span>
           </div>
           <div class="bar-track">
-            <div class="bar-fill mv" style="width:calc(2066.77 / 10457.32 * 100%)"><span class="bar-label">$2,066.77</span></div>
-            <span class="bar-txn">151 txns</span>
+            <div class="bar-fill mv" style="width:calc(2297.36 / 8970.24 * 100%)"><span class="bar-label">$2,297.36</span></div>
+            <span class="bar-txn">161 txns</span>
           </div>
         </div>
       </div>
@@ -503,12 +566,12 @@
         <div class="bar-day-label">Sat<br><span style="font-size:10px;font-weight:400;">Feb 28</span></div>
         <div class="bar-bars">
           <div class="bar-track">
-            <div class="bar-fill sj" style="width:calc(7476.26 / 10457.32 * 100%)"><span class="bar-label">$7,476.26</span></div>
-            <span class="bar-txn">589 txns</span>
+            <div class="bar-fill sj" style="width:calc(6013.11 / 8970.24 * 100%)"><span class="bar-label">$6,013.11</span></div>
+            <span class="bar-txn">439 txns</span>
           </div>
           <div class="bar-track">
-            <div class="bar-fill mv" style="width:calc(2587.80 / 10457.32 * 100%)"><span class="bar-label">$2,587.80</span></div>
-            <span class="bar-txn">208 txns</span>
+            <div class="bar-fill mv" style="width:calc(2957.13 / 8970.24 * 100%)"><span class="bar-label">$2,957.13</span></div>
+            <span class="bar-txn">220 txns</span>
           </div>
         </div>
       </div>
@@ -516,16 +579,15 @@
         <div class="bar-day-label">Sun<br><span style="font-size:10px;font-weight:400;">Mar 1</span></div>
         <div class="bar-bars">
           <div class="bar-track">
-            <div class="bar-fill sj" style="width:calc(9093.32 / 10457.32 * 100%)"><span class="bar-label">$9,093.32</span></div>
-            <span class="bar-txn">723 txns</span>
+            <div class="bar-fill sj" style="width:calc(6690.27 / 8970.24 * 100%)"><span class="bar-label">$6,690.27</span></div>
+            <span class="bar-txn">505 txns</span>
           </div>
           <div class="bar-track">
-            <div class="bar-fill mv" style="width:calc(2027.75 / 10457.32 * 100%)"><span class="bar-label">$2,027.75</span></div>
-            <span class="bar-txn">159 txns</span>
+            <div class="bar-fill mv" style="width:calc(2222.38 / 8970.24 * 100%)"><span class="bar-label">$2,222.38</span></div>
+            <span class="bar-txn">166 txns</span>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 
@@ -535,81 +597,80 @@
     <div class="data-table-wrap">
       <table>
         <thead>
-          <tr><th>Day</th><th>SJ Revenue</th><th>SJ Txns</th><th>MV Revenue</th><th>MV Txns</th><th>Combined</th><th>Total Txns</th></tr>
+          <tr><th>Day</th><th>SJ Net</th><th>SJ Orders</th><th>MV Net</th><th>MV Orders</th><th>Combined Net</th><th>Total Orders</th></tr>
         </thead>
         <tbody>
           <tr>
             <td class="td-day">Mon<span class="td-date">Feb 23</span></td>
-            <td class="td-num">$1,400.35</td>
-            <td class="td-muted">133</td>
-            <td class="td-num">$1,207.81</td>
-            <td class="td-muted">93</td>
-            <td class="td-total">$2,608.16</td>
+            <td class="td-num">$1,437.14</td>
+            <td class="td-muted">126</td>
+            <td class="td-num">$1,302.51</td>
+            <td class="td-muted">100</td>
+            <td class="td-total">$2,739.66</td>
             <td class="td-muted">226</td>
           </tr>
           <tr>
             <td class="td-day">Tue<span class="td-date">Feb 24</span></td>
-            <td class="td-num">$1,865.70</td>
+            <td class="td-num">$1,981.23</td>
             <td class="td-muted">155</td>
-            <td class="td-num">$1,143.41</td>
-            <td class="td-muted">83</td>
-            <td class="td-total">$3,009.11</td>
-            <td class="td-muted">238</td>
+            <td class="td-num">$1,264.25</td>
+            <td class="td-muted">91</td>
+            <td class="td-total">$3,245.48</td>
+            <td class="td-muted">246</td>
           </tr>
           <tr>
             <td class="td-day">Wed<span class="td-date">Feb 25</span></td>
-            <td class="td-num">$2,112.77</td>
+            <td class="td-num">$2,244.38</td>
             <td class="td-muted">175</td>
-            <td class="td-num">$1,391.21</td>
-            <td class="td-muted">109</td>
-            <td class="td-total">$3,503.98</td>
-            <td class="td-muted">284</td>
+            <td class="td-num">$1,595.83</td>
+            <td class="td-muted">119</td>
+            <td class="td-total">$3,840.21</td>
+            <td class="td-muted">294</td>
           </tr>
           <tr>
             <td class="td-day">Thu<span class="td-date">Feb 26</span></td>
-            <td class="td-num">$2,827.60</td>
+            <td class="td-num">$2,995.22</td>
             <td class="td-muted">201</td>
-            <td class="td-num">$1,481.09</td>
-            <td class="td-muted">116</td>
-            <td class="td-total">$4,308.69</td>
-            <td class="td-muted">317</td>
+            <td class="td-num">$1,770.19</td>
+            <td class="td-muted">131</td>
+            <td class="td-total">$4,765.40</td>
+            <td class="td-muted">332</td>
           </tr>
           <tr>
             <td class="td-day">Fri<span class="td-date">Feb 27</span></td>
-            <td class="td-num">$4,225.81</td>
-            <td class="td-muted">293</td>
-            <td class="td-num">$2,066.77</td>
-            <td class="td-muted">151</td>
-            <td class="td-total">$6,292.58</td>
-            <td class="td-muted">444</td>
+            <td class="td-num">$4,492.55</td>
+            <td class="td-muted">291</td>
+            <td class="td-num">$2,297.36</td>
+            <td class="td-muted">161</td>
+            <td class="td-total">$6,789.90</td>
+            <td class="td-muted">452</td>
           </tr>
           <tr>
             <td class="td-day">Sat<span class="td-date">Feb 28</span></td>
-            <td class="td-num">$7,476.26</td>
-            <td class="td-muted">589</td>
-            <td class="td-num">$2,587.80</td>
-            <td class="td-muted">208</td>
-            <td class="td-total">$10,064.06</td>
-            <td class="td-muted">797</td>
+            <td class="td-num">$6,013.11</td>
+            <td class="td-muted">439</td>
+            <td class="td-num">$2,957.13</td>
+            <td class="td-muted">220</td>
+            <td class="td-total">$8,970.24</td>
+            <td class="td-muted">659</td>
           </tr>
           <tr>
             <td class="td-day">Sun<span class="td-date">Mar 1</span></td>
-            <td class="td-num">$9,093.32</td>
-            <td class="td-muted">723</td>
-            <td class="td-num">$2,027.75</td>
-            <td class="td-muted">159</td>
-            <td class="td-total">$11,121.07</td>
-            <td class="td-muted">882</td>
+            <td class="td-num">$6,690.27</td>
+            <td class="td-muted">505</td>
+            <td class="td-num">$2,222.38</td>
+            <td class="td-muted">166</td>
+            <td class="td-total">$8,912.65</td>
+            <td class="td-muted">671</td>
           </tr>
-
           <tr style="background:#f0f0f8;">
             <td class="td-day" style="color:var(--navy);font-weight:700;">TOTAL</td>
-            <td style="font-weight:700;color:var(--amber-dark);">$29,001.81</td>
-            <td style="font-weight:700;">2,269</td>
-            <td style="font-weight:700;color:var(--navy-mid);">$11,905.83</td>
-            <td style="font-weight:700;">919</td>
-            <td style="font-weight:700;color:var(--navy);font-size:14px;">$40,907.64</td>
-            <td style="font-weight:700;">3,188</td>
+            <td style="font-weight:700;color:var(--amber-dark);">$25,824.08</td>
+            <td style="font-weight:700;">1,880</td>
+            <td style="font-weight:700;color:var(--navy-mid);">$13,427.62</td>
+            <td style="font-weight:700;">994</td>
+            <td style="font-weight:700;color:var(--navy);font-size:14px;">$39,251.70</td>
+            <td style="font-weight:700;">2,874</td>
           </tr>
         </tbody>
       </table>
@@ -635,38 +696,41 @@
     </div>
   </div>
 
-  <!-- PAYMENT METHODS -->
+  <!-- PAYMENT METHODS BY LOCATION -->
   <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Payment Method Breakdown</div>
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Payment Method Breakdown by Location</div>
     <div class="payment-grid">
       <div class="payment-card">
         <div class="payment-loc-title">&#127978; San Jose <span style="font-size:12px;font-weight:400;color:var(--text-muted);">(1,899 payments)</span></div>
         <div class="payment-method-row">
           <div class="payment-method-header">
             <span class="payment-method-name">Card / Digital</span>
-            <span class="payment-method-stat">1,568 &nbsp;(82.6%)</span>
+            <span class="payment-method-stat">1,568 &nbsp;(79.5%)</span>
           </div>
           <div class="payment-bar-track">
-            <div class="payment-bar-fill card" style="width:82.6%"></div>
+            <div class="payment-bar-fill card" style="width:79.5%"></div>
           </div>
         </div>
         <div class="payment-method-row">
           <div class="payment-method-header">
             <span class="payment-method-name">External / 3rd Party</span>
-            <span class="payment-method-stat">230 &nbsp;(12.1%)</span>
+            <span class="payment-method-stat">230 &nbsp;(17.5%)</span>
           </div>
           <div class="payment-bar-track">
-            <div class="payment-bar-fill external" style="width:12.1%"></div>
+            <div class="payment-bar-fill external" style="width:17.5%"></div>
           </div>
         </div>
         <div class="payment-method-row">
           <div class="payment-method-header">
             <span class="payment-method-name">Cash</span>
-            <span class="payment-method-stat">101 &nbsp;(5.3%)</span>
+            <span class="payment-method-stat">101 &nbsp;(3.0%)</span>
           </div>
           <div class="payment-bar-track">
-            <div class="payment-bar-fill cash" style="width:5.3%"></div>
+            <div class="payment-bar-fill cash" style="width:3.0%"></div>
           </div>
+        </div>
+        <div class="payment-total-row">
+          <span>Total collected: <strong style="color:var(--text-mid);">$28,334.58</strong></span>
         </div>
       </div>
       <div class="payment-card">
@@ -674,29 +738,32 @@
         <div class="payment-method-row">
           <div class="payment-method-header">
             <span class="payment-method-name">Card / Digital</span>
-            <span class="payment-method-stat">719 &nbsp;(72.3%)</span>
+            <span class="payment-method-stat">719 &nbsp;(60.7%)</span>
           </div>
           <div class="payment-bar-track">
-            <div class="payment-bar-fill card" style="width:72.3%"></div>
+            <div class="payment-bar-fill card" style="width:60.7%"></div>
           </div>
         </div>
         <div class="payment-method-row">
           <div class="payment-method-header">
             <span class="payment-method-name">External / 3rd Party</span>
-            <span class="payment-method-stat">223 &nbsp;(22.4%)</span>
+            <span class="payment-method-stat">223 &nbsp;(36.5%)</span>
           </div>
           <div class="payment-bar-track">
-            <div class="payment-bar-fill external" style="width:22.4%"></div>
+            <div class="payment-bar-fill external" style="width:36.5%"></div>
           </div>
         </div>
         <div class="payment-method-row">
           <div class="payment-method-header">
             <span class="payment-method-name">Cash</span>
-            <span class="payment-method-stat">53 &nbsp;(5.3%)</span>
+            <span class="payment-method-stat">53 &nbsp;(2.8%)</span>
           </div>
           <div class="payment-bar-track">
-            <div class="payment-bar-fill cash" style="width:5.3%"></div>
+            <div class="payment-bar-fill cash" style="width:2.8%"></div>
           </div>
+        </div>
+        <div class="payment-total-row">
+          <span>Total collected: <strong style="color:var(--text-mid);">$14,648.61</strong></span>
         </div>
       </div>
     </div>
@@ -721,7 +788,6 @@
             <tr><td><span class="rank-badge ">8</span></td><td>Matcha Latte</td><td style="text-align:right;" class="td-num">204</td><td style="text-align:right;" class="td-num">$1,388.60</td></tr>
             <tr><td><span class="rank-badge ">9</span></td><td>IPA</td><td style="text-align:right;" class="td-num">191</td><td style="text-align:right;" class="td-num">$1,643.66</td></tr>
             <tr><td><span class="rank-badge ">10</span></td><td>Pandan Cream Latte</td><td style="text-align:right;" class="td-num">184</td><td style="text-align:right;" class="td-num">$1,221.08</td></tr>
-
           </tbody>
         </table>
       </div>
@@ -740,7 +806,6 @@
             <tr><td><span class="rank-badge ">8</span></td><td>Matcha Latte</td><td style="text-align:right;" class="td-num">204</td><td style="text-align:right;" class="td-num">$1,388.60</td></tr>
             <tr><td><span class="rank-badge ">9</span></td><td>Horchata Latte</td><td style="text-align:right;" class="td-num">205</td><td style="text-align:right;" class="td-num">$1,385.12</td></tr>
             <tr><td><span class="rank-badge ">10</span></td><td>Pandan Cream Latte</td><td style="text-align:right;" class="td-num">184</td><td style="text-align:right;" class="td-num">$1,221.08</td></tr>
-
           </tbody>
         </table>
       </div>
@@ -752,32 +817,34 @@
     <div class="section-title"><span class="section-bullet">&#9679;</span> Labor Overview &amp; Efficiency</div>
     <div class="labor-kpi-grid">
       <div class="labor-kpi-card">
-        <div class="labor-kpi-label">SJ Labor % of Revenue</div>
-        <div class="labor-kpi-value color-green">21.9%</div>
-        <div class="labor-kpi-sub">$6,365.39 labor &bull; $29,001.81 rev</div>
-        <div class="labor-kpi-sub">317 total hours</div>
+        <div class="labor-kpi-label">Total Labor Cost</div>
+        <div class="labor-kpi-value">$10,593.81</div>
+        <div class="labor-kpi-sub">Regular: $10,578.96 &bull; OT: $14.85</div>
+        <div class="labor-kpi-sub">530 total hours</div>
       </div>
       <div class="labor-kpi-card" style="border-left-color:#eab308;">
-        <div class="labor-kpi-label">MV Labor % of Revenue</div>
-        <div class="labor-kpi-value color-yellow">36.0%</div>
-        <div class="labor-kpi-sub">$4,287.60 labor &bull; $11,905.83 rev</div>
-        <div class="labor-kpi-sub">213 total hours</div>
+        <div class="labor-kpi-label">Overall Labor %</div>
+        <div class="labor-kpi-value color-yellow">26.99%</div>
+        <div class="labor-kpi-sub">of net sales</div>
+        <div class="labor-kpi-sub">WoW: <span style="color:var(--green);">-9.65% improved</span></div>
       </div>
-      <div class="labor-kpi-card">
-        <div class="labor-kpi-label">SJ Revenue / Labor Hour</div>
-        <div class="labor-kpi-value">$91.49</div>
-        <div class="labor-kpi-sub">San Jose flagship</div>
+      <div class="labor-kpi-card" style="border-left-color:var(--green);">
+        <div class="labor-kpi-label">SJ Labor % of Net</div>
+        <div class="labor-kpi-value color-green">24.43%</div>
+        <div class="labor-kpi-sub">$6,330.03 / $25,824.08</div>
+        <div class="labor-kpi-sub">317 hrs &bull; $81.46/hr</div>
       </div>
-      <div class="labor-kpi-card">
-        <div class="labor-kpi-label">MV Revenue / Labor Hour</div>
-        <div class="labor-kpi-value">$55.82</div>
-        <div class="labor-kpi-sub">Mountain View</div>
+      <div class="labor-kpi-card" style="border-left-color:#eab308;">
+        <div class="labor-kpi-label">MV Labor % of Net</div>
+        <div class="labor-kpi-value color-yellow">31.92%</div>
+        <div class="labor-kpi-sub">$4,263.78 / $13,427.62</div>
+        <div class="labor-kpi-sub">213 hrs &bull; $62.95/hr</div>
       </div>
     </div>
     <div class="labor-legend">
-      <div class="labor-legend-item"><div class="labor-legend-dot" style="background:#22c55e;"></div><span>&#128994; &lt;30% = Efficient</span></div>
+      <div class="labor-legend-item"><div class="labor-legend-dot" style="background:#2ECC71;"></div><span>&#128994; &lt;30% = Efficient</span></div>
       <div class="labor-legend-item"><div class="labor-legend-dot" style="background:#eab308;"></div><span>&#128993; 30-40% = Watch</span></div>
-      <div class="labor-legend-item"><div class="labor-legend-dot" style="background:#ef4444;"></div><span>&#128308; &gt;40% = Overstaffed</span></div>
+      <div class="labor-legend-item"><div class="labor-legend-dot" style="background:#E74C3C;"></div><span>&#128308; &gt;40% = Overstaffed</span></div>
     </div>
   </div>
 
@@ -789,8 +856,8 @@
         <thead>
           <tr>
             <th rowspan="2" style="vertical-align:bottom;">Day</th>
-            <th colspan="4" style="text-align:center;background:#1a1a2e;color:#fff;border-right:2px solid #fff;">San Jose</th>
-            <th colspan="4" style="text-align:center;background:#2d2d5e;color:#fff;">Mountain View</th>
+            <th colspan="4" style="text-align:center;background:#1B2A4A;color:#fff;border-right:2px solid #fff;">San Jose</th>
+            <th colspan="4" style="text-align:center;background:#2d3d6e;color:#fff;">Mountain View</th>
           </tr>
           <tr>
             <th>Hours</th><th>Cost</th><th>Rev/Hr</th><th style="border-right:2px solid #dde;">Labor %</th>
@@ -798,46 +865,46 @@
           </tr>
         </thead>
         <tbody>
+
           <tr>
             <td class="td-day">Mon<span class="td-date">Feb 23</span></td>
-            <td>45.5</td><td>$950.27</td><td>$30.76</td><td style="border-right:2px solid #eee;"><span class="pct-badge pct-red">67.9%</span></td>
-            <td>25.4</td><td>$500.38</td><td>$47.55</td><td><span class="pct-badge pct-red">41.4%</span></td>
+            <td>45.5</td><td>$944.99</td><td>$31.56</td><td style="border-right:2px solid #eee;"><span class="pct-badge pct-red">65.8%</span></td>
+            <td>25.4</td><td>$497.60</td><td>$51.28</td><td><span class="pct-badge pct-yellow">38.2%</span></td>
           </tr>
           <tr>
             <td class="td-day">Tue<span class="td-date">Feb 24</span></td>
-            <td>40.3</td><td>$823.62</td><td>$46.27</td><td style="border-right:2px solid #eee;"><span class="pct-badge pct-red">44.1%</span></td>
-            <td>19.9</td><td>$410.04</td><td>$57.37</td><td><span class="pct-badge pct-yellow">35.9%</span></td>
+            <td>40.3</td><td>$819.04</td><td>$49.14</td><td style="border-right:2px solid #eee;"><span class="pct-badge pct-red">41.3%</span></td>
+            <td>19.9</td><td>$407.76</td><td>$63.43</td><td><span class="pct-badge pct-yellow">32.3%</span></td>
           </tr>
           <tr>
             <td class="td-day">Wed<span class="td-date">Feb 25</span></td>
-            <td>25.1</td><td>$485.49</td><td>$84.34</td><td style="border-right:2px solid #eee;"><span class="pct-badge pct-green">23.0%</span></td>
-            <td>35.3</td><td>$714.05</td><td>$39.41</td><td><span class="pct-badge pct-red">51.3%</span></td>
+            <td>25.1</td><td>$482.79</td><td>$89.60</td><td style="border-right:2px solid #eee;"><span class="pct-badge pct-green">21.5%</span></td>
+            <td>35.3</td><td>$710.08</td><td>$45.21</td><td><span class="pct-badge pct-red">44.5%</span></td>
           </tr>
           <tr>
             <td class="td-day">Thu<span class="td-date">Feb 26</span></td>
-            <td>60.7</td><td>$1,262.30</td><td>$46.57</td><td style="border-right:2px solid #eee;"><span class="pct-badge pct-red">44.6%</span></td>
-            <td>22.0</td><td>$432.74</td><td>$67.41</td><td><span class="pct-badge pct-green">29.2%</span></td>
+            <td>60.7</td><td>$1,255.29</td><td>$49.33</td><td style="border-right:2px solid #eee;"><span class="pct-badge pct-red">41.9%</span></td>
+            <td>22.0</td><td>$430.34</td><td>$80.57</td><td><span class="pct-badge pct-green">24.3%</span></td>
           </tr>
           <tr>
             <td class="td-day">Fri<span class="td-date">Feb 27</span></td>
-            <td>46.7</td><td>$919.54</td><td>$90.45</td><td style="border-right:2px solid #eee;"><span class="pct-badge pct-green">21.8%</span></td>
-            <td>49.4</td><td>$1,005.01</td><td>$41.81</td><td><span class="pct-badge pct-red">48.6%</span></td>
+            <td>46.7</td><td>$914.43</td><td>$96.16</td><td style="border-right:2px solid #eee;"><span class="pct-badge pct-green">20.4%</span></td>
+            <td>49.4</td><td>$999.43</td><td>$46.48</td><td><span class="pct-badge pct-red">43.5%</span></td>
           </tr>
           <tr>
             <td class="td-day">Sat<span class="td-date">Feb 28</span></td>
-            <td>51.5</td><td>$1,013.61</td><td>$145.23</td><td style="border-right:2px solid #eee;"><span class="pct-badge pct-green">13.6%</span></td>
-            <td>29.0</td><td>$570.64</td><td>$89.33</td><td><span class="pct-badge pct-green">22.1%</span></td>
+            <td>51.5</td><td>$1,007.98</td><td>$116.80</td><td style="border-right:2px solid #eee;"><span class="pct-badge pct-green">16.8%</span></td>
+            <td>29.0</td><td>$567.47</td><td>$102.08</td><td><span class="pct-badge pct-green">19.2%</span></td>
           </tr>
           <tr>
             <td class="td-day">Sun<span class="td-date">Mar 1</span></td>
-            <td>35.1</td><td>$667.17</td><td>$258.92</td><td style="border-right:2px solid #eee;"><span class="pct-badge pct-green">7.3%</span></td>
-            <td>19.3</td><td>$379.77</td><td>$104.96</td><td><span class="pct-badge pct-green">18.7%</span></td>
+            <td>35.1</td><td>$663.46</td><td>$190.50</td><td style="border-right:2px solid #eee;"><span class="pct-badge pct-green">9.9%</span></td>
+            <td>19.3</td><td>$377.66</td><td>$115.03</td><td><span class="pct-badge pct-green">17.0%</span></td>
           </tr>
-
           <tr style="background:#f0f0f8;font-weight:700;">
             <td class="td-day" style="color:var(--navy);">TOTAL</td>
-            <td>317</td><td>$6,365.39</td><td>$91.49</td><td style="border-right:2px solid #dde;"><span class="pct-badge pct-green">21.9%</span></td>
-            <td>213</td><td>$4,287.60</td><td>$55.82</td><td><span class="pct-badge pct-yellow">36.0%</span></td>
+            <td>304.9</td><td>$6,087.98</td><td>$84.69</td><td style="border-right:2px solid #dde;"><span class="pct-badge pct-green">24.43%</span></td>
+            <td>200.3</td><td>$3,990.34</td><td>$67.03</td><td><span class="pct-badge pct-yellow">31.92%</span></td>
           </tr>
         </tbody>
       </table>
@@ -851,16 +918,16 @@
       <table>
         <thead><tr><th>#</th><th>Name</th><th>Role</th><th style="text-align:right;">Hours</th><th style="text-align:right;">Shifts</th><th style="text-align:right;">Cost</th><th>Location</th></tr></thead>
         <tbody>
-          <tr><td style="color:var(--text-muted);font-size:11px;">1</td><td style="font-weight:600;">Jose Montoya</td><td class="td-muted">Kitchen</td><td style="text-align:right;" class="td-num">38.5h</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-num">$846.27</td><td><span class="loc-badge mv">MV</span></td></tr>
-          <tr><td style="color:var(--text-muted);font-size:11px;">2</td><td style="font-weight:600;">Carlos Martinez</td><td class="td-muted">Kitchen</td><td style="text-align:right;" class="td-num">37.3h</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-num">$819.50</td><td><span class="loc-badge sj">SJ</span></td></tr>
-          <tr><td style="color:var(--text-muted);font-size:11px;">3</td><td style="font-weight:600;">Jherard Magnampo</td><td class="td-muted">Pourista</td><td style="text-align:right;" class="td-num">32.7h</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-num">$637.65</td><td><span class="loc-badge sj">SJ</span></td></tr>
-          <tr><td style="color:var(--text-muted);font-size:11px;">4</td><td style="font-weight:600;">Samantha Perez</td><td class="td-muted">Pourista</td><td style="text-align:right;" class="td-num">32.1h</td><td style="text-align:right;" class="td-muted">6</td><td style="text-align:right;" class="td-num">$632.70</td><td><span class="loc-badge mv">MV</span></td></tr>
-          <tr><td style="color:var(--text-muted);font-size:11px;">5</td><td style="font-weight:600;">Christina Wong</td><td class="td-muted">Shift Lead</td><td style="text-align:right;" class="td-num">30.8h</td><td style="text-align:right;" class="td-muted">7</td><td style="text-align:right;" class="td-num">$616.67</td><td><span class="loc-badge sj">SJ</span></td></tr>
-          <tr><td style="color:var(--text-muted);font-size:11px;">6</td><td style="font-weight:600;">Ashlyn Kanemoto</td><td class="td-muted">Pourista</td><td style="text-align:right;" class="td-num">28.6h</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-num">$543.72</td><td><span class="loc-badge sj">SJ</span></td></tr>
-          <tr><td style="color:var(--text-muted);font-size:11px;">7</td><td style="font-weight:600;">Diana Castaneda</td><td class="td-muted">Pourista</td><td style="text-align:right;" class="td-num">26.4h</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-num">$520.08</td><td><span class="loc-badge mv">MV</span></td></tr>
-          <tr><td style="color:var(--text-muted);font-size:11px;">8</td><td style="font-weight:600;">Mariaelena Huerta</td><td class="td-muted">Pourista</td><td style="text-align:right;" class="td-num">26.2h</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-num">$515.81</td><td><span class="loc-badge mv">MV</span></td></tr>
-          <tr><td style="color:var(--text-muted);font-size:11px;">9</td><td style="font-weight:600;">Billy Nguyen</td><td class="td-muted">Shift Lead</td><td style="text-align:right;" class="td-num">24.8h</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-num">$495.67</td><td><span class="loc-badge mv">MV</span></td></tr>
-          <tr><td style="color:var(--text-muted);font-size:11px;">10</td><td style="font-weight:600;">Violet Asuncion</td><td class="td-muted">Pourista</td><td style="text-align:right;" class="td-num">24.1h</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-num">$444.93</td><td><span class="loc-badge sj">SJ</span></td></tr>
+          <tr><td style="color:var(--text-muted);font-size:11px;">1</td><td style="font-weight:600;">Jose Montoya</td><td class="td-muted">Kitchen</td><td style="text-align:right;" class="td-num">38.5h</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-num">$841.57</td><td><span class="loc-badge mv">MV</span></td></tr>
+          <tr><td style="color:var(--text-muted);font-size:11px;">2</td><td style="font-weight:600;">Carlos Martinez</td><td class="td-muted">Kitchen</td><td style="text-align:right;" class="td-num">37.3h</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-num">$814.95</td><td><span class="loc-badge sj">SJ</span></td></tr>
+          <tr><td style="color:var(--text-muted);font-size:11px;">3</td><td style="font-weight:600;">Jherard Magnampo</td><td class="td-muted">Pourista</td><td style="text-align:right;" class="td-num">32.7h</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-num">$634.11</td><td><span class="loc-badge sj">SJ</span></td></tr>
+          <tr><td style="color:var(--text-muted);font-size:11px;">4</td><td style="font-weight:600;">Samantha Perez</td><td class="td-muted">Pourista</td><td style="text-align:right;" class="td-num">32.1h</td><td style="text-align:right;" class="td-muted">6</td><td style="text-align:right;" class="td-num">$629.19</td><td><span class="loc-badge mv">MV</span></td></tr>
+          <tr><td style="color:var(--text-muted);font-size:11px;">5</td><td style="font-weight:600;">Christina Wong</td><td class="td-muted">Shift Lead</td><td style="text-align:right;" class="td-num">30.8h</td><td style="text-align:right;" class="td-muted">7</td><td style="text-align:right;" class="td-num">$613.24</td><td><span class="loc-badge sj">SJ</span></td></tr>
+          <tr><td style="color:var(--text-muted);font-size:11px;">6</td><td style="font-weight:600;">Ashlyn Kanemoto</td><td class="td-muted">Pourista</td><td style="text-align:right;" class="td-num">28.6h</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-num">$540.70</td><td><span class="loc-badge sj">SJ</span></td></tr>
+          <tr><td style="color:var(--text-muted);font-size:11px;">7</td><td style="font-weight:600;">Diana Castaneda</td><td class="td-muted">Pourista</td><td style="text-align:right;" class="td-num">26.4h</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-num">$517.19</td><td><span class="loc-badge mv">MV</span></td></tr>
+          <tr><td style="color:var(--text-muted);font-size:11px;">8</td><td style="font-weight:600;">Mariaelena Huerta</td><td class="td-muted">Pourista</td><td style="text-align:right;" class="td-num">26.2h</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-num">$512.94</td><td><span class="loc-badge mv">MV</span></td></tr>
+          <tr><td style="color:var(--text-muted);font-size:11px;">9</td><td style="font-weight:600;">Billy Nguyen</td><td class="td-muted">Shift Lead</td><td style="text-align:right;" class="td-num">24.8h</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-num">$492.92</td><td><span class="loc-badge mv">MV</span></td></tr>
+          <tr><td style="color:var(--text-muted);font-size:11px;">10</td><td style="font-weight:600;">Violet Asuncion</td><td class="td-muted">Pourista</td><td style="text-align:right;" class="td-num">24.1h</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-num">$442.46</td><td><span class="loc-badge sj">SJ</span></td></tr>
 
         </tbody>
       </table>
@@ -873,67 +940,67 @@
     <div class="labor-loc-grid">
       <div class="labor-loc-card">
         <div class="labor-loc-header">
-          &#127978; San Jose — 286 hrs, $5,741.28
+          &#127978; San Jose — 286 hrs, $5,709.39
           <div class="labor-loc-subheader">17 team members</div>
         </div>
         <table>
           <thead><tr><th>Name</th><th>Role</th><th style="text-align:right;">Hrs</th><th style="text-align:right;">Shifts</th><th style="text-align:right;">Rate</th><th style="text-align:right;">Cost</th></tr></thead>
           <tbody>
-            <tr><td style="font-weight:600;font-size:12px;">Carlos Martinez</td><td class="td-muted">Kitchen</td><td style="text-align:right;">37.3</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$22.00</td><td style="text-align:right;" class="td-num">$819.50</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Jherard Magnampo</td><td class="td-muted">Pourista</td><td style="text-align:right;">32.7</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$19.50</td><td style="text-align:right;" class="td-num">$637.65</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Christina Wong</td><td class="td-muted">Shift Lead</td><td style="text-align:right;">30.8</td><td style="text-align:right;" class="td-muted">7</td><td style="text-align:right;" class="td-muted">$20.00</td><td style="text-align:right;" class="td-num">$616.67</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Ashlyn Kanemoto</td><td class="td-muted">Pourista</td><td style="text-align:right;">28.6</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$19.00</td><td style="text-align:right;" class="td-num">$543.72</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Violet Asuncion</td><td class="td-muted">Pourista</td><td style="text-align:right;">24.1</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$18.50</td><td style="text-align:right;" class="td-num">$444.93</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Angel De Guzman</td><td class="td-muted">Shift Lead</td><td style="text-align:right;">23.5</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$20.00</td><td style="text-align:right;" class="td-num">$469.33</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Brenna O'Neill</td><td class="td-muted">Supervisor</td><td style="text-align:right;">21.2</td><td style="text-align:right;" class="td-muted">4</td><td style="text-align:right;" class="td-muted">$25.00</td><td style="text-align:right;" class="td-num">$531.25</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Sydney Indra</td><td class="td-muted">Pourista</td><td style="text-align:right;">16.1</td><td style="text-align:right;" class="td-muted">3</td><td style="text-align:right;" class="td-muted">$18.50</td><td style="text-align:right;" class="td-num">$297.23</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Declan Murphy</td><td class="td-muted">Pourista</td><td style="text-align:right;">14.6</td><td style="text-align:right;" class="td-muted">3</td><td style="text-align:right;" class="td-muted">$18.50</td><td style="text-align:right;" class="td-num">$270.41</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Ian Chung</td><td class="td-muted">Pourista</td><td style="text-align:right;">12.8</td><td style="text-align:right;" class="td-muted">3</td><td style="text-align:right;" class="td-muted">$19.50</td><td style="text-align:right;" class="td-num">$248.95</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Jose Soto</td><td class="td-muted">Kitchen</td><td style="text-align:right;">11.2</td><td style="text-align:right;" class="td-muted">2</td><td style="text-align:right;" class="td-muted">$21.00</td><td style="text-align:right;" class="td-num">$234.50</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Kris Martinez</td><td class="td-muted">Pourista</td><td style="text-align:right;">9.8</td><td style="text-align:right;" class="td-muted">2</td><td style="text-align:right;" class="td-muted">$18.50</td><td style="text-align:right;" class="td-num">$181.92</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Anh Kim Nguyen</td><td class="td-muted">Kitchen</td><td style="text-align:right;">8.0</td><td style="text-align:right;" class="td-muted">2</td><td style="text-align:right;" class="td-muted">$19.00</td><td style="text-align:right;" class="td-num">$152.32</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Tommy Duong</td><td class="td-muted">Pourista</td><td style="text-align:right;">6.0</td><td style="text-align:right;" class="td-muted">2</td><td style="text-align:right;" class="td-muted">$21.00</td><td style="text-align:right;" class="td-num">$125.65</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Jacob Ley-Sanchez</td><td class="td-muted">Pourista</td><td style="text-align:right;">4.0</td><td style="text-align:right;" class="td-muted">1</td><td style="text-align:right;" class="td-muted">$18.50</td><td style="text-align:right;" class="td-num">$74.92</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Sophia Avila</td><td class="td-muted">Pourista</td><td style="text-align:right;">3.0</td><td style="text-align:right;" class="td-muted">1</td><td style="text-align:right;" class="td-muted">$18.45</td><td style="text-align:right;" class="td-num">$55.66</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Alissa Yoshida</td><td class="td-muted">Shift Lead</td><td style="text-align:right;">1.8</td><td style="text-align:right;" class="td-muted">1</td><td style="text-align:right;" class="td-muted">$20.00</td><td style="text-align:right;" class="td-num">$36.67</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Carlos Martinez</td><td class="td-muted">Kitchen</td><td style="text-align:right;">37.3</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$22.00</td><td style="text-align:right;" class="td-num">$814.95</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Jherard Magnampo</td><td class="td-muted">Pourista</td><td style="text-align:right;">32.7</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$19.50</td><td style="text-align:right;" class="td-num">$634.11</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Christina Wong</td><td class="td-muted">Shift Lead</td><td style="text-align:right;">30.8</td><td style="text-align:right;" class="td-muted">7</td><td style="text-align:right;" class="td-muted">$20.00</td><td style="text-align:right;" class="td-num">$613.24</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Ashlyn Kanemoto</td><td class="td-muted">Pourista</td><td style="text-align:right;">28.6</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$19.00</td><td style="text-align:right;" class="td-num">$540.70</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Violet Asuncion</td><td class="td-muted">Pourista</td><td style="text-align:right;">24.1</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$18.50</td><td style="text-align:right;" class="td-num">$442.46</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Angel De Guzman</td><td class="td-muted">Shift Lead</td><td style="text-align:right;">23.5</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$20.00</td><td style="text-align:right;" class="td-num">$466.72</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Brenna O'Neill</td><td class="td-muted">Supervisor</td><td style="text-align:right;">21.2</td><td style="text-align:right;" class="td-muted">4</td><td style="text-align:right;" class="td-muted">$25.00</td><td style="text-align:right;" class="td-num">$528.30</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Sydney Indra</td><td class="td-muted">Pourista</td><td style="text-align:right;">16.1</td><td style="text-align:right;" class="td-muted">3</td><td style="text-align:right;" class="td-muted">$18.50</td><td style="text-align:right;" class="td-num">$295.58</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Declan Murphy</td><td class="td-muted">Pourista</td><td style="text-align:right;">14.6</td><td style="text-align:right;" class="td-muted">3</td><td style="text-align:right;" class="td-muted">$18.50</td><td style="text-align:right;" class="td-num">$268.91</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Ian Chung</td><td class="td-muted">Pourista</td><td style="text-align:right;">12.8</td><td style="text-align:right;" class="td-muted">3</td><td style="text-align:right;" class="td-muted">$19.50</td><td style="text-align:right;" class="td-num">$247.57</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Jose Soto</td><td class="td-muted">Kitchen</td><td style="text-align:right;">11.2</td><td style="text-align:right;" class="td-muted">2</td><td style="text-align:right;" class="td-muted">$21.00</td><td style="text-align:right;" class="td-num">$233.20</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Kris Martinez</td><td class="td-muted">Pourista</td><td style="text-align:right;">9.8</td><td style="text-align:right;" class="td-muted">2</td><td style="text-align:right;" class="td-muted">$18.50</td><td style="text-align:right;" class="td-num">$180.91</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Anh Kim Nguyen</td><td class="td-muted">Kitchen</td><td style="text-align:right;">8.0</td><td style="text-align:right;" class="td-muted">2</td><td style="text-align:right;" class="td-muted">$19.00</td><td style="text-align:right;" class="td-num">$151.47</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Tommy Duong</td><td class="td-muted">Pourista</td><td style="text-align:right;">6.0</td><td style="text-align:right;" class="td-muted">2</td><td style="text-align:right;" class="td-muted">$21.00</td><td style="text-align:right;" class="td-num">$124.95</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Jacob Ley-Sanchez</td><td class="td-muted">Pourista</td><td style="text-align:right;">4.0</td><td style="text-align:right;" class="td-muted">1</td><td style="text-align:right;" class="td-muted">$18.50</td><td style="text-align:right;" class="td-num">$74.50</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Sophia Avila</td><td class="td-muted">Pourista</td><td style="text-align:right;">3.0</td><td style="text-align:right;" class="td-muted">1</td><td style="text-align:right;" class="td-muted">$18.45</td><td style="text-align:right;" class="td-num">$55.35</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Alissa Yoshida</td><td class="td-muted">Shift Lead</td><td style="text-align:right;">1.8</td><td style="text-align:right;" class="td-muted">1</td><td style="text-align:right;" class="td-muted">$20.00</td><td style="text-align:right;" class="td-num">$36.47</td></tr>
 
             <tr style="background:#f5f5fa;font-weight:700;">
               <td colspan="2" style="font-size:12px;color:var(--navy);">SJ Total</td>
               <td style="text-align:right;">286</td>
               <td style="text-align:right;color:var(--text-muted);">—</td>
               <td style="text-align:right;">—</td>
-              <td style="text-align:right;color:var(--amber-dark);">$5,741.28</td>
+              <td style="text-align:right;color:var(--amber-dark);">$5,709.39</td>
             </tr>
           </tbody>
         </table>
       </div>
       <div class="labor-loc-card">
         <div class="labor-loc-header mv">
-          &#9968; Mountain View — 245 hrs, $4,911.72
+          &#9968; Mountain View — 245 hrs, $4,884.43
           <div class="labor-loc-subheader">12 team members</div>
         </div>
         <table>
           <thead><tr><th>Name</th><th>Role</th><th style="text-align:right;">Hrs</th><th style="text-align:right;">Shifts</th><th style="text-align:right;">Rate</th><th style="text-align:right;">Cost</th></tr></thead>
           <tbody>
-            <tr><td style="font-weight:600;font-size:12px;">Jose Montoya</td><td class="td-muted">Kitchen</td><td style="text-align:right;">38.5</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$22.00</td><td style="text-align:right;" class="td-num">$846.27</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Samantha Perez</td><td class="td-muted">Pourista</td><td style="text-align:right;">32.1</td><td style="text-align:right;" class="td-muted">6</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$632.70</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Diana Castaneda</td><td class="td-muted">Pourista</td><td style="text-align:right;">26.4</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$520.08</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Mariaelena Huerta</td><td class="td-muted">Pourista</td><td style="text-align:right;">26.2</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$515.81</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Billy Nguyen</td><td class="td-muted">Shift Lead</td><td style="text-align:right;">24.8</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$20.00</td><td style="text-align:right;" class="td-num">$495.67</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Yuji Kinoshita</td><td class="td-muted">Pourista</td><td style="text-align:right;">23.5</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$463.93</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Nathaniel De La Cruz</td><td class="td-muted">Pourista</td><td style="text-align:right;">21.5</td><td style="text-align:right;" class="td-muted">4</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$423.22</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Jaredzy Huerta</td><td class="td-muted">Pourista</td><td style="text-align:right;">18.6</td><td style="text-align:right;" class="td-muted">4</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$366.75</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Angela Ruiz</td><td class="td-muted">Pourista</td><td style="text-align:right;">14.2</td><td style="text-align:right;" class="td-muted">3</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$280.07</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Liberty Guerrero</td><td class="td-muted">Pourista</td><td style="text-align:right;">10.2</td><td style="text-align:right;" class="td-muted">2</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$200.94</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Cameron Rivera</td><td class="td-muted">Pourista</td><td style="text-align:right;">5.0</td><td style="text-align:right;" class="td-muted">1</td><td style="text-align:right;" class="td-muted">$18.25</td><td style="text-align:right;" class="td-num">$91.86</td></tr>
-            <tr><td style="font-weight:600;font-size:12px;">Lara Nguyen</td><td class="td-muted">Pourista</td><td style="text-align:right;">3.8</td><td style="text-align:right;" class="td-muted">1</td><td style="text-align:right;" class="td-muted">$19.50</td><td style="text-align:right;" class="td-num">$74.42</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Jose Montoya</td><td class="td-muted">Kitchen</td><td style="text-align:right;">38.5</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$22.00</td><td style="text-align:right;" class="td-num">$841.57</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Samantha Perez</td><td class="td-muted">Pourista</td><td style="text-align:right;">32.1</td><td style="text-align:right;" class="td-muted">6</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$629.19</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Diana Castaneda</td><td class="td-muted">Pourista</td><td style="text-align:right;">26.4</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$517.19</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Mariaelena Huerta</td><td class="td-muted">Pourista</td><td style="text-align:right;">26.2</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$512.94</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Billy Nguyen</td><td class="td-muted">Shift Lead</td><td style="text-align:right;">24.8</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$20.00</td><td style="text-align:right;" class="td-num">$492.92</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Yuji Kinoshita</td><td class="td-muted">Pourista</td><td style="text-align:right;">23.5</td><td style="text-align:right;" class="td-muted">5</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$461.35</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Nathaniel De La Cruz</td><td class="td-muted">Pourista</td><td style="text-align:right;">21.5</td><td style="text-align:right;" class="td-muted">4</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$420.87</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Jaredzy Huerta</td><td class="td-muted">Pourista</td><td style="text-align:right;">18.6</td><td style="text-align:right;" class="td-muted">4</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$364.71</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Angela Ruiz</td><td class="td-muted">Pourista</td><td style="text-align:right;">14.2</td><td style="text-align:right;" class="td-muted">3</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$278.51</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Liberty Guerrero</td><td class="td-muted">Pourista</td><td style="text-align:right;">10.2</td><td style="text-align:right;" class="td-muted">2</td><td style="text-align:right;" class="td-muted">$19.70</td><td style="text-align:right;" class="td-num">$199.82</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Cameron Rivera</td><td class="td-muted">Pourista</td><td style="text-align:right;">5.0</td><td style="text-align:right;" class="td-muted">1</td><td style="text-align:right;" class="td-muted">$18.25</td><td style="text-align:right;" class="td-num">$91.35</td></tr>
+            <tr><td style="font-weight:600;font-size:12px;">Lara Nguyen</td><td class="td-muted">Pourista</td><td style="text-align:right;">3.8</td><td style="text-align:right;" class="td-muted">1</td><td style="text-align:right;" class="td-muted">$19.50</td><td style="text-align:right;" class="td-num">$74.01</td></tr>
 
             <tr style="background:#f5f5fa;font-weight:700;">
               <td colspan="2" style="font-size:12px;color:var(--navy-mid);">MV Total</td>
               <td style="text-align:right;">245</td>
               <td style="text-align:right;color:var(--text-muted);">—</td>
               <td style="text-align:right;">—</td>
-              <td style="text-align:right;color:var(--navy-mid);">$4,911.72</td>
+              <td style="text-align:right;color:var(--navy-mid);">$4,884.43</td>
             </tr>
           </tbody>
         </table>
@@ -983,63 +1050,118 @@
             <td>No Stock</td>
             <td class="td-muted">Feb 27</td>
           </tr>
-
         </tbody>
       </table>
     </div>
   </div>
 
+  <!-- STAFFING EFFICIENCY ANALYSIS -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Staffing Efficiency Analysis</div>
+    <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 24px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:12px;">&#127978; San Jose Efficiency</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:1px solid #f3f3f3;">
+              <span style="color:var(--text-muted);">Revenue per labor hour</span>
+              <span style="font-weight:700;color:var(--green);">$81.46</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:1px solid #f3f3f3;">
+              <span style="color:var(--text-muted);">Labor cost per transaction</span>
+              <span style="font-weight:700;">$3.37</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:1px solid #f3f3f3;">
+              <span style="color:var(--text-muted);">Transactions per labor hour</span>
+              <span style="font-weight:700;">5.9</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;">
+              <span style="color:var(--text-muted);">Best efficiency day</span>
+              <span style="font-weight:700;">Sunday (Mar 1)</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--navy-mid);margin-bottom:12px;">&#9968; Mountain View Efficiency</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:1px solid #f3f3f3;">
+              <span style="color:var(--text-muted);">Revenue per labor hour</span>
+              <span style="font-weight:700;color:var(--yellow);">$62.95</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:1px solid #f3f3f3;">
+              <span style="color:var(--text-muted);">Labor cost per transaction</span>
+              <span style="font-weight:700;">$4.29</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:1px solid #f3f3f3;">
+              <span style="color:var(--text-muted);">Transactions per labor hour</span>
+              <span style="font-weight:700;">4.7</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;padding:6px 0;">
+              <span style="color:var(--text-muted);">Highest labor % day</span>
+              <span style="font-weight:700;">Wednesday (Feb 25)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border-light);font-size:12px;color:var(--text-muted);">
+        <strong style="color:var(--text-mid);">Gap Analysis:</strong> SJ generates $18.51 more net revenue per labor hour than MV. 
+        To match SJ's 24.43% labor efficiency, MV would need to either increase net sales to ~$17,453.00 
+        or reduce labor by ~$983.00/week.
+      </div>
+    </div>
+  </div>
+
   <!-- RECOMMENDATIONS -->
   <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Actionable Recommendations</div>
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Data-Driven Insights &amp; Recommendations</div>
     <div class="reco-grid">
       <div class="reco-card blue">
         <div class="reco-icon">&#9889;</div>
         <div class="reco-body">
           <div class="reco-title">Mountain View Labor Optimization Needed</div>
-          <div class="reco-text">MV's labor cost is 36.0% of revenue vs SJ's 21.9%. MV generates $11,905.83 in revenue with 213 labor hours ($55.82/hr). Consider trimming 1-2 hours on Mon/Tue when MV revenue is lowest to save $200-400/week.</div>
+          <div class="reco-text">MV's labor cost is <strong>31.92%</strong> of net revenue vs SJ's <strong>24.43%</strong>. MV generates $13,427.62 in net revenue with 213 hours at $62.95/hr vs SJ's $81.46/hr. MV Wednesday had the highest labor % at 51%+ — trimming 3–4 hours on Wed and Mon/Tue could save $400–600/week. Target: get MV below 30% labor.</div>
         </div>
       </div>
       <div class="reco-card green">
         <div class="reco-icon">&#128200;</div>
         <div class="reco-body">
           <div class="reco-title">Weekend Revenue Surge — Double Down</div>
-          <div class="reco-text">Saturday and Sunday combined for $21,185.13 (50% of weekly revenue). SJ peaked at $9,093.32 on Sunday with 723 transactions. Consider weekend-only specials or extended hours to maximize these peak days.</div>
+          <div class="reco-text">Saturday ($8,970.24) and Sunday ($8,912.65) combined for $17,882.89 — <strong>45.6%</strong> of weekly net sales in just 2 days. SJ peaked $6,690.27 on Sunday alone. Consider weekend-only specials or extended 30-min hours to capture more revenue at high-efficiency labor ratios.</div>
         </div>
       </div>
       <div class="reco-card amber">
         <div class="reco-icon">&#9749;</div>
         <div class="reco-body">
-          <div class="reco-title">Signature Drinks Dominate</div>
-          <div class="reco-text">Peanut Butter Latte (626 units, $4,656.60) and Banana Matcha (488 units) are clear bestsellers. Together they account for 19% of all units sold. Consider a "Signature Duo" combo deal or loyalty program to increase repeat visits.</div>
+          <div class="reco-title">Top 2 Products Drive 21% of Revenue</div>
+          <div class="reco-text">Peanut Butter Latte (626 units, $4,656.60) and Banana Matcha (488 units, $3,632.38) together account for <strong>21.1%</strong> of net sales. These are clear loyalty drivers. Consider a "Signature Duo" bundle, seasonal LTO variants, or a loyalty punch card featuring these two items to increase frequency.</div>
         </div>
       </div>
       <div class="reco-card purple">
         <div class="reco-icon">&#127919;</div>
         <div class="reco-body">
-          <div class="reco-title">Strong WoW Growth — Sustain Momentum</div>
-          <div class="reco-text">Revenue surged +31.5% week-over-week ($31,101.21 → $40,907.64), with transactions up +30.5%. February daily avg ($4,964.79) outpaced January ($4,145.40) by 19.8%. Keep building on this trend.</div>
+          <div class="reco-title">Positive WoW Momentum — Sustain It</div>
+          <div class="reco-text">Net sales grew <strong>+7.67%</strong> WoW ($36,455.56 → $39,251.70), transactions up +6.96%, and labor efficiency improved -9.65% — a rare triple-positive week. MTD gross of $164,881.74 is tracking well. Keep staffing discipline on weekdays while maximizing weekend throughput to sustain these gains heading into March.</div>
         </div>
       </div>
       <div class="reco-card gray">
         <div class="reco-icon">&#128197;</div>
         <div class="reco-body">
-          <div class="reco-title">Slow Day Strategy for Mon &amp; Tue</div>
-          <div class="reco-text">Monday and Tuesday are the weakest days at both locations (SJ: $1,400.35/$1,865.70, MV: $1,207.81/$1,143.41). Consider "Monday Motivation" specials or "Taco Tuesday" beer pairings to boost mid-week traffic. Reduce staffing by 1-2 heads on these days.</div>
+          <div class="reco-title">3rd-Party Payments = 22.8% of Revenue — Evaluate Fees</div>
+          <div class="reco-text">Other/3rd-party payments ($10,314.35, 22.8% of total payments) represent significant volume — likely DoorDash, Uber Eats, or Toast Online. This channel often carries 15–30% commission fees vs 2.0% blended card processing. Auditing 3rd-party fee structures and potentially steering customers to direct ordering could recover $500–1,500/week in margin at current volume.</div>
         </div>
       </div>
     </div>
   </div>
 
   <div style="text-align:center;padding:24px 0 16px;font-size:11px;color:var(--text-muted);">
-    Pour Decisions Craft Coffee &amp; Beer &bull; Weekly Report &bull; Feb 23–Mar 1, 2026 &bull; Generated Mar 2, 2026
+    Pour Decisions Craft Coffee &amp; Beer &bull; Weekly Report &bull; Feb 23–Mar 1, 2026 &bull; Generated Mar 2, 2026 &bull; Dashboard-Verified Metrics
   </div>
 
 </div>
 
 <script>
-const sjData = [3, 183, 315, 348, 157, 165, 163, 190, 145, 143, 129, 106, 86, 62, 30, 9];
-const mvData = [2, 51, 75, 95, 105, 96, 91, 84, 79, 60, 56, 39, 24, 16, 8, 11];
+const sjData = [3, 33, 240, 198, 156, 165, 162, 190, 145, 146, 131, 108, 87, 62, 30, 9];
+const mvData = [3, 62, 86, 103, 109, 101, 101, 92, 82, 64, 58, 39, 26, 16, 9, 11];
 
 function heatColor(val, max) {
   if (!val) return '#f5f5f5';
