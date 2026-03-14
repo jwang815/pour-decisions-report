@@ -1,1 +1,1051 @@
-PLACEHOLDER_REVIEWS
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pour Decisions -- Customer Reviews</title>
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --navy-mid: #2d3d6e;
+    --amber: #D4A853;
+    --amber-light: #F0CC87;
+    --amber-dark: #A07830;
+    --green: #2ECC71;
+    --yellow: #eab308;
+    --red: #E74C3C;
+    --page-bg: #f5f6fa;
+    --card-bg: #ffffff;
+    --text-dark: #1B2A4A;
+    --text-mid: #444;
+    --text-muted: #888;
+    --text-label: #666;
+    --border-light: #eee;
+    --row-alt: #f9f9fb;
+    --shadow: 0 1px 4px rgba(0,0,0,0.06);
+    --shadow-md: 0 2px 12px rgba(0,0,0,0.08);
+    --radius: 12px;
+    --radius-lg: 16px;
+    --google-blue: #4285F4;
+    --yelp-red: #FF1A1A;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--page-bg);
+    color: var(--text-dark);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 24px 20px;
+  }
+
+  /* NAV */
+  .nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 20px;
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 6px;
+    box-shadow: var(--shadow);
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .nav-link {
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text-muted);
+    transition: all 0.2s;
+    letter-spacing: 0.2px;
+  }
+  .nav-link:hover { color: var(--text-dark); background: var(--row-alt); }
+  .nav-link.active { background: var(--navy); color: #fff; }
+
+  /* HEADER */
+  .header-banner {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    border-radius: var(--radius-lg);
+    padding: 32px 36px;
+    margin-bottom: 28px;
+    color: #fff;
+    box-shadow: 0 4px 24px rgba(27,42,74,0.25);
+  }
+  .header-brand { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .header-subtitle { color: var(--amber); font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+  .header-meta { font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 16px; }
+  .header-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+  .pill { border: 1.5px solid var(--amber); color: #fff; border-radius: 20px; padding: 4px 14px; font-size: 12px; font-weight: 500; letter-spacing: 0.2px; }
+
+  .section-title { font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .section-bullet { color: var(--amber); font-size: 14px; line-height: 1; }
+  .section { margin-bottom: 32px; }
+
+  /* OVERVIEW CARDS */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .overview-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 20px;
+    text-align: center;
+  }
+  .overview-card .platform-icon {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  .overview-card .ov-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-label);
+    margin-bottom: 6px;
+  }
+  .overview-card .ov-rating {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.1;
+  }
+  .overview-card .ov-stars {
+    font-size: 16px;
+    color: var(--amber);
+    letter-spacing: 2px;
+    margin: 4px 0;
+  }
+  .overview-card .ov-count {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .overview-card.google { border-top: 3px solid var(--google-blue); }
+  .overview-card.yelp { border-top: 3px solid var(--yelp-red); }
+
+  /* SENTIMENT SUMMARY */
+  .sentiment-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .sentiment-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+  .sentiment-header {
+    padding: 14px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sentiment-header.positive { background: var(--green); }
+  .sentiment-header.negative { background: var(--red); }
+  .sentiment-body { padding: 16px 20px; }
+  .sentiment-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 13px;
+    color: var(--text-mid);
+  }
+  .sentiment-item:last-child { border-bottom: none; }
+  .sentiment-icon { flex-shrink: 0; font-size: 14px; margin-top: 1px; }
+
+  /* LOCATION REVIEWS */
+  .loc-reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .loc-review-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .loc-col-header {
+    background: var(--navy);
+    color: #fff;
+    padding: 14px 20px;
+    border-radius: var(--radius) var(--radius) 0 0;
+    font-size: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .loc-col-header.mv { background: var(--navy-mid); }
+
+  .review-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 18px 20px;
+    position: relative;
+    border-left: 3px solid transparent;
+    transition: box-shadow 0.2s;
+  }
+  .review-card:hover { box-shadow: var(--shadow-md); }
+  .review-card.star-5 { border-left-color: var(--green); }
+  .review-card.star-4 { border-left-color: var(--amber); }
+  .review-card.star-3 { border-left-color: var(--yellow); }
+  .review-card.star-2 { border-left-color: #f97316; }
+  .review-card.star-1 { border-left-color: var(--red); }
+
+  .review-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .review-author {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text-dark);
+  }
+  .review-date {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .review-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .review-stars {
+    color: var(--amber);
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+  .review-platform {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: #fff;
+  }
+  .review-platform.google { background: var(--google-blue); }
+  .review-platform.yelp { background: var(--yelp-red); }
+
+  .review-text {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--text-mid);
+  }
+  .review-text.truncated {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .read-more-btn {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--navy);
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+  }
+  .read-more-btn:hover { color: var(--amber-dark); text-decoration: underline; }
+
+  /* TABS */
+  .tab-bar {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 20px;
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 4px;
+    box-shadow: var(--shadow);
+    width: fit-content;
+  }
+  .tab-btn {
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    letter-spacing: 0.3px;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { color: var(--text-dark); background: var(--row-alt); }
+  .tab-btn.active { background: var(--navy); color: #fff; }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* ALERT CARD */
+  .alert-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 20px 24px;
+    border-left: 4px solid var(--red);
+    margin-bottom: 20px;
+  }
+  .alert-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--red);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .alert-body {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  /* KEYWORD BADGES */
+  .keyword-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .keyword-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    background: #f0f4ff;
+    color: var(--navy);
+    border: 1px solid #dce3f0;
+  }
+  .keyword-badge .kw-count {
+    background: var(--navy);
+    color: #fff;
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 10px;
+    font-weight: 700;
+  }
+  .keyword-badge.positive { background: #ecfdf5; color: #065f46; border-color: #a7f3d0; }
+  .keyword-badge.positive .kw-count { background: var(--green); }
+  .keyword-badge.negative { background: #fef2f2; color: #991b1b; border-color: #fecaca; }
+  .keyword-badge.negative .kw-count { background: var(--red); }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 24px 0 12px;
+    font-size: 11px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-light);
+    margin-top: 20px;
+  }
+  .footer a { color: var(--text-muted); text-decoration: none; }
+  .footer a:hover { color: var(--amber-dark); }
+
+  /* DISTRIBUTION BAR */
+  .dist-bar-container { margin-bottom: 16px; }
+  .dist-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .dist-bar-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    min-width: 44px;
+    text-align: right;
+  }
+  .dist-bar-track {
+    flex: 1;
+    height: 14px;
+    background: #f0f0f5;
+    border-radius: 7px;
+    overflow: hidden;
+  }
+  .dist-bar-fill {
+    height: 100%;
+    border-radius: 7px;
+    transition: width 0.5s;
+  }
+  .dist-bar-fill.s5 { background: var(--green); }
+  .dist-bar-fill.s4 { background: #a3e635; }
+  .dist-bar-fill.s3 { background: var(--yellow); }
+  .dist-bar-fill.s2 { background: #f97316; }
+  .dist-bar-fill.s1 { background: var(--red); }
+  .dist-bar-count {
+    font-size: 11px;
+    color: var(--text-muted);
+    min-width: 24px;
+  }
+
+  /* INSIGHTS */
+  .insight-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 20px 24px;
+    border-left: 4px solid var(--amber);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .insight-icon { font-size: 22px; flex-shrink: 0; }
+  .insight-title { font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
+  .insight-body { font-size: 13px; color: var(--text-mid); line-height: 1.6; }
+
+  @media (max-width: 800px) {
+    .overview-grid { grid-template-columns: repeat(2, 1fr); }
+    .sentiment-grid, .loc-reviews-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <!-- NAV -->
+  <nav class="nav-bar">
+    <a href="index.html" class="nav-link">Performance</a>
+    <a href="reviews.html" class="nav-link active">Reviews</a>
+  </nav>
+
+  <!-- HEADER -->
+  <div class="header-banner">
+    <div class="header-brand">Pour Decisions Craft Coffee & Beer</div>
+    <div class="header-subtitle">Customer Reviews Dashboard</div>
+    <div class="header-meta">Last updated Mar 13, 2026 &bull; Aggregated from Google &amp; Yelp</div>
+    <div class="header-pills">
+      <span class="pill">&#127978; SJ &nbsp;5700 Village Oaks Dr, San Jose</span>
+      <span class="pill">&#9968; MV &nbsp;1040 Grant Rd, Mountain View</span>
+    </div>
+  </div>
+
+  <!-- RATINGS OVERVIEW -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Ratings Overview</div>
+    <div class="overview-grid">
+      <div class="overview-card google">
+        <div class="platform-icon">&#127978;</div>
+        <div class="ov-label">Google &mdash; San Jose</div>
+        <div class="ov-rating">4.4</div>
+        <div class="ov-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+        <div class="ov-count">223 reviews</div>
+      </div>
+      <div class="overview-card google">
+        <div class="platform-icon">&#9968;</div>
+        <div class="ov-label">Google &mdash; Mountain View</div>
+        <div class="ov-rating">4.6</div>
+        <div class="ov-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+        <div class="ov-count">34 reviews</div>
+      </div>
+      <div class="overview-card yelp">
+        <div class="platform-icon">&#127978;</div>
+        <div class="ov-label">Yelp &mdash; San Jose</div>
+        <div class="ov-rating">4.0</div>
+        <div class="ov-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+        <div class="ov-count">407 reviews</div>
+      </div>
+      <div class="overview-card yelp">
+        <div class="platform-icon">&#9968;</div>
+        <div class="ov-label">Yelp &mdash; Mountain View</div>
+        <div class="ov-rating">4.3</div>
+        <div class="ov-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+        <div class="ov-count">54 reviews</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMBINED STATS -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Combined Review Snapshot</div>
+    <div class="sentiment-grid">
+      <div class="overview-card" style="border-top: 3px solid var(--amber); text-align: left; padding: 20px 24px;">
+        <div class="ov-label" style="text-align:left;">Combined Across All Platforms</div>
+        <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:16px;">
+          <span style="font-size:42px; font-weight:700; color:var(--text-dark);">4.3</span>
+          <span style="color:var(--amber); font-size:20px; letter-spacing:2px;">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+          <span style="font-size:13px; color:var(--text-muted);">718 total reviews</span>
+        </div>
+        <div class="dist-bar-container">
+          <div class="dist-bar-row">
+            <span class="dist-bar-label">5 &#9733;</span>
+            <div class="dist-bar-track"><div class="dist-bar-fill s5" style="width:62%;"></div></div>
+            <span class="dist-bar-count">~445</span>
+          </div>
+          <div class="dist-bar-row">
+            <span class="dist-bar-label">4 &#9733;</span>
+            <div class="dist-bar-track"><div class="dist-bar-fill s4" style="width:18%;"></div></div>
+            <span class="dist-bar-count">~129</span>
+          </div>
+          <div class="dist-bar-row">
+            <span class="dist-bar-label">3 &#9733;</span>
+            <div class="dist-bar-track"><div class="dist-bar-fill s3" style="width:9%;"></div></div>
+            <span class="dist-bar-count">~65</span>
+          </div>
+          <div class="dist-bar-row">
+            <span class="dist-bar-label">2 &#9733;</span>
+            <div class="dist-bar-track"><div class="dist-bar-fill s2" style="width:6%;"></div></div>
+            <span class="dist-bar-count">~43</span>
+          </div>
+          <div class="dist-bar-row">
+            <span class="dist-bar-label">1 &#9733;</span>
+            <div class="dist-bar-track"><div class="dist-bar-fill s1" style="width:5%;"></div></div>
+            <span class="dist-bar-count">~36</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <div class="overview-card" style="border-top: 3px solid var(--green); text-align: left; padding: 20px 24px; flex:1;">
+          <div class="ov-label" style="text-align:left;">Most Praised Themes</div>
+          <div class="keyword-section" style="margin-top:10px;">
+            <span class="keyword-badge positive">Peanut Butter Latte <span class="kw-count">18</span></span>
+            <span class="keyword-badge positive">Friendly Staff <span class="kw-count">15</span></span>
+            <span class="keyword-badge positive">Unique Flavors <span class="kw-count">12</span></span>
+            <span class="keyword-badge positive">Great Vibes <span class="kw-count">10</span></span>
+            <span class="keyword-badge positive">Egg Coffee <span class="kw-count">8</span></span>
+            <span class="keyword-badge positive">Matcha Options <span class="kw-count">7</span></span>
+            <span class="keyword-badge positive">Good Study Spot <span class="kw-count">6</span></span>
+            <span class="keyword-badge positive">Craft Beer <span class="kw-count">5</span></span>
+          </div>
+        </div>
+        <div class="overview-card" style="border-top: 3px solid var(--red); text-align: left; padding: 20px 24px; flex:1;">
+          <div class="ov-label" style="text-align:left;">Areas to Improve</div>
+          <div class="keyword-section" style="margin-top:10px;">
+            <span class="keyword-badge negative">Slow Service / Wait <span class="kw-count">8</span></span>
+            <span class="keyword-badge negative">High Prices <span class="kw-count">6</span></span>
+            <span class="keyword-badge negative">Small Portions <span class="kw-count">4</span></span>
+            <span class="keyword-badge negative">Order Mix-ups <span class="kw-count">3</span></span>
+            <span class="keyword-badge negative">Too Loud Inside <span class="kw-count">2</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTION ITEMS -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Review-Based Action Items</div>
+    <div class="alert-card" style="border-left-color: var(--red);">
+      <div class="alert-title">&#9888; MV Equipment Issue -- Hot Drinks Unavailable (Mar 7-8)</div>
+      <div class="alert-body">Multiple refunds at Mountain View on Mar 7-8 cite "Can't make hot drinks" and "Hot Drinks Unavailable." This matches $88.18 in refunds from the weekly performance report. Yelp reviewer Eunice T. (Mar 3) also noted the MV location appeared understaffed. Prioritize equipment maintenance and ensure backup capability for hot beverages.</div>
+    </div>
+    <div class="alert-card" style="border-left-color: #f97316;">
+      <div class="alert-title">&#9888; Service Speed Consistently Mentioned</div>
+      <div class="alert-body">8 reviews across both platforms mention long wait times. Fred Rodriguez waited 30 min for 2 coffees on a Saturday. Jacqueline Esquivel's order was forgotten entirely. Franchesca Flores had her name never called. Consider implementing order tracking screens or a number system during peak hours, especially weekends.</div>
+    </div>
+    <div class="alert-card" style="border-left-color: var(--yellow);">
+      <div class="alert-title">&#128161; Price Perception -- Especially at MV</div>
+      <div class="alert-body">6 reviews mention pricing concerns. MV Google reviewer electrikblue1008 called $8.50 drinks "ridiculous" for the portion size. Yelp's Gene D. also flagged Strawberry Matcha as overpriced. While SJ has more established customer loyalty, MV may benefit from a first-visit promo or a visible value proposition (e.g., "oat milk at no upcharge" -- already offered but not always known).</div>
+    </div>
+  </div>
+
+  <!-- LOCATION TABS -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Recent Reviews by Location</div>
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('sj')">&#127978; San Jose</button>
+      <button class="tab-btn" onclick="switchTab('mv')">&#9968; Mountain View</button>
+      <button class="tab-btn" onclick="switchTab('all')">All</button>
+    </div>
+
+    <!-- SAN JOSE REVIEWS -->
+    <div id="tab-sj" class="tab-content active">
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <!-- GOOGLE SJ -->
+        <div>
+          <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--google-blue); margin-bottom:10px; display:flex; align-items:center; gap:6px;">
+            <span style="font-size:15px;">G</span> Google Reviews
+          </div>
+
+          <div class="review-card star-5">
+            <div class="review-header"><span class="review-author">Jeremy O'Connor</span><span class="review-date">Mar 12, 2026</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform google">Google</span></div>
+            <div class="review-text">Amazing coffee, Nathan is always great to talk to</div>
+          </div>
+
+          <div class="review-card star-1" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Jacqueline Esquivel</span><span class="review-date">Feb 19, 2026</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;</span><span class="review-platform google">Google</span></div>
+            <div class="review-text truncated" id="r-sj-g-2">I went in ordered one drink, they was a crowd after me everyone got their drinks meanwhile mine was never made even 20 minutes after. For a strawberry matcha? The service SUCKS here don't go if your have places to be. They have no type of urgency even when they see that there's alot of people.</div>
+            <button class="read-more-btn" onclick="toggleReview('r-sj-g-2', this)">Read more</button>
+          </div>
+
+          <div class="review-card star-5" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Adolfo De La Cruz</span><span class="review-date">~Feb 2026</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform google">Google</span></div>
+            <div class="review-text truncated" id="r-sj-g-3">The staff is genuine and enthusiastic! I always enjoy the small talk with everyone. Not only are they welcoming but the drinks are amazing. Thank you for taking the time to make great connections with customers.</div>
+            <button class="read-more-btn" onclick="toggleReview('r-sj-g-3', this)">Read more</button>
+          </div>
+
+          <div class="review-card star-5" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Sonal Sharma</span><span class="review-date">~Jan 2026</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform google">Google</span></div>
+            <div class="review-text">One word - PEANUT BUTTER LATTE. Great vibe, good selection of seasonal coffees and craft beers. Come here to work, grab a coffee and enjoy some snacks.</div>
+          </div>
+
+          <div class="review-card star-2" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Daniela Banik</span><span class="review-date">~Feb 2026</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;</span><span class="review-platform google">Google</span></div>
+            <div class="review-text">Below average tasting drinks with above average prices</div>
+          </div>
+
+          <div class="review-card star-2" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Fred Rodriguez</span><span class="review-date">~Feb 2026</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;</span><span class="review-platform google">Google</span></div>
+            <div class="review-text">Took 30 minutes to get 2 of the original coffees on a Saturday at 2 pm. Tastes really good, but just be prepared to wait a long long time.</div>
+          </div>
+
+          <div class="review-card star-5" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Eli Lopez</span><span class="review-date">~Jan 2026</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform google">Google</span></div>
+            <div class="review-text truncated" id="r-sj-g-7">Pour Decisions is a place you must visit. Their customer service is exemplary, not to mention their unique blends of coffee, and craft beer. We have been going there since their open and will continue to do so.</div>
+            <button class="read-more-btn" onclick="toggleReview('r-sj-g-7', this)">Read more</button>
+          </div>
+
+          <div class="review-card star-4" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Terri Lopez</span><span class="review-date">~Dec 2025</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform google">Google</span></div>
+            <div class="review-text">If enjoying coffee inside the small room becomes loud. I came in the afternoon, and the temperature inside was not warm and comfortable coming in from the cold outside. Limited seating. Limited pastries selection.</div>
+          </div>
+
+          <div class="review-card star-2" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Franchesca Flores</span><span class="review-date">~Dec 2025</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;</span><span class="review-platform google">Google</span></div>
+            <div class="review-text truncated" id="r-sj-g-9">The staff here is very kind and accommodating, but the two times I have been here my drink has gotten lost with other orders the first time, and the second time I sat waiting inside for my drink, but they never called my name and had my drink sitting on the counter.</div>
+            <button class="read-more-btn" onclick="toggleReview('r-sj-g-9', this)">Read more</button>
+          </div>
+
+          <div class="review-card star-5" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Lucille Sablan</span><span class="review-date">~Dec 2025</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform google">Google</span></div>
+            <div class="review-text truncated" id="r-sj-g-10">Everything was delish. We came on a Sat morning for a post workout treat! Anything with sweet cream and matcha is my go to. Surprised to have savory treat - longanisa hot dog wraps and Korean garlic bun! So yummy!</div>
+            <button class="read-more-btn" onclick="toggleReview('r-sj-g-10', this)">Read more</button>
+          </div>
+        </div>
+
+        <!-- YELP SJ -->
+        <div>
+          <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--yelp-red); margin-bottom:10px; display:flex; align-items:center; gap:6px;">
+            <span style="font-size:15px;">Y</span> Yelp Reviews
+          </div>
+
+          <div class="review-card star-5">
+            <div class="review-header"><span class="review-author">John G.</span><span class="review-date">Feb 21, 2025</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span></div>
+            <div class="review-text truncated" id="r-sj-y-1">This is "The Spot" for coffee lovers everywhere! I had the privilege to stop by and try one of their handcrafted coffees. I ordered the Peanut Butter Latte! It brought me back to my childhood, eating peanut butter sandwiches my mom used to make and mixed with my adulthood drinking smooth iced Coffee! This was the best of both worlds! Smooth! A nice creamy peanut butter foam on top!</div>
+            <button class="read-more-btn" onclick="toggleReview('r-sj-y-1', this)">Read more</button>
+          </div>
+
+          <div class="review-card star-5" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Christine N.</span><span class="review-date">Feb 19, 2025</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span></div>
+            <div class="review-text truncated" id="r-sj-y-2">Egg coffee - Gorgeous &amp; tasty perfection. The Vietnamese coffee is the right color &amp; it definitely has that strong &amp; bold flavor. Very unique &amp; cute concept. Craft beers &amp; craft coffees. Great study location with outlets.</div>
+            <button class="read-more-btn" onclick="toggleReview('r-sj-y-2', this)">Read more</button>
+          </div>
+
+          <div class="review-card star-4" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Michelle A.</span><span class="review-date">Feb 15, 2025</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span></div>
+            <div class="review-text truncated" id="r-sj-y-3">Got the ube cream with having the coffee being light. The coffee itself was still strong to me but the ube cream made it okay. I thought the coffee art was cute and nice touch. I got the brisket and fried rice burrito and it was alright. Friendly staff and quick to serve. The wait time didn't take long only 6-10 min.</div>
+            <button class="read-more-btn" onclick="toggleReview('r-sj-y-3', this)">Read more</button>
+          </div>
+
+          <div class="review-card star-5" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Veronica P.</span><span class="review-date">Feb 12, 2025</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span></div>
+            <div class="review-text truncated" id="r-sj-y-4">Cannot get enough of this place! Wanted to try something new and got the matcha latte with ube cream. First time trying this combination and it's so good. Reminds me of buko pandan when mixed. The bartenders are friendly and accommodating. Also easy to pick a seat with ample outlets.</div>
+            <button class="read-more-btn" onclick="toggleReview('r-sj-y-4', this)">Read more</button>
+          </div>
+
+          <div class="review-card star-5" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Rebecca W.</span><span class="review-date">Feb 9, 2025</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span></div>
+            <div class="review-text truncated" id="r-sj-y-5">I absolutely LOVE Pour Decisions! This will be my go-to Vietnamese egg coffee place! Not only is there ample parking, but the interior is so clean and aesthetic. It's a comfortable place to catch up with a friend or get some work done. The Egg Coffee was perfect -- creamy, fragrant, and just the right bitterness!</div>
+            <button class="read-more-btn" onclick="toggleReview('r-sj-y-5', this)">Read more</button>
+          </div>
+
+          <div class="review-card star-5" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Carson M.</span><span class="review-date">Feb 1, 2025</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span></div>
+            <div class="review-text truncated" id="r-sj-y-6">Good coffee and easy online ordering system! Ube Latte: (5/5) for Bay Area standards. It isn't Da Vien but it is better than Lacaph&eacute; and Phin Cafe. Not overly sweet and the ube has a good flavor. Coconut Latte: (4/5) good coconut flavor but too sweet for me.</div>
+            <button class="read-more-btn" onclick="toggleReview('r-sj-y-6', this)">Read more</button>
+          </div>
+
+          <div class="review-card star-5" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Melanie H.</span><span class="review-date">Jan 26, 2025</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span></div>
+            <div class="review-text truncated" id="r-sj-y-7">Been a while since I made a stop here, and it's still solid! Salted Cream Coffee: 4.5/5. Strawberry Lychee Lemonade: 4.5/5. Egg Coffee: 4/5. Ube Coffee: 4/5. They also have food trucks that rotate weekly to check outside, which is so neat! It does get loud as people are around to hang and drink beer.</div>
+            <button class="read-more-btn" onclick="toggleReview('r-sj-y-7', this)">Read more</button>
+          </div>
+
+          <div class="review-card star-5" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Leland S.</span><span class="review-date">Jan 25, 2025</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span></div>
+            <div class="review-text truncated" id="r-sj-y-8">4.5 Stars. Creative flavors, good drinks, and pleasant vibes. This place is a hit. Vietnamese Coffee - Mint: was fun, don't usually see flavors mixed with Vietnamese coffee. Fried Rice Burrito - Chinese Sausage: Deeelish. Shoutouts to Chief Pourista/Founder Vince for this concept.</div>
+            <button class="read-more-btn" onclick="toggleReview('r-sj-y-8', this)">Read more</button>
+          </div>
+
+          <div class="review-card star-4" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Tiffany T.</span><span class="review-date">Jan 16, 2025</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span></div>
+            <div class="review-text truncated" id="r-sj-y-9">At first I thought the cups were small for the price, but then I tried the coffee and threw that thought away. Both coffees were super strong. I suggest drinking SUPER slow because this is Vietnamese coffee and it will hit you when you least expect.</div>
+            <button class="read-more-btn" onclick="toggleReview('r-sj-y-9', this)">Read more</button>
+          </div>
+
+          <div class="review-card star-5" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Veronica P.</span><span class="review-date">Nov 7, 2024</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span></div>
+            <div class="review-text truncated" id="r-sj-y-10">The Ube cream latte is my go-to! Out of all the breweries I have gone to, there has not been a sour drink that has combined a melona bar and sour beer. I always loved trying out their sours and have extended to trying their coffees. Service was amazing -- great recommendations on flavor profiles.</div>
+            <button class="read-more-btn" onclick="toggleReview('r-sj-y-10', this)">Read more</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOUNTAIN VIEW REVIEWS -->
+    <div id="tab-mv" class="tab-content">
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <!-- GOOGLE MV -->
+        <div>
+          <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--google-blue); margin-bottom:10px; display:flex; align-items:center; gap:6px;">
+            <span style="font-size:15px;">G</span> Google Reviews
+          </div>
+
+          <div class="review-card star-5">
+            <div class="review-header"><span class="review-author">Louise M</span><span class="review-date">Mar 8, 2026</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform google">Google</span></div>
+            <div class="review-text">Best coffee shop in Mountain View! Love all the different flavours and the matcha is great too. Staff are very friendly and helpful. If you haven't been, you need to try it!</div>
+          </div>
+
+          <div class="review-card star-5" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Jason Wang</span><span class="review-date">Mar 6, 2026</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform google">Google</span></div>
+            <div class="review-text truncated" id="r-mv-g-2">New location for Pour Decisions after they opened in San Jose. When I walked in, the staff casually mentioned they could do a matcha latte with pandan cream. Off-menu, no big deal. Best decision I've made to follow their advice. The pandan adds this floral, slightly coconutty thing that makes the matcha feel way more interesting.</div>
+            <button class="read-more-btn" onclick="toggleReview('r-mv-g-2', this)">Read more</button>
+          </div>
+
+          <div class="review-card star-2" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">electrikblue1008</span><span class="review-date">Mar 8, 2026</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;</span><span class="review-platform google">Google</span></div>
+            <div class="review-text">It's good, but charging $8.50 for a drink the size of a water cup with 25% ice is a bit ridiculous. You can find many of these drinks at other places with larger portions and probably less.</div>
+          </div>
+
+          <div class="review-card star-5" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Eden Y</span><span class="review-date">~Feb 2026</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform google">Google</span></div>
+            <div class="review-text">Unique place serving coffee and craft beer. I got the Hawaiian coffee with oat milk. Absolutely delicious and smooth pairing. The snack they serve is totally worth it.</div>
+          </div>
+
+          <div class="review-card star-5" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Hannah Shakouri</span><span class="review-date">~Feb 2026</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform google">Google</span></div>
+            <div class="review-text">Loved the latte and matcha, the creamy top was so good! Would definitely come back!</div>
+          </div>
+
+          <div class="review-card star-5" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Vari</span><span class="review-date">~Feb 2026</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform google">Google</span></div>
+            <div class="review-text">The Ube foam is just next level insane here! Got it on the Hawaiian latte and excited to try other flavors but literally had the Ube foam twice -- too good.</div>
+          </div>
+
+          <div class="review-card star-5" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Sai Janaswamy</span><span class="review-date">~Feb 2026</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform google">Google</span></div>
+            <div class="review-text truncated" id="r-mv-g-6">Nice small coffee/drinks place with good atmosphere! They have decent drinks menu, from coffee, tea, drinks, and a few munchies. Good music, wifi, seating, good vibes, relaxing place to catch up with work. Staff are super helpful, nice, welcoming.</div>
+            <button class="read-more-btn" onclick="toggleReview('r-mv-g-6', this)">Read more</button>
+          </div>
+
+          <div class="review-card star-5" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Alex T</span><span class="review-date">~Dec 2025</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform google">Google</span></div>
+            <div class="review-text truncated" id="r-mv-g-7">Absolutely terrific discovery! I love that they use oat milk by default at no upcharge. I had the iced Hawaiian latte and it was perfect. Also had a matcha Americano. The employees are super kind and professional, a major draw for any coffee shop.</div>
+            <button class="read-more-btn" onclick="toggleReview('r-mv-g-7', this)">Read more</button>
+          </div>
+
+          <div class="review-card star-3" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Ashlee Huff</span><span class="review-date">~Dec 2025</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;</span><span class="review-platform google">Google</span></div>
+            <div class="review-text">Oh noooo I really wanted to like this. Our cold brew was good but the vanilla latte was horrible. So much syrup it tasted like medicine. Hopefully this is just growing pains so I plan to come back in a few weeks.</div>
+          </div>
+
+          <div class="review-card star-1" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Mathew Miller</span><span class="review-date">~Dec 2025</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;</span><span class="review-platform google">Google</span></div>
+            <div class="review-text">Great concept, but terrible prices. Plenty of equally good options elsewhere for less.</div>
+          </div>
+        </div>
+
+        <!-- YELP MV -->
+        <div>
+          <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; color:var(--yelp-red); margin-bottom:10px; display:flex; align-items:center; gap:6px;">
+            <span style="font-size:15px;">Y</span> Yelp Reviews
+          </div>
+
+          <div class="review-card star-5">
+            <div class="review-header"><span class="review-author">Saydee B.</span><span class="review-date">Mar 11, 2026</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span></div>
+            <div class="review-text truncated" id="r-mv-y-1">I had the best blueberry latte of my life here! I am a lover of blueberry coffee, and this spot has won my heart! I even was able to try the blueberry matcha and it was delectable. The customer service is superior to any coffee places I've visited.</div>
+            <button class="read-more-btn" onclick="toggleReview('r-mv-y-1', this)">Read more</button>
+          </div>
+
+          <div class="review-card star-5" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Kimmie H.</span><span class="review-date">Mar 11, 2026</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span></div>
+            <div class="review-text">Great craft coffee! Did a group order and the team enjoyed Horchata, Pandan and Ube. Can't go wrong with those!</div>
+          </div>
+
+          <div class="review-card star-3" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Eunice T.</span><span class="review-date">Mar 3, 2026</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span></div>
+            <div class="review-text truncated" id="r-mv-y-3">I was excited when I found out there's a Pour Decisions closer to me. This location is a bit smaller. I tried their salted cream jasmine tea and it wasn't great. The tea had that over-steeped bitter taste. It seemed like they only had one person working on the morning we visited, so she had to hop back and forth.</div>
+            <button class="read-more-btn" onclick="toggleReview('r-mv-y-3', this)">Read more</button>
+          </div>
+
+          <div class="review-card star-4" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Kristine F.</span><span class="review-date">Mar 1, 2026</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span></div>
+            <div class="review-text truncated" id="r-mv-y-4">I came across Pour Decisions on my maps app and decided to check it out. I chatted with employee Jar Jaressie. She's awesome! Very informative. She said they're planning to open a Fremont location. Drinks: Blueberry Matcha, Horchata Latte, Viet Coffee. I went back twice for the blueberry. The empanadas were decent. The galette was better.</div>
+            <button class="read-more-btn" onclick="toggleReview('r-mv-y-4', this)">Read more</button>
+          </div>
+
+          <div class="review-card star-5" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Leeza D.</span><span class="review-date">Feb 28, 2026</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span></div>
+            <div class="review-text">The name pulled me in and I had to go make my own Pour Decision. Nice space and the coffee was good. Please come and create your own adventure.</div>
+          </div>
+
+          <div class="review-card star-3" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Renee L.</span><span class="review-date">Feb 23, 2026</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span></div>
+            <div class="review-text">I stopped by to get a bit of work done here and ordered a banana matcha. Personally, the matcha was not as strong as I would have liked.</div>
+          </div>
+
+          <div class="review-card star-5" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Anu P.</span><span class="review-date">Feb 22, 2026</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span></div>
+            <div class="review-text truncated" id="r-mv-y-7">Cute place near Marshall's! Lots of parking. Service was really nice. We got the peanut butter latte and apple cinnamon latte -- both were good but peanut butter latte was better! Might be my new fave coffee in MTV.</div>
+            <button class="read-more-btn" onclick="toggleReview('r-mv-y-7', this)">Read more</button>
+          </div>
+
+          <div class="review-card star-5" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Paulina L.</span><span class="review-date">Feb 9, 2026</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span></div>
+            <div class="review-text truncated" id="r-mv-y-8">I love Pour Decisions! Always something new I can try. I didn't know they had a location here. Smaller than the first location but still the same vibes. I ordered the apple cinnamon matcha which was so good and also got my all time fav -- the peanut butter latte!</div>
+            <button class="read-more-btn" onclick="toggleReview('r-mv-y-8', this)">Read more</button>
+          </div>
+
+          <div class="review-card star-3" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Gene D.</span><span class="review-date">Feb 5, 2026</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span></div>
+            <div class="review-text">This review is just for their version of the Strawberry Matcha Latte. IMHO, it was priced a bit high. The team there was friendly and my order was fulfilled quickly. I'll give their Blueberry Matcha Latte a try soon.</div>
+          </div>
+
+          <div class="review-card star-5" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Kay O.</span><span class="review-date">Jan 10, 2026</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span></div>
+            <div class="review-text truncated" id="r-mv-y-10">First time at this Mountain View location. Goodness was it great to see the exact same set up. I love their elevated seats, perfect for background pictures. Both baristas seemed like they liked their job. There were a lot of DoorDash's picked up this Sunday -- glad to see lots of business like the San Jose one! I love small businesses!</div>
+            <button class="read-more-btn" onclick="toggleReview('r-mv-y-10', this)">Read more</button>
+          </div>
+
+          <div class="review-card star-5" style="margin-top:10px;">
+            <div class="review-header"><span class="review-author">Cherylynn N.</span><span class="review-date">Nov 23, 2025</span></div>
+            <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span><span class="review-platform yelp">Yelp</span></div>
+            <div class="review-text truncated" id="r-mv-y-11">4.5 STARS. Viet rice rocket fuel. Egg, ube, apple, banana, pandan, coconut, sesame, peanut butter, and hojicha CREAMS. No charge for oat or almond milk. Craft beer for the morning lushes. DJ spinning 2000s rap, hip hop, and r&amp;b. Dog-friendly.</div>
+            <button class="read-more-btn" onclick="toggleReview('r-mv-y-11', this)">Read more</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALL REVIEWS (combined) -->
+    <div id="tab-all" class="tab-content">
+      <p style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">Showing all recent reviews from both locations. Switch to San Jose or Mountain View for location-specific views.</p>
+      <div style="columns: 2; column-gap: 12px;">
+
+        <div class="review-card star-5" style="margin-bottom:10px; break-inside:avoid;">
+          <div class="review-header"><span class="review-author">Jeremy O'Connor</span><span class="review-date">Mar 12, 2026</span></div>
+          <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform google">Google</span><span style="font-size:10px;color:var(--text-muted);">SJ</span></div>
+          <div class="review-text">Amazing coffee, Nathan is always great to talk to</div>
+        </div>
+
+        <div class="review-card star-5" style="margin-bottom:10px; break-inside:avoid;">
+          <div class="review-header"><span class="review-author">Saydee B.</span><span class="review-date">Mar 11, 2026</span></div>
+          <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span><span style="font-size:10px;color:var(--text-muted);">MV</span></div>
+          <div class="review-text truncated" id="r-all-1">I had the best blueberry latte of my life here! The customer service is superior to any coffee places I've visited.</div>
+          <button class="read-more-btn" onclick="toggleReview('r-all-1', this)">Read more</button>
+        </div>
+
+        <div class="review-card star-5" style="margin-bottom:10px; break-inside:avoid;">
+          <div class="review-header"><span class="review-author">Kimmie H.</span><span class="review-date">Mar 11, 2026</span></div>
+          <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span><span style="font-size:10px;color:var(--text-muted);">MV</span></div>
+          <div class="review-text">Great craft coffee! Did a group order and the team enjoyed Horchata, Pandan and Ube.</div>
+        </div>
+
+        <div class="review-card star-5" style="margin-bottom:10px; break-inside:avoid;">
+          <div class="review-header"><span class="review-author">Louise M</span><span class="review-date">Mar 8, 2026</span></div>
+          <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform google">Google</span><span style="font-size:10px;color:var(--text-muted);">MV</span></div>
+          <div class="review-text">Best coffee shop in Mountain View! Love all the different flavours and the matcha is great too.</div>
+        </div>
+
+        <div class="review-card star-2" style="margin-bottom:10px; break-inside:avoid;">
+          <div class="review-header"><span class="review-author">electrikblue1008</span><span class="review-date">Mar 8, 2026</span></div>
+          <div class="review-meta"><span class="review-stars">&#9733;&#9733;</span><span class="review-platform google">Google</span><span style="font-size:10px;color:var(--text-muted);">MV</span></div>
+          <div class="review-text">Charging $8.50 for a drink the size of a water cup with 25% ice is a bit ridiculous.</div>
+        </div>
+
+        <div class="review-card star-5" style="margin-bottom:10px; break-inside:avoid;">
+          <div class="review-header"><span class="review-author">Jason Wang</span><span class="review-date">Mar 6, 2026</span></div>
+          <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform google">Google</span><span style="font-size:10px;color:var(--text-muted);">MV</span></div>
+          <div class="review-text truncated" id="r-all-6">Staff casually mentioned they could do a matcha latte with pandan cream. Off-menu, no big deal. Best decision I've made. The pandan adds this floral, slightly coconutty thing.</div>
+          <button class="read-more-btn" onclick="toggleReview('r-all-6', this)">Read more</button>
+        </div>
+
+        <div class="review-card star-3" style="margin-bottom:10px; break-inside:avoid;">
+          <div class="review-header"><span class="review-author">Eunice T.</span><span class="review-date">Mar 3, 2026</span></div>
+          <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span><span style="font-size:10px;color:var(--text-muted);">MV</span></div>
+          <div class="review-text">Salted cream jasmine tea wasn't great. Over-steeped bitter taste. Only one person working that morning.</div>
+        </div>
+
+        <div class="review-card star-4" style="margin-bottom:10px; break-inside:avoid;">
+          <div class="review-header"><span class="review-author">Kristine F.</span><span class="review-date">Mar 1, 2026</span></div>
+          <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span><span style="font-size:10px;color:var(--text-muted);">MV</span></div>
+          <div class="review-text truncated" id="r-all-8">Chatted with employee Jar Jaressie -- she's awesome! I went back twice for the blueberry matcha. They're planning a Fremont location.</div>
+          <button class="read-more-btn" onclick="toggleReview('r-all-8', this)">Read more</button>
+        </div>
+
+        <div class="review-card star-5" style="margin-bottom:10px; break-inside:avoid;">
+          <div class="review-header"><span class="review-author">Leeza D.</span><span class="review-date">Feb 28, 2026</span></div>
+          <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span><span style="font-size:10px;color:var(--text-muted);">MV</span></div>
+          <div class="review-text">The name pulled me in. Nice space and the coffee was good.</div>
+        </div>
+
+        <div class="review-card star-1" style="margin-bottom:10px; break-inside:avoid;">
+          <div class="review-header"><span class="review-author">Jacqueline Esquivel</span><span class="review-date">Feb 19, 2026</span></div>
+          <div class="review-meta"><span class="review-stars">&#9733;</span><span class="review-platform google">Google</span><span style="font-size:10px;color:var(--text-muted);">SJ</span></div>
+          <div class="review-text truncated" id="r-all-10">My drink was never made even 20 minutes after. For a strawberry matcha? The service SUCKS here don't go if you have places to be.</div>
+          <button class="read-more-btn" onclick="toggleReview('r-all-10', this)">Read more</button>
+        </div>
+
+        <div class="review-card star-5" style="margin-bottom:10px; break-inside:avoid;">
+          <div class="review-header"><span class="review-author">Adolfo De La Cruz</span><span class="review-date">~Feb 2026</span></div>
+          <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform google">Google</span><span style="font-size:10px;color:var(--text-muted);">SJ</span></div>
+          <div class="review-text">The staff is genuine and enthusiastic! The drinks are amazing. Thank you for making great connections with customers.</div>
+        </div>
+
+        <div class="review-card star-5" style="margin-bottom:10px; break-inside:avoid;">
+          <div class="review-header"><span class="review-author">Anu P.</span><span class="review-date">Feb 22, 2026</span></div>
+          <div class="review-meta"><span class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="review-platform yelp">Yelp</span><span style="font-size:10px;color:var(--text-muted);">MV</span></div>
+          <div class="review-text">Peanut butter latte was better than apple cinnamon! Might be my new fave coffee in MTV.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- INSIGHTS -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Review Insights &amp; Recommendations</div>
+
+    <div class="insight-card">
+      <div class="insight-icon">&#9749;</div>
+      <div>
+        <div class="insight-title">Peanut Butter Latte is Your Brand Ambassador</div>
+        <div class="insight-body">Mentioned in 18+ reviews across both platforms, the PB Latte consistently drives 5-star ratings and repeat visits. Multiple reviewers call it the "reason I keep coming back." Consider featuring it as the #1 recommended first-time order on menus and delivery platforms.</div>
+      </div>
+    </div>
+
+    <div class="insight-card">
+      <div class="insight-icon">&#9200;</div>
+      <div>
+        <div class="insight-title">Speed of Service is the #1 Complaint</div>
+        <div class="insight-body">Wait time issues appear in 8 reviews, including the only 1-star Google review for SJ. Two patterns emerge: (1) weekend afternoon rushes (Fred Rodriguez waited 30 min at 2 PM Saturday), and (2) orders being lost/never called out (Franchesca Flores, Jacqueline Esquivel). An order-ready notification system or number displays would address both.</div>
+      </div>
+    </div>
+
+    <div class="insight-card">
+      <div class="insight-icon">&#128176;</div>
+      <div>
+        <div class="insight-title">MV Has a Value Perception Gap</div>
+        <div class="insight-body">Price sensitivity is concentrated at Mountain View (electrikblue1008, Mathew Miller, Gene D.). Meanwhile, SJ's Tiffany T. initially felt the same but changed her mind after tasting. Consider visible messaging about premium ingredients (oat milk free, hand-whisked matcha) and portion justification -- the coffee is Vietnamese-strength, intentionally concentrated.</div>
+      </div>
+    </div>
+
+    <div class="insight-card">
+      <div class="insight-icon">&#127775;</div>
+      <div>
+        <div class="insight-title">Off-Menu Magic Drives Loyalty</div>
+        <div class="insight-body">Jason Wang's 5-star review for MV specifically highlights staff suggesting an off-menu pandan cream matcha. Kristine F. returned twice for blueberry matcha after a staff recommendation. Train team to proactively suggest off-menu combos -- it creates memorable experiences that generate glowing reviews.</div>
+      </div>
+    </div>
+
+    <div class="insight-card">
+      <div class="insight-icon">&#127866;</div>
+      <div>
+        <div class="insight-title">Beer Selection is an Untapped Review Driver</div>
+        <div class="insight-body">Veronica P.'s most detailed SJ reviews focus on craft beer flights and sour pairings. Multiple reviewers mention beer but few have tried it. The craft beer + coffee combo is genuinely unique in the market. Consider "Coffee &amp; Craft" flight experiences or beer-focused events to generate more reviews about this differentiator.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    Pour Decisions Craft Coffee &amp; Beer &mdash; Customer Reviews Dashboard &mdash; Last updated Mar 13, 2026
+    <br>Data aggregated from Google Maps &amp; Yelp. Reviews shown are representative selections.
+    <br><a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer">Created with Perplexity Computer</a>
+  </div>
+</div>
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function toggleReview(id, btn) {
+  const el = document.getElementById(id);
+  if (el.classList.contains('truncated')) {
+    el.classList.remove('truncated');
+    btn.textContent = 'Show less';
+  } else {
+    el.classList.add('truncated');
+    btn.textContent = 'Read more';
+  }
+}
+</script>
+</body>
+</html>
