@@ -374,6 +374,366 @@
     </div>
   </div>
 
+
+  <!-- PROFITABILITY & COGS -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Profitability &amp; COGS Analysis</div>
+    
+    <!-- Operating Profit KPI Cards -->
+    <div class="kpi-grid" style="margin-bottom:16px;">
+      <div class="kpi-card" style="border-left-color:var(--green);">
+        <div class="kpi-label">Operating Profit</div>
+        <div class="kpi-value" style="color:var(--green);">$25,135.62</div>
+        <div class="kpi-sub">SJ <strong>$17,888.47</strong> &nbsp;|&nbsp; MV <strong>$7,644.46</strong></div>
+      </div>
+      <div class="kpi-card" style="border-left-color:var(--green);">
+        <div class="kpi-label">Operating Margin</div>
+        <div class="kpi-value" style="color:var(--green);">51.4%</div>
+        <div class="kpi-sub">SJ <strong>55.2%</strong> &nbsp;|&nbsp; MV <strong>46.4%</strong></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Est. COGS</div>
+        <div class="kpi-value" style="font-size:28px;">$9,663.16</div>
+        <div class="kpi-sub">19.8% of net sales &nbsp;|&nbsp; Blended rate</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Weekly Rent</div>
+        <div class="kpi-value" style="font-size:28px;">$2,335.93</div>
+        <div class="kpi-sub">4.8% of net &nbsp;|&nbsp; $10,122.33/mo</div>
+      </div>
+    </div>
+
+    <!-- Waterfall P&L -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;">
+      <!-- Combined P&L -->
+      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 22px;border-top:3px solid var(--green);">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:12px;">Combined P&amp;L</div>
+        <div class="fin-row"><span class="fin-row-label">Net Sales</span><span class="fin-row-val">$48,920.53</span></div>
+        <div class="fin-row"><span class="fin-row-label">Est. COGS (19.8%)</span><span class="fin-row-val negative">($9,663.16)</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px solid #edf0f7;">
+          <span class="fin-row-label" style="font-weight:600;color:var(--text-mid);">Gross Profit</span>
+          <span class="fin-row-val" style="color:var(--green);">$39,257.37</span>
+        </div>
+        <div class="fin-row"><span class="fin-row-label">Labor (24.1%)</span><span class="fin-row-val negative">($11,785.82)</span></div>
+        <div class="fin-row"><span class="fin-row-label">Rent (4.8%)</span><span class="fin-row-val negative">($2,335.93)</span></div>
+        <div class="fin-total" style="border-top-color:var(--green);">
+          <span class="fin-total-label">Operating Profit</span>
+          <span class="fin-total-val" style="color:var(--green);">$25,135.62</span>
+        </div>
+        <div style="text-align:right;margin-top:4px;font-size:11px;color:var(--text-muted);">51.4% margin</div>
+      </div>
+
+      <!-- SJ P&L -->
+      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 22px;border-top:3px solid var(--amber);">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:12px;">&#127978; San Jose P&amp;L</div>
+        <div class="fin-row"><span class="fin-row-label">Net Sales</span><span class="fin-row-val">$32,429.34</span></div>
+        <div class="fin-row"><span class="fin-row-label">Est. COGS (19.7%)</span><span class="fin-row-val negative">($6,380.79)</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px solid #edf0f7;">
+          <span class="fin-row-label" style="font-weight:600;color:var(--text-mid);">Gross Profit</span>
+          <span class="fin-row-val" style="color:var(--green);">$26,048.55</span>
+        </div>
+        <div class="fin-row"><span class="fin-row-label">Labor (21.7%)</span><span class="fin-row-val negative">($7,033.00)</span></div>
+        <div class="fin-row"><span class="fin-row-label">Rent (3.5%)</span><span class="fin-row-val negative">($1,127.08)</span></div>
+        <div class="fin-total" style="border-top-color:var(--amber);">
+          <span class="fin-total-label">Operating Profit</span>
+          <span class="fin-total-val" style="color:var(--green);">$17,888.47</span>
+        </div>
+        <div style="text-align:right;margin-top:4px;font-size:11px;color:var(--text-muted);">55.2% margin</div>
+      </div>
+
+      <!-- MV P&L -->
+      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 22px;border-top:3px solid var(--navy-mid);">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:12px;">&#9968; Mountain View P&amp;L</div>
+        <div class="fin-row"><span class="fin-row-label">Net Sales</span><span class="fin-row-val">$16,491.19</span></div>
+        <div class="fin-row"><span class="fin-row-label">Est. COGS (17.5%)</span><span class="fin-row-val negative">($2,885.06)</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px solid #edf0f7;">
+          <span class="fin-row-label" style="font-weight:600;color:var(--text-mid);">Gross Profit</span>
+          <span class="fin-row-val" style="color:var(--green);">$13,606.13</span>
+        </div>
+        <div class="fin-row"><span class="fin-row-label">Labor (28.8%)</span><span class="fin-row-val negative">($4,752.82)</span></div>
+        <div class="fin-row"><span class="fin-row-label">Rent (7.3%)</span><span class="fin-row-val negative">($1,208.85)</span></div>
+        <div class="fin-total" style="border-top-color:var(--navy-mid);">
+          <span class="fin-total-label">Operating Profit</span>
+          <span class="fin-total-val" style="color:var(--green);">$7,644.46</span>
+        </div>
+        <div style="text-align:right;margin-top:4px;font-size:11px;color:var(--text-muted);">46.4% margin</div>
+      </div>
+    </div>
+
+    <!-- Cost Waterfall Visualization -->
+    <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:24px;margin-bottom:16px;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:16px;">Cost Waterfall &mdash; Where Every Dollar Goes</div>
+      
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <!-- Net Sales bar (full width reference) -->
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:130px;text-align:right;font-size:12px;font-weight:600;color:var(--text-mid);flex-shrink:0;">Net Sales</div>
+          <div style="flex:1;height:32px;background:#e8f5e9;border-radius:4px;position:relative;overflow:hidden;">
+            <div style="height:100%;width:100%;background:var(--green);border-radius:4px;display:flex;align-items:center;padding:0 10px;">
+              <span style="color:#fff;font-size:12px;font-weight:700;">$48,920.53 (100%)</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- COGS -->
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:130px;text-align:right;font-size:12px;font-weight:600;color:var(--text-mid);flex-shrink:0;">Est. COGS</div>
+          <div style="flex:1;height:32px;background:#f3f4f6;border-radius:4px;position:relative;">
+            <div style="height:100%;width:19.8%;background:var(--red);border-radius:4px;display:flex;align-items:center;padding:0 10px;min-width:120px;">
+              <span style="color:#fff;font-size:12px;font-weight:700;">$9,663.16 (19.8%)</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Labor -->
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:130px;text-align:right;font-size:12px;font-weight:600;color:var(--text-mid);flex-shrink:0;">Labor</div>
+          <div style="flex:1;height:32px;background:#f3f4f6;border-radius:4px;position:relative;">
+            <div style="height:100%;width:24.1%;background:#f59e0b;border-radius:4px;display:flex;align-items:center;padding:0 10px;min-width:120px;">
+              <span style="color:#fff;font-size:12px;font-weight:700;">$11,785.82 (24.1%)</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Rent -->
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:130px;text-align:right;font-size:12px;font-weight:600;color:var(--text-mid);flex-shrink:0;">Rent</div>
+          <div style="flex:1;height:32px;background:#f3f4f6;border-radius:4px;position:relative;">
+            <div style="height:100%;width:4.8%;background:var(--navy-mid);border-radius:4px;display:flex;align-items:center;padding:0 10px;min-width:120px;">
+              <span style="color:#fff;font-size:12px;font-weight:700;">$2,335.93 (4.8%)</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Operating Profit -->
+        <div style="display:flex;align-items:center;gap:12px;border-top:2px solid var(--border-light);padding-top:12px;">
+          <div style="width:130px;text-align:right;font-size:12px;font-weight:700;color:var(--text-dark);flex-shrink:0;">Operating Profit</div>
+          <div style="flex:1;height:32px;background:#e8f5e9;border-radius:4px;position:relative;">
+            <div style="height:100%;width:51.4%;background:var(--green);border-radius:4px;display:flex;align-items:center;padding:0 10px;">
+              <span style="color:#fff;font-size:12px;font-weight:700;">$25,135.62 (51.4%)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COGS by Category + Rent Detail -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+      <!-- COGS by Category -->
+      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 22px;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:14px;">COGS by Category (Top Products)</div>
+        
+        <div style="margin-bottom:14px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+            <span style="font-size:13px;font-weight:600;color:var(--text-mid);">&#9749; Coffee &amp; Tea Drinks</span>
+            <span style="font-size:12px;color:var(--text-muted);">17.3% COGS</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);margin-bottom:4px;">
+            <span>Revenue: <strong style="color:var(--text-mid);">$28,068.90</strong></span>
+            <span>COGS: <strong style="color:var(--red);">$4,866.85</strong></span>
+          </div>
+          <div style="height:8px;background:#eee;border-radius:4px;overflow:hidden;">
+            <div style="height:100%;width:17.3%;background:var(--amber);border-radius:4px;"></div>
+          </div>
+        </div>
+        
+        <div style="margin-bottom:14px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+            <span style="font-size:13px;font-weight:600;color:var(--text-mid);">&#127866; Beer</span>
+            <span style="font-size:12px;color:var(--text-muted);">31.1% COGS</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);margin-bottom:4px;">
+            <span>Revenue: <strong style="color:var(--text-mid);">$5,954.55</strong></span>
+            <span>COGS: <strong style="color:var(--red);">$1,853.72</strong></span>
+          </div>
+          <div style="height:8px;background:#eee;border-radius:4px;overflow:hidden;">
+            <div style="height:100%;width:31.1%;background:var(--navy);border-radius:4px;"></div>
+          </div>
+        </div>
+
+        <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--border-light);font-size:12px;color:var(--text-muted);">
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+            <span>Blended COGS Rate (all products)</span>
+            <span style="font-weight:700;color:var(--text-mid);">19.8%</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+            <span>SJ Blended Rate</span>
+            <span style="font-weight:600;">19.7%</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;">
+            <span>MV Blended Rate</span>
+            <span style="font-weight:600;">17.5%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rent Detail -->
+      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 22px;">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:14px;">Rent &amp; Occupancy Detail</div>
+        
+        <div style="margin-bottom:16px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <span style="font-size:16px;">&#127978;</span>
+            <span style="font-size:14px;font-weight:700;color:var(--text-dark);">San Jose</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px;">
+            <div style="background:var(--row-alt);border-radius:6px;padding:8px 10px;">
+              <div style="color:var(--text-muted);font-size:10px;font-weight:600;text-transform:uppercase;margin-bottom:2px;">Monthly</div>
+              <div style="font-weight:700;color:var(--text-dark);">$4,884.00</div>
+            </div>
+            <div style="background:var(--row-alt);border-radius:6px;padding:8px 10px;">
+              <div style="color:var(--text-muted);font-size:10px;font-weight:600;text-transform:uppercase;margin-bottom:2px;">Weekly</div>
+              <div style="font-weight:700;color:var(--text-dark);">$1,127.08</div>
+            </div>
+          </div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:6px;">1,221 sqft &bull; $4.00/sqft/mo &bull; 3.5% of net sales</div>
+        </div>
+        
+        <div style="margin-bottom:16px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+            <span style="font-size:16px;">&#9968;</span>
+            <span style="font-size:14px;font-weight:700;color:var(--text-dark);">Mountain View</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px;">
+            <div style="background:var(--row-alt);border-radius:6px;padding:8px 10px;">
+              <div style="color:var(--text-muted);font-size:10px;font-weight:600;text-transform:uppercase;margin-bottom:2px;">Monthly</div>
+              <div style="font-weight:700;color:var(--text-dark);">$5,238.33</div>
+            </div>
+            <div style="background:var(--row-alt);border-radius:6px;padding:8px 10px;">
+              <div style="color:var(--text-muted);font-size:10px;font-weight:600;text-transform:uppercase;margin-bottom:2px;">Weekly</div>
+              <div style="font-weight:700;color:var(--text-dark);">$1,208.85</div>
+            </div>
+          </div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:6px;">898 sqft &bull; $5.83/sqft/mo &bull; 7.3% of net sales</div>
+        </div>
+
+        <div style="border-top:1px solid var(--border-light);padding-top:12px;">
+          <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;">
+            <span style="font-weight:600;color:var(--text-mid);">Total Monthly Rent</span>
+            <span style="font-weight:700;color:var(--text-dark);">$10,122.33</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;">
+            <span style="font-weight:600;color:var(--text-mid);">Total Weekly Rent</span>
+            <span style="font-weight:700;color:var(--text-dark);">$2,335.93</span>
+          </div>
+          <div style="margin-top:10px;padding:8px 10px;background:#fff3d6;border:1px solid var(--amber-light);border-radius:6px;font-size:11px;color:var(--amber-dark);">
+            &#128205; Fremont (3520 Beacon Ave) &mdash; Opening soon &bull; $4,002/mo &bull; Will be added once operational
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top Products COGS Table -->
+    <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;margin-bottom:16px;">
+      <div style="padding:14px 16px;font-size:13px;font-weight:700;color:var(--text-dark);border-bottom:1px solid var(--border-light);background:#f8f8fb;">
+        Top Product COGS &amp; Margins
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Product</th>
+            <th>Revenue</th>
+            <th>COGS Rate</th>
+            <th>Est. COGS</th>
+            <th>Gross Margin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rank-badge top3">1</span></td>
+            <td style="font-weight:600;">Peanut Butter Latte</td>
+            <td class="td-num">$4,808.19</td>
+            <td class="td-num">5.9%</td>
+            <td class="td-num" style="color:var(--red);">$283.68</td>
+            <td><span class="pct-badge pct-green">94.1%</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge top3">2</span></td>
+            <td style="font-weight:600;">Banana Matcha</td>
+            <td class="td-num">$3,510.58</td>
+            <td class="td-num">19.4%</td>
+            <td class="td-num" style="color:var(--red);">$681.05</td>
+            <td><span class="pct-badge pct-green">80.6%</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge top3">3</span></td>
+            <td style="font-weight:600;">IPA</td>
+            <td class="td-num">$3,191.47</td>
+            <td class="td-num">30.0%</td>
+            <td class="td-num" style="color:var(--red);">$957.44</td>
+            <td><span class="pct-badge pct-yellow">70.0%</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">4</span></td>
+            <td style="font-weight:600;">Banana Latte</td>
+            <td class="td-num">$3,115.25</td>
+            <td class="td-num">20.9%</td>
+            <td class="td-num" style="color:var(--red);">$651.09</td>
+            <td><span class="pct-badge pct-yellow">79.1%</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">5</span></td>
+            <td style="font-weight:600;">Ube Coffee</td>
+            <td class="td-num">$2,449.23</td>
+            <td class="td-num">17.3%</td>
+            <td class="td-num" style="color:var(--red);">$423.72</td>
+            <td><span class="pct-badge pct-green">82.7%</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">6</span></td>
+            <td style="font-weight:600;">Hawaiian Latte</td>
+            <td class="td-num">$2,440.68</td>
+            <td class="td-num">20.4%</td>
+            <td class="td-num" style="color:var(--red);">$497.90</td>
+            <td><span class="pct-badge pct-yellow">79.6%</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">7</span></td>
+            <td style="font-weight:600;">Horchata Latte</td>
+            <td class="td-num">$2,143.70</td>
+            <td class="td-num">18.4%</td>
+            <td class="td-num" style="color:var(--red);">$394.44</td>
+            <td><span class="pct-badge pct-green">81.6%</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">8</span></td>
+            <td style="font-weight:600;">Salted Cream Coffee</td>
+            <td class="td-num">$2,008.39</td>
+            <td class="td-num">17.3%</td>
+            <td class="td-num" style="color:var(--red);">$347.45</td>
+            <td><span class="pct-badge pct-green">82.7%</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">9</span></td>
+            <td style="font-weight:600;">Strawberry Matcha</td>
+            <td class="td-num">$1,967.28</td>
+            <td class="td-num">22.5%</td>
+            <td class="td-num" style="color:var(--red);">$442.64</td>
+            <td><span class="pct-badge pct-yellow">77.5%</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">10</span></td>
+            <td style="font-weight:600;">Traditional Viet Coffee</td>
+            <td class="td-num">$1,725.62</td>
+            <td class="td-num">23.3%</td>
+            <td class="td-num" style="color:var(--red);">$402.07</td>
+            <td><span class="pct-badge pct-yellow">76.7%</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Methodology Note -->
+    <div style="background:#f0f4ff;border:1px solid #d0d8f0;border-radius:8px;padding:12px 16px;font-size:12px;color:#4a5568;">
+      <strong style="color:var(--navy);">&#9432; Methodology Note:</strong>
+      COGS estimates are based on the Pour Decisions recipe costing spreadsheet (23 menu items). Items with complete recipes use actual per-unit COGS. 
+      Beer COGS uses industry-standard rates (28-35%). The blended rate is applied to remaining revenue not covered by top products.
+      Rent is from signed leases (SJ: months 37-48 schedule, MV: Year 1 rate). Operating Profit = Net Sales - COGS - Labor - Rent.
+      Utilities, insurance, and other overhead are not included.
+    </div>
+  </div>
+
   <!-- WoW COMPARISON -->
   <div class="section">
     <div class="section-title"><span class="section-bullet">&#9679;</span> Week-over-Week Performance</div>
