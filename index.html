@@ -3,10 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pour Decisions -- Weekly Performance Report -- Mar 23-Mar 29, 2026</title>
+<title>Pour Decisions -- Weekly Performance Report -- Mar 30-Apr 5, 2026</title>
 <style>
-
-
 
   :root {
     --navy: #1B2A4A;
@@ -51,267 +49,150 @@
     background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
     border-radius: var(--radius-lg);
     padding: 32px 36px;
-    margin-bottom: 28px;
     color: #fff;
-    box-shadow: 0 4px 24px rgba(27,42,74,0.25);
+    margin-bottom: 28px;
+    box-shadow: 0 4px 20px rgba(27,42,74,0.25);
   }
-  .header-brand { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 4px; }
-  .header-subtitle { color: var(--amber); font-size: 16px; font-weight: 600; margin-bottom: 8px; }
-  .header-meta { font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 16px; }
-  .header-pills { display: flex; gap: 10px; flex-wrap: wrap; }
-  .pill { border: 1.5px solid var(--amber); color: #fff; border-radius: 20px; padding: 4px 14px; font-size: 12px; font-weight: 500; letter-spacing: 0.2px; }
-
-  .section-title { font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
-  .section-bullet { color: var(--amber); font-size: 14px; line-height: 1; }
-  .section { margin-bottom: 32px; }
-
-  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-  .kpi-card { background: var(--card-bg); border-radius: var(--radius); border-left: 3px solid var(--amber); box-shadow: var(--shadow-md); padding: 20px 20px 18px; }
-  .kpi-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-label); margin-bottom: 8px; }
-  .kpi-value { font-size: 36px; font-weight: 700; color: var(--text-dark); line-height: 1.1; margin-bottom: 6px; }
-  .kpi-sub { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
-  .kpi-sub strong { color: var(--text-mid); }
-
-  .fin-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 16px; }
-  .fin-card { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow-md); padding: 20px 22px; border-top: 3px solid var(--amber); }
-  .fin-card-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-label); margin-bottom: 12px; }
-  .fin-row { display: flex; justify-content: space-between; align-items: baseline; padding: 5px 0; border-bottom: 1px solid #f5f5f5; }
-  .fin-row:last-child { border-bottom: none; }
-  .fin-row-label { font-size: 12px; color: var(--text-muted); }
-  .fin-row-val { font-size: 13px; font-weight: 600; color: var(--text-dark); }
-  .fin-row-val.negative { color: var(--red); }
-  .fin-row-val.positive { color: var(--green); }
-  .fin-total { margin-top: 8px; padding-top: 8px; border-top: 2px solid var(--border-light); display: flex; justify-content: space-between; align-items: baseline; }
-  .fin-total-label { font-size: 12px; font-weight: 700; color: var(--text-mid); }
-  .fin-total-val { font-size: 18px; font-weight: 700; color: var(--navy); }
-
-  .period-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .period-card { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow-md); padding: 20px 24px; border-top: 3px solid var(--amber); }
-  .period-card-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-label); margin-bottom: 14px; }
-  .period-rows { display: flex; flex-direction: column; gap: 10px; }
-  .period-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
-  .period-loc-label { font-size: 13px; color: var(--text-muted); min-width: 120px; }
-  .period-loc-val { font-size: 20px; font-weight: 700; color: var(--text-dark); }
-  .period-loc-sub { font-size: 11px; color: var(--text-muted); }
-  .period-combined { border-top: 1px solid var(--border-light); margin-top: 12px; padding-top: 12px; display: flex; justify-content: space-between; align-items: baseline; }
-  .period-combined-label { font-size: 12px; font-weight: 600; color: var(--text-mid); }
-  .period-combined-val { font-size: 22px; font-weight: 700; color: var(--amber-dark); }
-
-  .loc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .loc-card { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden; }
-  .loc-card-header { background: var(--navy); color: #fff; padding: 14px 20px; font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
-  .loc-card-header.mv { background: var(--navy-mid); }
-  .loc-icon { font-size: 18px; }
-  .loc-rows { padding: 0; }
-  .loc-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 1px solid #f3f3f3; }
-  .loc-row:last-child { border-bottom: none; }
-  .loc-row:nth-child(even) { background: var(--row-alt); }
-  .loc-row-label { font-size: 12px; color: var(--text-muted); font-weight: 500; }
-  .loc-row-val { font-size: 14px; font-weight: 700; color: var(--text-dark); }
-  .loc-row-sub { font-size: 11px; color: var(--text-muted); }
-
-  .bar-chart-wrap { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow-md); padding: 24px; }
-  .bar-chart-legend { display: flex; gap: 20px; margin-bottom: 20px; font-size: 12px; }
-  .legend-item { display: flex; align-items: center; gap: 6px; }
-  .legend-dot { width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0; }
-  .legend-dot.sj { background: var(--amber); }
-  .legend-dot.mv { background: var(--navy); }
-  .bar-day-row { display: flex; align-items: center; margin-bottom: 14px; gap: 12px; }
-  .bar-day-label { width: 68px; flex-shrink: 0; font-size: 12px; color: var(--text-muted); font-weight: 600; text-align: right; }
-  .bar-bars { flex: 1; display: flex; flex-direction: column; gap: 4px; }
-  .bar-track { display: flex; align-items: center; height: 28px; }
-  .bar-fill { height: 100%; border-radius: 0 4px 4px 0; display: flex; align-items: center; padding: 0 8px; min-width: 60px; transition: width 0.3s ease; position: relative; }
-  .bar-fill.sj { background: var(--amber); }
-  .bar-fill.mv { background: var(--navy); }
-  .bar-label { color: #fff; font-size: 11px; font-weight: 600; white-space: nowrap; }
-  .bar-txn { font-size: 10px; color: var(--text-muted); margin-left: 8px; white-space: nowrap; }
-
-  .data-table-wrap { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden; }
-  table { width: 100%; border-collapse: collapse; }
-  thead th { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-label); padding: 12px 14px; text-align: left; background: #f8f8fb; border-bottom: 1px solid var(--border-light); }
-  tbody td { padding: 11px 14px; font-size: 13px; border-bottom: 1px solid #f3f3f3; }
-  tbody tr:last-child td { border-bottom: none; }
-  tbody tr:nth-child(even) td { background: var(--row-alt); }
-  .td-day { font-weight: 600; color: var(--text-dark); }
-  .td-date { font-size: 11px; color: var(--text-muted); font-weight: 400; display: block; }
-  .td-num { font-weight: 600; }
-  .td-total { font-weight: 700; color: var(--navy); }
-  .td-muted { color: var(--text-muted); font-size: 12px; }
-
-  .heatmap-wrap { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow-md); padding: 20px; overflow-x: auto; }
-  .heatmap-note { font-size: 11px; color: var(--text-muted); margin-bottom: 14px; }
-  .heatmap-table { width: 100%; border-collapse: separate; border-spacing: 3px; }
-  .heatmap-table th { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; color: var(--text-label); text-align: center; padding: 4px 2px; background: transparent; border-bottom: none; }
-  .heatmap-table td { text-align: center; font-size: 11px; font-weight: 600; padding: 8px 4px; border-radius: 4px; border-bottom: none; background: #f5f5f5; }
-  .hm-row-label { font-size: 11px; font-weight: 700; color: var(--text-mid); text-align: left !important; padding-left: 4px !important; white-space: nowrap; background: transparent !important; }
-
-  .payment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .payment-card { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow-md); padding: 20px 24px; }
-  .payment-loc-title { font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 16px; }
-  .payment-method-row { margin-bottom: 14px; }
-  .payment-method-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
-  .payment-method-name { font-size: 13px; font-weight: 600; color: var(--text-mid); }
-  .payment-method-stat { font-size: 12px; color: var(--text-muted); }
-  .payment-bar-track { height: 10px; background: #eee; border-radius: 5px; overflow: hidden; }
-  .payment-bar-fill { height: 100%; border-radius: 5px; }
-  .payment-bar-fill.card { background: var(--navy); }
-  .payment-bar-fill.cash { background: var(--amber); }
-  .payment-bar-fill.external { background: #6b7280; }
-  .payment-total-row { border-top: 1px solid var(--border-light); margin-top: 12px; padding-top: 10px; display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted); }
-
-  .products-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .product-table-wrap { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden; }
-  .product-table-title { padding: 14px 16px; font-size: 13px; font-weight: 700; color: var(--text-dark); border-bottom: 1px solid var(--border-light); background: #f8f8fb; }
-  .rank-badge { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; font-size: 10px; font-weight: 700; background: var(--amber); color: #fff; }
-  .rank-badge.top3 { background: var(--navy); }
-
-  .labor-kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 16px; }
-  .labor-kpi-card { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow-md); padding: 18px 20px; border-left: 3px solid var(--amber); }
-  .labor-kpi-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-label); margin-bottom: 8px; }
-  .labor-kpi-value { font-size: 32px; font-weight: 700; line-height: 1.1; margin-bottom: 4px; }
-  .labor-kpi-sub { font-size: 11px; color: var(--text-muted); }
-  .color-green { color: var(--green); }
-  .color-yellow { color: var(--yellow); }
-  .color-red { color: var(--red); }
-  .labor-legend { display: flex; gap: 20px; font-size: 12px; color: var(--text-muted); margin-bottom: 16px; flex-wrap: wrap; }
-  .labor-legend-item { display: flex; align-items: center; gap: 4px; }
-  .labor-legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-
-  .labor-eff-wrap { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden; }
-  .pct-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; }
-  .pct-green { background: #dcfce7; color: #166534; }
-  .pct-yellow { background: #fef9c3; color: #854d0e; }
-  .pct-red { background: #fee2e2; color: #991b1b; }
-
-  .loc-badge { display: inline-block; background: var(--row-alt); border: 1px solid var(--border-light); border-radius: 10px; padding: 1px 7px; font-size: 10px; font-weight: 600; color: var(--text-mid); }
-  .loc-badge.sj { background: #fff3d6; border-color: var(--amber-light); color: var(--amber-dark); }
-  .loc-badge.mv { background: #e8e8f4; border-color: #c0c0e0; color: var(--navy-mid); }
-
-  .labor-loc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .labor-loc-card { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden; }
-  .labor-loc-header { background: var(--navy); color: #fff; padding: 12px 16px; font-size: 13px; font-weight: 700; }
-  .labor-loc-header.mv { background: var(--navy-mid); }
-  .labor-loc-subheader { font-size: 11px; color: rgba(255,255,255,0.7); font-weight: 400; margin-top: 2px; }
-
-  .refund-summary { background: #fff3d6; border: 1px solid var(--amber-light); border-radius: 8px; padding: 10px 16px; margin-bottom: 14px; font-size: 13px; color: var(--amber-dark); font-weight: 600; display: flex; align-items: center; gap: 8px; }
-  .refund-loc-sj { color: var(--navy); font-weight: 700; }
-  .refund-loc-mv { color: var(--navy-mid); font-weight: 700; }
-
-  .reco-grid { display: flex; flex-direction: column; gap: 12px; }
-  .reco-card { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow-md); padding: 18px 20px; display: flex; gap: 16px; align-items: flex-start; border-left: 4px solid var(--amber); }
-  .reco-card.blue { border-left-color: #3b82f6; }
-  .reco-card.green { border-left-color: #22c55e; }
-  .reco-card.amber { border-left-color: var(--amber); }
-  .reco-card.purple { border-left-color: #a855f7; }
-  .reco-card.gray { border-left-color: #6b7280; }
-  .reco-icon { font-size: 22px; flex-shrink: 0; line-height: 1; }
-  .reco-title { font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
-  .reco-text { font-size: 13px; color: var(--text-mid); line-height: 1.55; }
-
-  .wow-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
-  .wow-card { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow-md); padding: 16px 18px; text-align: center; border-top: 3px solid var(--amber); }
-  .wow-card.negative { border-top-color: var(--green); }
-  .wow-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.7px; color: var(--text-label); margin-bottom: 6px; }
-  .wow-value { font-size: 24px; font-weight: 700; margin-bottom: 2px; }
-  .wow-sub { font-size: 11px; color: var(--text-muted); }
-  .wow-positive { color: var(--green); }
-  .wow-negative-good { color: var(--green); }
-  .wow-negative { color: var(--red); }
-
-  @media (max-width: 900px) {
-    .kpi-grid { grid-template-columns: 1fr 1fr; }
-    .loc-grid, .payment-grid, .products-grid, .labor-loc-grid { grid-template-columns: 1fr; }
-    .labor-kpi-grid { grid-template-columns: 1fr 1fr; }
-    .wow-grid { grid-template-columns: 1fr 1fr; }
-    .fin-grid { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 600px) {
-    .kpi-grid { grid-template-columns: 1fr; }
-    .period-grid-2 { grid-template-columns: 1fr; }
-    .labor-kpi-grid { grid-template-columns: 1fr; }
-    .wow-grid { grid-template-columns: 1fr; }
-  }
-  @media print {
-    body { background: white; }
-    .container { padding: 0; }
-    .section { break-inside: avoid; }
+  .header-banner h1 { font-size: 26px; font-weight: 700; margin-bottom: 4px; }
+  .header-banner .subtitle { font-size: 15px; color: var(--amber); font-weight: 600; }
+  .header-banner .meta { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 6px; }
+  .header-banner .locations { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+  .header-banner .loc-badge {
+    font-size: 11px; padding: 4px 12px; border-radius: 20px; font-weight: 600;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
   }
 
-  /* NAV */
-  .nav-bar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    margin-bottom: 20px;
-    background: var(--card-bg);
-    border-radius: 10px;
-    padding: 6px;
+  .nav-tabs {
+    display: flex; justify-content: center; gap: 0; margin-bottom: 20px;
+    background: var(--card-bg); border-radius: 10px; padding: 4px; width: fit-content; margin-left: auto; margin-right: auto;
     box-shadow: var(--shadow);
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
   }
-  .nav-link {
-    padding: 8px 20px;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 600;
-    text-decoration: none;
-    color: var(--text-muted);
-    transition: all 0.2s;
-    letter-spacing: 0.2px;
+  .nav-tabs a {
+    padding: 8px 24px; font-size: 13px; font-weight: 600; text-decoration: none;
+    border-radius: 8px; color: var(--text-muted); transition: all 0.2s;
   }
-  .nav-link:hover { color: var(--text-dark); background: var(--row-alt); }
-  .nav-link.active { background: var(--navy); color: #fff; }
+  .nav-tabs a.active { background: var(--navy); color: #fff; }
+  .nav-tabs a:hover:not(.active) { color: var(--text-dark); }
 
+  .section { margin-bottom: 28px; }
+  .section-title {
+    font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-bullet { color: var(--amber); font-size: 12px; }
 
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .kpi-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: 18px 20px;
+    border-left: 4px solid var(--amber);
+  }
+  .kpi-label {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.8px; color: var(--text-label); margin-bottom: 6px;
+  }
+  .kpi-value { font-size: 32px; font-weight: 700; color: var(--text-dark); }
+  .kpi-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.6px; color: var(--text-label); padding: 10px 12px;
+    text-align: left; border-bottom: 2px solid var(--border-light);
+  }
+  td { padding: 10px 12px; border-bottom: 1px solid #f2f3f7; font-size: 13px; }
+  tr:nth-child(even) { background: var(--row-alt); }
+  .td-num { text-align: right; font-variant-numeric: tabular-nums; }
+
+  .rank-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; border-radius: 50%;
+    background: #edf0f7; color: var(--text-mid); font-size: 11px; font-weight: 700;
+  }
+  .rank-badge.top3 { background: var(--amber); color: #fff; }
+
+  .pct-badge {
+    display: inline-block; padding: 2px 10px; border-radius: 12px;
+    font-size: 12px; font-weight: 600;
+  }
+  .pct-green { background: #e8f8ef; color: var(--green); }
+  .pct-yellow { background: #fef9e7; color: #b7950b; }
+  .pct-red { background: #fdecea; color: var(--red); }
+
+  .fin-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 5px 0; font-size: 13px;
+  }
+  .fin-row-label { color: var(--text-mid); }
+  .fin-row-val { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .fin-row-val.negative { color: var(--red); }
+  .fin-total {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 8px 0 4px; border-top: 2px solid var(--navy); margin-top: 4px;
+  }
+  .fin-total-label { font-weight: 700; font-size: 14px; color: var(--text-dark); }
+  .fin-total-val { font-weight: 700; font-size: 18px; }
+
+  .wow-card {
+    background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow-md);
+    padding: 16px 20px; text-align: center; border-top: 3px solid var(--amber);
+  }
+  .wow-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-label); margin-bottom: 6px; }
+  .wow-value { font-size: 28px; font-weight: 700; }
+  .wow-sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
 
 </style>
 </head>
 <body>
 <div class="container">
 
-  <!-- NAV -->
-  <nav class="nav-bar">
-    <a href="index.html" class="nav-link active">Performance</a>
-    <a href="reviews.html" class="nav-link">Reviews</a>
-  </nav>
+  <!-- Navigation -->
+  <div class="nav-tabs">
+    <a href="index.html" class="active">Performance</a>
+    <a href="reviews.html">Reviews</a>
+  </div>
 
+  <!-- Header -->
   <div class="header-banner">
-    <div class="header-brand">Pour Decisions Craft Coffee &amp; Beer</div>
-    <div class="header-subtitle">Weekly Performance Report</div>
-    <div class="header-meta">Week of March 23 &ndash; March 29, 2026 &bull; Generated Mar 30, 2026 &bull; All metrics Dashboard-verified</div>
-    <div class="header-pills">
-      <span class="pill">&#127978; SJ &nbsp;5700 Village Oaks Dr, San Jose</span>
-      <span class="pill">&#9968; MV &nbsp;1040 Grant Rd, Mountain View</span>
-      <span class="pill">&#10003; Dashboard-Verified Numbers</span>
+    <h1>Pour Decisions Craft Coffee &amp; Beer</h1>
+    <div class="subtitle">Weekly Performance Report</div>
+    <div class="meta">Week of March 30 -- April 5, 2026 &bull; Generated Apr 6, 2026 &bull; All metrics Dashboard-verified</div>
+    <div class="locations">
+      <span class="loc-badge">&#127978; SJ &nbsp;5700 Village Oaks Dr, San Jose</span>
+      <span class="loc-badge">&#9968; MV &nbsp;1040 Grant Rd, Mountain View</span>
+      <span class="loc-badge">&#10003; Dashboard-Verified Numbers</span>
     </div>
   </div>
 
-  <!-- KPI CARDS -->
+  <!-- KPI SUMMARY -->
   <div class="section">
     <div class="section-title"><span class="section-bullet">&#9679;</span> Weekly KPI Summary</div>
     <div class="kpi-grid">
       <div class="kpi-card">
         <div class="kpi-label">Gross Sales</div>
-        <div class="kpi-value">$50,958.65</div>
-        <div class="kpi-sub">SJ <strong>$33,491.73</strong> &nbsp;|&nbsp; MV <strong>$17,466.92</strong></div>
+        <div class="kpi-value">$48,118.31</div>
+        <div class="kpi-sub">SJ <strong>$29,721.55</strong> &nbsp;|&nbsp; MV <strong>$18,396.76</strong></div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">Transactions</div>
-        <div class="kpi-value">3,536</div>
-        <div class="kpi-sub">SJ <strong>2,297</strong> &nbsp;|&nbsp; MV <strong>1,239</strong></div>
+        <div class="kpi-value">3,246</div>
+        <div class="kpi-sub">SJ <strong>2,047</strong> &nbsp;|&nbsp; MV <strong>1,199</strong></div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">Average Sale</div>
-        <div class="kpi-value">$13.83</div>
-        <div class="kpi-sub">SJ <strong>$14.12</strong> &nbsp;|&nbsp; MV <strong>$13.31</strong></div>
+        <div class="kpi-value">$16.29</div>
+        <div class="kpi-sub">SJ <strong>$16.20</strong> &nbsp;|&nbsp; MV <strong>$16.44</strong></div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">Total Labor Cost</div>
-        <div class="kpi-value">$11,785.82</div>
-        <div class="kpi-sub"><strong>24.09%</strong> of net sales &nbsp;|&nbsp; <strong>594 hrs</strong></div>
+        <div class="kpi-value">$10,835.71</div>
+        <div class="kpi-sub"><span style="color:var(--green)">23.98%</span> of net sales &nbsp;|&nbsp; 562 hrs</div>
       </div>
     </div>
   </div>
@@ -319,198 +200,189 @@
   <!-- FINANCIAL SUMMARY -->
   <div class="section">
     <div class="section-title"><span class="section-bullet">&#9679;</span> Financial Summary</div>
-    <div class="fin-grid">
-      <div class="fin-card">
-        <div class="fin-card-title">Sales Breakdown</div>
-        <div class="fin-row"><span class="fin-row-label">Gross Sales</span><span class="fin-row-val">$50,958.65</span></div>
-        <div class="fin-row"><span class="fin-row-label">Returns</span><span class="fin-row-val negative">($44.75)</span></div>
-        <div class="fin-row"><span class="fin-row-label">Discounts &amp; Comps</span><span class="fin-row-val negative">($2,038.12)</span></div>
-        <div class="fin-total"><span class="fin-total-label">Net Sales</span><span class="fin-total-val">$48,920.53</span></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;">
+      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 22px;border-top:3px solid var(--amber);">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:12px;">Sales Breakdown</div>
+        <div class="fin-row"><span class="fin-row-label">Gross Sales</span><span class="fin-row-val">$48,118.31</span></div>
+        <div class="fin-row"><span class="fin-row-label">Returns</span><span class="fin-row-val negative">($65.00)</span></div>
+        <div class="fin-row"><span class="fin-row-label">Discounts &amp; Comps</span><span class="fin-row-val negative">($2,934.15)</span></div>
+        <div class="fin-total"><span class="fin-total-label">Net Sales</span><span class="fin-total-val">$45,184.16</span></div>
       </div>
-      <div class="fin-card" style="border-top-color:var(--navy-mid);">
-        <div class="fin-card-title">Collections</div>
-        <div class="fin-row"><span class="fin-row-label">Net Sales</span><span class="fin-row-val">$48,920.53</span></div>
-        <div class="fin-row"><span class="fin-row-label">Tax Collected</span><span class="fin-row-val">$4,399.71</span></div>
-        <div class="fin-row"><span class="fin-row-label">Tips</span><span class="fin-row-val">$2,849.77</span></div>
-        <div class="fin-total"><span class="fin-total-label">Total Payments</span><span class="fin-total-val">$57,905.04</span></div>
+      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 22px;border-top:3px solid var(--navy);">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:12px;">Collections</div>
+        <div class="fin-row"><span class="fin-row-label">Net Sales</span><span class="fin-row-val">$45,184.16</span></div>
+        <div class="fin-row"><span class="fin-row-label">Tax Collected</span><span class="fin-row-val">$4,312.36</span></div>
+        <div class="fin-row"><span class="fin-row-label">Tips</span><span class="fin-row-val">$2,404.88</span></div>
+        <div class="fin-total"><span class="fin-total-label">Total Payments</span><span class="fin-total-val">$52,867.70</span></div>
       </div>
-      <div class="fin-card" style="border-top-color:var(--green);">
-        <div class="fin-card-title">Net Settlement</div>
-        <div class="fin-row"><span class="fin-row-label">Total Payments</span><span class="fin-row-val">$57,905.04</span></div>
-        <div class="fin-row"><span class="fin-row-label">Processing Fees</span><span class="fin-row-val negative">($1,110.34)</span></div>
-        <div class="fin-total"><span class="fin-total-label">Net Total</span><span class="fin-total-val">$56,794.70</span></div>
+      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 22px;border-top:3px solid var(--green);">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:12px;">Net Settlement</div>
+        <div class="fin-row"><span class="fin-row-label">Total Payments</span><span class="fin-row-val">$52,867.70</span></div>
+        <div class="fin-row"><span class="fin-row-label">Processing Fees</span><span class="fin-row-val negative">($989.53)</span></div>
+        <div class="fin-total" style="border-top-color:var(--green);"><span class="fin-total-label">Net Total</span><span class="fin-total-val">$51,878.17</span></div>
       </div>
     </div>
 
     <!-- Payment Methods Combined -->
-    <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 24px;">
-      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:16px;">Payment Method Totals (Combined)</div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+    <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 22px;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:14px;">Payment Method Totals (Combined)</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;">
         <div>
-          <div style="font-size:12px;font-weight:600;color:var(--text-mid);margin-bottom:4px;">Card</div>
-          <div style="font-size:20px;font-weight:700;color:var(--navy);">$41,075.43</div>
-          <div style="font-size:11px;color:var(--text-muted);">70.9% of payments</div>
-          <div style="height:6px;background:#eee;border-radius:3px;margin-top:8px;overflow:hidden;"><div style="height:100%;width:70.9%;background:var(--navy);border-radius:3px;"></div></div>
+          <div style="font-size:13px;font-weight:700;color:var(--text-mid);">Card</div>
+          <div style="font-size:24px;font-weight:700;color:var(--text-dark);">$36,288.97</div>
+          <div style="font-size:12px;color:var(--text-muted);">68.6% of payments</div>
+          <div style="height:6px;background:#edf0f7;border-radius:3px;margin-top:6px;overflow:hidden;">
+            <div style="height:100%;width:68.64109844006833%;background:var(--navy);border-radius:3px;"></div>
+          </div>
         </div>
         <div>
-          <div style="font-size:12px;font-weight:600;color:var(--text-mid);margin-bottom:4px;">Other / 3rd Party</div>
-          <div style="font-size:20px;font-weight:700;color:#6b7280;">$14,899.60</div>
-          <div style="font-size:11px;color:var(--text-muted);">25.7% of payments</div>
-          <div style="height:6px;background:#eee;border-radius:3px;margin-top:8px;overflow:hidden;"><div style="height:100%;width:25.7%;background:#6b7280;border-radius:3px;"></div></div>
+          <div style="font-size:13px;font-weight:700;color:var(--text-mid);">Other / 3rd Party</div>
+          <div style="font-size:24px;font-weight:700;color:var(--text-dark);">$15,275.11</div>
+          <div style="font-size:12px;color:var(--text-muted);">28.9% of payments</div>
+          <div style="height:6px;background:#edf0f7;border-radius:3px;margin-top:6px;overflow:hidden;">
+            <div style="height:100%;width:28.893085948509206%;background:var(--navy-mid);border-radius:3px;"></div>
+          </div>
         </div>
         <div>
-          <div style="font-size:12px;font-weight:600;color:var(--text-mid);margin-bottom:4px;">Cash</div>
-          <div style="font-size:20px;font-weight:700;color:var(--amber-dark);">$1,292.63</div>
-          <div style="font-size:11px;color:var(--text-muted);">2.2% of payments</div>
-          <div style="height:6px;background:#eee;border-radius:3px;margin-top:8px;overflow:hidden;"><div style="height:100%;width:2.2%;background:var(--amber);border-radius:3px;"></div></div>
+          <div style="font-size:13px;font-weight:700;color:var(--text-mid);">Cash</div>
+          <div style="font-size:24px;font-weight:700;color:var(--green);">$1,009.22</div>
+          <div style="font-size:12px;color:var(--text-muted);">1.9% of payments</div>
+          <div style="height:6px;background:#edf0f7;border-radius:3px;margin-top:6px;overflow:hidden;">
+            <div style="height:100%;width:1.9089538602965517%;background:var(--green);border-radius:3px;"></div>
+          </div>
         </div>
         <div>
-          <div style="font-size:12px;font-weight:600;color:var(--text-mid);margin-bottom:4px;">Gift Card</div>
-          <div style="font-size:20px;font-weight:700;color:#8b5cf6;">$637.38</div>
-          <div style="font-size:11px;color:var(--text-muted);">1.1% of payments</div>
-          <div style="height:6px;background:#eee;border-radius:3px;margin-top:8px;overflow:hidden;"><div style="height:100%;width:1.1%;background:#8b5cf6;border-radius:3px;"></div></div>
+          <div style="font-size:13px;font-weight:700;color:var(--text-mid);">Gift Card</div>
+          <div style="font-size:24px;font-weight:700;color:var(--amber);">$294.40</div>
+          <div style="font-size:12px;color:var(--text-muted);">0.6% of payments</div>
+          <div style="height:6px;background:#edf0f7;border-radius:3px;margin-top:6px;overflow:hidden;">
+            <div style="height:100%;width:0.5568617511259237%;background:var(--amber);border-radius:3px;"></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-
   <!-- PROFITABILITY & COGS -->
   <div class="section">
     <div class="section-title"><span class="section-bullet">&#9679;</span> Profitability &amp; COGS Analysis</div>
     
-    <!-- Operating Profit KPI Cards -->
     <div class="kpi-grid" style="margin-bottom:16px;">
       <div class="kpi-card" style="border-left-color:var(--green);">
         <div class="kpi-label">Operating Profit</div>
-        <div class="kpi-value" style="color:var(--green);">$25,135.62</div>
-        <div class="kpi-sub">SJ <strong>$17,888.47</strong> &nbsp;|&nbsp; MV <strong>$7,644.46</strong></div>
+        <div class="kpi-value" style="color:var(--green);">$24,127.37</div>
+        <div class="kpi-sub">SJ <strong>$15,079.01</strong> &nbsp;|&nbsp; MV <strong>$8,895.58</strong></div>
       </div>
       <div class="kpi-card" style="border-left-color:var(--green);">
         <div class="kpi-label">Operating Margin</div>
-        <div class="kpi-value" style="color:var(--green);">51.4%</div>
-        <div class="kpi-sub">SJ <strong>55.2%</strong> &nbsp;|&nbsp; MV <strong>46.4%</strong></div>
+        <div class="kpi-value" style="color:var(--green);">53.4%</div>
+        <div class="kpi-sub">SJ <strong>53.8%</strong> &nbsp;|&nbsp; MV <strong>51.8%</strong></div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">Est. COGS</div>
-        <div class="kpi-value" style="font-size:28px;">$9,663.16</div>
-        <div class="kpi-sub">19.8% of net sales &nbsp;|&nbsp; Blended rate</div>
+        <div class="kpi-value" style="font-size:28px;">$7,885.15</div>
+        <div class="kpi-sub">17.5% of net sales &nbsp;|&nbsp; Blended rate</div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">Weekly Rent</div>
         <div class="kpi-value" style="font-size:28px;">$2,335.93</div>
-        <div class="kpi-sub">4.8% of net &nbsp;|&nbsp; $10,122.33/mo</div>
+        <div class="kpi-sub">5.2% of net &nbsp;|&nbsp; $10,122.33/mo</div>
       </div>
     </div>
 
-    <!-- Waterfall P&L -->
+    <!-- P&L Cards -->
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;">
-      <!-- Combined P&L -->
       <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 22px;border-top:3px solid var(--green);">
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:12px;">Combined P&amp;L</div>
-        <div class="fin-row"><span class="fin-row-label">Net Sales</span><span class="fin-row-val">$48,920.53</span></div>
-        <div class="fin-row"><span class="fin-row-label">Est. COGS (19.8%)</span><span class="fin-row-val negative">($9,663.16)</span></div>
+        <div class="fin-row"><span class="fin-row-label">Net Sales</span><span class="fin-row-val">$45,184.16</span></div>
+        <div class="fin-row"><span class="fin-row-label">Est. COGS (17.5%)</span><span class="fin-row-val negative">($7,885.15)</span></div>
         <div style="display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px solid #edf0f7;">
           <span class="fin-row-label" style="font-weight:600;color:var(--text-mid);">Gross Profit</span>
-          <span class="fin-row-val" style="color:var(--green);">$39,257.37</span>
+          <span class="fin-row-val" style="color:var(--green);">$37,299.01</span>
         </div>
-        <div class="fin-row"><span class="fin-row-label">Labor (24.1%)</span><span class="fin-row-val negative">($11,785.82)</span></div>
-        <div class="fin-row"><span class="fin-row-label">Rent (4.8%)</span><span class="fin-row-val negative">($2,335.93)</span></div>
+        <div class="fin-row"><span class="fin-row-label">Labor (24.0%)</span><span class="fin-row-val negative">($10,835.71)</span></div>
+        <div class="fin-row"><span class="fin-row-label">Rent (5.2%)</span><span class="fin-row-val negative">($2,335.93)</span></div>
         <div class="fin-total" style="border-top-color:var(--green);">
           <span class="fin-total-label">Operating Profit</span>
-          <span class="fin-total-val" style="color:var(--green);">$25,135.62</span>
+          <span class="fin-total-val" style="color:var(--green);">$24,127.37</span>
         </div>
-        <div style="text-align:right;margin-top:4px;font-size:11px;color:var(--text-muted);">51.4% margin</div>
+        <div style="text-align:right;margin-top:4px;font-size:11px;color:var(--text-muted);">53.4% margin</div>
       </div>
-
-      <!-- SJ P&L -->
       <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 22px;border-top:3px solid var(--amber);">
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:12px;">&#127978; San Jose P&amp;L</div>
-        <div class="fin-row"><span class="fin-row-label">Net Sales</span><span class="fin-row-val">$32,429.34</span></div>
-        <div class="fin-row"><span class="fin-row-label">Est. COGS (19.7%)</span><span class="fin-row-val negative">($6,380.79)</span></div>
+        <div class="fin-row"><span class="fin-row-label">Net Sales</span><span class="fin-row-val">$28,007.06</span></div>
+        <div class="fin-row"><span class="fin-row-label">Est. COGS (18.2%)</span><span class="fin-row-val negative">($5,100.32)</span></div>
         <div style="display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px solid #edf0f7;">
           <span class="fin-row-label" style="font-weight:600;color:var(--text-mid);">Gross Profit</span>
-          <span class="fin-row-val" style="color:var(--green);">$26,048.55</span>
+          <span class="fin-row-val" style="color:var(--green);">$22,906.74</span>
         </div>
-        <div class="fin-row"><span class="fin-row-label">Labor (21.7%)</span><span class="fin-row-val negative">($7,033.00)</span></div>
-        <div class="fin-row"><span class="fin-row-label">Rent (3.5%)</span><span class="fin-row-val negative">($1,127.08)</span></div>
+        <div class="fin-row"><span class="fin-row-label">Labor (23.9%)</span><span class="fin-row-val negative">($6,700.65)</span></div>
+        <div class="fin-row"><span class="fin-row-label">Rent (4.0%)</span><span class="fin-row-val negative">($1,127.08)</span></div>
         <div class="fin-total" style="border-top-color:var(--amber);">
           <span class="fin-total-label">Operating Profit</span>
-          <span class="fin-total-val" style="color:var(--green);">$17,888.47</span>
+          <span class="fin-total-val" style="color:var(--green);">$15,079.01</span>
         </div>
-        <div style="text-align:right;margin-top:4px;font-size:11px;color:var(--text-muted);">55.2% margin</div>
+        <div style="text-align:right;margin-top:4px;font-size:11px;color:var(--text-muted);">53.8% margin</div>
       </div>
-
-      <!-- MV P&L -->
       <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 22px;border-top:3px solid var(--navy-mid);">
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:12px;">&#9968; Mountain View P&amp;L</div>
-        <div class="fin-row"><span class="fin-row-label">Net Sales</span><span class="fin-row-val">$16,491.19</span></div>
-        <div class="fin-row"><span class="fin-row-label">Est. COGS (17.5%)</span><span class="fin-row-val negative">($2,885.06)</span></div>
+        <div class="fin-row"><span class="fin-row-label">Net Sales</span><span class="fin-row-val">$17,177.10</span></div>
+        <div class="fin-row"><span class="fin-row-label">Est. COGS (17.1%)</span><span class="fin-row-val negative">($2,937.61)</span></div>
         <div style="display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px solid #edf0f7;">
           <span class="fin-row-label" style="font-weight:600;color:var(--text-mid);">Gross Profit</span>
-          <span class="fin-row-val" style="color:var(--green);">$13,606.13</span>
+          <span class="fin-row-val" style="color:var(--green);">$14,239.49</span>
         </div>
-        <div class="fin-row"><span class="fin-row-label">Labor (28.8%)</span><span class="fin-row-val negative">($4,752.82)</span></div>
-        <div class="fin-row"><span class="fin-row-label">Rent (7.3%)</span><span class="fin-row-val negative">($1,208.85)</span></div>
+        <div class="fin-row"><span class="fin-row-label">Labor (24.1%)</span><span class="fin-row-val negative">($4,135.06)</span></div>
+        <div class="fin-row"><span class="fin-row-label">Rent (7.0%)</span><span class="fin-row-val negative">($1,208.85)</span></div>
         <div class="fin-total" style="border-top-color:var(--navy-mid);">
           <span class="fin-total-label">Operating Profit</span>
-          <span class="fin-total-val" style="color:var(--green);">$7,644.46</span>
+          <span class="fin-total-val" style="color:var(--green);">$8,895.58</span>
         </div>
-        <div style="text-align:right;margin-top:4px;font-size:11px;color:var(--text-muted);">46.4% margin</div>
+        <div style="text-align:right;margin-top:4px;font-size:11px;color:var(--text-muted);">51.8% margin</div>
       </div>
     </div>
 
-    <!-- Cost Waterfall Visualization -->
+    <!-- Cost Waterfall -->
     <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:24px;margin-bottom:16px;">
-      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:16px;">Cost Waterfall &mdash; Where Every Dollar Goes</div>
-      
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:16px;">Cost Waterfall -- Where Every Dollar Goes</div>
       <div style="display:flex;flex-direction:column;gap:14px;">
-        <!-- Net Sales bar (full width reference) -->
         <div style="display:flex;align-items:center;gap:12px;">
           <div style="width:130px;text-align:right;font-size:12px;font-weight:600;color:var(--text-mid);flex-shrink:0;">Net Sales</div>
           <div style="flex:1;height:32px;background:#e8f5e9;border-radius:4px;position:relative;overflow:hidden;">
             <div style="height:100%;width:100%;background:var(--green);border-radius:4px;display:flex;align-items:center;padding:0 10px;">
-              <span style="color:#fff;font-size:12px;font-weight:700;">$48,920.53 (100%)</span>
+              <span style="color:#fff;font-size:12px;font-weight:700;">$45,184.16 (100%)</span>
             </div>
           </div>
         </div>
-        
-        <!-- COGS -->
         <div style="display:flex;align-items:center;gap:12px;">
           <div style="width:130px;text-align:right;font-size:12px;font-weight:600;color:var(--text-mid);flex-shrink:0;">Est. COGS</div>
           <div style="flex:1;height:32px;background:#f3f4f6;border-radius:4px;position:relative;">
-            <div style="height:100%;width:19.8%;background:var(--red);border-radius:4px;display:flex;align-items:center;padding:0 10px;min-width:120px;">
-              <span style="color:#fff;font-size:12px;font-weight:700;">$9,663.16 (19.8%)</span>
+            <div style="height:100%;width:17.5%;background:var(--red);border-radius:4px;display:flex;align-items:center;padding:0 10px;min-width:120px;">
+              <span style="color:#fff;font-size:12px;font-weight:700;">$7,885.15 (17.5%)</span>
             </div>
           </div>
         </div>
-        
-        <!-- Labor -->
         <div style="display:flex;align-items:center;gap:12px;">
           <div style="width:130px;text-align:right;font-size:12px;font-weight:600;color:var(--text-mid);flex-shrink:0;">Labor</div>
           <div style="flex:1;height:32px;background:#f3f4f6;border-radius:4px;position:relative;">
-            <div style="height:100%;width:24.1%;background:#f59e0b;border-radius:4px;display:flex;align-items:center;padding:0 10px;min-width:120px;">
-              <span style="color:#fff;font-size:12px;font-weight:700;">$11,785.82 (24.1%)</span>
+            <div style="height:100%;width:24.0%;background:#f59e0b;border-radius:4px;display:flex;align-items:center;padding:0 10px;min-width:120px;">
+              <span style="color:#fff;font-size:12px;font-weight:700;">$10,835.71 (24.0%)</span>
             </div>
           </div>
         </div>
-        
-        <!-- Rent -->
         <div style="display:flex;align-items:center;gap:12px;">
           <div style="width:130px;text-align:right;font-size:12px;font-weight:600;color:var(--text-mid);flex-shrink:0;">Rent</div>
           <div style="flex:1;height:32px;background:#f3f4f6;border-radius:4px;position:relative;">
-            <div style="height:100%;width:4.8%;background:var(--navy-mid);border-radius:4px;display:flex;align-items:center;padding:0 10px;min-width:120px;">
-              <span style="color:#fff;font-size:12px;font-weight:700;">$2,335.93 (4.8%)</span>
+            <div style="height:100%;width:5.2%;background:var(--navy-mid);border-radius:4px;display:flex;align-items:center;padding:0 10px;min-width:120px;">
+              <span style="color:#fff;font-size:12px;font-weight:700;">$2,335.93 (5.2%)</span>
             </div>
           </div>
         </div>
-        
-        <!-- Operating Profit -->
         <div style="display:flex;align-items:center;gap:12px;border-top:2px solid var(--border-light);padding-top:12px;">
           <div style="width:130px;text-align:right;font-size:12px;font-weight:700;color:var(--text-dark);flex-shrink:0;">Operating Profit</div>
           <div style="flex:1;height:32px;background:#e8f5e9;border-radius:4px;position:relative;">
-            <div style="height:100%;width:51.4%;background:var(--green);border-radius:4px;display:flex;align-items:center;padding:0 10px;">
-              <span style="color:#fff;font-size:12px;font-weight:700;">$25,135.62 (51.4%)</span>
+            <div style="height:100%;width:53.4%;background:var(--green);border-radius:4px;display:flex;align-items:center;padding:0 10px;">
+              <span style="color:#fff;font-size:12px;font-weight:700;">$24,127.37 (53.4%)</span>
             </div>
           </div>
         </div>
@@ -519,58 +391,42 @@
 
     <!-- COGS by Category + Rent Detail -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
-      <!-- COGS by Category -->
       <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 22px;">
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:14px;">COGS by Category (Top Products)</div>
-        
         <div style="margin-bottom:14px;">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
             <span style="font-size:13px;font-weight:600;color:var(--text-mid);">&#9749; Coffee &amp; Tea Drinks</span>
-            <span style="font-size:12px;color:var(--text-muted);">17.3% COGS</span>
+            <span style="font-size:12px;color:var(--text-muted);">16.5% COGS</span>
           </div>
           <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);margin-bottom:4px;">
-            <span>Revenue: <strong style="color:var(--text-mid);">$28,068.90</strong></span>
-            <span>COGS: <strong style="color:var(--red);">$4,866.85</strong></span>
+            <span>Revenue: <strong style="color:var(--text-mid);">$28,268.65</strong></span>
+            <span>COGS: <strong style="color:var(--red);">$4,676.01</strong></span>
           </div>
           <div style="height:8px;background:#eee;border-radius:4px;overflow:hidden;">
-            <div style="height:100%;width:17.3%;background:var(--amber);border-radius:4px;"></div>
+            <div style="height:100%;width:16.541333279091855%;background:var(--amber);border-radius:4px;"></div>
           </div>
         </div>
-        
         <div style="margin-bottom:14px;">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
             <span style="font-size:13px;font-weight:600;color:var(--text-mid);">&#127866; Beer</span>
-            <span style="font-size:12px;color:var(--text-muted);">31.1% COGS</span>
+            <span style="font-size:12px;color:var(--text-muted);">25.6% COGS</span>
           </div>
           <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);margin-bottom:4px;">
-            <span>Revenue: <strong style="color:var(--text-mid);">$5,954.55</strong></span>
-            <span>COGS: <strong style="color:var(--red);">$1,853.72</strong></span>
+            <span>Revenue: <strong style="color:var(--text-mid);">$3,152.27</strong></span>
+            <span>COGS: <strong style="color:var(--red);">$807.29</strong></span>
           </div>
           <div style="height:8px;background:#eee;border-radius:4px;overflow:hidden;">
-            <div style="height:100%;width:31.1%;background:var(--navy);border-radius:4px;"></div>
+            <div style="height:100%;width:25.60992554571785%;background:var(--navy);border-radius:4px;"></div>
           </div>
         </div>
-
         <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--border-light);font-size:12px;color:var(--text-muted);">
-          <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
-            <span>Blended COGS Rate (all products)</span>
-            <span style="font-weight:700;color:var(--text-mid);">19.8%</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
-            <span>SJ Blended Rate</span>
-            <span style="font-weight:600;">19.7%</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;">
-            <span>MV Blended Rate</span>
-            <span style="font-weight:600;">17.5%</span>
-          </div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span>Blended COGS Rate</span><span style="font-weight:700;color:var(--text-mid);">17.5%</span></div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:4px;"><span>SJ Blended Rate</span><span style="font-weight:600;">18.2%</span></div>
+          <div style="display:flex;justify-content:space-between;"><span>MV Blended Rate</span><span style="font-weight:600;">17.1%</span></div>
         </div>
       </div>
-
-      <!-- Rent Detail -->
       <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 22px;">
         <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:14px;">Rent &amp; Occupancy Detail</div>
-        
         <div style="margin-bottom:16px;">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
             <span style="font-size:16px;">&#127978;</span>
@@ -586,9 +442,8 @@
               <div style="font-weight:700;color:var(--text-dark);">$1,127.08</div>
             </div>
           </div>
-          <div style="font-size:11px;color:var(--text-muted);margin-top:6px;">1,221 sqft &bull; $4.00/sqft/mo &bull; 3.5% of net sales</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:6px;">1,221 sqft &bull; $4.00/sqft/mo &bull; 4.0% of net sales</div>
         </div>
-        
         <div style="margin-bottom:16px;">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
             <span style="font-size:16px;">&#9968;</span>
@@ -604,9 +459,8 @@
               <div style="font-weight:700;color:var(--text-dark);">$1,208.85</div>
             </div>
           </div>
-          <div style="font-size:11px;color:var(--text-muted);margin-top:6px;">898 sqft &bull; $5.83/sqft/mo &bull; 7.3% of net sales</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:6px;">898 sqft &bull; $5.83/sqft/mo &bull; 7.0% of net sales</div>
         </div>
-
         <div style="border-top:1px solid var(--border-light);padding-top:12px;">
           <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;">
             <span style="font-weight:600;color:var(--text-mid);">Total Monthly Rent</span>
@@ -617,117 +471,107 @@
             <span style="font-weight:700;color:var(--text-dark);">$2,335.93</span>
           </div>
           <div style="margin-top:10px;padding:8px 10px;background:#fff3d6;border:1px solid var(--amber-light);border-radius:6px;font-size:11px;color:var(--amber-dark);">
-            &#128205; Fremont (3520 Beacon Ave) &mdash; Opening soon &bull; $4,002/mo &bull; Will be added once operational
+            &#128205; Fremont (3520 Beacon Ave) -- Opening soon &bull; $4,002/mo &bull; Will be added once operational
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Top Products COGS Table -->
+    <!-- Top Product COGS Table -->
     <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;margin-bottom:16px;">
       <div style="padding:14px 16px;font-size:13px;font-weight:700;color:var(--text-dark);border-bottom:1px solid var(--border-light);background:#f8f8fb;">
         Top Product COGS &amp; Margins
       </div>
       <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Product</th>
-            <th>Revenue</th>
-            <th>COGS Rate</th>
-            <th>Est. COGS</th>
-            <th>Gross Margin</th>
-          </tr>
-        </thead>
+        <thead><tr><th>#</th><th>Product</th><th>Revenue</th><th>COGS Rate</th><th>Est. COGS</th><th>Gross Margin</th></tr></thead>
         <tbody>
           <tr>
             <td><span class="rank-badge top3">1</span></td>
             <td style="font-weight:600;">Peanut Butter Latte</td>
-            <td class="td-num">$4,808.19</td>
+            <td class="td-num">$5,091.49</td>
             <td class="td-num">5.9%</td>
-            <td class="td-num" style="color:var(--red);">$283.68</td>
+            <td class="td-num" style="color:var(--red);">$300.40</td>
             <td><span class="pct-badge pct-green">94.1%</span></td>
           </tr>
           <tr>
             <td><span class="rank-badge top3">2</span></td>
             <td style="font-weight:600;">Banana Matcha</td>
-            <td class="td-num">$3,510.58</td>
-            <td class="td-num">19.4%</td>
-            <td class="td-num" style="color:var(--red);">$681.05</td>
-            <td><span class="pct-badge pct-green">80.6%</span></td>
+            <td class="td-num">$3,644.46</td>
+            <td class="td-num">18.9%</td>
+            <td class="td-num" style="color:var(--red);">$688.80</td>
+            <td><span class="pct-badge pct-green">81.1%</span></td>
           </tr>
           <tr>
             <td><span class="rank-badge top3">3</span></td>
-            <td style="font-weight:600;">IPA</td>
-            <td class="td-num">$3,191.47</td>
-            <td class="td-num">30.0%</td>
-            <td class="td-num" style="color:var(--red);">$957.44</td>
-            <td><span class="pct-badge pct-yellow">70.0%</span></td>
+            <td style="font-weight:600;">Banana Latte</td>
+            <td class="td-num">$3,190.86</td>
+            <td class="td-num">18.9%</td>
+            <td class="td-num" style="color:var(--red);">$603.07</td>
+            <td><span class="pct-badge pct-green">81.1%</span></td>
           </tr>
           <tr>
             <td><span class="rank-badge ">4</span></td>
-            <td style="font-weight:600;">Banana Latte</td>
-            <td class="td-num">$3,115.25</td>
-            <td class="td-num">20.9%</td>
-            <td class="td-num" style="color:var(--red);">$651.09</td>
-            <td><span class="pct-badge pct-yellow">79.1%</span></td>
+            <td style="font-weight:600;">Hawaiian Latte</td>
+            <td class="td-num">$2,481.87</td>
+            <td class="td-num">20.4%</td>
+            <td class="td-num" style="color:var(--red);">$506.30</td>
+            <td><span class="pct-badge pct-yellow">79.6%</span></td>
           </tr>
           <tr>
             <td><span class="rank-badge ">5</span></td>
             <td style="font-weight:600;">Ube Coffee</td>
-            <td class="td-num">$2,449.23</td>
+            <td class="td-num">$2,115.07</td>
             <td class="td-num">17.3%</td>
-            <td class="td-num" style="color:var(--red);">$423.72</td>
+            <td class="td-num" style="color:var(--red);">$365.91</td>
             <td><span class="pct-badge pct-green">82.7%</span></td>
           </tr>
           <tr>
             <td><span class="rank-badge ">6</span></td>
-            <td style="font-weight:600;">Hawaiian Latte</td>
-            <td class="td-num">$2,440.68</td>
-            <td class="td-num">20.4%</td>
-            <td class="td-num" style="color:var(--red);">$497.90</td>
-            <td><span class="pct-badge pct-yellow">79.6%</span></td>
-          </tr>
-          <tr>
-            <td><span class="rank-badge ">7</span></td>
             <td style="font-weight:600;">Horchata Latte</td>
-            <td class="td-num">$2,143.70</td>
+            <td class="td-num">$1,826.87</td>
             <td class="td-num">18.4%</td>
-            <td class="td-num" style="color:var(--red);">$394.44</td>
+            <td class="td-num" style="color:var(--red);">$336.14</td>
             <td><span class="pct-badge pct-green">81.6%</span></td>
           </tr>
           <tr>
+            <td><span class="rank-badge ">7</span></td>
+            <td style="font-weight:600;">IPA</td>
+            <td class="td-num">$1,768.40</td>
+            <td class="td-num">30.0%</td>
+            <td class="td-num" style="color:var(--red);">$530.52</td>
+            <td><span class="pct-badge pct-yellow">70.0%</span></td>
+          </tr>
+          <tr>
             <td><span class="rank-badge ">8</span></td>
-            <td style="font-weight:600;">Salted Cream Coffee</td>
-            <td class="td-num">$2,008.39</td>
-            <td class="td-num">17.3%</td>
-            <td class="td-num" style="color:var(--red);">$347.45</td>
-            <td><span class="pct-badge pct-green">82.7%</span></td>
+            <td style="font-weight:600;">Strawberry Matcha</td>
+            <td class="td-num">$1,761.71</td>
+            <td class="td-num">18.9%</td>
+            <td class="td-num" style="color:var(--red);">$332.96</td>
+            <td><span class="pct-badge pct-green">81.1%</span></td>
           </tr>
           <tr>
             <td><span class="rank-badge ">9</span></td>
-            <td style="font-weight:600;">Strawberry Matcha</td>
-            <td class="td-num">$1,967.28</td>
-            <td class="td-num">22.5%</td>
-            <td class="td-num" style="color:var(--red);">$442.64</td>
-            <td><span class="pct-badge pct-yellow">77.5%</span></td>
+            <td style="font-weight:600;">Salted Cream Coffee</td>
+            <td class="td-num">$1,641.22</td>
+            <td class="td-num">17.3%</td>
+            <td class="td-num" style="color:var(--red);">$283.93</td>
+            <td><span class="pct-badge pct-green">82.7%</span></td>
           </tr>
           <tr>
             <td><span class="rank-badge ">10</span></td>
             <td style="font-weight:600;">Traditional Viet Coffee</td>
-            <td class="td-num">$1,725.62</td>
+            <td class="td-num">$1,570.18</td>
             <td class="td-num">23.3%</td>
-            <td class="td-num" style="color:var(--red);">$402.07</td>
+            <td class="td-num" style="color:var(--red);">$365.85</td>
             <td><span class="pct-badge pct-yellow">76.7%</span></td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <!-- Methodology Note -->
     <div style="background:#f0f4ff;border:1px solid #d0d8f0;border-radius:8px;padding:12px 16px;font-size:12px;color:#4a5568;">
       <strong style="color:var(--navy);">&#9432; Methodology Note:</strong>
-      COGS estimates are based on the Pour Decisions recipe costing spreadsheet (23 menu items). Items with complete recipes use actual per-unit COGS. 
+      COGS estimates are based on the Pour Decisions recipe costing spreadsheet (23 menu items). Items with complete recipes use actual per-unit COGS.
       Beer COGS uses industry-standard rates (28-35%). The blended rate is applied to remaining revenue not covered by top products.
       Rent is from signed leases (SJ: months 37-48 schedule, MV: Year 1 rate). Operating Profit = Net Sales - COGS - Labor - Rent.
       Utilities, insurance, and other overhead are not included.
@@ -737,736 +581,656 @@
   <!-- WoW COMPARISON -->
   <div class="section">
     <div class="section-title"><span class="section-bullet">&#9679;</span> Week-over-Week Performance</div>
-    <div class="wow-grid">
+    <div style="display:grid;grid-template-columns:repeat(5, 1fr);gap:14px;">
       <div class="wow-card">
         <div class="wow-label">Net Sales WoW</div>
-        <div class="wow-value wow-positive">+6.61%</div>
-        <div class="wow-sub">$48,920.53 vs $45,887.34</div>
+        <div class="wow-value" style="color:var(--red);">-7.61%</div>
+        <div class="wow-sub">$45,184.16 vs $48,906.25</div>
       </div>
       <div class="wow-card">
         <div class="wow-label">Gross Sales WoW</div>
-        <div class="wow-value wow-positive">+6.27%</div>
-        <div class="wow-sub">$50,958.65 vs $47,951.36</div>
+        <div class="wow-value" style="color:var(--red);">-7.78%</div>
+        <div class="wow-sub">$48,118.31 vs $52,178.15</div>
       </div>
       <div class="wow-card">
         <div class="wow-label">Transactions WoW</div>
-        <div class="wow-value wow-positive">+4.58%</div>
-        <div class="wow-sub">3,536 vs 3,381</div>
+        <div class="wow-value" style="color:var(--red);">-7.34%</div>
+        <div class="wow-sub">3,246 vs 3,503</div>
       </div>
       <div class="wow-card">
         <div class="wow-label">Labor Cost WoW</div>
-        <div class="wow-value wow-negative">+15.22%</div>
-        <div class="wow-sub">Needs attention</div>
+        <div class="wow-value" style="color:var(--green);">-6.98%</div>
+        <div class="wow-sub">Improved</div>
       </div>
       <div class="wow-card">
         <div class="wow-label">Avg Sale WoW</div>
-        <div class="wow-value wow-positive">+1.92%</div>
-        <div class="wow-sub">$13.83 avg ticket</div>
+        <div class="wow-value" style="color:var(--red);">-0.61%</div>
+        <div class="wow-sub">$16.29 avg ticket</div>
       </div>
     </div>
   </div>
 
-  <!-- MTD / YTD -->
+  <!-- MTD & YTD -->
   <div class="section">
     <div class="section-title"><span class="section-bullet">&#9679;</span> Month-to-Date &amp; Year-to-Date Revenue</div>
-    <div class="period-grid-2">
-      <div class="period-card">
-        <div class="period-card-title">MTD (Through Mar 29, 2026)</div>
-        <div class="period-rows">
-          <div class="period-row">
-            <div>
-              <div class="period-loc-label">&#127978; San Jose</div>
-              <div class="period-loc-sub">~66.6% of net</div>
-            </div>
-            <div style="text-align:right;">
-              <div class="period-loc-val">$125,383.33</div>
-              <div class="period-loc-sub">Net</div>
-            </div>
-          </div>
-          <div class="period-row">
-            <div>
-              <div class="period-loc-label">&#9968; Mountain View</div>
-              <div class="period-loc-sub">~33.4% of net</div>
-            </div>
-            <div style="text-align:right;">
-              <div class="period-loc-val">$62,943.94</div>
-              <div class="period-loc-sub">Net</div>
-            </div>
-          </div>
-        </div>
-        <div class="period-combined">
-          <span class="period-combined-label">MTD Net Sales</span>
-          <span class="period-combined-val">$188,327.27</span>
-        </div>
-        <div style="margin-top:8px;display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);">
-          <span>MTD Gross: <strong style="color:var(--text-mid);">$196,315.86</strong></span>
-          <span>Tax: <strong style="color:var(--text-mid);">$16,975.59</strong> &nbsp; Tips: <strong style="color:var(--text-mid);">$11,138.18</strong></span>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 22px;border-top:3px solid var(--amber);">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:12px;">MTD -- April 2026 (Apr 1-5)</div>
+        <div class="fin-row"><span class="fin-row-label">Net Sales</span><span class="fin-row-val" style="font-size:20px;font-weight:700;">$33,004.63</span></div>
+        <div class="fin-row"><span class="fin-row-label">Total Payments</span><span class="fin-row-val">$42,473.54</span></div>
+        <div style="border-top:1px solid var(--border-light);margin-top:8px;padding-top:8px;">
+          <div class="fin-row"><span class="fin-row-label">&#127978; San Jose</span><span class="fin-row-val">$20,839.18</span></div>
+          <div class="fin-row"><span class="fin-row-label">&#9968; Mountain View</span><span class="fin-row-val">$12,165.45</span></div>
         </div>
       </div>
-      <div class="period-card" style="border-top-color:var(--green);">
-        <div class="period-card-title">YTD (Jan 1 -- Mar 29, 2026)</div>
-        <div class="period-rows">
-          <div class="period-row">
-            <div>
-              <div class="period-loc-label">&#127978; San Jose</div>
-            </div>
-            <div style="text-align:right;">
-              <div class="period-loc-val">$364,738.38</div>
-              <div class="period-loc-sub">Net</div>
-            </div>
-          </div>
-          <div class="period-row">
-            <div>
-              <div class="period-loc-label">&#9968; Mountain View</div>
-            </div>
-            <div style="text-align:right;">
-              <div class="period-loc-val">$175,623.52</div>
-              <div class="period-loc-sub">Net</div>
-            </div>
-          </div>
-        </div>
-        <div class="period-combined">
-          <span class="period-combined-label">YTD Net Sales</span>
-          <span class="period-combined-val">$540,361.90</span>
-        </div>
-        <div style="margin-top:8px;display:flex;justify-content:space-between;font-size:12px;color:var(--text-muted);">
-          <span>YTD Gross: <strong style="color:var(--text-mid);">$564,641.48</strong></span>
-          <span>Tax: <strong style="color:var(--text-mid);">N/A</strong> &nbsp; Tips: <strong style="color:var(--text-mid);">$30,089.38</strong></span>
+      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 22px;border-top:3px solid var(--green);">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:12px;">YTD -- January 1 - April 5, 2026</div>
+        <div class="fin-row"><span class="fin-row-label">Total Payments</span><span class="fin-row-val" style="font-size:20px;font-weight:700;">$617,324.76</span></div>
+        <div style="border-top:1px solid var(--border-light);margin-top:8px;padding-top:8px;">
+          <div class="fin-row"><span class="fin-row-label">&#127978; San Jose</span><span class="fin-row-val">$414,622.70</span></div>
+          <div class="fin-row"><span class="fin-row-label">&#9968; Mountain View</span><span class="fin-row-val">$202,702.06</span></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- LOCATION COMPARISON -->
+  <!-- REVENUE BY LOCATION -->
   <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Location Comparison</div>
-    <div class="loc-grid">
-      <div class="loc-card">
-        <div class="loc-card-header">
-          <span class="loc-icon">&#127978;</span>
-          <span>San Jose -- Flagship</span>
-        </div>
-        <div class="loc-rows">
-          <div class="loc-row"><span class="loc-row-label">Gross Sales</span><span class="loc-row-val">$33,491.73</span></div>
-          <div class="loc-row"><span class="loc-row-label">Net Sales</span><span class="loc-row-val">$32,429.34</span></div>
-          <div class="loc-row"><span class="loc-row-label">Transactions</span><span class="loc-row-val">2,297</span></div>
-          <div class="loc-row"><span class="loc-row-label">Avg Order Value</span><span class="loc-row-val">$14.12</span></div>
-          <div class="loc-row"><span class="loc-row-label">Labor Cost</span><span class="loc-row-val">$7,033.00</span></div>
-          <div class="loc-row"><span class="loc-row-label">Labor %</span><span class="loc-row-val">21.69%</span></div>
-          <div class="loc-row"><span class="loc-row-label">Rev / Labor Hr</span><span class="loc-row-val">$90.89</span></div>
-          <div class="loc-row"><span class="loc-row-label">Peak Day</span><span class="loc-row-val">Saturday</span></div>
-          <div class="loc-row"><span class="loc-row-label">Slowest Day</span><span class="loc-row-val">Monday</span></div>
-          <div class="loc-row"><span class="loc-row-label">Peak Hour</span><span class="loc-row-val">9:00 AM</span></div>
-          <div class="loc-row"><span class="loc-row-label">Total Refunds</span><div style="text-align:right;"><span class="loc-row-val">$18.73</span><div class="loc-row-sub">3 refunds</div></div></div>
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Revenue by Location</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 22px;border-top:3px solid var(--amber);">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:12px;">&#127978; San Jose</div>
+        <div class="fin-row"><span class="fin-row-label">Net Sales</span><span class="fin-row-val" style="font-weight:700;">$28,007.06</span></div>
+        <div class="fin-row"><span class="fin-row-label">Transactions</span><span class="fin-row-val">2,047</span></div>
+        <div class="fin-row"><span class="fin-row-label">Avg Sale</span><span class="fin-row-val">$16.20</span></div>
+        <div class="fin-row"><span class="fin-row-label">Tips</span><span class="fin-row-val">$1,705.24</span></div>
+        <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border-light);">
+          <div style="font-size:11px;font-weight:700;color:var(--text-label);margin-bottom:6px;">PAYMENT METHODS</div>
+          <div class="fin-row"><span class="fin-row-label">Card</span><span class="fin-row-val">$25,593.12</span></div>
+          <div class="fin-row"><span class="fin-row-label">External/3rd Party</span><span class="fin-row-val">$6,700.59</span></div>
+          <div class="fin-row"><span class="fin-row-label">Cash</span><span class="fin-row-val">$635.89</span></div>
+          <div class="fin-row"><span class="fin-row-label">Gift Card</span><span class="fin-row-val">$226.49</span></div>
         </div>
       </div>
-      <div class="loc-card">
-        <div class="loc-card-header mv">
-          <span class="loc-icon">&#9968;</span>
-          <span>Mountain View</span>
-        </div>
-        <div class="loc-rows">
-          <div class="loc-row"><span class="loc-row-label">Gross Sales</span><span class="loc-row-val">$17,466.92</span></div>
-          <div class="loc-row"><span class="loc-row-label">Net Sales</span><span class="loc-row-val">$16,491.19</span></div>
-          <div class="loc-row"><span class="loc-row-label">Transactions</span><span class="loc-row-val">1,239</span></div>
-          <div class="loc-row"><span class="loc-row-label">Avg Order Value</span><span class="loc-row-val">$13.31</span></div>
-          <div class="loc-row"><span class="loc-row-label">Labor Cost</span><span class="loc-row-val">$4,752.82</span></div>
-          <div class="loc-row"><span class="loc-row-label">Labor %</span><span class="loc-row-val">28.82%</span></div>
-          <div class="loc-row"><span class="loc-row-label">Rev / Labor Hr</span><span class="loc-row-val">$69.64</span></div>
-          <div class="loc-row"><span class="loc-row-label">Peak Day</span><span class="loc-row-val">Sunday</span></div>
-          <div class="loc-row"><span class="loc-row-label">Slowest Day</span><span class="loc-row-val">Monday</span></div>
-          <div class="loc-row"><span class="loc-row-label">Peak Hour</span><span class="loc-row-val">9:00 AM</span></div>
-          <div class="loc-row"><span class="loc-row-label">Total Refunds</span><div style="text-align:right;"><span class="loc-row-val">$27.76</span><div class="loc-row-sub">2 refunds</div></div></div>
+      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 22px;border-top:3px solid var(--navy-mid);">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:12px;">&#9968; Mountain View</div>
+        <div class="fin-row"><span class="fin-row-label">Net Sales</span><span class="fin-row-val" style="font-weight:700;">$17,177.10</span></div>
+        <div class="fin-row"><span class="fin-row-label">Transactions</span><span class="fin-row-val">1,199</span></div>
+        <div class="fin-row"><span class="fin-row-label">Avg Sale</span><span class="fin-row-val">$16.44</span></div>
+        <div class="fin-row"><span class="fin-row-label">Tips</span><span class="fin-row-val">$699.64</span></div>
+        <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border-light);">
+          <div style="font-size:11px;font-weight:700;color:var(--text-label);margin-bottom:6px;">PAYMENT METHODS</div>
+          <div class="fin-row"><span class="fin-row-label">Card</span><span class="fin-row-val">$10,695.85</span></div>
+          <div class="fin-row"><span class="fin-row-label">External/3rd Party</span><span class="fin-row-val">$8,574.52</span></div>
+          <div class="fin-row"><span class="fin-row-label">Cash</span><span class="fin-row-val">$373.33</span></div>
+          <div class="fin-row"><span class="fin-row-label">Gift Card</span><span class="fin-row-val">$67.91</span></div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- DAILY REVENUE -->
-  <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Daily Revenue by Location</div>
-    <div class="bar-chart-wrap">
-      <div class="bar-chart-legend">
-        <div class="legend-item"><div class="legend-dot sj"></div>San Jose</div>
-        <div class="legend-item"><div class="legend-dot mv"></div>Mountain View</div>
-      </div>
-      
-    <div class="bar-day-row">
-      <div class="bar-day-label">Mon 3/23</div>
-      <div class="bar-bars">
-        <div class="bar-track"><div class="bar-fill sj" style="width:18.9%"><span class="bar-label">$1,996</span></div><span class="bar-txn">183 txns</span></div>
-        <div class="bar-track"><div class="bar-fill mv" style="width:13.0%"><span class="bar-label">$1,369</span></div><span class="bar-txn">108 txns</span></div>
-      </div>
-    </div>
-    <div class="bar-day-row">
-      <div class="bar-day-label">Tue 3/24</div>
-      <div class="bar-bars">
-        <div class="bar-track"><div class="bar-fill sj" style="width:22.3%"><span class="bar-label">$2,353</span></div><span class="bar-txn">184 txns</span></div>
-        <div class="bar-track"><div class="bar-fill mv" style="width:16.0%"><span class="bar-label">$1,685</span></div><span class="bar-txn">121 txns</span></div>
-      </div>
-    </div>
-    <div class="bar-day-row">
-      <div class="bar-day-label">Wed 3/25</div>
-      <div class="bar-bars">
-        <div class="bar-track"><div class="bar-fill sj" style="width:29.3%"><span class="bar-label">$3,095</span></div><span class="bar-txn">235 txns</span></div>
-        <div class="bar-track"><div class="bar-fill mv" style="width:22.9%"><span class="bar-label">$2,417</span></div><span class="bar-txn">150 txns</span></div>
-      </div>
-    </div>
-    <div class="bar-day-row">
-      <div class="bar-day-label">Thu 3/26</div>
-      <div class="bar-bars">
-        <div class="bar-track"><div class="bar-fill sj" style="width:39.4%"><span class="bar-label">$4,153</span></div><span class="bar-txn">287 txns</span></div>
-        <div class="bar-track"><div class="bar-fill mv" style="width:20.7%"><span class="bar-label">$2,179</span></div><span class="bar-txn">157 txns</span></div>
-      </div>
-    </div>
-    <div class="bar-day-row">
-      <div class="bar-day-label">Fri 3/27</div>
-      <div class="bar-bars">
-        <div class="bar-track"><div class="bar-fill sj" style="width:66.9%"><span class="bar-label">$7,054</span></div><span class="bar-txn">465 txns</span></div>
-        <div class="bar-track"><div class="bar-fill mv" style="width:27.9%"><span class="bar-label">$2,943</span></div><span class="bar-txn">199 txns</span></div>
-      </div>
-    </div>
-    <div class="bar-day-row">
-      <div class="bar-day-label">Sat 3/28</div>
-      <div class="bar-bars">
-        <div class="bar-track"><div class="bar-fill sj" style="width:73.8%"><span class="bar-label">$7,786</span></div><span class="bar-txn">529 txns</span></div>
-        <div class="bar-track"><div class="bar-fill mv" style="width:26.2%"><span class="bar-label">$2,762</span></div><span class="bar-txn">208 txns</span></div>
-      </div>
-    </div>
-    <div class="bar-day-row">
-      <div class="bar-day-label">Sun 3/29</div>
-      <div class="bar-bars">
-        <div class="bar-track"><div class="bar-fill sj" style="width:56.1%"><span class="bar-label">$5,917</span></div><span class="bar-txn">416 txns</span></div>
-        <div class="bar-track"><div class="bar-fill mv" style="width:29.1%"><span class="bar-label">$3,072</span></div><span class="bar-txn">214 txns</span></div>
-      </div>
-    </div>
-    </div>
-  </div>
-
-  <!-- DAILY TABLE -->
-  <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Daily Revenue Detail</div>
-    <div class="data-table-wrap">
-      <table>
-        <thead><tr><th>Day</th><th>San Jose</th><th>Mountain View</th><th>Total</th><th>Txns</th></tr></thead>
-        <tbody>
-          
-    <tr>
-      <td class="td-day">Monday<span class="td-date">03-23</span></td>
-      <td class="td-num">$1,995.82</td>
-      <td class="td-num">$1,368.74</td>
-      <td class="td-num td-total">$3,364.56</td>
-      <td class="td-muted">291</td>
-    </tr>
-    <tr>
-      <td class="td-day">Tuesday<span class="td-date">03-24</span></td>
-      <td class="td-num">$2,352.79</td>
-      <td class="td-num">$1,684.88</td>
-      <td class="td-num td-total">$4,037.67</td>
-      <td class="td-muted">305</td>
-    </tr>
-    <tr>
-      <td class="td-day">Wednesday<span class="td-date">03-25</span></td>
-      <td class="td-num">$3,094.58</td>
-      <td class="td-num">$2,417.39</td>
-      <td class="td-num td-total">$5,511.97</td>
-      <td class="td-muted">385</td>
-    </tr>
-    <tr>
-      <td class="td-day">Thursday<span class="td-date">03-26</span></td>
-      <td class="td-num">$4,152.78</td>
-      <td class="td-num">$2,179.46</td>
-      <td class="td-num td-total">$6,332.24</td>
-      <td class="td-muted">444</td>
-    </tr>
-    <tr>
-      <td class="td-day">Friday<span class="td-date">03-27</span></td>
-      <td class="td-num">$7,054.15</td>
-      <td class="td-num">$2,943.23</td>
-      <td class="td-num td-total">$9,997.38</td>
-      <td class="td-muted">664</td>
-    </tr>
-    <tr>
-      <td class="td-day">Saturday<span class="td-date">03-28</span></td>
-      <td class="td-num">$7,786.02</td>
-      <td class="td-num">$2,761.76</td>
-      <td class="td-num td-total">$10,547.78</td>
-      <td class="td-muted">737</td>
-    </tr>
-    <tr>
-      <td class="td-day">Sunday<span class="td-date">03-29</span></td>
-      <td class="td-num">$5,916.80</td>
-      <td class="td-num">$3,072.43</td>
-      <td class="td-num td-total">$8,989.23</td>
-      <td class="td-muted">630</td>
-    </tr>
-    <tr style="background:#f0f0f5;font-weight:700;">
-      <td class="td-day">TOTAL</td>
-      <td class="td-num td-total">$32,352.94</td>
-      <td class="td-num td-total">$16,427.89</td>
-      <td class="td-num td-total">$48,780.83</td>
-      <td class="td-muted" style="font-weight:700;">3,456</td>
-    </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- HOURLY HEATMAP -->
-  <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Hourly Revenue Heatmap</div>
-    <div class="heatmap-wrap">
-      <div class="heatmap-note">Revenue by hour (PDT). Darker = higher revenue.</div>
-      <table class="heatmap-table">
-        <thead><tr><th></th><th>7:00 AM</th><th>8:00 AM</th><th>9:00 AM</th><th>10:00 AM</th><th>11:00 AM</th><th>12:00 PM</th><th>1:00 PM</th><th>2:00 PM</th><th>3:00 PM</th><th>4:00 PM</th><th>5:00 PM</th><th>6:00 PM</th><th>7:00 PM</th><th>8:00 PM</th><th>9:00 PM</th></tr></thead>
-        <tbody><tr><td class="hm-row-label">Combined</td><td style="background:#D4A853;color:#333;">$2,118<br><span style="font-size:9px;opacity:0.7;">161txn</span></td><td style="background:#2d3d6e;color:#fff;">$3,625<br><span style="font-size:9px;opacity:0.7;">239txn</span></td><td style="background:#1B2A4A;color:#fff;">$5,779<br><span style="font-size:9px;opacity:0.7;">337txn</span></td><td style="background:#1B2A4A;color:#fff;">$5,484<br><span style="font-size:9px;opacity:0.7;">370txn</span></td><td style="background:#1B2A4A;color:#fff;">$4,768<br><span style="font-size:9px;opacity:0.7;">327txn</span></td><td style="background:#1B2A4A;color:#fff;">$4,522<br><span style="font-size:9px;opacity:0.7;">348txn</span></td><td style="background:#2d3d6e;color:#fff;">$3,610<br><span style="font-size:9px;opacity:0.7;">295txn</span></td><td style="background:#2d3d6e;color:#fff;">$2,991<br><span style="font-size:9px;opacity:0.7;">244txn</span></td><td style="background:#D4A853;color:#333;">$2,748<br><span style="font-size:9px;opacity:0.7;">230txn</span></td><td style="background:#2d3d6e;color:#fff;">$3,276<br><span style="font-size:9px;opacity:0.7;">259txn</span></td><td style="background:#D4A853;color:#333;">$2,631<br><span style="font-size:9px;opacity:0.7;">190txn</span></td><td style="background:#D4A853;color:#333;">$2,373<br><span style="font-size:9px;opacity:0.7;">143txn</span></td><td style="background:#F0CC87;color:#333;">$1,599<br><span style="font-size:9px;opacity:0.7;">108txn</span></td><td style="background:#F0CC87;color:#333;">$1,554<br><span style="font-size:9px;opacity:0.7;">87txn</span></td><td style="background:#fff3d6;color:#333;">$294<br><span style="font-size:9px;opacity:0.7;">20txn</span></td></tr><tr><td class="hm-row-label">San Jose</td><td style="background:#D4A853;color:#333;">$1,135<br><span style="font-size:9px;opacity:0.7;">83txn</span></td><td style="background:#2d3d6e;color:#fff;">$2,410<br><span style="font-size:9px;opacity:0.7;">162txn</span></td><td style="background:#1B2A4A;color:#fff;">$3,668<br><span style="font-size:9px;opacity:0.7;">221txn</span></td><td style="background:#1B2A4A;color:#fff;">$3,417<br><span style="font-size:9px;opacity:0.7;">240txn</span></td><td style="background:#1B2A4A;color:#fff;">$2,898<br><span style="font-size:9px;opacity:0.7;">217txn</span></td><td style="background:#1B2A4A;color:#fff;">$2,788<br><span style="font-size:9px;opacity:0.7;">221txn</span></td><td style="background:#2d3d6e;color:#fff;">$2,349<br><span style="font-size:9px;opacity:0.7;">189txn</span></td><td style="background:#2d3d6e;color:#fff;">$1,937<br><span style="font-size:9px;opacity:0.7;">169txn</span></td><td style="background:#2d3d6e;color:#fff;">$1,843<br><span style="font-size:9px;opacity:0.7;">151txn</span></td><td style="background:#2d3d6e;color:#fff;">$2,324<br><span style="font-size:9px;opacity:0.7;">177txn</span></td><td style="background:#2d3d6e;color:#fff;">$2,060<br><span style="font-size:9px;opacity:0.7;">141txn</span></td><td style="background:#D4A853;color:#333;">$1,763<br><span style="font-size:9px;opacity:0.7;">102txn</span></td><td style="background:#D4A853;color:#333;">$1,346<br><span style="font-size:9px;opacity:0.7;">84txn</span></td><td style="background:#D4A853;color:#333;">$1,389<br><span style="font-size:9px;opacity:0.7;">72txn</span></td><td style="background:#f5f5f5;color:#333;">$113<br><span style="font-size:9px;opacity:0.7;">11txn</span></td></tr><tr><td class="hm-row-label">Mountain View</td><td style="background:#D4A853;color:#333;">$983<br><span style="font-size:9px;opacity:0.7;">78txn</span></td><td style="background:#2d3d6e;color:#fff;">$1,215<br><span style="font-size:9px;opacity:0.7;">77txn</span></td><td style="background:#1B2A4A;color:#fff;">$2,112<br><span style="font-size:9px;opacity:0.7;">116txn</span></td><td style="background:#1B2A4A;color:#fff;">$2,068<br><span style="font-size:9px;opacity:0.7;">130txn</span></td><td style="background:#1B2A4A;color:#fff;">$1,869<br><span style="font-size:9px;opacity:0.7;">110txn</span></td><td style="background:#1B2A4A;color:#fff;">$1,734<br><span style="font-size:9px;opacity:0.7;">127txn</span></td><td style="background:#2d3d6e;color:#fff;">$1,261<br><span style="font-size:9px;opacity:0.7;">106txn</span></td><td style="background:#D4A853;color:#333;">$1,054<br><span style="font-size:9px;opacity:0.7;">75txn</span></td><td style="background:#D4A853;color:#333;">$905<br><span style="font-size:9px;opacity:0.7;">79txn</span></td><td style="background:#D4A853;color:#333;">$952<br><span style="font-size:9px;opacity:0.7;">82txn</span></td><td style="background:#F0CC87;color:#333;">$570<br><span style="font-size:9px;opacity:0.7;">49txn</span></td><td style="background:#F0CC87;color:#333;">$610<br><span style="font-size:9px;opacity:0.7;">41txn</span></td><td style="background:#fff3d6;color:#333;">$253<br><span style="font-size:9px;opacity:0.7;">24txn</span></td><td style="background:#fff3d6;color:#333;">$165<br><span style="font-size:9px;opacity:0.7;">15txn</span></td><td style="background:#fff3d6;color:#333;">$181<br><span style="font-size:9px;opacity:0.7;">9txn</span></td></tr></tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- PAYMENT METHODS BY LOCATION -->
-  <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Payment Methods by Location</div>
-    <div class="payment-grid">
-      
-    <div class="payment-card">
-      <div class="payment-loc-title">San Jose</div>
-      <div class="payment-method-row">
-        <div class="payment-method-header"><span class="payment-method-name">Card</span><span class="payment-method-stat">$29,431.07 (78.2%)</span></div>
-        <div class="payment-bar-track"><div class="payment-bar-fill card" style="width:78.2%"></div></div>
-      </div>
-      <div class="payment-method-row">
-        <div class="payment-method-header"><span class="payment-method-name">3rd Party / External</span><span class="payment-method-stat">$6,651.52 (17.7%)</span></div>
-        <div class="payment-bar-track"><div class="payment-bar-fill external" style="width:17.7%"></div></div>
-      </div>
-      <div class="payment-method-row">
-        <div class="payment-method-header"><span class="payment-method-name">Cash</span><span class="payment-method-stat">$974.95 (2.6%)</span></div>
-        <div class="payment-bar-track"><div class="payment-bar-fill cash" style="width:2.6%"></div></div>
-      </div>
-      <div class="payment-method-row">
-        <div class="payment-method-header"><span class="payment-method-name">Gift Card</span><span class="payment-method-stat">$580.34 (1.5%)</span></div>
-        <div class="payment-bar-track"><div class="payment-bar-fill" style="width:1.5%;background:#8b5cf6;"></div></div>
-      </div>
-      <div class="payment-total-row"><span>Total Payments</span><span style="font-weight:700;">$37,637.88 (2,297 txns)</span></div>
-    </div>
-      
-    <div class="payment-card">
-      <div class="payment-loc-title">Mountain View</div>
-      <div class="payment-method-row">
-        <div class="payment-method-header"><span class="payment-method-name">Card</span><span class="payment-method-stat">$11,644.36 (57.5%)</span></div>
-        <div class="payment-bar-track"><div class="payment-bar-fill card" style="width:57.5%"></div></div>
-      </div>
-      <div class="payment-method-row">
-        <div class="payment-method-header"><span class="payment-method-name">3rd Party / External</span><span class="payment-method-stat">$8,248.08 (40.7%)</span></div>
-        <div class="payment-bar-track"><div class="payment-bar-fill external" style="width:40.7%"></div></div>
-      </div>
-      <div class="payment-method-row">
-        <div class="payment-method-header"><span class="payment-method-name">Cash</span><span class="payment-method-stat">$317.68 (1.6%)</span></div>
-        <div class="payment-bar-track"><div class="payment-bar-fill cash" style="width:1.6%"></div></div>
-      </div>
-      <div class="payment-method-row">
-        <div class="payment-method-header"><span class="payment-method-name">Gift Card</span><span class="payment-method-stat">$57.04 (0.3%)</span></div>
-        <div class="payment-bar-track"><div class="payment-bar-fill" style="width:0.5%;background:#8b5cf6;"></div></div>
-      </div>
-      <div class="payment-total-row"><span>Total Payments</span><span style="font-weight:700;">$20,267.16 (1,239 txns)</span></div>
-    </div>
-    </div>
-  </div>
-
-  <!-- TOP PRODUCTS -->
-  <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Top Products by Location</div>
-    <div class="products-grid">
-      
-    <div class="product-table-wrap">
-      <div class="product-table-title">San Jose -- Top Products</div>
-      <table>
-        <thead><tr><th>#</th><th>Product</th><th>Qty</th><th>Revenue</th></tr></thead>
-        <tbody>
-        <tr>
-          <td><span class="rank-badge top3">1</span></td>
-          <td style="font-weight:600;">Peanut Butter Latte</td>
-          <td class="td-num">371</td>
-          <td class="td-num">$3,286.65</td>
-        </tr>
-        <tr>
-          <td><span class="rank-badge top3">2</span></td>
-          <td style="font-weight:600;">IPA</td>
-          <td class="td-num">307</td>
-          <td class="td-num">$3,115.10</td>
-        </tr>
-        <tr>
-          <td><span class="rank-badge top3">3</span></td>
-          <td style="font-weight:600;">Banana Matcha</td>
-          <td class="td-num">228</td>
-          <td class="td-num">$1,982.66</td>
-        </tr>
-        <tr>
-          <td><span class="rank-badge ">4</span></td>
-          <td style="font-weight:600;">Banana Latte</td>
-          <td class="td-num">217</td>
-          <td class="td-num">$1,940.12</td>
-        </tr>
-        <tr>
-          <td><span class="rank-badge ">5</span></td>
-          <td style="font-weight:600;">Ales / Lagers</td>
-          <td class="td-num">134</td>
-          <td class="td-num">$1,395.25</td>
-        </tr>
-        <tr>
-          <td><span class="rank-badge ">6</span></td>
-          <td style="font-weight:600;">Ube Coffee</td>
-          <td class="td-num">180</td>
-          <td class="td-num">$1,368.71</td>
-        </tr>
-        <tr>
-          <td><span class="rank-badge ">7</span></td>
-          <td style="font-weight:600;">Horchata Latte</td>
-          <td class="td-num">165</td>
-          <td class="td-num">$1,366.72</td>
-        </tr>
-        <tr>
-          <td><span class="rank-badge ">8</span></td>
-          <td style="font-weight:600;">Hawaiian Latte</td>
-          <td class="td-num">165</td>
-          <td class="td-num">$1,294.22</td>
-        </tr>
-        <tr>
-          <td><span class="rank-badge ">9</span></td>
-          <td style="font-weight:600;">Strawberry Matcha</td>
-          <td class="td-num">146</td>
-          <td class="td-num">$1,264.51</td>
-        </tr>
-        <tr>
-          <td><span class="rank-badge ">10</span></td>
-          <td style="font-weight:600;">Salted Cream Coffee</td>
-          <td class="td-num">142</td>
-          <td class="td-num">$1,106.08</td>
-        </tr></tbody>
-      </table>
-    </div>
-      
-    <div class="product-table-wrap">
-      <div class="product-table-title">Mountain View -- Top Products</div>
-      <table>
-        <thead><tr><th>#</th><th>Product</th><th>Qty</th><th>Revenue</th></tr></thead>
-        <tbody>
-        <tr>
-          <td><span class="rank-badge top3">1</span></td>
-          <td style="font-weight:600;">Banana Matcha</td>
-          <td class="td-num">169</td>
-          <td class="td-num">$1,527.92</td>
-        </tr>
-        <tr>
-          <td><span class="rank-badge top3">2</span></td>
-          <td style="font-weight:600;">Peanut Butter Latte</td>
-          <td class="td-num">169</td>
-          <td class="td-num">$1,521.54</td>
-        </tr>
-        <tr>
-          <td><span class="rank-badge top3">3</span></td>
-          <td style="font-weight:600;">Banana Latte</td>
-          <td class="td-num">132</td>
-          <td class="td-num">$1,175.13</td>
-        </tr>
-        <tr>
-          <td><span class="rank-badge ">4</span></td>
-          <td style="font-weight:600;">Hawaiian Latte</td>
-          <td class="td-num">166</td>
-          <td class="td-num">$1,146.46</td>
-        </tr>
-        <tr>
-          <td><span class="rank-badge ">5</span></td>
-          <td style="font-weight:600;">Ube Coffee</td>
-          <td class="td-num">153</td>
-          <td class="td-num">$1,080.52</td>
-        </tr>
-        <tr>
-          <td><span class="rank-badge ">6</span></td>
-          <td style="font-weight:600;">Salted Cream Coffee</td>
-          <td class="td-num">130</td>
-          <td class="td-num">$902.31</td>
-        </tr>
-        <tr>
-          <td><span class="rank-badge ">7</span></td>
-          <td style="font-weight:600;">Traditional Viet Coffee</td>
-          <td class="td-num">114</td>
-          <td class="td-num">$795.02</td>
-        </tr>
-        <tr>
-          <td><span class="rank-badge ">8</span></td>
-          <td style="font-weight:600;">Horchata Latte</td>
-          <td class="td-num">97</td>
-          <td class="td-num">$776.98</td>
-        </tr>
-        <tr>
-          <td><span class="rank-badge ">9</span></td>
-          <td style="font-weight:600;">Strawberry Matcha</td>
-          <td class="td-num">80</td>
-          <td class="td-num">$702.77</td>
-        </tr>
-        <tr>
-          <td><span class="rank-badge ">10</span></td>
-          <td style="font-weight:600;">Matcha Latte</td>
-          <td class="td-num">75</td>
-          <td class="td-num">$587.22</td>
-        </tr></tbody>
-      </table>
-    </div>
     </div>
   </div>
 
   <!-- LABOR ANALYSIS -->
   <div class="section">
     <div class="section-title"><span class="section-bullet">&#9679;</span> Labor Analysis</div>
-    <div class="labor-kpi-grid">
-      <div class="labor-kpi-card">
-        <div class="labor-kpi-label">Total Labor Cost</div>
-        <div class="labor-kpi-value" style="color:var(--text-dark);">$11,785.82</div>
-        <div class="labor-kpi-sub">24.09% of net sales</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px;">
+      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 22px;border-top:3px solid var(--green);">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:12px;">Combined</div>
+        <div class="fin-row"><span class="fin-row-label">Total Hours</span><span class="fin-row-val">561.6h</span></div>
+        <div class="fin-row"><span class="fin-row-label">Total Cost</span><span class="fin-row-val">$10,835.71</span></div>
+        <div class="fin-row"><span class="fin-row-label">% of Net Sales</span><span class="fin-row-val" style="color:var(--green);">24.0%</span></div>
+        <div class="fin-row"><span class="fin-row-label">Revenue/Labor Hr</span><span class="fin-row-val">$80.46</span></div>
+        <div class="fin-row"><span class="fin-row-label">Staff Count</span><span class="fin-row-val">28</span></div>
       </div>
-      <div class="labor-kpi-card">
-        <div class="labor-kpi-label">Total Hours</div>
-        <div class="labor-kpi-value" style="color:var(--text-dark);">594</div>
-        <div class="labor-kpi-sub">SJ 357 | MV 237</div>
+      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 22px;border-top:3px solid var(--amber);">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:12px;">&#127978; San Jose</div>
+        <div class="fin-row"><span class="fin-row-label">Hours</span><span class="fin-row-val">353.8h</span></div>
+        <div class="fin-row"><span class="fin-row-label">Cost</span><span class="fin-row-val">$6,700.65</span></div>
+        <div class="fin-row"><span class="fin-row-label">% of SJ Net Sales</span><span class="fin-row-val" style="color:var(--green);">23.9%</span></div>
+        <div class="fin-row"><span class="fin-row-label">Revenue/Labor Hr</span><span class="fin-row-val">$79.16</span></div>
+        <div class="fin-row"><span class="fin-row-label">Avg Hourly Rate</span><span class="fin-row-val">$18.94</span></div>
       </div>
-      <div class="labor-kpi-card">
-        <div class="labor-kpi-label">Rev / Labor Hour</div>
-        <div class="labor-kpi-value color-green">$82.43</div>
-        <div class="labor-kpi-sub">SJ $90.89 | MV $69.64</div>
-      </div>
-      <div class="labor-kpi-card">
-        <div class="labor-kpi-label">WoW Labor Change</div>
-        <div class="labor-kpi-value color-red">+15.22%</div>
-        <div class="labor-kpi-sub">$11,785.82 vs $10,228.62</div>
+      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 22px;border-top:3px solid var(--navy-mid);">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:12px;">&#9968; Mountain View</div>
+        <div class="fin-row"><span class="fin-row-label">Hours</span><span class="fin-row-val">207.8h</span></div>
+        <div class="fin-row"><span class="fin-row-label">Cost</span><span class="fin-row-val">$4,135.06</span></div>
+        <div class="fin-row"><span class="fin-row-label">% of MV Net Sales</span><span class="fin-row-val" style="color:var(--green);">24.1%</span></div>
+        <div class="fin-row"><span class="fin-row-label">Revenue/Labor Hr</span><span class="fin-row-val">$82.66</span></div>
+        <div class="fin-row"><span class="fin-row-label">Avg Hourly Rate</span><span class="fin-row-val">$19.90</span></div>
       </div>
     </div>
 
-    <div class="labor-legend">
-      <div class="labor-legend-item"><div class="labor-legend-dot" style="background:#dcfce7;border:1px solid #166534;"></div> Under 25% = Lean</div>
-      <div class="labor-legend-item"><div class="labor-legend-dot" style="background:#dcfce7;border:1px solid #166534;"></div> 25-30% = Optimal</div>
-      <div class="labor-legend-item"><div class="labor-legend-dot" style="background:#fef9c3;border:1px solid #854d0e;"></div> 30-35% = Watch</div>
-      <div class="labor-legend-item"><div class="labor-legend-dot" style="background:#fee2e2;border:1px solid #991b1b;"></div> Over 35% = High</div>
-    </div>
-
-    <!-- Labor by Location -->
-    <div class="labor-loc-grid">
-      <div class="labor-loc-card">
-        <div class="labor-loc-header">
-          San Jose Labor
-          <div class="labor-loc-subheader">$7,033.00 | 357 hrs | 21.69%</div>
-        </div>
-        <div class="labor-eff-wrap">
-          <table style="width:100%;border-collapse:collapse;">
-            <thead><tr><th>Day</th><th>Revenue</th><th>Hours</th><th>Cost</th><th>Staff</th><th>Rev/Hr</th><th>Labor%</th></tr></thead>
-            <tbody>
-              
-        <tr>
-          <td class="td-day">Monday<span class="td-date">03-23</span></td>
-          <td class="td-num">$1,995.82</td>
-          <td class="td-num">34.6</td>
-          <td class="td-num">$719.15</td>
-          <td class="td-muted">6</td>
-          <td class="td-num">$57.68</td>
-          <td><span class="pct-badge pct-red">36.0%</span></td>
-        </tr>
-        <tr>
-          <td class="td-day">Tuesday<span class="td-date">03-24</span></td>
-          <td class="td-num">$2,352.79</td>
-          <td class="td-num">40.8</td>
-          <td class="td-num">$820.02</td>
-          <td class="td-muted">6</td>
-          <td class="td-num">$57.67</td>
-          <td><span class="pct-badge pct-yellow">34.9%</span></td>
-        </tr>
-        <tr>
-          <td class="td-day">Wednesday<span class="td-date">03-25</span></td>
-          <td class="td-num">$3,094.58</td>
-          <td class="td-num">36.7</td>
-          <td class="td-num">$732.98</td>
-          <td class="td-muted">7</td>
-          <td class="td-num">$84.32</td>
-          <td><span class="pct-badge pct-green">23.7%</span></td>
-        </tr>
-        <tr>
-          <td class="td-day">Thursday<span class="td-date">03-26</span></td>
-          <td class="td-num">$4,152.78</td>
-          <td class="td-num">70.9</td>
-          <td class="td-num">$1,463.62</td>
-          <td class="td-muted">10</td>
-          <td class="td-num">$58.57</td>
-          <td><span class="pct-badge pct-red">35.2%</span></td>
-        </tr>
-        <tr>
-          <td class="td-day">Friday<span class="td-date">03-27</span></td>
-          <td class="td-num">$7,054.15</td>
-          <td class="td-num">54.7</td>
-          <td class="td-num">$992.13</td>
-          <td class="td-muted">9</td>
-          <td class="td-num">$128.96</td>
-          <td><span class="pct-badge pct-green">14.1%</span></td>
-        </tr>
-        <tr>
-          <td class="td-day">Saturday<span class="td-date">03-28</span></td>
-          <td class="td-num">$7,786.02</td>
-          <td class="td-num">61.4</td>
-          <td class="td-num">$1,177.18</td>
-          <td class="td-muted">10</td>
-          <td class="td-num">$126.81</td>
-          <td><span class="pct-badge pct-green">15.1%</span></td>
-        </tr>
-        <tr>
-          <td class="td-day">Sunday<span class="td-date">03-29</span></td>
-          <td class="td-num">$5,916.80</td>
-          <td class="td-num">52.3</td>
-          <td class="td-num">$1,027.23</td>
-          <td class="td-muted">10</td>
-          <td class="td-num">$113.13</td>
-          <td><span class="pct-badge pct-green">17.4%</span></td>
-        </tr>
-            </tbody>
-          </table>
-        </div>
+    <!-- Daily Labor Efficiency -->
+    <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;">
+      <div style="padding:14px 16px;font-size:13px;font-weight:700;color:var(--text-dark);border-bottom:1px solid var(--border-light);background:#f8f8fb;">
+        Daily Labor Efficiency (Revenue per Labor Hour)
       </div>
-      <div class="labor-loc-card">
-        <div class="labor-loc-header mv">
-          Mountain View Labor
-          <div class="labor-loc-subheader">$4,752.82 | 237 hrs | 28.82%</div>
-        </div>
-        <div class="labor-eff-wrap">
-          <table style="width:100%;border-collapse:collapse;">
-            <thead><tr><th>Day</th><th>Revenue</th><th>Hours</th><th>Cost</th><th>Staff</th><th>Rev/Hr</th><th>Labor%</th></tr></thead>
-            <tbody>
-              
-        <tr>
-          <td class="td-day">Monday<span class="td-date">03-23</span></td>
-          <td class="td-num">$1,368.74</td>
-          <td class="td-num">28.1</td>
-          <td class="td-num">$563.11</td>
-          <td class="td-muted">5</td>
-          <td class="td-num">$48.71</td>
-          <td><span class="pct-badge pct-red">41.1%</span></td>
-        </tr>
-        <tr>
-          <td class="td-day">Tuesday<span class="td-date">03-24</span></td>
-          <td class="td-num">$1,684.88</td>
-          <td class="td-num">25.3</td>
-          <td class="td-num">$490.73</td>
-          <td class="td-muted">5</td>
-          <td class="td-num">$66.60</td>
-          <td><span class="pct-badge pct-green">29.1%</span></td>
-        </tr>
-        <tr>
-          <td class="td-day">Wednesday<span class="td-date">03-25</span></td>
-          <td class="td-num">$2,417.39</td>
-          <td class="td-num">39.2</td>
-          <td class="td-num">$826.67</td>
-          <td class="td-muted">6</td>
-          <td class="td-num">$61.67</td>
-          <td><span class="pct-badge pct-yellow">34.2%</span></td>
-        </tr>
-        <tr>
-          <td class="td-day">Thursday<span class="td-date">03-26</span></td>
-          <td class="td-num">$2,179.46</td>
-          <td class="td-num">31.7</td>
-          <td class="td-num">$626.48</td>
-          <td class="td-muted">5</td>
-          <td class="td-num">$68.75</td>
-          <td><span class="pct-badge pct-green">28.7%</span></td>
-        </tr>
-        <tr>
-          <td class="td-day">Friday<span class="td-date">03-27</span></td>
-          <td class="td-num">$2,943.23</td>
-          <td class="td-num">51.8</td>
-          <td class="td-num">$1,056.97</td>
-          <td class="td-muted">6</td>
-          <td class="td-num">$56.82</td>
-          <td><span class="pct-badge pct-red">35.9%</span></td>
-        </tr>
-        <tr>
-          <td class="td-day">Saturday<span class="td-date">03-28</span></td>
-          <td class="td-num">$2,761.76</td>
-          <td class="td-num">31.8</td>
-          <td class="td-num">$627.17</td>
-          <td class="td-muted">6</td>
-          <td class="td-num">$86.85</td>
-          <td><span class="pct-badge pct-green">22.7%</span></td>
-        </tr>
-        <tr>
-          <td class="td-day">Sunday<span class="td-date">03-29</span></td>
-          <td class="td-num">$3,072.43</td>
-          <td class="td-num">23.9</td>
-          <td class="td-num">$463.84</td>
-          <td class="td-muted">5</td>
-          <td class="td-num">$128.55</td>
-          <td><span class="pct-badge pct-green">15.1%</span></td>
-        </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Day</th>
+            <th>SJ Hours</th><th>SJ Cost</th><th>SJ Rev/Hr</th>
+            <th>MV Hours</th><th>MV Cost</th><th>MV Rev/Hr</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:600;">Mon 3/30</td>
+            <td class="td-num">51.0h</td>
+            <td class="td-num">$925.15</td>
+            <td class="td-num">$51.54/hr</td>
+            <td class="td-num">21.2h</td>
+            <td class="td-num">$409.56</td>
+            <td class="td-num">$86.37/hr</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">Tue 3/31</td>
+            <td class="td-num">44.4h</td>
+            <td class="td-num">$785.94</td>
+            <td class="td-num">$54.53/hr</td>
+            <td class="td-num">16.9h</td>
+            <td class="td-num">$324.19</td>
+            <td class="td-num">$121.82/hr</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">Wed 4/1</td>
+            <td class="td-num">36.3h</td>
+            <td class="td-num">$732.21</td>
+            <td class="td-num">$85.34/hr</td>
+            <td class="td-num">31.0h</td>
+            <td class="td-num">$617.93</td>
+            <td class="td-num">$70.50/hr</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">Thu 4/2</td>
+            <td class="td-num">65.0h</td>
+            <td class="td-num">$1,214.49</td>
+            <td class="td-num">$55.70/hr</td>
+            <td class="td-num">24.0h</td>
+            <td class="td-num">$472.80</td>
+            <td class="td-num">$100.92/hr</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">Fri 4/3</td>
+            <td class="td-num">55.0h</td>
+            <td class="td-num">$1,053.52</td>
+            <td class="td-num">$89.48/hr</td>
+            <td class="td-num">49.6h</td>
+            <td class="td-num">$1,020.69</td>
+            <td class="td-num">$62.59/hr</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">Sat 4/4</td>
+            <td class="td-num">62.3h</td>
+            <td class="td-num">$1,203.82</td>
+            <td class="td-num">$104.45/hr</td>
+            <td class="td-num">37.8h</td>
+            <td class="td-num">$761.88</td>
+            <td class="td-num">$69.77/hr</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">Sun 4/5</td>
+            <td class="td-num">39.8h</td>
+            <td class="td-num">$785.51</td>
+            <td class="td-num">$118.55/hr</td>
+            <td class="td-num">27.4h</td>
+            <td class="td-num">$528.00</td>
+            <td class="td-num">$106.40/hr</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
-  <!-- REFUNDS -->
+  <!-- DAILY REVENUE -->
   <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Refunds &amp; Returns</div>
-    <div class="refund-summary">
-      &#9888; Total refunds this week: $46.49 (5 refunds)
-      &nbsp;&mdash;&nbsp;
-      <span class="refund-loc-sj">SJ: $18.73 (3)</span>
-      &nbsp;|&nbsp;
-      <span class="refund-loc-mv">MV: $27.76 (2)</span>
-      &nbsp;|&nbsp;
-      Returns: $44.75
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Daily Revenue Breakdown</div>
+    <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;">
+      <table>
+        <thead>
+          <tr><th>Day</th><th>Total</th><th>San Jose</th><th>Mountain View</th><th></th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:600;">Mon 3/30</td>
+            <td class="td-num">$4,454.71</td>
+            <td class="td-num">$2,626.17</td>
+            <td class="td-num">$1,828.54</td>
+            <td><div style="height:14px;background:#e8ecf4;border-radius:3px;overflow:hidden;"><div style="height:100%;width:48.7%;background:var(--amber);border-radius:3px;"></div></div></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">Tue 3/31</td>
+            <td class="td-num">$4,472.16</td>
+            <td class="td-num">$2,419.52</td>
+            <td class="td-num">$2,052.64</td>
+            <td><div style="height:14px;background:#e8ecf4;border-radius:3px;overflow:hidden;"><div style="height:100%;width:48.9%;background:var(--amber);border-radius:3px;"></div></div></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">Wed 4/1</td>
+            <td class="td-num">$5,281.52</td>
+            <td class="td-num">$3,096.02</td>
+            <td class="td-num">$2,185.50</td>
+            <td><div style="height:14px;background:#e8ecf4;border-radius:3px;overflow:hidden;"><div style="height:100%;width:57.8%;background:var(--amber);border-radius:3px;"></div></div></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">Thu 4/2</td>
+            <td class="td-num">$6,043.97</td>
+            <td class="td-num">$3,621.89</td>
+            <td class="td-num">$2,422.08</td>
+            <td><div style="height:14px;background:#e8ecf4;border-radius:3px;overflow:hidden;"><div style="height:100%;width:66.1%;background:var(--amber);border-radius:3px;"></div></div></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">Fri 4/3</td>
+            <td class="td-num">$8,029.40</td>
+            <td class="td-num">$4,926.09</td>
+            <td class="td-num">$3,103.31</td>
+            <td><div style="height:14px;background:#e8ecf4;border-radius:3px;overflow:hidden;"><div style="height:100%;width:87.8%;background:var(--amber);border-radius:3px;"></div></div></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">Sat 4/4</td>
+            <td class="td-num">$9,143.28</td>
+            <td class="td-num">$6,509.39</td>
+            <td class="td-num">$2,633.89</td>
+            <td><div style="height:14px;background:#e8ecf4;border-radius:3px;overflow:hidden;"><div style="height:100%;width:100.0%;background:var(--amber);border-radius:3px;"></div></div></td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">Sun 4/5</td>
+            <td class="td-num">$7,637.92</td>
+            <td class="td-num">$4,720.48</td>
+            <td class="td-num">$2,917.44</td>
+            <td><div style="height:14px;background:#e8ecf4;border-radius:3px;overflow:hidden;"><div style="height:100%;width:83.5%;background:var(--amber);border-radius:3px;"></div></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- HOURLY REVENUE -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Hourly Revenue Pattern</div>
+    <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;">
+      <table>
+        <thead>
+          <tr><th>Hour</th><th>Revenue</th><th>Orders</th><th></th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>6AM</td>
+            <td class="td-num">$54.10</td>
+            <td class="td-num">9</td>
+            <td><div style="height:14px;background:#e8ecf4;border-radius:3px;overflow:hidden;"><div style="height:100%;width:1.0%;background:var(--green);border-radius:3px;"></div></div></td>
+          </tr>
+          <tr>
+            <td>7AM</td>
+            <td class="td-num">$1,495.21</td>
+            <td class="td-num">126</td>
+            <td><div style="height:14px;background:#e8ecf4;border-radius:3px;overflow:hidden;"><div style="height:100%;width:28.2%;background:var(--green);border-radius:3px;"></div></div></td>
+          </tr>
+          <tr>
+            <td>8AM</td>
+            <td class="td-num">$3,955.90</td>
+            <td class="td-num">255</td>
+            <td><div style="height:14px;background:#e8ecf4;border-radius:3px;overflow:hidden;"><div style="height:100%;width:74.6%;background:var(--green);border-radius:3px;"></div></div></td>
+          </tr>
+          <tr>
+            <td>9AM</td>
+            <td class="td-num">$5,304.01</td>
+            <td class="td-num">322</td>
+            <td><div style="height:14px;background:#e8ecf4;border-radius:3px;overflow:hidden;"><div style="height:100%;width:100.0%;background:var(--green);border-radius:3px;"></div></div></td>
+          </tr>
+          <tr>
+            <td>10AM</td>
+            <td class="td-num">$4,992.40</td>
+            <td class="td-num">336</td>
+            <td><div style="height:14px;background:#e8ecf4;border-radius:3px;overflow:hidden;"><div style="height:100%;width:94.1%;background:var(--green);border-radius:3px;"></div></div></td>
+          </tr>
+          <tr>
+            <td>11AM</td>
+            <td class="td-num">$3,859.56</td>
+            <td class="td-num">277</td>
+            <td><div style="height:14px;background:#e8ecf4;border-radius:3px;overflow:hidden;"><div style="height:100%;width:72.8%;background:var(--green);border-radius:3px;"></div></div></td>
+          </tr>
+          <tr>
+            <td>12PM</td>
+            <td class="td-num">$4,550.59</td>
+            <td class="td-num">327</td>
+            <td><div style="height:14px;background:#e8ecf4;border-radius:3px;overflow:hidden;"><div style="height:100%;width:85.8%;background:var(--green);border-radius:3px;"></div></div></td>
+          </tr>
+          <tr>
+            <td>1PM</td>
+            <td class="td-num">$4,001.46</td>
+            <td class="td-num">305</td>
+            <td><div style="height:14px;background:#e8ecf4;border-radius:3px;overflow:hidden;"><div style="height:100%;width:75.4%;background:var(--green);border-radius:3px;"></div></div></td>
+          </tr>
+          <tr>
+            <td>2PM</td>
+            <td class="td-num">$3,417.71</td>
+            <td class="td-num">274</td>
+            <td><div style="height:14px;background:#e8ecf4;border-radius:3px;overflow:hidden;"><div style="height:100%;width:64.4%;background:var(--green);border-radius:3px;"></div></div></td>
+          </tr>
+          <tr>
+            <td>3PM</td>
+            <td class="td-num">$3,389.56</td>
+            <td class="td-num">260</td>
+            <td><div style="height:14px;background:#e8ecf4;border-radius:3px;overflow:hidden;"><div style="height:100%;width:63.9%;background:var(--green);border-radius:3px;"></div></div></td>
+          </tr>
+          <tr>
+            <td>4PM</td>
+            <td class="td-num">$2,784.98</td>
+            <td class="td-num">237</td>
+            <td><div style="height:14px;background:#e8ecf4;border-radius:3px;overflow:hidden;"><div style="height:100%;width:52.5%;background:var(--green);border-radius:3px;"></div></div></td>
+          </tr>
+          <tr>
+            <td>5PM</td>
+            <td class="td-num">$1,786.40</td>
+            <td class="td-num">140</td>
+            <td><div style="height:14px;background:#e8ecf4;border-radius:3px;overflow:hidden;"><div style="height:100%;width:33.7%;background:var(--green);border-radius:3px;"></div></div></td>
+          </tr>
+          <tr>
+            <td>6PM</td>
+            <td class="td-num">$1,772.59</td>
+            <td class="td-num">138</td>
+            <td><div style="height:14px;background:#e8ecf4;border-radius:3px;overflow:hidden;"><div style="height:100%;width:33.4%;background:var(--green);border-radius:3px;"></div></div></td>
+          </tr>
+          <tr>
+            <td>7PM</td>
+            <td class="td-num">$1,618.88</td>
+            <td class="td-num">116</td>
+            <td><div style="height:14px;background:#e8ecf4;border-radius:3px;overflow:hidden;"><div style="height:100%;width:30.5%;background:var(--green);border-radius:3px;"></div></div></td>
+          </tr>
+          <tr>
+            <td>8PM</td>
+            <td class="td-num">$754.04</td>
+            <td class="td-num">60</td>
+            <td><div style="height:14px;background:#e8ecf4;border-radius:3px;overflow:hidden;"><div style="height:100%;width:14.2%;background:var(--green);border-radius:3px;"></div></div></td>
+          </tr>
+          <tr>
+            <td>9PM</td>
+            <td class="td-num">$361.82</td>
+            <td class="td-num">22</td>
+            <td><div style="height:14px;background:#e8ecf4;border-radius:3px;overflow:hidden;"><div style="height:100%;width:6.8%;background:var(--green);border-radius:3px;"></div></div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TOP PRODUCTS -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Top Products (Combined)</div>
+    <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;margin-bottom:16px;">
+      <table>
+        <thead><tr><th>#</th><th>Product</th><th>Qty</th><th>Revenue</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="rank-badge top3">1</span></td>
+            <td style="font-weight:600;">Peanut Butter Latte</td>
+            <td class="td-num">620</td>
+            <td class="td-num">$5,091.49</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge top3">2</span></td>
+            <td style="font-weight:600;">Banana Matcha</td>
+            <td class="td-num">444</td>
+            <td class="td-num">$3,644.46</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge top3">3</span></td>
+            <td style="font-weight:600;">Banana Latte</td>
+            <td class="td-num">385</td>
+            <td class="td-num">$3,190.86</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">4</span></td>
+            <td style="font-weight:600;">Hawaiian Latte</td>
+            <td class="td-num">363</td>
+            <td class="td-num">$2,481.87</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">5</span></td>
+            <td style="font-weight:600;">Ube Coffee</td>
+            <td class="td-num">318</td>
+            <td class="td-num">$2,115.07</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">6</span></td>
+            <td style="font-weight:600;">Horchata Latte</td>
+            <td class="td-num">245</td>
+            <td class="td-num">$1,826.87</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">7</span></td>
+            <td style="font-weight:600;">IPA</td>
+            <td class="td-num">191</td>
+            <td class="td-num">$1,768.40</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">8</span></td>
+            <td style="font-weight:600;">Strawberry Matcha</td>
+            <td class="td-num">219</td>
+            <td class="td-num">$1,761.71</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">9</span></td>
+            <td style="font-weight:600;">Salted Cream Coffee</td>
+            <td class="td-num">242</td>
+            <td class="td-num">$1,641.22</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">10</span></td>
+            <td style="font-weight:600;">Traditional Viet Coffee</td>
+            <td class="td-num">235</td>
+            <td class="td-num">$1,570.18</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">11</span></td>
+            <td style="font-weight:600;">Matcha Latte</td>
+            <td class="td-num">206</td>
+            <td class="td-num">$1,564.31</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">12</span></td>
+            <td style="font-weight:600;">Can - Tall 16oz</td>
+            <td class="td-num">187</td>
+            <td class="td-num">$1,383.87</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">13</span></td>
+            <td style="font-weight:600;">Pandan Cream Latte</td>
+            <td class="td-num">165</td>
+            <td class="td-num">$1,172.73</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">14</span></td>
+            <td style="font-weight:600;">Vanilla Latte</td>
+            <td class="td-num">163</td>
+            <td class="td-num">$1,158.20</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">15</span></td>
+            <td style="font-weight:600;">Blueberry Matcha</td>
+            <td class="td-num">128</td>
+            <td class="td-num">$1,049.68</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;">
+        <div style="padding:14px 16px;font-size:13px;font-weight:700;color:var(--text-dark);border-bottom:1px solid var(--border-light);background:#f8f8fb;">
+          &#127978; San Jose Top 10
+        </div>
+        <table>
+          <thead><tr><th>#</th><th>Product</th><th>Qty</th><th>Revenue</th></tr></thead>
+          <tbody>
+          <tr>
+            <td><span class="rank-badge top3">1</span></td>
+            <td style="font-weight:600;">Peanut Butter Latte</td>
+            <td class="td-num">407</td>
+            <td class="td-num">$3,336.02</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge top3">2</span></td>
+            <td style="font-weight:600;">Banana Matcha</td>
+            <td class="td-num">267</td>
+            <td class="td-num">$2,167.60</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge top3">3</span></td>
+            <td style="font-weight:600;">Banana Latte</td>
+            <td class="td-num">236</td>
+            <td class="td-num">$1,931.32</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">4</span></td>
+            <td style="font-weight:600;">IPA</td>
+            <td class="td-num">183</td>
+            <td class="td-num">$1,689.40</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">5</span></td>
+            <td style="font-weight:600;">Hawaiian Latte</td>
+            <td class="td-num">175</td>
+            <td class="td-num">$1,260.48</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">6</span></td>
+            <td style="font-weight:600;">Can - Tall 16oz</td>
+            <td class="td-num">159</td>
+            <td class="td-num">$1,169.29</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">7</span></td>
+            <td style="font-weight:600;">Ube Coffee</td>
+            <td class="td-num">153</td>
+            <td class="td-num">$1,073.97</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">8</span></td>
+            <td style="font-weight:600;">Horchata Latte</td>
+            <td class="td-num">140</td>
+            <td class="td-num">$1,028.64</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">9</span></td>
+            <td style="font-weight:600;">Strawberry Matcha</td>
+            <td class="td-num">127</td>
+            <td class="td-num">$1,013.67</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">10</span></td>
+            <td style="font-weight:600;">Ales / Lagers</td>
+            <td class="td-num">99</td>
+            <td class="td-num">$920.25</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);overflow:hidden;">
+        <div style="padding:14px 16px;font-size:13px;font-weight:700;color:var(--text-dark);border-bottom:1px solid var(--border-light);background:#f8f8fb;">
+          &#9968; Mountain View Top 10
+        </div>
+        <table>
+          <thead><tr><th>#</th><th>Product</th><th>Qty</th><th>Revenue</th></tr></thead>
+          <tbody>
+          <tr>
+            <td><span class="rank-badge top3">1</span></td>
+            <td style="font-weight:600;">Peanut Butter Latte</td>
+            <td class="td-num">213</td>
+            <td class="td-num">$1,755.47</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge top3">2</span></td>
+            <td style="font-weight:600;">Banana Matcha</td>
+            <td class="td-num">177</td>
+            <td class="td-num">$1,476.86</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge top3">3</span></td>
+            <td style="font-weight:600;">Banana Latte</td>
+            <td class="td-num">149</td>
+            <td class="td-num">$1,259.54</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">4</span></td>
+            <td style="font-weight:600;">Hawaiian Latte</td>
+            <td class="td-num">188</td>
+            <td class="td-num">$1,221.39</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">5</span></td>
+            <td style="font-weight:600;">Ube Coffee</td>
+            <td class="td-num">165</td>
+            <td class="td-num">$1,041.10</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">6</span></td>
+            <td style="font-weight:600;">Horchata Latte</td>
+            <td class="td-num">105</td>
+            <td class="td-num">$798.23</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">7</span></td>
+            <td style="font-weight:600;">Strawberry Matcha</td>
+            <td class="td-num">92</td>
+            <td class="td-num">$748.04</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">8</span></td>
+            <td style="font-weight:600;">Traditional Viet Coffee</td>
+            <td class="td-num">116</td>
+            <td class="td-num">$742.20</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">9</span></td>
+            <td style="font-weight:600;">Salted Cream Coffee</td>
+            <td class="td-num">111</td>
+            <td class="td-num">$725.39</td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge ">10</span></td>
+            <td style="font-weight:600;">Matcha Latte</td>
+            <td class="td-num">93</td>
+            <td class="td-num">$712.70</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
   <!-- INSIGHTS -->
   <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Insights &amp; Recommendations</div>
-    <div class="reco-grid">
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Data-Driven Insights &amp; Recommendations</div>
+    <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:22px 24px;">
       
-    <div class="reco-card green">
-      <div class="reco-icon">&#x1F4C8;</div>
-      <div>
-        <div class="reco-title">Strong Revenue Growth: Net Sales Up +6.61% WoW</div>
-        <div class="reco-text">Net sales reached $48,920.53 this week, up from $45,887.34 last week. Transactions grew +4.58% to 3,536. Saturday was the peak revenue day at $10,547.78 combined.</div>
-      </div>
-    </div>
-    <div class="reco-card green">
-      <div class="reco-icon">&#x1F3AF;</div>
-      <div>
-        <div class="reco-title">Labor Efficiency Excellent at 24.09% of Net Sales</div>
-        <div class="reco-text">Total labor cost of $11,785.82 is well-optimized. SJ runs at 21.69% ($90.89/hr) while MV is at 28.82% ($69.64/hr). MV could benefit from staffing adjustments to close the efficiency gap.</div>
-      </div>
-    </div>
-    <div class="reco-card purple">
-      <div class="reco-icon">&#x1F4C5;</div>
-      <div>
-        <div class="reco-title">Weekend Drives 40.1% of Weekly Revenue</div>
-        <div class="reco-text">Saturday-Sunday generated $19,537.01 vs $29,243.82 for Mon-Fri. Saturday alone ($10,547.78) outperformed all weekdays. Consider weekend-specific promotions and ensure adequate staffing for the Saturday rush.</div>
-      </div>
-    </div>
-    <div class="reco-card amber">
-      <div class="reco-icon">&#x2615;</div>
-      <div>
-        <div class="reco-title">Top Seller: Peanut Butter Latte (540 units, $4,808.19)</div>
-        <div class="reco-text">Specialty drinks continue to lead. The top 5 products account for significant revenue. Consider bundling or featured combos to increase average order value, which sits at $13.83.</div>
-      </div>
-    </div>
-    <div class="reco-card gray">
-      <div class="reco-icon">&#x1F680;</div>
-      <div>
-        <div class="reco-title">Mountain View Contributes 33.7% of Revenue</div>
-        <div class="reco-text">MV generated $16,491.19 in net sales with 1,239 transactions. With a higher labor cost ratio (28.82% vs SJ's 21.69%), optimizing MV shift schedules could improve margins. Peak day at MV was Sunday.</div>
-      </div>
-    </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;">
+          <div style="min-width:24px;height:24px;border-radius:50%;background:var(--amber);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;">1</div>
+          <div style="font-size:13px;color:var(--text-mid);line-height:1.5;">Revenue dropped 7.6% week-over-week ($45,184.16 vs $48,906.25). Monitor if this is a one-week dip or emerging trend. Consider targeted promotions for the coming week.</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;">
+          <div style="min-width:24px;height:24px;border-radius:50%;background:var(--amber);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;">2</div>
+          <div style="font-size:13px;color:var(--text-mid);line-height:1.5;">San Jose drives 62% of revenue ($28,007.06) vs Mountain View at 38% ($17,177.10). SJ operating margin is 53.8% vs MV at 51.8% -- both locations show similar profitability.</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;">
+          <div style="min-width:24px;height:24px;border-radius:50%;background:var(--amber);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;">3</div>
+          <div style="font-size:13px;color:var(--text-mid);line-height:1.5;">Labor costs are balanced: SJ 23.9% vs MV 24.1%. Combined labor at 24.0% of net sales. Revenue per labor hour: $80.46.</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;">
+          <div style="min-width:24px;height:24px;border-radius:50%;background:var(--amber);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;">4</div>
+          <div style="font-size:13px;color:var(--text-mid);line-height:1.5;">Peanut Butter Latte remains the #1 seller at $5,091.49 (620 units). The top 5 products account for $16,523.75 of revenue. Ensure consistent supply and quality for these high-performers.</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="min-width:24px;height:24px;border-radius:50%;background:var(--amber);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;">5</div>
+          <div style="font-size:13px;color:var(--text-mid);line-height:1.5;">Third-party delivery platforms account for 28.9% of total payments ($15,275.11). While this drives volume, delivery commissions may be 15-30%. Consider in-house ordering or loyalty programs to shift customers to direct purchases.</div>
+        </div>
     </div>
   </div>
 
-  <div style="text-align:center;padding:24px 0 12px;font-size:11px;color:var(--text-muted);">
-    Pour Decisions Craft Coffee &amp; Beer &bull; Weekly Performance Report &bull; Generated automatically from Square POS data
+  <!-- FOOTER -->
+  <div style="text-align:center;padding:20px;font-size:11px;color:var(--text-muted);">
+    Pour Decisions Craft Coffee &amp; Beer -- Weekly Performance Report -- Generated Apr 6, 2026
+    <br>Data sourced from Square Dashboard via Payments API (source of truth). All metrics dashboard-verified.
   </div>
 
 </div>
