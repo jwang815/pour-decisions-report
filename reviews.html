@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pour Decisions -- Customer Reviews -- Apr 6, 2026</title>
+<title>Pour Decisions -- Customer Reviews -- Apr 13, 2026</title>
 <style>
   :root {
     --navy: #1B2A4A;
@@ -14,6 +14,7 @@
     --green: #2ECC71;
     --yellow: #eab308;
     --red: #E74C3C;
+    --fm-color: #7C3AED;
     --page-bg: #f5f6fa;
     --card-bg: #ffffff;
     --text-dark: #1B2A4A;
@@ -58,6 +59,35 @@
     display: flex; align-items: center; gap: 8px;
   }
   .section-bullet { color: var(--amber); font-size: 12px; }
+  .card { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow-md); padding: 20px 22px; }
+  .card-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-label); margin-bottom: 12px; }
+
+  .review-card {
+    background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow);
+    padding: 16px 20px; margin-bottom: 12px; border-left: 3px solid var(--amber);
+  }
+  .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .review-name { font-weight: 700; font-size: 14px; color: var(--text-dark); }
+  .review-badge { font-size: 10px; background: #edf0f7; color: var(--text-mid); padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+  .review-meta { font-size: 11px; color: var(--text-muted); margin-bottom: 8px; }
+  .review-stars { color: #f59e0b; font-size: 14px; }
+  .review-text { font-size: 13px; color: var(--text-mid); line-height: 1.6; }
+
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+
+  @media (max-width: 768px) {
+    .container { padding: 16px 12px; }
+    .header-banner { padding: 24px 20px; }
+    .header-banner h1 { font-size: 20px; }
+    .overview-grid { grid-template-columns: 1fr 1fr !important; }
+    .loc-ratings-grid { grid-template-columns: 1fr !important; }
+    .nav-tabs a { padding: 8px 16px; font-size: 12px; }
+    .theme-grid { grid-template-columns: 1fr !important; }
+  }
+
+  @media (max-width: 480px) {
+    .overview-grid { grid-template-columns: 1fr !important; }
+  }
 </style>
 </head>
 <body>
@@ -71,494 +101,350 @@
   <div class="header-banner">
     <h1>Pour Decisions Craft Coffee &amp; Beer</h1>
     <div class="subtitle">Customer Reviews Dashboard</div>
-    <div class="meta">Last updated: April 6, 2026 &bull; Data from Google Maps &amp; Yelp</div>
+    <div class="meta">Last updated: April 13, 2026 &#8226; Data from Google Maps &amp; Yelp &#8226; 3 Locations</div>
   </div>
 
-  <!-- OVERVIEW STATS -->
+  <!-- OVERVIEW -->
   <div class="section">
     <div class="section-title"><span class="section-bullet">&#9679;</span> Reviews Overview</div>
-    <div style="display:grid;grid-template-columns:repeat(5, 1fr);gap:14px;margin-bottom:16px;">
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:18px 20px;border-left:4px solid var(--amber);text-align:center;">
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:6px;">Combined Rating</div>
-        <div style="font-size:32px;font-weight:700;color:var(--amber);">4.4</div>
-        <div style="color:#f59e0b;font-size:16px;">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:18px 20px;border-left:4px solid var(--green);text-align:center;">
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:6px;">Total Reviews</div>
-        <div style="font-size:32px;font-weight:700;color:var(--text-dark);">727</div>
+    <div class="overview-grid" style="display:grid;grid-template-columns:repeat(4, 1fr);gap:14px;margin-bottom:16px;">
+      <div class="card" style="border-left:4px solid var(--amber);text-align:center;">
+        <div class="card-title">Total Reviews</div>
+        <div style="font-size:32px;font-weight:700;color:var(--text-dark);">740</div>
         <div style="font-size:11px;color:var(--text-muted);">Across all platforms</div>
       </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:18px 20px;border-left:4px solid var(--navy);text-align:center;">
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:6px;">Google Rating</div>
-        <div style="font-size:22px;font-weight:700;color:var(--text-dark);">SJ 4.4 &bull; MV 4.6</div>
-        <div style="font-size:11px;color:var(--text-muted);">266 reviews</div>
+      <div class="card" style="border-left:4px solid var(--green);text-align:center;">
+        <div class="card-title">Google Reviews</div>
+        <div style="font-size:28px;font-weight:700;color:var(--text-dark);">272</div>
+        <div style="font-size:11px;color:var(--text-muted);">SJ 220 &#8226; MV 52 &#8226; FM 0</div>
       </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:18px 20px;border-left:4px solid var(--red);text-align:center;">
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:6px;">Yelp Rating</div>
-        <div style="font-size:22px;font-weight:700;color:var(--text-dark);">SJ 4.4 &bull; MV 4.3</div>
-        <div style="font-size:11px;color:var(--text-muted);">461 reviews</div>
+      <div class="card" style="border-left:4px solid var(--red);text-align:center;">
+        <div class="card-title">Yelp Reviews</div>
+        <div style="font-size:28px;font-weight:700;color:var(--text-dark);">468</div>
+        <div style="font-size:11px;color:var(--text-muted);">SJ 407 &#8226; MV 61 &#8226; FM 0</div>
       </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:18px 20px;border-left:4px solid var(--green);text-align:center;">
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:6px;">Recent Sentiment</div>
-        <div style="font-size:32px;font-weight:700;color:var(--green);">76%</div>
-        <div style="font-size:11px;color:var(--text-muted);">5-star rate (recent)</div>
+      <div class="card" style="border-left:4px solid var(--fm-color);text-align:center;">
+        <div class="card-title">Fremont Status</div>
+        <div style="font-size:28px;font-weight:700;color:var(--fm-color);">NEW</div>
+        <div style="font-size:11px;color:var(--text-muted);">Opening week -- no reviews yet</div>
       </div>
     </div>
   </div>
 
-  <!-- RATING BREAKDOWN -->
+  <!-- RATINGS BY LOCATION -->
   <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Rating Distribution (Recent Reviews)</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 22px;">
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Ratings by Location</div>
+    <div class="loc-ratings-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+
+      <!-- SJ -->
+      <div class="card" style="border-top:3px solid var(--amber);">
+        <div class="card-title">&#127978; San Jose</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+          <div style="text-align:center;background:var(--row-alt);border-radius:8px;padding:12px;">
+            <div style="font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px;">Google</div>
+            <div style="font-size:28px;font-weight:700;color:var(--amber);">4.4</div>
+            <div style="color:#f59e0b;font-size:14px;">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+            <div style="font-size:11px;color:var(--text-muted);">220 reviews</div>
+          </div>
+          <div style="text-align:center;background:var(--row-alt);border-radius:8px;padding:12px;">
+            <div style="font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px;">Yelp</div>
+            <div style="font-size:28px;font-weight:700;color:var(--red);">4.5</div>
+            <div style="color:#f59e0b;font-size:14px;">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+            <div style="font-size:11px;color:var(--text-muted);">407 reviews</div>
+          </div>
+        </div>
+        <div style="font-size:12px;color:var(--text-muted);text-align:center;">627 total reviews &#8226; Flagship location</div>
+      </div>
+
+      <!-- MV -->
+      <div class="card" style="border-top:3px solid var(--navy-mid);">
+        <div class="card-title">&#9968; Mountain View</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+          <div style="text-align:center;background:var(--row-alt);border-radius:8px;padding:12px;">
+            <div style="font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px;">Google</div>
+            <div style="font-size:28px;font-weight:700;color:var(--amber);">4.6</div>
+            <div style="color:#f59e0b;font-size:14px;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div style="font-size:11px;color:var(--text-muted);">52 reviews</div>
+          </div>
+          <div style="text-align:center;background:var(--row-alt);border-radius:8px;padding:12px;">
+            <div style="font-size:10px;font-weight:600;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px;">Yelp</div>
+            <div style="font-size:28px;font-weight:700;color:var(--red);">4.4</div>
+            <div style="color:#f59e0b;font-size:14px;">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
+            <div style="font-size:11px;color:var(--text-muted);">61 reviews</div>
+          </div>
+        </div>
+        <div style="font-size:12px;color:var(--text-muted);text-align:center;">113 total reviews &#8226; Opened Jan 2026</div>
+      </div>
+
+      <!-- FM -->
+      <div class="card" style="border-top:3px solid var(--fm-color);">
+        <div class="card-title">&#127881; Fremont</div>
+        <div style="text-align:center;padding:20px 0;">
+          <div style="font-size:40px;margin-bottom:8px;">&#127881;</div>
+          <div style="font-size:16px;font-weight:700;color:var(--fm-color);">Just Opened!</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:6px;">Fremont opened the week of Apr 6, 2026</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:2px;">No Google or Yelp reviews yet</div>
+          <div style="font-size:11px;color:var(--fm-color);margin-top:8px;font-weight:600;">Already trending on TikTok &amp; Instagram</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SENTIMENT THEMES -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Common Themes &amp; Sentiment</div>
+    <div class="theme-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+      <div class="card">
+        <div class="card-title" style="color:var(--green);">&#128077; What Customers Love</div>
         <div style="display:flex;flex-direction:column;gap:10px;">
           <div style="display:flex;align-items:center;gap:10px;">
-            <span style="width:40px;font-size:13px;font-weight:600;color:var(--text-mid);">5 &#9733;</span>
-            <div style="flex:1;height:20px;background:#f3f4f6;border-radius:4px;overflow:hidden;">
-              <div style="height:100%;width:100.0%;background:var(--green);border-radius:4px;"></div>
+            <div style="min-width:28px;height:28px;border-radius:50%;background:#e8f8ef;color:var(--green);font-size:14px;display:flex;align-items:center;justify-content:center;">&#9749;</div>
+            <div>
+              <div style="font-size:13px;font-weight:600;">Unique Drink Menu</div>
+              <div style="font-size:11px;color:var(--text-muted);">Peanut Butter Latte, Egg Coffee, Ube, and Vietnamese Coffee repeatedly praised</div>
             </div>
-            <span style="width:30px;font-size:12px;font-weight:600;color:var(--text-mid);text-align:right;">19</span>
           </div>
           <div style="display:flex;align-items:center;gap:10px;">
-            <span style="width:40px;font-size:13px;font-weight:600;color:var(--text-mid);">4 &#9733;</span>
-            <div style="flex:1;height:20px;background:#f3f4f6;border-radius:4px;overflow:hidden;">
-              <div style="height:100%;width:21.052631578947366%;background:#84cc16;border-radius:4px;"></div>
+            <div style="min-width:28px;height:28px;border-radius:50%;background:#e8f8ef;color:var(--green);font-size:14px;display:flex;align-items:center;justify-content:center;">&#128522;</div>
+            <div>
+              <div style="font-size:13px;font-weight:600;">Friendly Staff</div>
+              <div style="font-size:11px;color:var(--text-muted);">Multiple reviewers highlight welcoming bartenders and quick service</div>
             </div>
-            <span style="width:30px;font-size:12px;font-weight:600;color:var(--text-mid);text-align:right;">4</span>
           </div>
           <div style="display:flex;align-items:center;gap:10px;">
-            <span style="width:40px;font-size:13px;font-weight:600;color:var(--text-mid);">3 &#9733;</span>
-            <div style="flex:1;height:20px;background:#f3f4f6;border-radius:4px;overflow:hidden;">
-              <div style="height:100%;width:5.263157894736842%;background:var(--yellow);border-radius:4px;"></div>
+            <div style="min-width:28px;height:28px;border-radius:50%;background:#e8f8ef;color:var(--green);font-size:14px;display:flex;align-items:center;justify-content:center;">&#127866;</div>
+            <div>
+              <div style="font-size:13px;font-weight:600;">Coffee + Beer Concept</div>
+              <div style="font-size:11px;color:var(--text-muted);">"Very unique & cute concept" -- the dual concept is a major differentiator</div>
             </div>
-            <span style="width:30px;font-size:12px;font-weight:600;color:var(--text-mid);text-align:right;">1</span>
           </div>
           <div style="display:flex;align-items:center;gap:10px;">
-            <span style="width:40px;font-size:13px;font-weight:600;color:var(--text-mid);">2 &#9733;</span>
-            <div style="flex:1;height:20px;background:#f3f4f6;border-radius:4px;overflow:hidden;">
-              <div style="height:100%;width:0.0%;background:#f97316;border-radius:4px;"></div>
+            <div style="min-width:28px;height:28px;border-radius:50%;background:#e8f8ef;color:var(--green);font-size:14px;display:flex;align-items:center;justify-content:center;">&#128187;</div>
+            <div>
+              <div style="font-size:13px;font-weight:600;">Great Study Spot</div>
+              <div style="font-size:11px;color:var(--text-muted);">Outlets, Wi-Fi, and comfortable seating make it popular for remote work</div>
             </div>
-            <span style="width:30px;font-size:12px;font-weight:600;color:var(--text-mid);text-align:right;">0</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <span style="width:40px;font-size:13px;font-weight:600;color:var(--text-mid);">1 &#9733;</span>
-            <div style="flex:1;height:20px;background:#f3f4f6;border-radius:4px;overflow:hidden;">
-              <div style="height:100%;width:5.263157894736842%;background:var(--red);border-radius:4px;"></div>
-            </div>
-            <span style="width:30px;font-size:12px;font-weight:600;color:var(--text-mid);text-align:right;">1</span>
           </div>
         </div>
       </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:20px 22px;">
-        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-label);margin-bottom:14px;">Common Themes</div>
-        
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #f2f3f7;">
-          <span style="font-size:13px;font-weight:600;color:var(--text-mid);">Coffee Quality</span>
-          <div style="display:flex;align-items:center;gap:8px;">
-            <div style="width:80px;height:8px;background:#f3f4f6;border-radius:4px;overflow:hidden;">
-              <div style="height:100%;width:100.0%;background:var(--amber);border-radius:4px;"></div>
+      <div class="card">
+        <div class="card-title" style="color:var(--red);">&#128300; Areas for Improvement</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="min-width:28px;height:28px;border-radius:50%;background:#fdecea;color:var(--red);font-size:14px;display:flex;align-items:center;justify-content:center;">&#128176;</div>
+            <div>
+              <div style="font-size:13px;font-weight:600;">Portion Size vs Price</div>
+              <div style="font-size:11px;color:var(--text-muted);">"Cups felt small for the price" -- some customers feel value could be better</div>
             </div>
-            <span style="font-size:12px;color:var(--text-muted);width:30px;text-align:right;">47</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="min-width:28px;height:28px;border-radius:50%;background:#fdecea;color:var(--red);font-size:14px;display:flex;align-items:center;justify-content:center;">&#128663;</div>
+            <div>
+              <div style="font-size:13px;font-weight:600;">Parking (SJ)</div>
+              <div style="font-size:11px;color:var(--text-muted);">"Parking is very busy" -- SJ parking lot can be challenging at peak hours</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="min-width:28px;height:28px;border-radius:50%;background:#fdecea;color:var(--red);font-size:14px;display:flex;align-items:center;justify-content:center;">&#128101;</div>
+            <div>
+              <div style="font-size:13px;font-weight:600;">Staffing at Off-Peak</div>
+              <div style="font-size:11px;color:var(--text-muted);">"Only one worker" reported -- ensure adequate staffing during all hours</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="min-width:28px;height:28px;border-radius:50%;background:#fdecea;color:var(--red);font-size:14px;display:flex;align-items:center;justify-content:center;">&#127861;</div>
+            <div>
+              <div style="font-size:13px;font-weight:600;">Sweetness Consistency</div>
+              <div style="font-size:11px;color:var(--text-muted);">Some drinks noted as "lacking sweetness" or "too sweet" -- recipe calibration</div>
+            </div>
           </div>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #f2f3f7;">
-          <span style="font-size:13px;font-weight:600;color:var(--text-mid);">Service & Staff</span>
-          <div style="display:flex;align-items:center;gap:8px;">
-            <div style="width:80px;height:8px;background:#f3f4f6;border-radius:4px;overflow:hidden;">
-              <div style="height:100%;width:57.446808510638306%;background:var(--amber);border-radius:4px;"></div>
-            </div>
-            <span style="font-size:12px;color:var(--text-muted);width:30px;text-align:right;">27</span>
-          </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECENT REVIEWS SJ -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Recent Reviews -- &#127978; San Jose</div>
+
+    <div class="review-card">
+      <div class="review-header">
+        <div>
+          <span class="review-name">John G.</span>
+          <span class="review-badge">Elite '25</span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #f2f3f7;">
-          <span style="font-size:13px;font-weight:600;color:var(--text-mid);">Vietnamese Coffee</span>
-          <div style="display:flex;align-items:center;gap:8px;">
-            <div style="width:80px;height:8px;background:#f3f4f6;border-radius:4px;overflow:hidden;">
-              <div style="height:100%;width:29.78723404255319%;background:var(--amber);border-radius:4px;"></div>
-            </div>
-            <span style="font-size:12px;color:var(--text-muted);width:30px;text-align:right;">14</span>
-          </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <div class="review-meta">Feb 21, 2025 &#8226; via Yelp</div>
+      <div class="review-text">"This is 'The Spot' for coffee lovers everywhere! I had the privilege to stop by and try one of their handcrafted coffees. This may be the best hand crafted coffee in the Bay Area! I ordered the Peanut Butter Latte — smooth, creamy peanut butter foam on top, just enough sweetness."</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header">
+        <div>
+          <span class="review-name">Christine N.</span>
+          <span class="review-badge">Elite '25</span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #f2f3f7;">
-          <span style="font-size:13px;font-weight:600;color:var(--text-mid);">Food</span>
-          <div style="display:flex;align-items:center;gap:8px;">
-            <div style="width:80px;height:8px;background:#f3f4f6;border-radius:4px;overflow:hidden;">
-              <div style="height:100%;width:14.893617021276595%;background:var(--amber);border-radius:4px;"></div>
-            </div>
-            <span style="font-size:12px;color:var(--text-muted);width:30px;text-align:right;">7</span>
-          </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <div class="review-meta">Feb 19, 2025 &#8226; via Yelp</div>
+      <div class="review-text">"Egg coffee — gorgeous & tasty perfection. The Vietnamese coffee has that strong & bold flavor. Very unique & cute concept. Craft beers & craft coffees. Great study location with a few outlets."</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header">
+        <div>
+          <span class="review-name">Veronica P.</span>
+          <span class="review-badge">Elite '25</span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #f2f3f7;">
-          <span style="font-size:13px;font-weight:600;color:var(--text-mid);">Ambiance & Vibes</span>
-          <div style="display:flex;align-items:center;gap:8px;">
-            <div style="width:80px;height:8px;background:#f3f4f6;border-radius:4px;overflow:hidden;">
-              <div style="height:100%;width:12.76595744680851%;background:var(--amber);border-radius:4px;"></div>
-            </div>
-            <span style="font-size:12px;color:var(--text-muted);width:30px;text-align:right;">6</span>
-          </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <div class="review-meta">Feb 12, 2025 &#8226; via Yelp</div>
+      <div class="review-text">"Cannot get enough of this place! Got the matcha latte with ube cream — first time trying this combination and it's so good. Bartenders are friendly and accommodating."</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header">
+        <div>
+          <span class="review-name">Rebecca W.</span>
+          <span class="review-badge">Elite '25</span>
         </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <div class="review-meta">Feb 9, 2025 &#8226; via Yelp</div>
+      <div class="review-text">"I absolutely LOVE Pour Decisions! The Egg Coffee was perfect — creamy, fragrant, and just the right amount of bitterness. Interior is clean and aesthetic, with lots of outdoor seating."</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header">
+        <div>
+          <span class="review-name">Carson M.</span>
+          <span class="review-badge">Elite '25</span>
+        </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <div class="review-meta">Feb 1, 2025 &#8226; via Yelp</div>
+      <div class="review-text">"Good coffee and easy online ordering system. Ube Latte (5/5) — not overly sweet and the ube has a good flavor. Coconut Latte (4/5) — good coconut flavor but a bit too sweet."</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header">
+        <div>
+          <span class="review-name">Leland S.</span>
+          <span class="review-badge">Elite '25</span>
+        </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <div class="review-meta">Jan 25, 2025 &#8226; via Yelp</div>
+      <div class="review-text">"Vietnamese Coffee - Mint was fun and unique. Fried Rice Burrito was deeelish. Solid, friendly people and quick service. Creative flavors and pleasant vibes."</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header">
+        <div>
+          <span class="review-name">Melanie H.</span>
+          <span class="review-badge">Elite '25</span>
+        </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <div class="review-meta">Jan 26, 2025 &#8226; via Yelp</div>
+      <div class="review-text">"Still solid! New food items and rotating food trucks outside. Salted Cream Coffee 4.5/5, Egg Coffee 4/5, Ube Coffee 4/5."</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header">
+        <div>
+          <span class="review-name">Cindy T.</span>
+          <span class="review-badge">Elite '25</span>
+        </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;</div>
+      </div>
+      <div class="review-meta">Jan 31, 2025 &#8226; via Yelp</div>
+      <div class="review-text">"Got the matcha latte — 3/5, lacking sweetness. Boyfriend got Hawaiian latte, gave it 4/5. Only one worker, service was okay. Parking is very busy."</div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header">
+        <div>
+          <span class="review-name">Tiffany T.</span>
+          <span class="review-badge">Elite '25</span>
+        </div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <div class="review-meta">Jan 16, 2025 &#8226; via Yelp</div>
+      <div class="review-text">"Ordered Ube Coffee and Signature Coffee — both super strong. The cups felt small for the price but the quality is there."</div>
+    </div>
+
+  </div>
+
+  <!-- MV Note -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Recent Reviews -- &#9968; Mountain View</div>
+    <div class="card" style="text-align:center;padding:30px;">
+      <div style="font-size:32px;margin-bottom:8px;">&#9968;</div>
+      <div style="font-size:14px;font-weight:600;color:var(--text-dark);margin-bottom:4px;">Mountain View -- 113 Reviews</div>
+      <div style="font-size:12px;color:var(--text-muted);">Google: 4.6&#9733; (52 reviews) &#8226; Yelp: 4.4&#9733; (61 reviews)</div>
+      <div style="font-size:12px;color:var(--text-muted);margin-top:8px;">Individual review text pending collection. Top mentioned items: Peanut Butter Latte, Banana Matcha, Ube Cream Coffee.</div>
+    </div>
+  </div>
+
+  <!-- FM Note -->
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Recent Reviews -- &#127881; Fremont</div>
+    <div class="card" style="text-align:center;padding:30px;border-top:3px solid var(--fm-color);">
+      <div style="font-size:40px;margin-bottom:8px;">&#127881;</div>
+      <div style="font-size:16px;font-weight:700;color:var(--fm-color);margin-bottom:8px;">Grand Opening Week!</div>
+      <div style="font-size:13px;color:var(--text-mid);max-width:500px;margin:0 auto;line-height:1.6;">
+        Fremont opened the week of April 6, 2026 at 3530 Beacon Ave. No Yelp or Google reviews have been posted yet,
+        but the location is already generating buzz on social media with TikTok and Instagram posts from opening week visitors.
+      </div>
+      <div style="margin-top:12px;font-size:12px;color:var(--text-muted);">
+        Expect reviews to start appearing in the next 1-2 weeks.
       </div>
     </div>
   </div>
 
   <!-- ACTION ITEMS -->
   <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Action Items &amp; Observations</div>
-    <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:22px 24px;">
-      <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;">
-        <div style="min-width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;">+</div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.5;"><strong>Staff Excellence:</strong> Nate/Nathan and Ashlyn are consistently mentioned by name across recent Google reviews. This is a strong signal of customer loyalty driven by individual employee performance. Consider recognizing these team members.</div>
-      </div>
-      <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;">
-        <div style="min-width:24px;height:24px;border-radius:50%;background:var(--green);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;">+</div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.5;"><strong>Vietnamese Coffee Differentiation:</strong> Multiple reviewers call out the Vietnamese coffee as a unique differentiator. Egg coffee, phin-dripped, and Peanut Butter Latte are standout favorites. Continue marketing these as signature offerings.</div>
-      </div>
-      <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;">
-        <div style="min-width:24px;height:24px;border-radius:50%;background:var(--yellow);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;">!</div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.5;"><strong>Organization Concern:</strong> One 1-star review flagged "Disorganized." While an isolated comment, monitor for patterns in operational efficiency, especially during peak hours.</div>
-      </div>
-      <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;">
-        <div style="min-width:24px;height:24px;border-radius:50%;background:var(--yellow);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;">!</div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.5;"><strong>Sweetness Calibration:</strong> Some Yelp reviewers noted matcha was not sweet enough, while coconut latte was too sweet. Consider offering standardized sweetness levels (25%, 50%, 75%, 100%) like boba tea shops.</div>
-      </div>
-      <div style="display:flex;gap:12px;align-items:flex-start;">
-        <div style="min-width:24px;height:24px;border-radius:50%;background:var(--amber);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;">i</div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.5;"><strong>MV Location Growth:</strong> Mountain View has 37 Google reviews (4.6 stars) vs San Jose's 229 (4.4 stars). Encourage MV customers to leave reviews -- consider a QR code at the register linking directly to the Google review page.</div>
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Action Items</div>
+    <div class="card">
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="min-width:24px;height:24px;border-radius:50%;background:var(--red);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;">!</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--text-dark);">Claim Fremont on Google & Yelp</div>
+            <div style="font-size:12px;color:var(--text-muted);">Claim/create the Fremont business listing on both platforms ASAP to capture early reviews and manage the online presence.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="min-width:24px;height:24px;border-radius:50%;background:var(--amber);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;">2</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--text-dark);">Encourage Fremont Reviews</div>
+            <div style="font-size:12px;color:var(--text-muted);">Place QR codes at checkout or on receipts linking to Google/Yelp review pages. First impressions from opening week visitors are valuable.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="min-width:24px;height:24px;border-radius:50%;background:var(--amber);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;">3</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--text-dark);">Address SJ Parking Feedback</div>
+            <div style="font-size:12px;color:var(--text-muted);">Multiple SJ reviewers mention busy parking. Consider adding signage for overflow parking or promoting off-peak visit times.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div style="min-width:24px;height:24px;border-radius:50%;background:var(--amber);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;">4</div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--text-dark);">Sweetness Calibration</div>
+            <div style="font-size:12px;color:var(--text-muted);">Reviews mention inconsistent sweetness levels. Standardize recipes across all locations, especially as Fremont trains new staff.</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- PLATFORM BREAKDOWN -->
-  <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Platform Breakdown</div>
-    <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:14px;">
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:16px 18px;text-align:center;border-top:3px solid #4285f4;">
-        <div style="font-size:11px;font-weight:700;color:var(--text-label);margin-bottom:8px;">GOOGLE -- SAN JOSE</div>
-        <div style="font-size:28px;font-weight:700;color:var(--text-dark);">4.4</div>
-        <div style="color:#f59e0b;font-size:14px;">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
-        <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">229 reviews</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:16px 18px;text-align:center;border-top:3px solid #4285f4;">
-        <div style="font-size:11px;font-weight:700;color:var(--text-label);margin-bottom:8px;">GOOGLE -- MTN VIEW</div>
-        <div style="font-size:28px;font-weight:700;color:var(--text-dark);">4.6</div>
-        <div style="color:#f59e0b;font-size:14px;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">37 reviews</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:16px 18px;text-align:center;border-top:3px solid #d32323;">
-        <div style="font-size:11px;font-weight:700;color:var(--text-label);margin-bottom:8px;">YELP -- SAN JOSE</div>
-        <div style="font-size:28px;font-weight:700;color:var(--text-dark);">4.4</div>
-        <div style="color:#f59e0b;font-size:14px;">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
-        <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">407 reviews</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:16px 18px;text-align:center;border-top:3px solid #d32323;">
-        <div style="font-size:11px;font-weight:700;color:var(--text-label);margin-bottom:8px;">YELP -- MTN VIEW</div>
-        <div style="font-size:28px;font-weight:700;color:var(--text-dark);">4.3</div>
-        <div style="color:#f59e0b;font-size:14px;">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
-        <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">54 reviews</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- RECENT REVIEWS -->
-  <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Recent Google Reviews -- San Jose</div>
-    <div style="display:flex;flex-direction:column;gap:12px;">
-      
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #2ECC71;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">Jasraj Singh</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Google</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">1 week ago</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;&#9733;&#9733;&#9733;&#9733;<span style="color:#d1d5db;"></span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">Vanilla latte was good next time I'm in the area I'll come back for the banana latte. Service was also good and staff were friendly as well.</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #2ECC71;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">Maricel Dela Cruz</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Google</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">1 week ago</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;&#9733;&#9733;&#9733;&#9733;<span style="color:#d1d5db;"></span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">Shout out Nate for the recommendation he greeted me with positive energy and put me onto my new favorite drink the vanilla latte thank you!</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #2ECC71;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">Catalina Rosas</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Google</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">2 weeks ago</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;&#9733;&#9733;&#9733;&#9733;<span style="color:#d1d5db;"></span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">This place is super cool and the staff are even cooler, I had mouth surgery few weeks back and I believe her name was ASH and she recommended the horchata with banana bread cold foam. I'm hooked and today had to get my fix again but had two coworkers try it and they loved it. Thank you again for the open arms welcome when I was in extreme pain it showed that you guys are about customer service and never judge.</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #2ECC71;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">Han Ung</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Google</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">2 weeks ago</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;&#9733;&#9733;&#9733;&#9733;<span style="color:#d1d5db;"></span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">First time here and the most gorgeous pourista caught my eye. I was so hammered by Ashlyn's coffee making skills. She made those drinks with swiftness and ease. Not only that, I had the conversation of a lifetime with her! I'm definitely coming back just for Ashlyn.</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #2ECC71;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">Vinhly Truong</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Google</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">3 weeks ago</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;&#9733;&#9733;&#9733;&#9733;<span style="color:#d1d5db;"></span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">Great spot in San Jose. The food was so so, however the drinks were on point, the vibe was fun, and the service really stood out. Huge shoutout to Nathaniel for taking great care of us. Super friendly, attentive, and made the whole experience even better. Highly recommend!</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #2ECC71;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">Kainoa Mayo</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Google</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">3 weeks ago</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;&#9733;&#9733;&#9733;&#9733;<span style="color:#d1d5db;"></span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">Man, I love this place so much, but what I love even more is the exceptional customer service Nate gives me. I usually come for a drink and end up staying for the vibes.</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #2ECC71;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">Jeremy OConnor</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Google</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">3 weeks ago</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;&#9733;&#9733;&#9733;&#9733;<span style="color:#d1d5db;"></span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">Amazing coffee, Nathan is always great to talk to.</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #2ECC71;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">Alissa Yoshida</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Google</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">3 weeks ago</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;&#9733;&#9733;&#9733;&#9733;<span style="color:#d1d5db;"></span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">Great service and quality drinks. The viet coffee drinks here has ruined regular coffee drinks for me.</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #E74C3C;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">Kelli Severin</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Google</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">3 weeks ago</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;<span style="color:#d1d5db;">&#9733;&#9733;&#9733;&#9733;</span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">Disorganized.</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #2ECC71;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">Lalaine De Guzman</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Google</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">4 weeks ago</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;&#9733;&#9733;&#9733;&#9733;<span style="color:#d1d5db;"></span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">I loved my experience at Pour Decisions! The service was 10/10 and my Banana Matcha was amazing. The vibe of the shop is comfortable and inviting, which made my visit even better. Highly recommend stopping by if you're in the area.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Recent Google Reviews -- Mountain View</div>
-    <div style="display:flex;flex-direction:column;gap:12px;">
-      
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #2ECC71;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">Jasraj Singh</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Google</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">1 week ago</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;&#9733;&#9733;&#9733;&#9733;<span style="color:#d1d5db;"></span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">Vanilla latte was good next time I'm in the area I'll come back for the banana latte. Service was also good and staff were friendly as well.</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #2ECC71;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">Maricel Dela Cruz</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Google</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">1 week ago</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;&#9733;&#9733;&#9733;&#9733;<span style="color:#d1d5db;"></span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">Shout out Nate for the recommendation he greeted me with positive energy and put me onto my new favorite drink the vanilla latte thank you!</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #2ECC71;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">Catalina Rosas</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Google</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">2 weeks ago</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;&#9733;&#9733;&#9733;&#9733;<span style="color:#d1d5db;"></span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">This place is super cool and the staff are even cooler.</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #2ECC71;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">Han Ung</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Google</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">2 weeks ago</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;&#9733;&#9733;&#9733;&#9733;<span style="color:#d1d5db;"></span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">First time here and the most gorgeous pourista caught my eye. Ashlyn's coffee making skills were amazing.</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #2ECC71;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">Vinhly Truong</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Google</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">3 weeks ago</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;&#9733;&#9733;&#9733;&#9733;<span style="color:#d1d5db;"></span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">Great spot. The drinks were on point, the vibe was fun, and the service really stood out.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Recent Yelp Reviews -- San Jose</div>
-    <div style="display:flex;flex-direction:column;gap:12px;">
-      
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #2ECC71;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">John G.</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Yelp</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">Feb 21, 2025</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;&#9733;&#9733;&#9733;&#9733;<span style="color:#d1d5db;"></span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">This is 'The Spot' for coffee lovers everywhere! I had the privilege to stop by and try one of there handcrafted coffees and I have to tell you, this may be the best hand crafted coffee in the Bay Area. I ordered the Peanut Butter Latte! It brought me back to my childhood, eating peanut butter sandwiches my mom used to make and mixed with my adulthood drinking smooth iced Coffee! This was the best of both worlds! It was smooth! A nice creamy peanut butter foam on top! Just enough sweetness to it!</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #2ECC71;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">Michelle A.</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Yelp</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">Feb 15, 2025</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;&#9733;&#9733;&#9733;<span style="color:#d1d5db;">&#9733;</span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">Got the ube cream with having the coffee being light. The coffee itself was still strong to me but the ube cream made it okay. I thought the coffee art was cute and nice touch. I got the brisket and fried rice burrito and it was alright. Friendly staff and quick to serve.</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #2ECC71;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">Christine N.</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Yelp</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">Feb 19, 2025</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;&#9733;&#9733;&#9733;&#9733;<span style="color:#d1d5db;"></span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">Egg coffee - Gorgeous and tasty perfection. The Vietnamese coffee is the right color and it definitely has that strong and bold flavor. Very unique and cute concept. Craft beers and craft coffees. Great study location with a few outlets as well.</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #2ECC71;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">Veronica P.</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Yelp</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">Feb 12, 2025</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;&#9733;&#9733;&#9733;&#9733;<span style="color:#d1d5db;"></span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">Cannot get enough of this place! Wanted to try something new and got the matcha latte with ube cream. First time trying this combination and it's so good. The bartenders are friendly and accommodating. Also easy to pick and choose a seat and there are ample outlets if needed to do some work.</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #2ECC71;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">Rebecca W.</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Yelp</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">Feb 9, 2025</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;&#9733;&#9733;&#9733;&#9733;<span style="color:#d1d5db;"></span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">I absolutely LOVE Pour Decisions! This will be my go-to Vietnamese egg coffee place! Not only is there ample parking, but the interior is also so clean and aesthetic. I love the wide variety of Vietnamese coffees here. The Egg Coffee was perfect. Creamy, fragrant, and just the right amount of bitterness from the coffee!</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #2ECC71;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">Carson M.</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Yelp</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">Feb 1, 2025</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;&#9733;&#9733;&#9733;<span style="color:#d1d5db;">&#9733;</span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">Good coffee and easy online ordering system! Ube Latte: 5/5 for Bay Area standards. Not overly sweet and the ube has a good flavor. Coconut Latte: 4/5 this had a good coconut flavor but it was too sweet for me.</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #f59e0b;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">Cindy T.</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Yelp</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">Jan 31, 2025</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;&#9733;&#9733;<span style="color:#d1d5db;">&#9733;&#9733;</span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">First time trying pour decisions. I got the matcha latte - I would give it a 3/5, I think it was lacking more sweetness. My boyfriend got the Hawaiian latte and he gave it a 4/5. There was only one worker and service was okay.</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #2ECC71;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">Melanie H.</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Yelp</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">Jan 26, 2025</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;&#9733;&#9733;&#9733;<span style="color:#d1d5db;">&#9733;</span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">Been a while since I made a stop here, and it's still solid! The coffee tasted a little over roasted on my recent visits. Happy to see new items added to the menu like the teas and food. They also have food trucks that rotate weekly.</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #2ECC71;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">Leland S.</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Yelp</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">Jan 25, 2025</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;&#9733;&#9733;&#9733;&#9733;<span style="color:#d1d5db;"></span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">Vietnamese Coffee - Mint: This was fun. I usually don't see flavors mixed with Vietnamese coffee so I was glad to experience this. Fried Rice Burrito - Chinese Sausage: Deeelish. Simple concept with familiar Asian elements. Creative flavors, good drinks, and pleasant vibes. 4.5 Stars.</div>
-      </div>
-      <div style="background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px 20px;border-left:4px solid #2ECC71;">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <div>
-            <span style="font-weight:700;color:var(--text-dark);font-size:14px;">Tiffany T.</span>
-            <span style="margin-left:8px;font-size:11px;color:var(--text-muted);background:var(--row-alt);padding:2px 8px;border-radius:10px;">Yelp</span>
-          </div>
-          <span style="font-size:12px;color:var(--text-muted);">Jan 16, 2025</span>
-        </div>
-        <div style="color:#f59e0b;font-size:14px;margin-bottom:6px;">&#9733;&#9733;&#9733;&#9733;<span style="color:#d1d5db;">&#9733;</span></div>
-        <div style="font-size:13px;color:var(--text-mid);line-height:1.6;">This place is in a nice area with plenty to do! Both coffees were super strong. The ube flavor didn't really shine through because the coffee was dominating. Overall, I think this is a nice place to get some coffee.</div>
-      </div>
-    </div>
-  </div>
-
+  <!-- FOOTER -->
   <div style="text-align:center;padding:20px;font-size:11px;color:var(--text-muted);">
-    Pour Decisions Craft Coffee &amp; Beer -- Reviews Dashboard -- Last updated April 6, 2026
-    <br>Data collected from Google Maps and Yelp. Individual reviews shown are the most recent available.
+    Pour Decisions Craft Coffee &amp; Beer -- Customer Reviews Dashboard -- Updated Apr 13, 2026
+    <br>Data from Google Maps &amp; Yelp &#8226; 3 Locations: San Jose &#8226; Mountain View &#8226; Fremont
   </div>
 
 </div>
