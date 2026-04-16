@@ -189,7 +189,7 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     border-bottom: none;
   }
-  .pnl-table tr.section-header td:first-child { background: var(--navy); }
+  .pnl-table tr.section-header td:first-child { background: var(--navy); position: sticky; left: 0; z-index: 3; box-shadow: 2px 0 4px rgba(0,0,0,0.06); min-width: 260px; }
 
   /* Sub-group header */
   .pnl-table tr.group-header td {
@@ -197,7 +197,7 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     border-bottom: 1px solid #dde0ea;
   }
-  .pnl-table tr.group-header td:first-child { background: #edf0f7; }
+  .pnl-table tr.group-header td:first-child { background: #edf0f7; position: sticky; left: 0; z-index: 3; box-shadow: 2px 0 4px rgba(0,0,0,0.06); min-width: 260px; }
 
   /* Item rows - indented */
   .pnl-table tr.item-row td:first-child { padding-left: 32px; }
@@ -705,10 +705,10 @@
     var itemIdx = 0;
     rows.forEach(function(row) {
       if (row.type === 'section') {
-        html += '<tr class="section-header"><td colspan="' + (numPeriods + 2) + '">' + row.label + '</td></tr>';
+        html += '<tr class="section-header"><td>' + row.label + '</td><td colspan="' + (numPeriods + 1) + '"></td></tr>';
         itemIdx = 0;
       } else if (row.type === 'group') {
-        html += '<tr class="group-header"><td colspan="' + (numPeriods + 2) + '">' + row.label + '</td></tr>';
+        html += '<tr class="group-header"><td>' + row.label + '</td><td colspan="' + (numPeriods + 1) + '"></td></tr>';
         itemIdx = 0;
       } else if (row.type === 'item' || row.type === 'item2') {
         var cls = row.type === 'item2' ? 'item-row item-row-indent2' : 'item-row';
