@@ -159,7 +159,7 @@
     overflow-x: auto; margin-bottom: 28px;
   }
   .pnl-table {
-    width: 100%; border-collapse: collapse; min-width: 900px;
+    width: 100%; border-collapse: collapse;
     font-size: 13px;
   }
   .pnl-table th {
@@ -167,7 +167,7 @@
     letter-spacing: 0.5px; color: var(--text-label); padding: 12px 14px;
     text-align: right; border-bottom: 2px solid var(--border-light);
     background: #fafbfd; position: sticky; top: 0; z-index: 2;
-    white-space: nowrap;
+    white-space: nowrap; min-width: 90px;
   }
   .pnl-table th:first-child { text-align: left; min-width: 260px; position: sticky; left: 0; z-index: 3; background: #fafbfd; box-shadow: 2px 0 4px rgba(0,0,0,0.06); }
   .pnl-table td {
@@ -234,6 +234,20 @@
     .kpi-grid { grid-template-columns: 1fr 1fr; }
     .kpi-value { font-size: 20px; }
     .controls-row { flex-direction: column; }
+    .pnl-table th:first-child,
+    .pnl-table td:first-child,
+    .pnl-table tr.section-header td:first-child,
+    .pnl-table tr.group-header td:first-child,
+    .pnl-table tr.subtotal-row td:first-child,
+    .pnl-table tr.major-total td:first-child {
+      min-width: 140px; max-width: 140px; width: 140px;
+      overflow: hidden; text-overflow: ellipsis;
+    }
+    .pnl-table td { padding: 8px 10px; }
+    .pnl-table th { padding: 12px 10px; min-width: 80px; }
+    .pnl-table tr.item-row td:first-child { padding-left: 24px; }
+    .pnl-table tr.item-row-indent2 td:first-child { padding-left: 36px; }
+    .pnl-table tr.subtotal-row td:first-child { padding-left: 24px; }
   }
 </style>
 
