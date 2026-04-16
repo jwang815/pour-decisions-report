@@ -297,10 +297,6 @@
     renderDashboard();
   }
 
-  if (localStorage.getItem(AUTH_KEY) === EXPECTED) {
-    unlock();
-  }
-
   window.checkPw = function(e) {
     e.preventDefault();
     var pw = document.getElementById('pw-input').value;
@@ -706,6 +702,11 @@
 
     html += '</tbody>';
     document.getElementById('pnl-table').innerHTML = html;
+  }
+
+  // ── AUTO-LOGIN (must be after data/function definitions) ──
+  if (localStorage.getItem(AUTH_KEY) === EXPECTED) {
+    unlock();
   }
 
   // ── TOGGLE HANDLERS ──
