@@ -229,6 +229,30 @@
     font-style: italic;
   }
 
+  /* Data source disclaimer banner */
+  .data-disclaimer {
+    background: #FEF3C7; border: 1px solid #F59E0B; border-radius: var(--radius);
+    padding: 14px 18px; margin-bottom: 20px; font-size: 12px; line-height: 1.6;
+    color: #92400E;
+  }
+  .data-disclaimer .disclaimer-title {
+    font-weight: 700; font-size: 13px; margin-bottom: 6px; display: flex;
+    align-items: center; gap: 6px; color: #78350F;
+  }
+  .data-disclaimer .source-row {
+    display: flex; align-items: center; gap: 8px; margin-top: 4px;
+  }
+  .data-disclaimer .badge {
+    display: inline-block; font-size: 10px; font-weight: 700; padding: 1px 7px;
+    border-radius: 4px; text-transform: uppercase; letter-spacing: 0.4px;
+    flex-shrink: 0;
+  }
+  .data-disclaimer .badge-verified { background: #D1FAE5; color: #065F46; }
+  .data-disclaimer .badge-estimated { background: #FEE2E2; color: #991B1B; }
+  .data-disclaimer .disclaimer-note {
+    margin-top: 8px; font-size: 11px; color: #B45309; font-style: italic;
+  }
+
   @media (max-width: 768px) {
     .nav-tabs a { padding: 8px 16px; font-size: 12px; }
     .kpi-grid { grid-template-columns: 1fr 1fr; }
@@ -281,6 +305,9 @@
       <button data-period="annual">Annual</button>
     </div>
   </div>
+
+  <!-- Data Source Disclaimer -->
+  <div class="data-disclaimer" id="data-disclaimer"></div>
 
   <!-- KPI Cards -->
   <div class="kpi-grid" id="kpi-grid"></div>
@@ -594,8 +621,32 @@
   // ── RENDER ──
   function renderDashboard() {
     var pd = buildPeriodData(currentLoc, currentPeriod);
+    renderDisclaimer();
     renderKPIs(pd);
     renderTable(pd);
+  }
+
+  function renderDisclaimer() {
+    var el = document.getElementById('data-disclaimer');
+    var html = '<div class="disclaimer-title">&#9888;&#65039; Data Source &amp; Completeness Notice</div>';
+
+    if (currentLoc === 'SJ') {
+      html += '<div class="source-row"><span class="badge badge-verified">Verified</span> SJ Jan&ndash;Dec 2025 &mdash; bookkeeper P&amp;L (accrual basis, exact match)</div>';
+      html += '<div class="source-row"><span class="badge badge-estimated">Estimated</span> SJ Jan&ndash;Apr 2026 &mdash; bank &amp; Square data, not yet reconciled by bookkeeper. Expenses likely undercounted.</div>';
+      html += '<div class="disclaimer-note">$111K+ in unclassified SJ check payments (2025&ndash;2026) are NOT included. Profit is overstated until bookkeeper categorizes those transactions.</div>';
+    } else if (currentLoc === 'MV') {
+      html += '<div class="source-row"><span class="badge badge-estimated">Estimated</span> All MV data &mdash; derived from bank transactions &amp; Square. Many expense categories show $0 where real costs exist but are uncategorized.</div>';
+      html += '<div class="disclaimer-note">No bookkeeper P&amp;L available for Mountain View. Expenses are significantly undercounted&mdash;profit shown is not reliable.</div>';
+    } else if (currentLoc === 'FR') {
+      html += '<div class="source-row"><span class="badge badge-estimated">Estimated</span> All FR data &mdash; derived from bank transactions &amp; Square. Location opened Mar 2026; very limited data available.</div>';
+      html += '<div class="disclaimer-note">No bookkeeper P&amp;L available for Fremont. Buildout costs, deposits, and many expenses are not captured here.</div>';
+    } else {
+      html += '<div class="source-row"><span class="badge badge-verified">Verified</span> SJ Jan&ndash;Dec 2025 &mdash; bookkeeper P&amp;L (exact match)</div>';
+      html += '<div class="source-row"><span class="badge badge-estimated">Estimated</span> SJ 2026 + all MV &amp; FR data &mdash; bank &amp; Square only, not reconciled. Many expense categories undercounted.</div>';
+      html += '<div class="disclaimer-note">Combined net income is overstated. $111K+ in unclassified SJ checks, plus uncategorized MV/FR expenses, owner draws, loan principal, and buildout costs are not reflected. Consult your bookkeeper before using these figures for tax planning.</div>';
+    }
+
+    el.innerHTML = html;
   }
 
   function renderKPIs(pd) {
