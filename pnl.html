@@ -262,6 +262,7 @@
     <div class="period-toggle" id="period-toggle">
       <button class="active" data-period="monthly">Monthly</button>
       <button data-period="quarterly">Quarterly</button>
+      <button data-period="annual">Annual</button>
     </div>
   </div>
 
@@ -439,6 +440,16 @@
 
   var ALL_QUARTERS = ["Q1 2025","Q2 2025","Q3 2025","Q4 2025","Q1 2026","Q2 2026"];
 
+  var ALL_YEARS = ["2025","2026"];
+  var YEAR_MAP = {
+    "2025-01":"2025","2025-02":"2025","2025-03":"2025",
+    "2025-04":"2025","2025-05":"2025","2025-06":"2025",
+    "2025-07":"2025","2025-08":"2025","2025-09":"2025",
+    "2025-10":"2025","2025-11":"2025","2025-12":"2025",
+    "2026-01":"2026","2026-02":"2026","2026-03":"2026",
+    "2026-04":"2026"
+  };
+
   var MONTH_LABELS = {
     "2025-01":"Jan 2025","2025-02":"Feb 2025","2025-03":"Mar 2025",
     "2025-04":"Apr 2025","2025-05":"May 2025","2025-06":"Jun 2025",
@@ -508,8 +519,7 @@
         totals[c] = data[c].reduce(function(a, b) { return a + b; }, 0);
       });
       return {periods: periods, data: data, totals: totals};
-    } else {
-      // quarterly
+    } else if (period === 'quarterly') {
       periods = ALL_QUARTERS;
       var data = {};
       ALL_CODES.forEach(function(c) { data[c] = [0,0,0,0,0,0]; });
@@ -518,6 +528,22 @@
         var qi = ALL_QUARTERS.indexOf(q);
         var md = getMonthData(loc, m);
         ALL_CODES.forEach(function(c) { data[c][qi] += (md[c] || 0); });
+      });
+      var totals = {};
+      ALL_CODES.forEach(function(c) {
+        totals[c] = data[c].reduce(function(a, b) { return a + b; }, 0);
+      });
+      return {periods: periods, data: data, totals: totals};
+    } else {
+      // annual
+      periods = ALL_YEARS;
+      var data = {};
+      ALL_CODES.forEach(function(c) { data[c] = [0,0]; });
+      ALL_MONTHS.forEach(function(m) {
+        var y = YEAR_MAP[m];
+        var yi = ALL_YEARS.indexOf(y);
+        var md = getMonthData(loc, m);
+        ALL_CODES.forEach(function(c) { data[c][yi] += (md[c] || 0); });
       });
       var totals = {};
       ALL_CODES.forEach(function(c) {
