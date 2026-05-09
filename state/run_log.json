@@ -1,0 +1,208 @@
+{
+  "history": [
+    {
+      "cron_id": "dc4e59f2",
+      "last_run": "2026-05-09T13:14:07.328247Z",
+      "run_number": 1,
+      "status": "completed",
+      "report_week": "May 4 - May 10, 2026",
+      "deployment": {
+        "platform": "Vercel",
+        "url": "https://pour-decisions-report.vercel.app",
+        "password_protected": true,
+        "pnl_preserved": true
+      },
+      "key_metrics": {
+        "total_payments": 52998.47,
+        "net_sales": 46201.02,
+        "transactions": 3235,
+        "aov": 14.28,
+        "tips": 2601.95,
+        "labor_cost": 11971.23,
+        "labor_hours": 600.8,
+        "labor_pct_net": 25.9,
+        "cogs": 11871.65,
+        "op_profit": 19098.67,
+        "op_margin_pct": 41.3,
+        "mtd_total": 104688.51,
+        "ytd_total": 1034103.32
+      },
+      "wow": {
+        "payments": -42.0,
+        "net_sales": 0,
+        "gross_sales": 0,
+        "transactions": -41.7,
+        "aov": 0,
+        "tips": -46.1,
+        "labor": 0
+      },
+      "by_store": {
+        "sj": {
+          "payments": 19078.19,
+          "net": 16624.28,
+          "txns": 1170,
+          "aov": 16.31,
+          "tips": 930.02,
+          "labor": 3724.02,
+          "labor_hours": 189.2,
+          "labor_pct": 22.4,
+          "op_profit": 7499.67,
+          "margin": "45.1%"
+        },
+        "mv": {
+          "payments": 12769.99,
+          "net": 11390.62,
+          "txns": 726,
+          "aov": 17.59,
+          "tips": 409.33,
+          "labor": 3122.71,
+          "labor_hours": 153.4,
+          "labor_pct": 27.4,
+          "op_profit": 4198.58,
+          "margin": "36.9%"
+        },
+        "fm": {
+          "payments": 21150.29,
+          "net": 18186.12,
+          "txns": 1339,
+          "aov": 15.8,
+          "tips": 1262.6,
+          "labor": 5124.5,
+          "labor_hours": 258.2,
+          "labor_pct": 28.2,
+          "op_profit": 7400.42,
+          "margin": "40.7%"
+        }
+      },
+      "top_products": [
+        {
+          "name": "Peanut Butter Latte",
+          "qty": 610,
+          "revenue": 5466.98
+        },
+        {
+          "name": "Banana Latte",
+          "qty": 421,
+          "revenue": 3781.19
+        },
+        {
+          "name": "Banana Matcha",
+          "qty": 396,
+          "revenue": 3585.35
+        },
+        {
+          "name": "Hawaiian Latte",
+          "qty": 350,
+          "revenue": 2686.67
+        },
+        {
+          "name": "Ube Coffee",
+          "qty": 352,
+          "revenue": 2505.57
+        }
+      ],
+      "insights_generated": true
+    }
+  ],
+  "cron_id": "dc4e59f2",
+  "last_run": "2026-05-09T13:14:07.328247Z",
+  "run_number": 1,
+  "status": "completed",
+  "report_week": "May 4 - May 10, 2026",
+  "deployment": {
+    "platform": "Vercel",
+    "url": "https://pour-decisions-report.vercel.app",
+    "password_protected": true,
+    "pnl_preserved": true
+  },
+  "key_metrics": {
+    "total_payments": 52998.47,
+    "net_sales": 46201.02,
+    "transactions": 3235,
+    "aov": 14.28,
+    "tips": 2601.95,
+    "labor_cost": 11971.23,
+    "labor_hours": 600.8,
+    "labor_pct_net": 25.9,
+    "cogs": 11871.65,
+    "op_profit": 19098.67,
+    "op_margin_pct": 41.3,
+    "mtd_total": 104688.51,
+    "ytd_total": 1034103.32
+  },
+  "wow": {
+    "payments": -42.0,
+    "net_sales": 0,
+    "gross_sales": 0,
+    "transactions": -41.7,
+    "aov": 0,
+    "tips": -46.1,
+    "labor": 0
+  },
+  "by_store": {
+    "sj": {
+      "payments": 19078.19,
+      "net": 16624.28,
+      "txns": 1170,
+      "aov": 16.31,
+      "tips": 930.02,
+      "labor": 3724.02,
+      "labor_hours": 189.2,
+      "labor_pct": 22.4,
+      "op_profit": 7499.67,
+      "margin": "45.1%"
+    },
+    "mv": {
+      "payments": 12769.99,
+      "net": 11390.62,
+      "txns": 726,
+      "aov": 17.59,
+      "tips": 409.33,
+      "labor": 3122.71,
+      "labor_hours": 153.4,
+      "labor_pct": 27.4,
+      "op_profit": 4198.58,
+      "margin": "36.9%"
+    },
+    "fm": {
+      "payments": 21150.29,
+      "net": 18186.12,
+      "txns": 1339,
+      "aov": 15.8,
+      "tips": 1262.6,
+      "labor": 5124.5,
+      "labor_hours": 258.2,
+      "labor_pct": 28.2,
+      "op_profit": 7400.42,
+      "margin": "40.7%"
+    }
+  },
+  "top_products": [
+    {
+      "name": "Peanut Butter Latte",
+      "qty": 610,
+      "revenue": 5466.98
+    },
+    {
+      "name": "Banana Latte",
+      "qty": 421,
+      "revenue": 3781.19
+    },
+    {
+      "name": "Banana Matcha",
+      "qty": 396,
+      "revenue": 3585.35
+    },
+    {
+      "name": "Hawaiian Latte",
+      "qty": 350,
+      "revenue": 2686.67
+    },
+    {
+      "name": "Ube Coffee",
+      "qty": 352,
+      "revenue": 2505.57
+    }
+  ],
+  "insights_generated": true
+}
