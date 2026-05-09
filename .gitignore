@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+square_data/
+state/run_log.json.bak
+.env
+.DS_Store
+dist/

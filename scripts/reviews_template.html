@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pour Decisions -- Customer Reviews -- {{generated_date}}</title>
+<style>
+  :root {
+    --navy:#1B2A4A; --amber:#D4A853; --green:#2ECC71; --red:#E74C3C;
+    --sj-color:#1B2A4A; --mv-color:#0E7C7B; --fm-color:#7C3AED;
+    --bg:#F8F9FB; --text-dark:#1B2A4A; --text-muted:#6B7280;
+    --border:#E5E7EB; --border-light:#F3F4F6; --card-bg:#FFFFFF;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin:0; background:var(--bg); color:var(--text-dark); }
+  .nav-tabs { background:var(--navy); padding:12px 20px; display:flex; gap:6px; }
+  .nav-tabs a { color:#fff; text-decoration:none; padding:8px 16px; border-radius:6px; font-size:14px; font-weight:500; }
+  .nav-tabs a:hover { background:rgba(255,255,255,0.1); }
+  .nav-tabs a.active { background:var(--amber); color:var(--navy); }
+  .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+  .header-banner { background:linear-gradient(135deg,#1B2A4A,#0E7C7B); color:#fff; padding:32px 24px; border-radius:12px; margin-bottom:24px; }
+  .header-banner h1 { margin:0; font-size:28px; }
+  .subtitle { font-size:15px; opacity:0.9; margin-top:4px; }
+  .meta { font-size:13px; opacity:0.8; margin-top:8px; }
+  .section { margin-bottom:32px; }
+  .section-title { font-size:18px; font-weight:700; color:var(--text-dark); margin:0 0 14px; }
+  .section-bullet { color:var(--amber); margin-right:6px; }
+  .card { background:var(--card-bg); border-radius:10px; padding:18px; box-shadow:0 1px 3px rgba(0,0,0,0.08); }
+  .card-title { font-size:13px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.4px; margin-bottom:8px; }
+  .review-card { background:var(--card-bg); border-radius:8px; padding:14px 16px; box-shadow:0 1px 2px rgba(0,0,0,0.05); margin-bottom:10px; border-left:3px solid var(--border); }
+  .review-card.r5 { border-left-color:var(--green); }
+  .review-card.r4 { border-left-color:#A2D9A2; }
+  .review-card.r3 { border-left-color:var(--amber); }
+  .review-card.r2 { border-left-color:#F39C12; }
+  .review-card.r1 { border-left-color:var(--red); }
+  .review-header { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
+  .review-name { font-weight:600; color:var(--text-dark); }
+  .review-stars { color:var(--amber); white-space:nowrap; font-size:14px; }
+  .review-meta { font-size:11px; color:var(--text-muted); margin-top:2px; margin-bottom:8px; }
+  .review-text { font-size:14px; line-height:1.5; color:#374151; }
+  .review-text a { color:var(--navy); }
+  .source-badge { display:inline-block; padding:1px 6px; border-radius:3px; font-size:10px; font-weight:600; text-transform:uppercase; margin-left:6px; vertical-align:middle; }
+  .source-badge.google { background:#FEF3C7; color:#92400E; }
+  .source-badge.yelp { background:#FEE2E2; color:#991B1B; }
+  .filter-bar { display:flex; gap:10px; margin-bottom:14px; flex-wrap:wrap; }
+  .filter-bar button { padding:6px 12px; font-size:12px; border:1px solid var(--border); background:#fff; color:var(--text-dark); border-radius:6px; cursor:pointer; font-weight:500; }
+  .filter-bar button:hover { background:var(--border-light); }
+  .filter-bar button.active { background:var(--navy); color:#fff; border-color:var(--navy); }
+  .verify-banner { background:#ECFDF5; color:#065F46; padding:8px 12px; border-radius:6px; font-size:12px; margin-bottom:10px; }
+  .verify-banner.fail { background:#FEF2F2; color:#991B1B; }
+  .fin-row { display:flex; justify-content:space-between; padding:4px 0; font-size:13px; }
+  .fin-row-label { color:var(--text-muted); }
+  .fin-row-val { font-weight:600; color:var(--text-dark); }
+  @media (max-width: 768px) {
+    .nav-tabs { padding:10px 14px; }
+    .container { padding:14px; }
+    .overview-grid { grid-template-columns: 1fr 1fr !important; }
+    .ratings-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav-tabs">
+  <a href="index.html">Performance</a>
+  <a href="reviews.html" class="active">Reviews</a>
+  <a href="pnl.html">P&amp;L</a>
+</div>
+
+<div class="container">
+
+  <div class="header-banner">
+    <h1>Pour Decisions Craft Coffee &amp; Beer</h1>
+    <div class="subtitle">Customer Reviews Dashboard</div>
+    <div class="meta">Last updated: {{generated_date}} &#8226; Data from Google Maps &amp; Yelp APIs &#8226; 3 Locations</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Reviews Overview</div>
+{{OVERVIEW_BLOCK}}
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Ratings by Location</div>
+{{RATINGS_BLOCK}}
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Recent Reviews -- &#129378; San Jose</div>
+{{SJ_REVIEWS_BLOCK}}
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Recent Reviews -- &#9968; Mountain View</div>
+{{MV_REVIEWS_BLOCK}}
+  </div>
+
+  <div class="section">
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Recent Reviews -- &#11088; Fremont</div>
+{{FM_REVIEWS_BLOCK}}
+  </div>
+
+  <!-- FOOTER -->
+  <div style="text-align:center;padding:20px;font-size:11px;color:var(--text-muted);">
+    Pour Decisions Craft Coffee &amp; Beer -- Reviews Dashboard -- Generated {{generated_date}}<br>
+    Reviews collected via Google Places API &amp; Yelp Fusion API
+  </div>
+
+</div>
+
+<script>
+  // Filter buttons per section
+  document.querySelectorAll('[data-filter-group]').forEach(group => {
+    const buttons = group.querySelectorAll('button[data-filter]');
+    const cards = document.querySelectorAll('.review-card[data-section="' + group.dataset.filterGroup + '"]');
+    buttons.forEach(btn => btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      cards.forEach(c => {
+        c.style.display = (f === 'all' || c.dataset.source === f || c.dataset.rating === f) ? '' : 'none';
+      });
+    }));
+  });
+</script>
+
+</body>
+</html>

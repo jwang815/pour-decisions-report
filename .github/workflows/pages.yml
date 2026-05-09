@@ -1,7 +1,8 @@
-name: Deploy to GitHub Pages
+name: Deploy to GitHub Pages (DISABLED)
+# Pages was frozen 2026-04-13. Migrated to Vercel via weekly-report.yml.
+# Kept for archival; trigger only manually if you ever need to re-publish to Pages.
 on:
-  push:
-    branches: ["main"]
+  workflow_dispatch:
 permissions:
   contents: read
   pages: write

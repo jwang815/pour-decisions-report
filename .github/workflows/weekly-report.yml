@@ -1,0 +1,176 @@
+name: Weekly Report
+
+# Weekly schedule + manual trigger.
+# Cron: Mondays 10:30 UTC = 3:30am PT (DST) / 2:30am PT (PST)
+# (Old Perplexity cron fired at 10:30 UTC, kept consistent.)
+on:
+  schedule:
+    - cron: '30 10 * * 1'
+  workflow_dispatch:
+    inputs:
+      skip_email:
+        description: 'Skip email notification (debug)'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write   # needed to commit run_log.json back
+
+concurrency:
+  group: weekly-report
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    env:
+      # Pipeline data paths (CI-local)
+      PD_DATA_DIR: ${{ github.workspace }}/square_data
+      PD_OUT_DIR: ${{ github.workspace }}
+      PD_PIPELINE_DIR: ${{ github.workspace }}/scripts
+      PD_RUN_LOG: ${{ github.workspace }}/state/run_log.json
+      # Vercel deploy target paths
+      VERCEL_PROJECT_DIR: ${{ github.workspace }}/dist
+      VERCEL_PROJECT_NAME: pour-decisions-report
+      # Wrapper paths
+      WRAP_SRC_DIR: ${{ github.workspace }}
+      WRAP_OUT_DIR: ${{ github.workspace }}/dist
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Determine run number
+        id: runnum
+        run: |
+          mkdir -p state
+          N=$(python3 scripts/next_run.py)
+          echo "run_number=$N" >> "$GITHUB_OUTPUT"
+          echo "Run number: $N"
+
+      - name: Fetch + compute Square data
+        env:
+          SQUARE_API_TOKEN: ${{ secrets.SQUARE_API_TOKEN }}
+        run: |
+          python3 scripts/fetch_and_compute.py ${{ steps.runnum.outputs.run_number }}
+
+      - name: Reconcile / data-quality checks
+        env:
+          SQUARE_API_TOKEN: ${{ secrets.SQUARE_API_TOKEN }}
+        run: |
+          python3 scripts/reconcile.py "$PD_DATA_DIR/run${{ steps.runnum.outputs.run_number }}"
+
+      - name: Generate insights
+        run: |
+          python3 scripts/generate_insights.py "$PD_DATA_DIR/run${{ steps.runnum.outputs.run_number }}/final.json"
+
+      - name: Build performance report (index.html)
+        run: |
+          python3 scripts/build_report.py "$PD_DATA_DIR/run${{ steps.runnum.outputs.run_number }}"
+
+      - name: Collect reviews via Google Places + Yelp Fusion
+        env:
+          GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
+          YELP_API_KEY: ${{ secrets.YELP_API_KEY }}
+        run: |
+          python3 scripts/collect_reviews_api.py "$PD_DATA_DIR/run${{ steps.runnum.outputs.run_number }}"
+
+      - name: Build reviews page (reviews.html)
+        run: |
+          python3 scripts/build_reviews.py "$PD_DATA_DIR/run${{ steps.runnum.outputs.run_number }}"
+
+      - name: Update run log
+        run: |
+          python3 scripts/update_log.py ${{ steps.runnum.outputs.run_number }}
+
+      - name: Wrap with password gate + bundle for deploy
+        run: |
+          mkdir -p dist
+          node scripts/wrap_and_deploy.js "$WRAP_SRC_DIR" "$WRAP_OUT_DIR"
+          ls -la dist
+
+      - name: Deploy to Vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          node scripts/deploy-vercel-live.js "$VERCEL_TOKEN" "$VERCEL_PROJECT_DIR"
+
+      - name: Commit run_log.json (state)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state/run_log.json
+          if git diff --cached --quiet; then
+            echo "No state changes to commit."
+          else
+            git commit -m "chore: update run_log.json (run #${{ steps.runnum.outputs.run_number }})"
+            git push
+          fi
+
+      - name: Summarize key metrics
+        id: summary
+        if: always()
+        env:
+          RUN_N: ${{ steps.runnum.outputs.run_number }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          run_n = int(os.environ['RUN_N'])
+          path = f"{os.environ['PD_DATA_DIR']}/run{run_n}/final.json"
+          out = open(os.environ['GITHUB_OUTPUT'], 'a')
+          try:
+              d = json.load(open(path))
+              t = d.get('totals', {})
+              dq = d.get('data_quality', {})
+              out.write(f"week={d.get('report_week','?')}\n")
+              out.write(f"payments={t.get('payments',0)}\n")
+              out.write(f"net_sales={t.get('net_sales',0)}\n")
+              out.write(f"transactions={t.get('transactions',0)}\n")
+              out.write(f"labor_pct={t.get('labor_pct_net',0)}\n")
+              out.write(f"op_margin={t.get('op_margin_pct',0)}\n")
+              out.write(f"data_quality={dq.get('overall_status','UNKNOWN')}\n")
+          except Exception as e:
+              out.write("week=ERROR\n")
+              out.write(f"error_msg={str(e)[:200]}\n")
+          out.close()
+          PY
+
+      - name: Send success email
+        if: success() && github.event.inputs.skip_email != 'true'
+        env:
+          GMAIL_USERNAME: ${{ secrets.GMAIL_USERNAME }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          MAIL_TO: jwang815@gmail.com
+          RUN_NUMBER: ${{ steps.runnum.outputs.run_number }}
+          REPORT_WEEK: ${{ steps.summary.outputs.week }}
+          PAYMENTS: ${{ steps.summary.outputs.payments }}
+          NET_SALES: ${{ steps.summary.outputs.net_sales }}
+          TRANSACTIONS: ${{ steps.summary.outputs.transactions }}
+          LABOR_PCT: ${{ steps.summary.outputs.labor_pct }}
+          OP_MARGIN: ${{ steps.summary.outputs.op_margin }}
+          DQ_STATUS: ${{ steps.summary.outputs.data_quality }}
+        run: |
+          python3 scripts/send_email.py success
+
+      - name: Send failure email
+        if: failure() && github.event.inputs.skip_email != 'true'
+        env:
+          GMAIL_USERNAME: ${{ secrets.GMAIL_USERNAME }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          MAIL_TO: jwang815@gmail.com
+          RUN_NUMBER: ${{ steps.runnum.outputs.run_number }}
+          GH_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          python3 scripts/send_email.py failure
