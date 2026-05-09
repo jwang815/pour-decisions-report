@@ -6,7 +6,7 @@ and emails a summary. Cadence: **Mondays 03:30 PT** (cron: `30 10 * * 1` UTC).
 
 ## 1. Required GitHub Actions Secrets
 
-Add all six secrets at:
+Add all five secrets at:
 **Repo → Settings → Secrets and variables → Actions → New repository secret**
 
 | Secret name              | What it is                                                                                          |
@@ -14,9 +14,10 @@ Add all six secrets at:
 | `SQUARE_API_TOKEN`       | Square access token (starts with `EAAA…`).                                                          |
 | `VERCEL_TOKEN`           | Vercel personal token. Create at [vercel.com/account/tokens](https://vercel.com/account/tokens).    |
 | `GOOGLE_PLACES_API_KEY`  | Google Cloud API key with **Places API (New)** enabled.                                             |
-| `YELP_API_KEY`           | Yelp Fusion API key.                                                                                |
 | `GMAIL_USERNAME`         | The Gmail address you want emails sent from (e.g. `jwang815@gmail.com`).                            |
 | `GMAIL_APP_PASSWORD`     | Gmail App Password (16-character, generated with 2FA on).                                           |
+
+**Note on Yelp:** Yelp Fusion now charges $229/mo for review access, so we collect Yelp reviews via Playwright (a headless browser running in the GitHub Actions runner). No Yelp key needed. If Yelp blocks the request on a given week, the dashboard gracefully renders Google reviews only and flags the failure in the address-verify banner.
 
 ### How to add via the GitHub web UI
 
@@ -30,7 +31,6 @@ Add all six secrets at:
 gh secret set SQUARE_API_TOKEN       --body "EAAA..."
 gh secret set VERCEL_TOKEN           --body "vcp_..."
 gh secret set GOOGLE_PLACES_API_KEY  --body "AIza..."
-gh secret set YELP_API_KEY           --body "..."
 gh secret set GMAIL_USERNAME         --body "jwang815@gmail.com"
 gh secret set GMAIL_APP_PASSWORD     --body "abcd efgh ijkl mnop"
 ```
@@ -50,13 +50,9 @@ gh secret set GMAIL_APP_PASSWORD     --body "abcd efgh ijkl mnop"
    - **Application restrictions** → leave **None** (GitHub Actions runners use rotating IPs, so IP restriction won't work).
 6. Make sure billing is enabled on the project. The Places API has a generous free tier; one weekly run uses ~6 requests.
 
-### Yelp Fusion API key
+### Yelp data
 
-1. Go to [yelp.com/developers](https://www.yelp.com/developers).
-2. Sign up or sign in → **Manage App** → **Create New App**.
-3. Fill in the form (any reasonable name + description).
-4. After creation, copy the **API Key** value (long string).
-5. Free tier: 5,000 calls/day. Plenty for weekly runs (~6 calls).
+No API key required — Yelp reviews are scraped from each business page using Playwright (a free, headless Chromium browser) inside the GitHub Actions runner. Each weekly run pulls ~10–20 most-recent reviews per location. If Yelp ever blocks the runner (CAPTCHA / 403), the workflow skips Yelp for that week and the dashboard shows Google-only data with a warning banner.
 
 ### Gmail App Password
 

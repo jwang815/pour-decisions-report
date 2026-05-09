@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""Collect Google + Yelp reviews via official APIs.
+"""Collect Google + Yelp reviews. Google uses official Places API (New).
+Yelp uses Playwright (free; Fusion API is now $229/mo for review access).
 
 Replaces the previous browser_task-based collection. Deterministic, never
 CAPTCHA-blocked, suitable for GitHub Actions.
 
 ENV VARS REQUIRED:
   GOOGLE_PLACES_API_KEY   (Places API (New) — places.googleapis.com)
-  YELP_API_KEY            (Yelp Fusion — api.yelp.com/v3)
+  (no Yelp key; Yelp via Playwright)
 
 USAGE:
   python3 collect_reviews_api.py <run_dir>
@@ -19,13 +20,13 @@ Writes:
 Coverage notes:
   - Google Places API (New) returns up to 5 most-relevant reviews per place,
     plus rating + total user_ratings count.
-  - Yelp Fusion returns up to 3 review excerpts (~160 chars each), plus
-    rating + review count. Yelp ToS forbids storing full reviews — excerpts
+  - Yelp via Playwright fetches the public business page and parses the
+    first ~10–20 reviews. If Yelp blocks (CAPTCHA / 403), we gracefully
     are the official limit.
   - For ratings & counts (the main numbers users care about), both APIs are
     exhaustive. For full reviewer text, the API limits are real ceilings.
 """
-import os, sys, json, urllib.request, urllib.parse, time
+import os, sys, json, urllib.request, urllib.parse, time, re
 from datetime import datetime, timezone
 
 # Verified Google Maps CIDs (from user) — decimal place identifiers
@@ -51,7 +52,7 @@ EXPECTED_ADDRESS = {
 }
 
 GOOGLE_KEY = os.environ.get('GOOGLE_PLACES_API_KEY')
-YELP_KEY = os.environ.get('YELP_API_KEY')
+# YELP_KEY removed — using Playwright now
 
 # ---------- Google Places (New) ----------
 
@@ -133,70 +134,158 @@ def google_collect(loc_code):
         'maps_uri': detail.get('googleMapsUri', f'https://maps.google.com/?cid={cid}'),
     }
 
-# ---------- Yelp Fusion ----------
-
-def yelp_fetch_business(slug):
-    """Return business details by alias/slug."""
-    if not YELP_KEY: return None
-    req = urllib.request.Request(
-        f'https://api.yelp.com/v3/businesses/{slug}',
-        headers={'Authorization': f'Bearer {YELP_KEY}', 'Accept': 'application/json'},
-    )
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.loads(r.read())
-
-def yelp_fetch_reviews(business_id):
-    """Up to 3 review excerpts."""
-    if not YELP_KEY: return []
-    req = urllib.request.Request(
-        f'https://api.yelp.com/v3/businesses/{business_id}/reviews?limit=20&sort_by=newest',
-        headers={'Authorization': f'Bearer {YELP_KEY}', 'Accept': 'application/json'},
-    )
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.loads(r.read()).get('reviews', [])
+# ---------- Yelp via Playwright ----------
 
 def yelp_collect(loc_code):
-    if not YELP_KEY:
-        return {'rating': None, 'count': 0, 'reviews': [], 'error': 'YELP_API_KEY not set'}
+    """Fetch Yelp business page with Playwright, parse rating + count + reviews.
     
+    Defensive: any failure returns a graceful empty payload with error string
+    so build_reviews.py can render the verify-banner and skip Yelp this week.
+    """
     slug = YELP_SLUGS[loc_code]
-    try:
-        biz = yelp_fetch_business(slug)
-    except Exception as e:
-        return {'rating': None, 'count': 0, 'reviews': [], 'error': str(e)[:120]}
+    url = f'https://www.yelp.com/biz/{slug}'
     
-    if not biz:
-        return {'rating': None, 'count': 0, 'reviews': [], 'error': 'biz not found'}
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        return {'rating': None, 'count': 0, 'reviews': [],
+                'error': 'playwright not installed', 'yelp_url': url}
     
     expected = EXPECTED_ADDRESS[loc_code]
-    addr = ' '.join(biz.get('location', {}).get('display_address', []))
-    addr_match = expected in addr
     
-    reviews_raw = []
     try:
-        reviews_raw = yelp_fetch_reviews(biz['id'])
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True, args=['--no-sandbox'])
+            ctx = browser.new_context(
+                user_agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) '
+                           'AppleWebKit/537.36 (KHTML, like Gecko) '
+                           'Chrome/124.0.0.0 Safari/537.36',
+                viewport={'width': 1280, 'height': 900},
+                locale='en-US',
+            )
+            page = ctx.new_page()
+            page.goto(url, wait_until='domcontentloaded', timeout=45000)
+            page.wait_for_timeout(2500)
+            
+            # Detect block / CAPTCHA
+            title = page.title() or ''
+            content_sample = page.content()[:2000].lower()
+            if 'captcha' in content_sample or 'access denied' in content_sample or 'unusual traffic' in content_sample:
+                browser.close()
+                return {'rating': None, 'count': 0, 'reviews': [],
+                        'error': 'Yelp blocked request (CAPTCHA / access-denied)',
+                        'yelp_url': url}
+            
+            # Address (verify it's the right business)
+            addr = ''
+            for sel in ['address', '[data-testid="bizDetailsHeaderAddress"]',
+                        'p:has-text(" CA ")']:
+                try:
+                    el = page.query_selector(sel)
+                    if el:
+                        t = (el.inner_text() or '').strip()
+                        if t and any(c.isdigit() for c in t):
+                            addr = t.replace('\n', ' ')
+                            break
+                except Exception:
+                    continue
+            addr_match = expected in addr if addr else None
+            
+            # Overall rating + count from JSON-LD
+            rating = None
+            count = 0
+            try:
+                ld_handles = page.query_selector_all('script[type="application/ld+json"]')
+                for h in ld_handles:
+                    try:
+                        ld = json.loads(h.inner_text() or '{}')
+                    except Exception:
+                        continue
+                    if isinstance(ld, list):
+                        candidates = ld
+                    else:
+                        candidates = [ld]
+                    for c in candidates:
+                        agg = c.get('aggregateRating') if isinstance(c, dict) else None
+                        if agg:
+                            rating = float(agg.get('ratingValue') or 0) or rating
+                            count = int(agg.get('reviewCount') or 0) or count
+                            break
+                    if rating: break
+            except Exception:
+                pass
+            
+            # Fallback: scrape rating/count from page text if JSON-LD missing
+            if not rating:
+                try:
+                    rating_el = page.query_selector('div[role="img"][aria-label*="star rating"]')
+                    if rating_el:
+                        lbl = rating_el.get_attribute('aria-label') or ''
+                        m = re.search(r'([\d.]+)\s*star', lbl)
+                        if m: rating = float(m.group(1))
+                except Exception: pass
+            if not count:
+                try:
+                    txt = page.inner_text('body')[:5000]
+                    m = re.search(r'([\d,]+)\s+reviews?', txt)
+                    if m: count = int(m.group(1).replace(',', ''))
+                except Exception: pass
+            
+            # Individual reviews
+            reviews = []
+            review_cards = page.query_selector_all('ul.list__09f24__ynIEd > li, [data-testid="serp-ia-card"], section[aria-label*="Recommended Reviews"] li, ul li:has(div[role="img"][aria-label*="star rating"])')
+            seen = set()
+            for card in review_cards[:30]:
+                try:
+                    text_el = (card.query_selector('p[class*="comment"]') or
+                               card.query_selector('span.raw__09f24__T4Ezm') or
+                               card.query_selector('p span'))
+                    text = (text_el.inner_text() if text_el else '').strip()
+                    if not text or len(text) < 20: continue
+                    if text in seen: continue
+                    seen.add(text)
+                    
+                    rt_el = card.query_selector('div[role="img"][aria-label*="star rating"]')
+                    rev_rating = 5
+                    if rt_el:
+                        m = re.search(r'([\d.]+)\s*star', rt_el.get_attribute('aria-label') or '')
+                        if m: rev_rating = int(float(m.group(1)))
+                    
+                    name_el = card.query_selector('a[href*="/user_details"]') or card.query_selector('span[class*="user-passport-info"] a')
+                    name = (name_el.inner_text().strip() if name_el else 'Yelp Reviewer')
+                    
+                    date = ''
+                    for ds in card.query_selector_all('span'):
+                        try:
+                            tx = (ds.inner_text() or '').strip()
+                            if re.match(r'^[A-Z][a-z]{2}\s\d{1,2},\s\d{4}$', tx):
+                                date = tx; break
+                        except Exception: continue
+                    
+                    reviews.append({
+                        'name': name[:80],
+                        'rating': rev_rating,
+                        'date': date,
+                        'text': text[:1500],
+                        'url': url,
+                    })
+                    if len(reviews) >= 20: break
+                except Exception:
+                    continue
+            
+            browser.close()
+            
+            return {
+                'rating': rating,
+                'count': count,
+                'reviews': reviews,
+                'yelp_url': url,
+                'address': addr,
+                'address_verified': addr_match,
+            }
     except Exception as e:
-        print(f'  Yelp reviews error for {slug}: {e}', file=sys.stderr)
-    
-    reviews = []
-    for r in reviews_raw:
-        reviews.append({
-            'name': r.get('user', {}).get('name', 'Yelp Reviewer'),
-            'rating': r.get('rating', 5),
-            'date': r.get('time_created', '')[:10],
-            'text': r.get('text', ''),
-            'url': r.get('url', ''),
-        })
-    
-    return {
-        'rating': biz.get('rating'),
-        'count': biz.get('review_count', 0),
-        'reviews': reviews,
-        'business_id': biz.get('id'),
-        'yelp_url': biz.get('url', f'https://www.yelp.com/biz/{slug}'),
-        'address': addr,
-        'address_verified': addr_match,
-    }
+        return {'rating': None, 'count': 0, 'reviews': [],
+                'error': str(e)[:200], 'yelp_url': url}
 
 # ---------- Main ----------
 

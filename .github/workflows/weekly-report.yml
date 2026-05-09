@@ -52,6 +52,11 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install Playwright (for Yelp review collection)
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+
       - name: Determine run number
         id: runnum
         run: |
@@ -80,10 +85,9 @@ jobs:
         run: |
           python3 scripts/build_report.py "$PD_DATA_DIR/run${{ steps.runnum.outputs.run_number }}"
 
-      - name: Collect reviews via Google Places + Yelp Fusion
+      - name: Collect reviews (Google Places API + Yelp via Playwright)
         env:
           GOOGLE_PLACES_API_KEY: ${{ secrets.GOOGLE_PLACES_API_KEY }}
-          YELP_API_KEY: ${{ secrets.YELP_API_KEY }}
         run: |
           python3 scripts/collect_reviews_api.py "$PD_DATA_DIR/run${{ steps.runnum.outputs.run_number }}"
 

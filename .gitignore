@@ -5,3 +5,5 @@ state/run_log.json.bak
 .env
 .DS_Store
 dist/
+docs_runbook.md
+set_secrets.py
