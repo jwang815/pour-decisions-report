@@ -59,6 +59,28 @@ NEGATIVE_THEMES = [
 def esc(s):
     return html.escape(str(s or ''), quote=True)
 
+def format_review_date(d):
+    """Yelp returns ISO ('2026-04-05T00:43:19Z'); Google returns relative
+    strings ('2 days ago'). Normalize ISO to 'Mon D, YYYY'; pass relative through.
+    Empty -> ''.
+    """
+    s = (d or '').strip()
+    if not s:
+        return ''
+    # ISO datetime detection
+    if 'T' in s and (s.endswith('Z') or '+' in s[10:] or '-' in s[10:]):
+        try:
+            from datetime import datetime
+            dt = datetime.fromisoformat(s.replace('Z', '+00:00'))
+            # Cross-platform '%-d' (Linux) — fall back to lstrip on Windows
+            try:
+                return dt.strftime('%b %-d, %Y')
+            except ValueError:
+                return dt.strftime('%b %d, %Y').replace(' 0', ' ')
+        except Exception:
+            pass
+    return s
+
 def stars(rating, fmt='solid'):
     """Render rating as ★ chars. fmt='solid' = filled+empty; fmt='filled' = only filled."""
     rating = int(round(float(rating or 0)))
@@ -314,9 +336,9 @@ def verify_banner(source_label, entry, source_key=None):
         return ''
     
     if addr_verified:
-        return f'<div class="verify-banner">&#10004; {source_label}: <code>{esc(addr)}</code></div>'
+        return f'<div class="verify-banner">&#10004; {source_label}</div>'
     else:
-        return f'<div class="verify-banner fail">&#10006; {source_label}: <code>{esc(addr)}</code></div>'
+        return f'<div class="verify-banner fail">&#10006; {source_label}: address mismatch</div>'
 
 # ---------- LOCATION TABS (Google + Yelp side-by-side) ----------
 
@@ -325,7 +347,7 @@ def review_card_html(r, source_label):
     rating = int(r.get('rating') or 0) or 5
     rating = max(1, min(5, rating))
     name = esc(r.get('name', f'{source_label} Reviewer'))
-    date_str = esc(r.get('date', ''))
+    date_str = esc(format_review_date(r.get('date', '')))
     text = (r.get('text') or '').strip()
     if not text:
         return ''

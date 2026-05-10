@@ -121,8 +121,63 @@ def google_fetch_place(place_id):
     with urllib.request.urlopen(req, timeout=30) as r:
         return json.loads(r.read())
 
+def google_fetch_reviews_serpapi(place_id, want=12):
+    """Use SerpAPI's google_maps_reviews engine to pull newest reviews
+    (sort_by=newestFirst). Paginates until we have `want` reviews or no more pages.
+    Returns list of review dicts in our normalized shape, or [] if SerpAPI not
+    configured / fails.
+    """
+    api_key = os.environ.get('SERPAPI_KEY', '').strip()
+    if not api_key:
+        return []
+    out = []
+    next_token = None
+    pages = 0
+    while len(out) < want and pages < 4:
+        params = {
+            'engine': 'google_maps_reviews',
+            'place_id': place_id,
+            'sort_by': 'newestFirst',
+            'hl': 'en',
+            'api_key': api_key,
+        }
+        if next_token:
+            params['next_page_token'] = next_token
+            params['num'] = 20  # only allowed on follow-up pages
+        try:
+            resp = _serpapi_get(params)
+        except Exception as e:
+            print(f'  SerpAPI google_maps_reviews error: {e}', file=sys.stderr)
+            break
+        if 'error' in resp:
+            print(f'  SerpAPI google_maps_reviews: {resp["error"]}', file=sys.stderr)
+            break
+        for r in (resp.get('reviews') or []):
+            user = r.get('user') or {}
+            txt = r.get('snippet') or r.get('extracted_snippet', {}).get('original') or ''
+            if not txt:
+                continue
+            out.append({
+                'name': (user.get('name') or 'Google Reviewer')[:80],
+                'rating': int(float(r.get('rating') or 5)),
+                'date': r.get('date') or '',  # already a relative string like "2 days ago"
+                'text': txt[:1500],
+                'url': r.get('link') or user.get('link') or '',
+            })
+            if len(out) >= want:
+                break
+        next_token = (resp.get('serpapi_pagination') or {}).get('next_page_token')
+        pages += 1
+        if not next_token:
+            break
+    return out
+
 def google_collect(loc_code):
-    """Collect Google reviews for one location. Returns dict for reviews_data.json."""
+    """Collect Google reviews for one location. Returns dict for reviews_data.json.
+    Uses Google Places API for rating + count + address (authoritative), and
+    SerpAPI's google_maps_reviews engine for the actual reviews list (because
+    the official Places API caps reviews at 5 with no sort_by parameter).
+    """
     if not GOOGLE_KEY:
         return {'rating': None, 'count': 0, 'reviews': [], 'error': 'GOOGLE_PLACES_API_KEY not set'}
     
@@ -140,15 +195,18 @@ def google_collect(loc_code):
     expected = EXPECTED_ADDRESS[loc_code]
     addr_match = expected in addr
     
-    reviews = []
-    for r in detail.get('reviews', []):
-        reviews.append({
-            'name': r.get('authorAttribution', {}).get('displayName', 'Google Reviewer'),
-            'rating': r.get('rating', 5),
-            'date': r.get('relativePublishTimeDescription', ''),
-            'text': (r.get('text', {}) or {}).get('text') or (r.get('originalText', {}) or {}).get('text', ''),
-            'url': r.get('googleMapsUri', ''),
-        })
+    # Reviews via SerpAPI (newest first, up to 12). Falls back to the Places
+    # API's 5-review subset if SerpAPI returns nothing.
+    reviews = google_fetch_reviews_serpapi(place_id, want=12)
+    if not reviews:
+        for r in detail.get('reviews', []):
+            reviews.append({
+                'name': r.get('authorAttribution', {}).get('displayName', 'Google Reviewer'),
+                'rating': r.get('rating', 5),
+                'date': r.get('relativePublishTimeDescription', ''),
+                'text': (r.get('text', {}) or {}).get('text') or (r.get('originalText', {}) or {}).get('text', ''),
+                'url': r.get('googleMapsUri', ''),
+            })
     
     return {
         'rating': detail.get('rating'),
@@ -266,9 +324,10 @@ def yelp_collect(loc_code):
                 rev_resp = _serpapi_get({
                     'engine': 'yelp_reviews',
                     'place_id': place_id,
+                    'sortby': 'date_desc',  # Yelp uses 'sortby' (no underscore)
                     'api_key': api_key,
                 })
-                for r in (rev_resp.get('reviews') or [])[:20]:
+                for r in (rev_resp.get('reviews') or [])[:12]:
                     user = r.get('user') or {}
                     txt = (r.get('comment') or {}).get('text') or r.get('snippet') or ''
                     if not txt: continue
