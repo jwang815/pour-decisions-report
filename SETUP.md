@@ -14,10 +14,11 @@ Add all five secrets at:
 | `SQUARE_API_TOKEN`       | Square access token (starts with `EAAA…`).                                                          |
 | `VERCEL_TOKEN`           | Vercel personal token. Create at [vercel.com/account/tokens](https://vercel.com/account/tokens).    |
 | `GOOGLE_PLACES_API_KEY`  | Google Cloud API key with **Places API (New)** enabled.                                             |
+| `SERPAPI_KEY`            | SerpAPI key for Yelp review collection. Free tier (100 searches/mo) is plenty for weekly runs.      |
 | `GMAIL_USERNAME`         | The Gmail address you want emails sent from (e.g. `jwang815@gmail.com`).                            |
 | `GMAIL_APP_PASSWORD`     | Gmail App Password (16-character, generated with 2FA on).                                           |
 
-**Note on Yelp:** Yelp Fusion now charges $229/mo for review access, so we collect Yelp reviews via Playwright (a headless browser running in the GitHub Actions runner). No Yelp key needed. If Yelp blocks the request on a given week, the dashboard gracefully renders Google reviews only and flags the failure in the address-verify banner.
+**Note on Yelp:** Yelp Fusion charges $229/mo for review access and Yelp's public pages 403-block all cloud IPs (incl. GitHub Actions runners). We use SerpAPI's `yelp` + `yelp_reviews` engines, which sit on Yelp's public data behind residential IPs. The free tier (100 searches/mo) covers ~16 weekly runs at 6 calls each.
 
 ### How to add via the GitHub web UI
 
@@ -31,6 +32,7 @@ Add all five secrets at:
 gh secret set SQUARE_API_TOKEN       --body "EAAA..."
 gh secret set VERCEL_TOKEN           --body "vcp_..."
 gh secret set GOOGLE_PLACES_API_KEY  --body "AIza..."
+gh secret set SERPAPI_KEY            --body "..."
 gh secret set GMAIL_USERNAME         --body "jwang815@gmail.com"
 gh secret set GMAIL_APP_PASSWORD     --body "abcd efgh ijkl mnop"
 ```
@@ -50,9 +52,13 @@ gh secret set GMAIL_APP_PASSWORD     --body "abcd efgh ijkl mnop"
    - **Application restrictions** → leave **None** (GitHub Actions runners use rotating IPs, so IP restriction won't work).
 6. Make sure billing is enabled on the project. The Places API has a generous free tier; one weekly run uses ~6 requests.
 
-### Yelp data
+### Yelp data (SerpAPI)
 
-No API key required — Yelp reviews are scraped from each business page using Playwright (a free, headless Chromium browser) inside the GitHub Actions runner. Each weekly run pulls ~10–20 most-recent reviews per location. If Yelp ever blocks the runner (CAPTCHA / 403), the workflow skips Yelp for that week and the dashboard shows Google-only data with a warning banner.
+1. Sign up at [serpapi.com](https://serpapi.com/users/sign_up) (free, no card required).
+2. Copy your private API key from the [dashboard](https://serpapi.com/manage-api-key).
+3. Set it as the `SERPAPI_KEY` repo secret.
+
+The weekly run makes 6 SerpAPI calls (3 location lookups × 2 endpoints: `yelp` search + `yelp_reviews`). The free plan (100 searches/mo) covers ~16 runs. If `SERPAPI_KEY` is missing or quota is exhausted, the dashboard gracefully renders Google reviews only and flags the failure in the address-verify banner.
 
 ### Gmail App Password
 

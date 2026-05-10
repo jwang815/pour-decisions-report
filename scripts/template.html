@@ -226,8 +226,91 @@
     .daily-table td:last-child { display: none; }
   }
 </style>
+
+<script>
+(function() {
+  var AUTH_KEY = 'pd_auth_token';
+  var HASH = '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5';
+  
+  function checkAuth() {
+    return localStorage.getItem(AUTH_KEY) === HASH;
+  }
+  
+  async function hashPassword(pw) {
+    var enc = new TextEncoder().encode(pw);
+    var buf = await crypto.subtle.digest('SHA-256', enc);
+    return Array.from(new Uint8Array(buf)).map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+  }
+  
+  if (checkAuth()) {
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('pd-gate').style.display = 'none';
+      document.getElementById('pd-content').style.display = 'block';
+    });
+  }
+  
+  window.pdUnlock = async function() {
+    var pw = document.getElementById('pd-pw').value;
+    var h = await hashPassword(pw);
+    if (h === HASH) {
+      localStorage.setItem(AUTH_KEY, HASH);
+      document.getElementById('pd-gate').style.display = 'none';
+      document.getElementById('pd-content').style.display = 'block';
+    } else {
+      document.getElementById('pd-error').style.display = 'block';
+      document.getElementById('pd-pw').value = '';
+      document.getElementById('pd-pw').focus();
+    }
+  };
+})();
+</script>
+<style>
+#pd-gate {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(135deg, #1B2A4A 0%, #2d3d6e 100%);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 99999; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+#pd-gate .gate-box {
+  background: #fff; border-radius: 16px; padding: 40px 36px; text-align: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2); max-width: 360px; width: 90%;
+}
+#pd-gate .gate-logo {
+  width: 56px; height: 56px; border-radius: 12px; background: #1B2A4A;
+  color: #D4A853; font-weight: 800; font-size: 22px; display: flex;
+  align-items: center; justify-content: center; margin: 0 auto 16px;
+}
+#pd-gate h2 { font-size: 20px; color: #1B2A4A; margin-bottom: 4px; }
+#pd-gate p { font-size: 13px; color: #888; margin-bottom: 20px; }
+#pd-gate input {
+  width: 100%; padding: 10px 14px; border: 2px solid #eee; border-radius: 8px;
+  font-size: 14px; margin-bottom: 12px; outline: none; box-sizing: border-box;
+}
+#pd-gate input:focus { border-color: #D4A853; }
+#pd-gate button {
+  width: 100%; padding: 10px; background: #1B2A4A; color: #fff; border: none;
+  border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
+}
+#pd-gate button:hover { background: #2d3d6e; }
+#pd-error { display: none; color: #E74C3C; font-size: 12px; margin-top: 8px; }
+#pd-content { display: none; }
+</style>
+
 </head>
 <body>
+
+<div id="pd-gate">
+  <div class="gate-box">
+    <div class="gate-logo">PD</div>
+    <h2>Pour Decisions</h2>
+    <p>Enter the password to view this report</p>
+    <input type="password" id="pd-pw" placeholder="Password" onkeydown="if(event.key==='Enter')pdUnlock()">
+    <button onclick="pdUnlock()">Unlock</button>
+    <div id="pd-error">Incorrect password. Please try again.</div>
+  </div>
+</div>
+<div id="pd-content">
+
 <div class="container">
 
   <!-- Navigation -->
@@ -237,81 +320,7 @@
     <a href="pnl.html">P&amp;L</a>
   </div>
 
-  <!-- Header -->
-  <div class="header-banner">
-    <h1>Pour Decisions Craft Coffee &amp; Beer</h1>
-    <div class="subtitle">Weekly Performance Report</div>
-    <div class="meta">Week of {{week_label}} &#8226; Generated {{generated_date}} &#8226; All metrics Dashboard-verified</div>
-    <div class="locations">
-      <span class="loc-badge">&#127978; SJ &nbsp;5700 Village Oaks Dr, San Jose</span>
-      <span class="loc-badge">&#9968; MV &nbsp;1040 Grant Rd, Mountain View</span>
-      <span class="loc-badge" style="border-color:rgba(124,58,237,0.5);">&#127881; FM &nbsp;3530 Beacon Ave, Fremont</span>
-      <span class="loc-badge" style="background:rgba(46,204,113,0.2);border-color:rgba(46,204,113,0.4);">&#10003; Dashboard-Verified</span>
-    </div>
-  </div>
-
-  <!-- Location Toggle -->
-  <div class="loc-toggle" id="locToggle">
-    <button class="active" data-loc="all">All Locations</button>
-    <button data-loc="sj">&#127978; San Jose</button>
-    <button data-loc="mv">&#9968; Mountain View</button>
-    <button data-loc="fm">&#127881; Fremont</button>
-  </div>
-
-  <!-- ===== KPI SUMMARY ===== -->
-  <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Weekly KPI Summary</div>
-{{KPI_BLOCK}}
-<!-- ===== FINANCIAL SUMMARY ===== -->
-  <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Financial Summary</div>
-{{FINANCIAL_BLOCK}}
-<!-- ===== PROFITABILITY & COGS ===== -->
-  <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Profitability &amp; COGS Analysis</div>
-{{PROFITABILITY_BLOCK}}
-<!-- ===== WOW COMPARISON ===== -->
-  <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Week-over-Week Performance</div>
-{{WOW_BLOCK}}
-<!-- ===== MTD & YTD ===== -->
-  <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Month-to-Date &amp; Year-to-Date Revenue</div>
-{{MTD_YTD_BLOCK}}
-<!-- ===== LABOR ANALYSIS ===== -->
-  <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Labor Analysis &amp; Staffing Efficiency</div>
-{{LABOR_BLOCK}}
-<!-- ===== DAILY REVENUE ===== -->
-  <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Daily Revenue Breakdown</div>
-{{DAILY_BLOCK}}
-<!-- ===== HOURLY REVENUE ===== -->
-  <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Hourly Revenue Pattern</div>
-{{HOURLY_BLOCK}}
-<!-- ===== TOP PRODUCTS ===== -->
-  <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Top Products</div>
-{{TOP_PRODUCTS_BLOCK}}
-<!-- ===== INSIGHTS ===== -->
-  <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Data-Driven Insights &amp; Recommendations</div>
-{{INSIGHTS_BLOCK}}
-  </div>
-
-  <!-- ===== DATA QUALITY ===== -->
-  <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Data Quality</div>
-{{DATA_QUALITY_BLOCK}}
-  </div>
-
-  <div class="section">
-<!-- FOOTER -->
-  <div style="text-align:center;padding:20px;font-size:11px;color:var(--text-muted);">
-    Pour Decisions Craft Coffee &amp; Beer -- Weekly Performance Report -- Generated {{generated_date}}<br>Data sourced from Square Dashboard via Payments API (source of truth). All metrics dashboard-verified.
-    <br>3 Locations: San Jose &#8226; Mountain View &#8226; Fremont
-  </div>
+{{BODY}}
 
 </div>
 
@@ -324,12 +333,8 @@ document.addEventListener('DOMContentLoaded', function() {
   toggleBtns.forEach(btn => {
     btn.addEventListener('click', function() {
       const loc = this.dataset.loc;
-
-      // Update active button
       toggleBtns.forEach(b => b.classList.remove('active'));
       this.classList.add('active');
-
-      // Show/hide views
       allViews.forEach(view => {
         if (view.dataset.view === loc) {
           view.classList.add('active');
@@ -341,5 +346,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 </script>
+
+</div>
 </body>
 </html>

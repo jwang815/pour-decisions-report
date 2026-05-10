@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Collect Google + Yelp reviews. Google uses official Places API (New).
-Yelp uses Playwright (free; Fusion API is now $229/mo for review access).
+Yelp uses SerpAPI (free tier 100 searches/mo; Yelp Fusion API is $229/mo).
 
 Replaces the previous browser_task-based collection. Deterministic, never
 CAPTCHA-blocked, suitable for GitHub Actions.
 
 ENV VARS REQUIRED:
   GOOGLE_PLACES_API_KEY   (Places API (New) — places.googleapis.com)
-  (no Yelp key; Yelp via Playwright)
+  SERPAPI_KEY             (SerpAPI for Yelp; gracefully degrades if missing)
 
 USAGE:
   python3 collect_reviews_api.py <run_dir>
@@ -29,7 +29,15 @@ Coverage notes:
 import os, sys, json, urllib.request, urllib.parse, time, re
 from datetime import datetime, timezone
 
-# Verified Google Maps CIDs (from user) — decimal place identifiers
+# Google Place text-search queries: name + address (matches one place exactly)
+# We previously tried CID URL lookup but Places API (New) doesn't accept that format.
+GOOGLE_TEXT_QUERIES = {
+    'sj': 'Pour Decisions Craft Coffee Beer 5700 Village Oaks San Jose',
+    'mv': 'Pour Decisions Craft Coffee Beer 1040 Grant Rd Mountain View',
+    'fm': 'Pour Decisions Craft Coffee Beer 3530 Beacon Ave Fremont',
+}
+
+# Verified Google Maps CIDs (from user) — kept for reference / fallback link
 GOOGLE_CIDS = {
     'sj': 8238189378479499410,
     'mv': 11471586999040563699,
@@ -56,12 +64,14 @@ GOOGLE_KEY = os.environ.get('GOOGLE_PLACES_API_KEY')
 
 # ---------- Google Places (New) ----------
 
-def google_resolve_place_id(cid):
-    """Convert numeric CID → place_id by querying Place Details with the cid hex."""
+def google_resolve_place_id(loc_code):
+    """Resolve to a place_id by text-searching for 'name + address'.
+    Verifies the result matches the expected address fragment to avoid wrong place.
+    """
     if not GOOGLE_KEY: return None
-    # Place ID format: ChIJ... — we get it from Place Details using the CID URL param.
-    # New Places API supports searchText with the maps URL.
-    body = {'textQuery': f'https://maps.google.com/?cid={cid}'}
+    text_query = GOOGLE_TEXT_QUERIES[loc_code]
+    expected = EXPECTED_ADDRESS[loc_code]
+    body = {'textQuery': text_query, 'maxResultCount': 5}
     req = urllib.request.Request(
         'https://places.googleapis.com/v1/places:searchText',
         data=json.dumps(body).encode(),
@@ -75,10 +85,16 @@ def google_resolve_place_id(cid):
     try:
         with urllib.request.urlopen(req, timeout=30) as r:
             data = json.loads(r.read())
-        places = data.get('places', [])
-        if places: return places[0]
+        # Pick the first result whose address contains the expected street fragment
+        for place in data.get('places', []):
+            addr = place.get('formattedAddress', '')
+            if expected in addr:
+                return place
+        # fallback: first result (will be flagged as address_verified=False downstream)
+        if data.get('places'):
+            return data['places'][0]
     except Exception as e:
-        print(f'  Google resolve error for cid {cid}: {e}', file=sys.stderr)
+        print(f'  Google resolve error for {loc_code}: {e}', file=sys.stderr)
     return None
 
 def google_fetch_place(place_id):
@@ -101,10 +117,11 @@ def google_collect(loc_code):
     if not GOOGLE_KEY:
         return {'rating': None, 'count': 0, 'reviews': [], 'error': 'GOOGLE_PLACES_API_KEY not set'}
     
-    cid = GOOGLE_CIDS[loc_code]
-    place = google_resolve_place_id(cid)
+    place = google_resolve_place_id(loc_code)
     if not place:
-        return {'rating': None, 'count': 0, 'reviews': [], 'error': f'CID {cid} not resolvable'}
+        return {'rating': None, 'count': 0, 'reviews': [],
+                'error': f'No Place match for {loc_code}'}
+    cid = GOOGLE_CIDS.get(loc_code)
     
     place_id = place['id']
     detail = google_fetch_place(place_id)
@@ -134,155 +151,130 @@ def google_collect(loc_code):
         'maps_uri': detail.get('googleMapsUri', f'https://maps.google.com/?cid={cid}'),
     }
 
-# ---------- Yelp via Playwright ----------
+# ---------- Yelp via SerpAPI ----------
+
+# City + business-name search terms to resolve Yelp place_id via SerpAPI's
+# yelp engine. We then fetch reviews via yelp_reviews engine.
+YELP_SEARCH = {
+    'sj': {'find_desc': 'Pour Decisions Craft Coffee Beer', 'find_loc': 'San Jose, CA'},
+    'mv': {'find_desc': 'Pour Decisions Craft Coffee Beer', 'find_loc': 'Mountain View, CA'},
+    'fm': {'find_desc': 'Pour Decisions Craft Coffee Beer', 'find_loc': 'Fremont, CA'},
+}
+
+def _serpapi_get(params, timeout=30):
+    """GET https://serpapi.com/search.json with params dict; returns parsed JSON."""
+    base = 'https://serpapi.com/search.json'
+    qs = urllib.parse.urlencode(params)
+    req = urllib.request.Request(f'{base}?{qs}', headers={'User-Agent': 'pd-reports/1.0'})
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return json.loads(resp.read().decode('utf-8'))
 
 def yelp_collect(loc_code):
-    """Fetch Yelp business page with Playwright, parse rating + count + reviews.
+    """Fetch Yelp business rating + count + reviews via SerpAPI.
+    
+    Two-step: (1) yelp engine to find the matching place_id from name+location,
+    (2) yelp_reviews engine to pull review list.
     
     Defensive: any failure returns a graceful empty payload with error string
     so build_reviews.py can render the verify-banner and skip Yelp this week.
     """
     slug = YELP_SLUGS[loc_code]
     url = f'https://www.yelp.com/biz/{slug}'
-    
-    try:
-        from playwright.sync_api import sync_playwright
-    except ImportError:
-        return {'rating': None, 'count': 0, 'reviews': [],
-                'error': 'playwright not installed', 'yelp_url': url}
-    
     expected = EXPECTED_ADDRESS[loc_code]
     
+    api_key = os.environ.get('SERPAPI_KEY', '').strip()
+    if not api_key:
+        return {'rating': None, 'count': 0, 'reviews': [],
+                'error': 'SERPAPI_KEY not set', 'yelp_url': url}
+    
+    search = YELP_SEARCH[loc_code]
+    
     try:
-        with sync_playwright() as p:
-            browser = p.chromium.launch(headless=True, args=['--no-sandbox'])
-            ctx = browser.new_context(
-                user_agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) '
-                           'AppleWebKit/537.36 (KHTML, like Gecko) '
-                           'Chrome/124.0.0.0 Safari/537.36',
-                viewport={'width': 1280, 'height': 900},
-                locale='en-US',
-            )
-            page = ctx.new_page()
-            page.goto(url, wait_until='domcontentloaded', timeout=45000)
-            page.wait_for_timeout(2500)
-            
-            # Detect block / CAPTCHA
-            title = page.title() or ''
-            content_sample = page.content()[:2000].lower()
-            if 'captcha' in content_sample or 'access denied' in content_sample or 'unusual traffic' in content_sample:
-                browser.close()
-                return {'rating': None, 'count': 0, 'reviews': [],
-                        'error': 'Yelp blocked request (CAPTCHA / access-denied)',
-                        'yelp_url': url}
-            
-            # Address (verify it's the right business)
-            addr = ''
-            for sel in ['address', '[data-testid="bizDetailsHeaderAddress"]',
-                        'p:has-text(" CA ")']:
-                try:
-                    el = page.query_selector(sel)
-                    if el:
-                        t = (el.inner_text() or '').strip()
-                        if t and any(c.isdigit() for c in t):
-                            addr = t.replace('\n', ' ')
-                            break
-                except Exception:
-                    continue
-            addr_match = expected in addr if addr else None
-            
-            # Overall rating + count from JSON-LD
+        # Step 1: Resolve place_id via Yelp search engine on SerpAPI
+        search_resp = _serpapi_get({
+            'engine': 'yelp',
+            'find_desc': search['find_desc'],
+            'find_loc': search['find_loc'],
+            'api_key': api_key,
+        })
+        
+        if 'error' in search_resp:
+            return {'rating': None, 'count': 0, 'reviews': [],
+                    'error': f"SerpAPI search: {search_resp['error']}"[:200],
+                    'yelp_url': url}
+        
+        organic = search_resp.get('organic_results') or []
+        # Pick the result whose link matches our slug (most reliable),
+        # else the first one with matching address fragment.
+        match = None
+        for r in organic:
+            link = r.get('link', '') or ''
+            if slug in link:
+                match = r; break
+        if not match:
+            for r in organic:
+                addr_blob = ' '.join([
+                    r.get('neighborhoods', '') or '',
+                    r.get('address', '') or '',
+                    str((r.get('service_area') or {}).get('addresses') or ''),
+                ])
+                if expected in addr_blob:
+                    match = r; break
+        if not match and organic:
+            match = organic[0]
+        
+        if not match:
+            return {'rating': None, 'count': 0, 'reviews': [],
+                    'error': 'Yelp business not found in SerpAPI search',
+                    'yelp_url': url}
+        
+        place_id = match.get('place_ids', [None])[0] if match.get('place_ids') else None
+        if not place_id:
+            # Fallback: some results expose 'place_id' directly
+            place_id = match.get('place_id')
+        
+        rating = match.get('rating')
+        try:
+            rating = float(rating) if rating is not None else None
+        except Exception:
             rating = None
-            count = 0
+        count = int(match.get('reviews') or 0)
+        addr_full = match.get('address') or match.get('neighborhoods') or ''
+        addr_match = (expected in addr_full) if addr_full else None
+        
+        # Step 2: Fetch reviews
+        reviews = []
+        if place_id:
             try:
-                ld_handles = page.query_selector_all('script[type="application/ld+json"]')
-                for h in ld_handles:
-                    try:
-                        ld = json.loads(h.inner_text() or '{}')
-                    except Exception:
-                        continue
-                    if isinstance(ld, list):
-                        candidates = ld
-                    else:
-                        candidates = [ld]
-                    for c in candidates:
-                        agg = c.get('aggregateRating') if isinstance(c, dict) else None
-                        if agg:
-                            rating = float(agg.get('ratingValue') or 0) or rating
-                            count = int(agg.get('reviewCount') or 0) or count
-                            break
-                    if rating: break
-            except Exception:
-                pass
-            
-            # Fallback: scrape rating/count from page text if JSON-LD missing
-            if not rating:
-                try:
-                    rating_el = page.query_selector('div[role="img"][aria-label*="star rating"]')
-                    if rating_el:
-                        lbl = rating_el.get_attribute('aria-label') or ''
-                        m = re.search(r'([\d.]+)\s*star', lbl)
-                        if m: rating = float(m.group(1))
-                except Exception: pass
-            if not count:
-                try:
-                    txt = page.inner_text('body')[:5000]
-                    m = re.search(r'([\d,]+)\s+reviews?', txt)
-                    if m: count = int(m.group(1).replace(',', ''))
-                except Exception: pass
-            
-            # Individual reviews
-            reviews = []
-            review_cards = page.query_selector_all('ul.list__09f24__ynIEd > li, [data-testid="serp-ia-card"], section[aria-label*="Recommended Reviews"] li, ul li:has(div[role="img"][aria-label*="star rating"])')
-            seen = set()
-            for card in review_cards[:30]:
-                try:
-                    text_el = (card.query_selector('p[class*="comment"]') or
-                               card.query_selector('span.raw__09f24__T4Ezm') or
-                               card.query_selector('p span'))
-                    text = (text_el.inner_text() if text_el else '').strip()
-                    if not text or len(text) < 20: continue
-                    if text in seen: continue
-                    seen.add(text)
-                    
-                    rt_el = card.query_selector('div[role="img"][aria-label*="star rating"]')
-                    rev_rating = 5
-                    if rt_el:
-                        m = re.search(r'([\d.]+)\s*star', rt_el.get_attribute('aria-label') or '')
-                        if m: rev_rating = int(float(m.group(1)))
-                    
-                    name_el = card.query_selector('a[href*="/user_details"]') or card.query_selector('span[class*="user-passport-info"] a')
-                    name = (name_el.inner_text().strip() if name_el else 'Yelp Reviewer')
-                    
-                    date = ''
-                    for ds in card.query_selector_all('span'):
-                        try:
-                            tx = (ds.inner_text() or '').strip()
-                            if re.match(r'^[A-Z][a-z]{2}\s\d{1,2},\s\d{4}$', tx):
-                                date = tx; break
-                        except Exception: continue
-                    
+                rev_resp = _serpapi_get({
+                    'engine': 'yelp_reviews',
+                    'place_id': place_id,
+                    'api_key': api_key,
+                })
+                for r in (rev_resp.get('reviews') or [])[:20]:
+                    user = r.get('user') or {}
+                    txt = (r.get('comment') or {}).get('text') or r.get('snippet') or ''
+                    if not txt: continue
                     reviews.append({
-                        'name': name[:80],
-                        'rating': rev_rating,
-                        'date': date,
-                        'text': text[:1500],
-                        'url': url,
+                        'name': (user.get('name') or 'Yelp Reviewer')[:80],
+                        'rating': int(float(r.get('rating') or 5)),
+                        'date': r.get('date') or '',
+                        'text': txt[:1500],
+                        'url': r.get('comment_link') or url,
                     })
-                    if len(reviews) >= 20: break
-                except Exception:
-                    continue
-            
-            browser.close()
-            
-            return {
-                'rating': rating,
-                'count': count,
-                'reviews': reviews,
-                'yelp_url': url,
-                'address': addr,
-                'address_verified': addr_match,
-            }
+            except Exception as e:
+                # Reviews fetch failed but we still have rating + count
+                pass
+        
+        return {
+            'rating': rating,
+            'count': count,
+            'reviews': reviews,
+            'yelp_url': url,
+            'address': addr_full,
+            'address_verified': addr_match,
+            'place_id': place_id,
+        }
     except Exception as e:
         return {'rating': None, 'count': 0, 'reviews': [],
                 'error': str(e)[:200], 'yelp_url': url}
