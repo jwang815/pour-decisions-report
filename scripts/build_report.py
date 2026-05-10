@@ -447,6 +447,7 @@ def render(data, template_path, out_path):
     
     blocks = {
         '{{week_label}}': data.get('week_label', data.get('report_week', '')),
+        '{{report_week}}': data.get('report_week', data.get('week_label', '')),
         '{{generated_date}}': data.get('generated_date', ''),
         '{{KPI_BLOCK}}': block_kpi(data),
         '{{FINANCIAL_BLOCK}}': block_financial(data),

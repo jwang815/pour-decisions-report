@@ -69,14 +69,18 @@ def post(url, body):
 
 # ---------- Date math ----------
 def week_bounds(today=None):
-    """Returns (week_start, week_end) where today=Monday and we cover last Mon-Sun in PDT.
-    Returns UTC ISO strings."""
+    """Returns (week_start, week_end) for the most recently COMPLETED Mon-Sun week in PDT.
+    Always returns the prior full week, regardless of which day this is run on.
+    Returns timezone-aware datetimes."""
     if today is None:
         today = datetime.now(PDT).date()
-    # last Monday
-    days_since_mon = today.weekday()  # Mon=0
-    # if today is Monday, we want PRIOR week's Mon-Sun
-    last_mon = today - timedelta(days=7 if days_since_mon == 0 else days_since_mon)
+    # weekday(): Mon=0..Sun=6
+    # We want the Monday that started the most recent COMPLETED week.
+    # Mon today  -> 7 days back
+    # Tue today  -> 8 days back
+    # ... Sun today -> 13 days back
+    days_back = today.weekday() + 7
+    last_mon = today - timedelta(days=days_back)
     last_sun = last_mon + timedelta(days=6)
     start = datetime.combine(last_mon, datetime.min.time(), tzinfo=PDT)
     end = datetime.combine(last_sun, datetime.max.time().replace(microsecond=0), tzinfo=PDT)
