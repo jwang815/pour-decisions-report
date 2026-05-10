@@ -514,11 +514,114 @@
         }
       ],
       "insights_generated": true
+    },
+    {
+      "cron_id": "dc4e59f2",
+      "last_run": "2026-05-10T01:53:54.695460Z",
+      "run_number": 6,
+      "status": "completed",
+      "report_week": "Apr 27 - May 3, 2026",
+      "deployment": {
+        "platform": "Vercel",
+        "url": "https://pour-decisions-report.vercel.app",
+        "password_protected": true,
+        "pnl_preserved": true
+      },
+      "key_metrics": {
+        "total_payments": 91451.7,
+        "net_sales": 79162.51,
+        "transactions": 5551,
+        "aov": 14.26,
+        "tips": 4823.63,
+        "labor_cost": 19727.14,
+        "labor_hours": 988.4,
+        "labor_pct_net": 24.9,
+        "cogs": 20485.18,
+        "op_profit": 35690.72,
+        "op_margin_pct": 45.1,
+        "mtd_total": 121534.15,
+        "ytd_total": 1050948.96
+      },
+      "wow": {
+        "payments": 0.4,
+        "net_sales": 0,
+        "gross_sales": 0,
+        "transactions": 0.1,
+        "aov": 0,
+        "tips": 2.2,
+        "labor": 0
+      },
+      "by_store": {
+        "sj": {
+          "payments": 31274.65,
+          "net": 27131.94,
+          "txns": 1942,
+          "aov": 16.1,
+          "tips": 1575.24,
+          "labor": 6137.69,
+          "labor_hours": 306.8,
+          "labor_pct": 22.6,
+          "op_profit": 12861.65,
+          "margin": "47.4%"
+        },
+        "mv": {
+          "payments": 21386.63,
+          "net": 19023.73,
+          "txns": 1240,
+          "aov": 17.25,
+          "tips": 692.7,
+          "labor": 4538.43,
+          "labor_hours": 223.9,
+          "labor_pct": 23.9,
+          "op_profit": 8485.84,
+          "margin": "44.6%"
+        },
+        "fm": {
+          "payments": 38790.42,
+          "net": 33006.84,
+          "txns": 2369,
+          "aov": 16.37,
+          "tips": 2555.69,
+          "labor": 9051.02,
+          "labor_hours": 457.7,
+          "labor_pct": 27.4,
+          "op_profit": 14343.23,
+          "margin": "43.5%"
+        }
+      },
+      "top_products": [
+        {
+          "name": "Peanut Butter Latte",
+          "qty": 1020,
+          "revenue": 9118.26
+        },
+        {
+          "name": "Banana Latte",
+          "qty": 715,
+          "revenue": 6424.95
+        },
+        {
+          "name": "Banana Matcha",
+          "qty": 626,
+          "revenue": 5603.97
+        },
+        {
+          "name": "Hawaiian Latte",
+          "qty": 699,
+          "revenue": 5244.8
+        },
+        {
+          "name": "IPA",
+          "qty": 477,
+          "revenue": 4862.05
+        }
+      ],
+      "insights_generated": true
     }
   ],
   "cron_id": "dc4e59f2",
-  "last_run": "2026-05-10T01:28:12.855303Z",
-  "run_number": 5,
+  "last_run": "2026-05-10T01:53:54.695460Z",
+  "run_number": 6,
   "status": "completed",
   "report_week": "Apr 27 - May 3, 2026",
   "deployment": {
@@ -539,8 +642,8 @@
     "cogs": 20485.18,
     "op_profit": 35690.72,
     "op_margin_pct": 45.1,
-    "mtd_total": 121235.9,
-    "ytd_total": 1050650.71
+    "mtd_total": 121534.15,
+    "ytd_total": 1050948.96
   },
   "wow": {
     "payments": 0.4,
