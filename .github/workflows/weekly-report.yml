@@ -31,12 +31,7 @@ jobs:
       PD_OUT_DIR: ${{ github.workspace }}
       PD_PIPELINE_DIR: ${{ github.workspace }}/scripts
       PD_RUN_LOG: ${{ github.workspace }}/state/run_log.json
-      # Vercel deploy target paths
-      VERCEL_PROJECT_DIR: ${{ github.workspace }}/dist
-      VERCEL_PROJECT_NAME: pour-decisions-report
-      # Wrapper paths
-      WRAP_SRC_DIR: ${{ github.workspace }}
-      WRAP_OUT_DIR: ${{ github.workspace }}/dist
+      # (Vercel deploys via git auto-deploy from main; no API deploy needed)
 
     steps:
       - name: Checkout
@@ -99,28 +94,24 @@ jobs:
         run: |
           python3 scripts/update_log.py ${{ steps.runnum.outputs.run_number }}
 
-      - name: Wrap with password gate + bundle for deploy
+      - name: Wrap rendered files with password gate (in-place)
         run: |
-          mkdir -p dist
-          node scripts/wrap_and_deploy.js "$WRAP_SRC_DIR" "$WRAP_OUT_DIR"
-          ls -la dist
+          # Wrap index.html + reviews.html in the repo root and write back over them.
+          # pnl.html stays untouched (already wrapped, committed separately).
+          node scripts/wrap_and_deploy.js "$GITHUB_WORKSPACE" "$GITHUB_WORKSPACE"
+          ls -la index.html reviews.html pnl.html
 
-      - name: Deploy to Vercel
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-        run: |
-          node scripts/deploy-vercel-live.js "$VERCEL_TOKEN" "$VERCEL_PROJECT_DIR"
-
-      - name: Commit run_log.json (state)
+      - name: Commit rendered HTML + state (triggers Vercel git auto-deploy)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add state/run_log.json
+          git add index.html reviews.html state/run_log.json
           if git diff --cached --quiet; then
-            echo "No state changes to commit."
+            echo "No changes to commit."
           else
-            git commit -m "chore: update run_log.json (run #${{ steps.runnum.outputs.run_number }})"
+            git commit -m "chore: weekly report run #${{ steps.runnum.outputs.run_number }}"
             git push
+            echo "Commit pushed — Vercel will auto-deploy from main."
           fi
 
       - name: Summarize key metrics

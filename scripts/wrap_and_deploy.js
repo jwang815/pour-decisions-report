@@ -121,6 +121,12 @@ for (const file of ['index.html', 'reviews.html']) {
     process.exit(1);
   }
   const src = fs.readFileSync(srcPath, 'utf8');
+  // Idempotency guard: if file is already wrapped (contains our localStorage key + checkAuth), skip.
+  if (src.includes("localStorage.getItem(AUTH_KEY)") && src.includes("pd_auth_token")) {
+    console.log(`${file}: already wrapped (skipping)`);
+    if (srcDir !== outDir) fs.writeFileSync(`${outDir}/${file}`, src);
+    continue;
+  }
   const wrapped = wrapWithPasswordGate(src);
   fs.writeFileSync(`${outDir}/${file}`, wrapped);
   console.log(`${file}: ${src.length} -> ${wrapped.length} bytes (password-protected)`);
