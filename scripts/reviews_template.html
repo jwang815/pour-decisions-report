@@ -6,122 +6,532 @@
 <title>Pour Decisions -- Customer Reviews -- {{generated_date}}</title>
 <style>
   :root {
-    --navy:#1B2A4A; --amber:#D4A853; --green:#2ECC71; --red:#E74C3C;
-    --sj-color:#1B2A4A; --mv-color:#0E7C7B; --fm-color:#7C3AED;
-    --bg:#F8F9FB; --text-dark:#1B2A4A; --text-muted:#6B7280;
-    --border:#E5E7EB; --border-light:#F3F4F6; --card-bg:#FFFFFF;
+    --navy: #1B2A4A;
+    --navy-mid: #2d3d6e;
+    --amber: #D4A853;
+    --amber-light: #F0CC87;
+    --amber-dark: #A07830;
+    --green: #2ECC71;
+    --yellow: #eab308;
+    --red: #E74C3C;
+    --orange: #f97316;
+    --page-bg: #f5f6fa;
+    --card-bg: #ffffff;
+    --text-dark: #1B2A4A;
+    --text-mid: #444;
+    --text-muted: #888;
+    --text-label: #666;
+    --border-light: #eee;
+    --row-alt: #f9f9fb;
+    --shadow: 0 1px 4px rgba(0,0,0,0.06);
+    --shadow-md: 0 2px 12px rgba(0,0,0,0.08);
+    --radius: 12px;
+    --radius-lg: 16px;
+    --google-blue: #4285F4;
+    --yelp-red: #FF1A1A;
+    --fm-color: #7C3AED;
   }
-  * { box-sizing: border-box; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin:0; background:var(--bg); color:var(--text-dark); }
-  .nav-tabs { background:var(--navy); padding:12px 20px; display:flex; gap:6px; }
-  .nav-tabs a { color:#fff; text-decoration:none; padding:8px 16px; border-radius:6px; font-size:14px; font-weight:500; }
-  .nav-tabs a:hover { background:rgba(255,255,255,0.1); }
-  .nav-tabs a.active { background:var(--amber); color:var(--navy); }
-  .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-  .header-banner { background:linear-gradient(135deg,#1B2A4A,#0E7C7B); color:#fff; padding:32px 24px; border-radius:12px; margin-bottom:24px; }
-  .header-banner h1 { margin:0; font-size:28px; }
-  .subtitle { font-size:15px; opacity:0.9; margin-top:4px; }
-  .meta { font-size:13px; opacity:0.8; margin-top:8px; }
-  .section { margin-bottom:32px; }
-  .section-title { font-size:18px; font-weight:700; color:var(--text-dark); margin:0 0 14px; }
-  .section-bullet { color:var(--amber); margin-right:6px; }
-  .card { background:var(--card-bg); border-radius:10px; padding:18px; box-shadow:0 1px 3px rgba(0,0,0,0.08); }
-  .card-title { font-size:13px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.4px; margin-bottom:8px; }
-  .review-card { background:var(--card-bg); border-radius:8px; padding:14px 16px; box-shadow:0 1px 2px rgba(0,0,0,0.05); margin-bottom:10px; border-left:3px solid var(--border); }
-  .review-card.r5 { border-left-color:var(--green); }
-  .review-card.r4 { border-left-color:#A2D9A2; }
-  .review-card.r3 { border-left-color:var(--amber); }
-  .review-card.r2 { border-left-color:#F39C12; }
-  .review-card.r1 { border-left-color:var(--red); }
-  .review-header { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
-  .review-name { font-weight:600; color:var(--text-dark); }
-  .review-stars { color:var(--amber); white-space:nowrap; font-size:14px; }
-  .review-meta { font-size:11px; color:var(--text-muted); margin-top:2px; margin-bottom:8px; }
-  .review-text { font-size:14px; line-height:1.5; color:#374151; }
-  .review-text a { color:var(--navy); }
-  .source-badge { display:inline-block; padding:1px 6px; border-radius:3px; font-size:10px; font-weight:600; text-transform:uppercase; margin-left:6px; vertical-align:middle; }
-  .source-badge.google { background:#FEF3C7; color:#92400E; }
-  .source-badge.yelp { background:#FEE2E2; color:#991B1B; }
-  .filter-bar { display:flex; gap:10px; margin-bottom:14px; flex-wrap:wrap; }
-  .filter-bar button { padding:6px 12px; font-size:12px; border:1px solid var(--border); background:#fff; color:var(--text-dark); border-radius:6px; cursor:pointer; font-weight:500; }
-  .filter-bar button:hover { background:var(--border-light); }
-  .filter-bar button.active { background:var(--navy); color:#fff; border-color:var(--navy); }
-  .verify-banner { background:#ECFDF5; color:#065F46; padding:8px 12px; border-radius:6px; font-size:12px; margin-bottom:10px; }
-  .verify-banner.fail { background:#FEF2F2; color:#991B1B; }
-  .fin-row { display:flex; justify-content:space-between; padding:4px 0; font-size:13px; }
-  .fin-row-label { color:var(--text-muted); }
-  .fin-row-val { font-weight:600; color:var(--text-dark); }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--page-bg);
+    color: var(--text-dark);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 24px 20px;
+  }
+
+  /* NAV */
+  .nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 20px;
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 6px;
+    box-shadow: var(--shadow);
+    max-width: 460px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .nav-link {
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text-muted);
+    transition: all 0.2s;
+    letter-spacing: 0.2px;
+  }
+  .nav-link:hover { color: var(--text-dark); background: var(--row-alt); }
+  .nav-link.active { background: var(--navy); color: #fff; }
+
+  /* HEADER */
+  .header-banner {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    border-radius: var(--radius-lg);
+    padding: 28px 32px;
+    color: #fff;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow-md);
+  }
+  .header-brand { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .header-subtitle { color: var(--amber); font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+  .header-meta { font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 16px; }
+  .header-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+  .pill { border: 1.5px solid var(--amber); color: #fff; border-radius: 20px; padding: 4px 14px; font-size: 12px; font-weight: 500; letter-spacing: 0.2px; }
+
+  .section-title { font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .section-bullet { color: var(--amber); font-size: 14px; line-height: 1; }
+  .section { margin-bottom: 32px; }
+
+  /* RATINGS OVERVIEW */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .overview-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .overview-card .platform-icon {
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+  .overview-card .ov-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    color: var(--text-label);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .overview-card .ov-rating {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .overview-card .ov-stars {
+    color: var(--amber);
+    font-size: 15px;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .overview-card .ov-count {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .overview-card.google { border-top: 3px solid var(--google-blue); }
+  .overview-card.yelp { border-top: 3px solid var(--yelp-red); }
+  .overview-card.fm-loc { border-top: 3px solid var(--fm-color); }
+
+  /* COMBINED SNAPSHOT */
+  .sentiment-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 14px;
+  }
+  .sentiment-card-left {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 22px 26px;
+    box-shadow: var(--shadow);
+    border-top: 3px solid var(--amber);
+  }
+  .sentiment-card-right {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .keyword-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 18px 22px;
+    box-shadow: var(--shadow);
+    flex: 1;
+  }
+  .keyword-card.praised { border-top: 3px solid var(--green); }
+  .keyword-card.improve { border-top: 3px solid var(--red); }
+  .keyword-card .ov-label { text-align: left; }
+
+  .keyword-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .keyword-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid;
+  }
+  .keyword-badge .kw-count {
+    color: #fff;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 6px;
+    min-width: 18px;
+    text-align: center;
+  }
+  .keyword-badge.positive { background: #ecfdf5; color: #065f46; border-color: #a7f3d0; }
+  .keyword-badge.positive .kw-count { background: var(--green); }
+  .keyword-badge.negative { background: #fef2f2; color: #991b1b; border-color: #fecaca; }
+  .keyword-badge.negative .kw-count { background: var(--red); }
+
+  /* DISTRIBUTION BARS */
+  .dist-bar-container { margin-bottom: 4px; }
+  .dist-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .dist-bar-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    width: 28px;
+  }
+  .dist-bar-track {
+    flex: 1;
+    background: var(--border-light);
+    border-radius: 10px;
+    height: 8px;
+    overflow: hidden;
+  }
+  .dist-bar-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.3s;
+  }
+  .dist-bar-fill.s5 { background: var(--green); }
+  .dist-bar-fill.s4 { background: #a3d9a4; }
+  .dist-bar-fill.s3 { background: var(--amber); }
+  .dist-bar-fill.s2 { background: var(--orange); }
+  .dist-bar-fill.s1 { background: var(--red); }
+  .dist-bar-count {
+    font-size: 11px;
+    color: var(--text-muted);
+    width: 40px;
+    text-align: right;
+  }
+
+  /* ACTION ITEMS */
+  .alert-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    border-left: 4px solid var(--amber);
+    padding: 16px 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 12px;
+  }
+  .alert-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+  }
+  .alert-body {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.55;
+  }
+
+  /* TABS */
+  .tab-bar {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 14px;
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 6px;
+    box-shadow: var(--shadow);
+    width: fit-content;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    padding: 8px 16px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .tab-btn:hover { color: var(--text-dark); background: var(--row-alt); }
+  .tab-btn.active { background: var(--navy); color: #fff; }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* REVIEWS COLUMNS (Google/Yelp side-by-side) */
+  .loc-reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .col-header {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .col-header.google { color: var(--google-blue); }
+  .col-header.yelp { color: var(--yelp-red); }
+  .col-header .src-icon {
+    font-size: 13px;
+    font-weight: 800;
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .col-header.google .src-icon { background: var(--google-blue); }
+  .col-header.yelp .src-icon { background: var(--yelp-red); }
+
+  .review-card {
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 12px 14px;
+    box-shadow: var(--shadow);
+    margin-bottom: 10px;
+    border-left: 3px solid var(--border-light);
+    transition: box-shadow 0.2s;
+  }
+  .review-card:hover { box-shadow: var(--shadow-md); }
+  .review-card.star-5 { border-left-color: var(--green); }
+  .review-card.star-4 { border-left-color: var(--amber); }
+  .review-card.star-3 { border-left-color: var(--yellow); }
+  .review-card.star-2 { border-left-color: var(--orange); }
+  .review-card.star-1 { border-left-color: var(--red); }
+
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .review-author {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-dark);
+  }
+  .review-date {
+    font-size: 11px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .review-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .review-stars {
+    color: var(--amber);
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  .review-platform {
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .review-platform.google { background: var(--google-blue); }
+  .review-platform.yelp { background: var(--yelp-red); }
+  .review-text {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text-mid);
+  }
+  .review-text.truncated {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .read-more-btn {
+    background: none;
+    border: none;
+    color: var(--amber-dark);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 4px 0 0;
+    font-family: inherit;
+  }
+  .read-more-btn:hover { color: var(--amber); text-decoration: underline; }
+
+  .verify-banner {
+    background: #ECFDF5;
+    color: #065F46;
+    padding: 7px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .verify-banner.fail { background: #FEF2F2; color: #991B1B; }
+  .verify-banner code { font-size: 11px; opacity: 0.85; }
+
+  .empty-state {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    color: var(--text-muted);
+    font-style: italic;
+    text-align: center;
+    font-size: 13px;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 24px 16px;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 32px;
+  }
+  .footer a { color: var(--text-muted); text-decoration: none; }
+  .footer a:hover { color: var(--amber-dark); }
+
   @media (max-width: 768px) {
-    .nav-tabs { padding:10px 14px; }
-    .container { padding:14px; }
-    .overview-grid { grid-template-columns: 1fr 1fr !important; }
-    .ratings-grid { grid-template-columns: 1fr !important; }
+    .container { padding: 14px; }
+    .header-banner { padding: 20px 22px; }
+    .overview-grid { grid-template-columns: repeat(2, 1fr); }
+    .sentiment-grid { grid-template-columns: 1fr; }
+    .loc-reviews-grid { grid-template-columns: 1fr; gap: 16px; }
+    .tab-bar { width: 100%; justify-content: center; }
+  }
+  @media (max-width: 480px) {
+    .overview-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
-
-<div class="nav-tabs">
-  <a href="index.html">Performance</a>
-  <a href="reviews.html" class="active">Reviews</a>
-  <a href="pnl.html">P&amp;L</a>
-</div>
-
 <div class="container">
+  <!-- NAV -->
+  <nav class="nav-bar">
+    <a href="index.html" class="nav-link">Performance</a>
+    <a href="reviews.html" class="nav-link active">Reviews</a>
+    <a href="pnl.html" class="nav-link">P&amp;L</a>
+  </nav>
 
+  <!-- HEADER -->
   <div class="header-banner">
-    <h1>Pour Decisions Craft Coffee &amp; Beer</h1>
-    <div class="subtitle">Customer Reviews Dashboard</div>
-    <div class="meta">Last updated: {{generated_date}} &#8226; Data from Google Maps &amp; Yelp APIs &#8226; 3 Locations</div>
+    <div class="header-brand">Pour Decisions Craft Coffee &amp; Beer</div>
+    <div class="header-subtitle">Customer Reviews Dashboard</div>
+    <div class="header-meta">Last updated {{generated_date}} &bull; Aggregated from Google &amp; Yelp &bull; 3 Locations</div>
+    <div class="header-pills">
+      <span class="pill">&#127978; SJ &nbsp;5700 Village Oaks Dr, San Jose</span>
+      <span class="pill">&#9968; MV &nbsp;1040 Grant Rd, Mountain View</span>
+      <span class="pill">&#11088; FM &nbsp;3530 Beacon Ave, Fremont</span>
+    </div>
   </div>
 
+  <!-- RATINGS OVERVIEW -->
   <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Reviews Overview</div>
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Ratings Overview</div>
 {{OVERVIEW_BLOCK}}
   </div>
 
+  <!-- COMBINED SNAPSHOT -->
   <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Ratings by Location</div>
-{{RATINGS_BLOCK}}
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Combined Review Snapshot</div>
+{{SNAPSHOT_BLOCK}}
   </div>
 
+  <!-- ACTION ITEMS -->
   <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Recent Reviews -- &#129378; San Jose</div>
-{{SJ_REVIEWS_BLOCK}}
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Review-Based Action Items</div>
+{{ACTIONS_BLOCK}}
   </div>
 
+  <!-- LOCATION TABS -->
   <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Recent Reviews -- &#9968; Mountain View</div>
-{{MV_REVIEWS_BLOCK}}
-  </div>
+    <div class="section-title"><span class="section-bullet">&#9679;</span> Recent Reviews by Location</div>
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('sj')">&#127978; San Jose</button>
+      <button class="tab-btn" onclick="switchTab('mv')">&#9968; Mountain View</button>
+      <button class="tab-btn" onclick="switchTab('fm')">&#11088; Fremont</button>
+    </div>
 
-  <div class="section">
-    <div class="section-title"><span class="section-bullet">&#9679;</span> Recent Reviews -- &#11088; Fremont</div>
-{{FM_REVIEWS_BLOCK}}
+{{TABS_BLOCK}}
   </div>
 
   <!-- FOOTER -->
-  <div style="text-align:center;padding:20px;font-size:11px;color:var(--text-muted);">
-    Pour Decisions Craft Coffee &amp; Beer -- Reviews Dashboard -- Generated {{generated_date}}<br>
-    Reviews collected via Google Places API &amp; Yelp Fusion API
+  <div class="footer">
+    Pour Decisions Craft Coffee &amp; Beer &mdash; Reviews Dashboard &mdash; Generated {{generated_date}}<br>
+    Reviews collected via Google Places API &amp; Yelp (SerpAPI)
   </div>
 
 </div>
 
 <script>
-  // Filter buttons per section
-  document.querySelectorAll('[data-filter-group]').forEach(group => {
-    const buttons = group.querySelectorAll('button[data-filter]');
-    const cards = document.querySelectorAll('.review-card[data-section="' + group.dataset.filterGroup + '"]');
-    buttons.forEach(btn => btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const f = btn.dataset.filter;
-      cards.forEach(c => {
-        c.style.display = (f === 'all' || c.dataset.source === f || c.dataset.rating === f) ? '' : 'none';
-      });
-    }));
-  });
+  // Tab switching
+  function switchTab(loc) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    var btn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick') === "switchTab('" + loc + "')");
+    if (btn) btn.classList.add('active');
+    var pane = document.getElementById('tab-' + loc);
+    if (pane) pane.classList.add('active');
+  }
+
+  // Read-more toggle
+  function toggleReview(id, btn) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (el.classList.contains('truncated')) {
+      el.classList.remove('truncated');
+      btn.textContent = 'Show less';
+    } else {
+      el.classList.add('truncated');
+      btn.textContent = 'Read more';
+    }
+  }
 </script>
 
 </body>

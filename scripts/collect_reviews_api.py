@@ -59,6 +59,15 @@ EXPECTED_ADDRESS = {
     'fm': '3530 Beacon',
 }
 
+# For Yelp via SerpAPI: street addresses are not in the response. We instead
+# verify the city in the result matches the expected city for that location.
+# Slug-match in the result link is the real verifier; this is just defense in depth.
+EXPECTED_YELP_CITY = {
+    'sj': 'San Jose',
+    'mv': 'Mountain View',
+    'fm': 'Fremont',
+}
+
 GOOGLE_KEY = os.environ.get('GOOGLE_PLACES_API_KEY')
 # YELP_KEY removed — using Playwright now
 
@@ -240,7 +249,15 @@ def yelp_collect(loc_code):
             rating = None
         count = int(match.get('reviews') or 0)
         addr_full = match.get('address') or match.get('neighborhoods') or ''
-        addr_match = (expected in addr_full) if addr_full else None
+        
+        # Two-stage verification: slug match (primary) + city match (secondary).
+        # SerpAPI doesn't return street addresses, so we trust the slug-matched
+        # business and confirm the city is in the right metro area.
+        slug_matched = (match is organic[0] and slug in (match.get('link') or '')) or \
+                       any(slug in (r.get('link') or '') for r in [match])
+        expected_city = EXPECTED_YELP_CITY.get(loc_code, '')
+        city_in_addr = expected_city.lower() in addr_full.lower() if (expected_city and addr_full) else False
+        addr_match = bool(slug_matched or city_in_addr)
         
         # Step 2: Fetch reviews
         reviews = []
