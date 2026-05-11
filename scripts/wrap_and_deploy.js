@@ -114,7 +114,7 @@ const outDir = process.argv[3] || process.env.WRAP_OUT_DIR || '/home/user/worksp
 
 if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
 
-for (const file of ['index.html', 'reviews.html']) {
+for (const file of ['index.html', 'reviews.html', 'deliveries.html']) {
   const srcPath = `${srcDir}/${file}`;
   if (!fs.existsSync(srcPath)) {
     console.error(`Missing source: ${srcPath}`);

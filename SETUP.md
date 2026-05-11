@@ -123,6 +123,50 @@ If you ever need to reset, delete `state/run_log.json` and the next run will sta
 - **Run number stuck** — confirm `state/run_log.json` was committed back. Workflow needs `permissions: contents: write` (already set).
 - **Square 401/429** — token rotated or rate limit. Refresh from developer.squareup.com.
 
-## 7. Migrating from the old Perplexity cron
+## 7. Delivery Tracking page (optional shared storage)
+
+`deliveries.html` is a client-side delivery tracker (no server). It supports two
+persistence modes, selected at runtime by the user:
+
+- **Local-only (default)** — deliveries are stored in `localStorage` in the
+  current browser only. No setup; nothing to share. A yellow banner warns the
+  user that data is not shared.
+- **Shared via GitHub Gist** — deliveries are stored in a single JSON file
+  inside a private Gist. Any browser that knows the Gist ID + a token with
+  `gist` scope reads/writes the same data. A green banner indicates connected.
+
+To enable shared mode for staff:
+
+1. Create a private Gist at [gist.github.com](https://gist.github.com) with one
+   file named `deliveries.json` and the initial content `{"deliveries":[]}`.
+2. Note the Gist ID from the URL (the hex string after `/<user>/`).
+3. Create a fine-grained Personal Access Token at
+   [github.com/settings/personal-access-tokens](https://github.com/settings/personal-access-tokens)
+   with **Account permissions → Gists: Read and write**.
+4. On `deliveries.html`, click **Settings** in the storage banner, paste the
+   Gist ID and token, and click **Save & Sync**.
+
+Limitations / notes:
+
+- The token is stored in `localStorage` in the user's browser. Anyone with
+  access to that browser can read it. Treat it like any other shared
+  staff-only credential.
+- All staff browsers need the same Gist ID + a token with access to that Gist.
+  Any token with read/write on the Gist works (one shared token or one per
+  user).
+- No real-time tracking-API integration today — carrier is auto-detected from
+  the tracking-number pattern and status/ETA are updated manually. The
+  `loadState()` / `saveState()` adapter in `deliveries.html` is structured so a
+  future tracking provider (Shippo, EasyPost, etc.) can replace manual updates
+  with API fetches without changing the UI layer.
+
+The page is wrapped by `wrap_and_deploy.js` with the same client-side password
+gate as `index.html` / `reviews.html`. It is committed to the repo in
+already-wrapped form (the wrap script is idempotent and skips it on weekly
+runs). The weekly workflow does not regenerate or commit `deliveries.html`.
+
+---
+
+## 8. Migrating from the old Perplexity cron
 
 Once you've run the GitHub Actions workflow successfully at least once and verified the deployed site looks correct, **disable the old Perplexity cron `dc4e59f2`** so you stop paying for it.
