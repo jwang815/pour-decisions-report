@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pour Decisions -- Delivery Tracking</title>
+<style>
+  :root {
+    --navy: #1B2A4A;
+    --navy-mid: #2d3d6e;
+    --amber: #D4A853;
+    --amber-light: #F0CC87;
+    --amber-dark: #A07830;
+    --green: #2ECC71;
+    --yellow: #eab308;
+    --red: #E74C3C;
+    --blue: #3B82F6;
+    --page-bg: #f5f6fa;
+    --card-bg: #ffffff;
+    --text-dark: #1B2A4A;
+    --text-mid: #444;
+    --text-muted: #888;
+    --text-label: #666;
+    --border-light: #eee;
+    --row-alt: #f9f9fb;
+    --shadow: 0 1px 4px rgba(0,0,0,0.06);
+    --shadow-md: 0 2px 12px rgba(0,0,0,0.08);
+    --radius: 12px;
+    --radius-lg: 16px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--page-bg); color: var(--text-dark); font-size: 14px; line-height: 1.5;
+  }
+  .container { max-width: 1140px; margin: 0 auto; padding: 24px 20px; }
+
+  .header-banner {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    border-radius: var(--radius-lg); padding: 28px 32px; color: #fff; margin-bottom: 24px;
+    box-shadow: 0 4px 20px rgba(27,42,74,0.25);
+  }
+  .header-banner h1 { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+  .header-banner .subtitle { font-size: 14px; color: var(--amber); font-weight: 600; }
+  .header-banner .meta { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 6px; }
+
+  .nav-tabs {
+    display: flex; justify-content: center; gap: 0; margin-bottom: 20px;
+    background: var(--card-bg); border-radius: 10px; padding: 4px; width: fit-content;
+    margin-left: auto; margin-right: auto; box-shadow: var(--shadow); flex-wrap: wrap;
+  }
+  .nav-tabs a {
+    padding: 8px 22px; font-size: 13px; font-weight: 600; text-decoration: none;
+    border-radius: 8px; color: var(--text-muted); transition: all 0.2s;
+  }
+  .nav-tabs a.active { background: var(--navy); color: #fff; }
+  .nav-tabs a:hover:not(.active) { color: var(--text-dark); }
+
+  .section { margin-bottom: 24px; }
+  .section-title {
+    font-size: 17px; font-weight: 700; color: var(--text-dark); margin-bottom: 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-bullet { color: var(--amber); font-size: 12px; }
+  .section-count {
+    font-size: 12px; font-weight: 600; color: var(--text-muted);
+    background: #eef0f5; padding: 2px 8px; border-radius: 10px;
+  }
+
+  .card {
+    background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow-md);
+    padding: 18px 20px;
+  }
+
+  /* Storage status banner */
+  .storage-banner {
+    border-radius: var(--radius); padding: 10px 14px; margin-bottom: 16px;
+    font-size: 12px; display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; flex-wrap: wrap;
+  }
+  .storage-banner.local { background: #fef7e6; border: 1px solid #f0cc87; color: #8a6516; }
+  .storage-banner.shared { background: #e8f8ef; border: 1px solid #b2e6c4; color: #1e7e3f; }
+  .storage-banner .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .storage-banner button {
+    font-size: 11px; padding: 5px 10px; border-radius: 6px; cursor: pointer;
+    border: 1px solid currentColor; background: rgba(255,255,255,0.5); color: inherit;
+    font-weight: 600;
+  }
+  .storage-banner button:hover { background: rgba(255,255,255,0.85); }
+
+  /* Add form */
+  .add-form {
+    background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow-md);
+    padding: 18px 20px; margin-bottom: 20px;
+  }
+  .add-form .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 10px; }
+  .add-form .row:last-child { margin-bottom: 0; }
+  .add-form label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-label); margin-bottom: 4px; }
+  .add-form input, .add-form select, .add-form textarea {
+    width: 100%; padding: 8px 10px; font-size: 13px;
+    border: 1px solid #d8dae0; border-radius: 8px; outline: none; font-family: inherit;
+    background: #fff; transition: border-color 0.15s;
+  }
+  .add-form input:focus, .add-form select:focus, .add-form textarea:focus { border-color: var(--amber); }
+  .add-form textarea { resize: vertical; min-height: 36px; }
+  .add-form .actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 14px; flex-wrap: wrap; }
+  .btn {
+    padding: 8px 16px; font-size: 13px; font-weight: 600; border-radius: 8px;
+    border: 1px solid transparent; cursor: pointer; transition: all 0.15s;
+    font-family: inherit;
+  }
+  .btn-primary { background: var(--navy); color: #fff; }
+  .btn-primary:hover { background: var(--navy-mid); }
+  .btn-secondary { background: #fff; color: var(--text-mid); border-color: #d8dae0; }
+  .btn-secondary:hover { background: #f5f6fa; }
+  .btn-danger { background: #fff; color: var(--red); border-color: var(--red); }
+  .btn-danger:hover { background: var(--red); color: #fff; }
+  .btn-success { background: var(--green); color: #fff; }
+  .btn-success:hover { filter: brightness(0.95); }
+
+  /* Active delivery cards */
+  .delivery-list { display: flex; flex-direction: column; gap: 12px; }
+  .delivery-card {
+    background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow);
+    padding: 14px 16px; border-left: 4px solid var(--amber);
+    display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: start;
+  }
+  .delivery-card.soon { border-left-color: var(--red); }
+  .delivery-card.later { border-left-color: var(--navy-mid); }
+  .delivery-card.delivered-row { border-left-color: var(--green); }
+
+  .d-main { min-width: 0; }
+  .d-top-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 4px; }
+  .d-vendor { font-size: 15px; font-weight: 700; color: var(--text-dark); }
+  .d-item { font-size: 13px; color: var(--text-mid); }
+  .d-meta-row { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: var(--text-muted); margin-top: 6px; }
+  .d-meta-row .lbl { font-weight: 600; color: var(--text-label); text-transform: uppercase; font-size: 10px; letter-spacing: 0.5px; }
+  .d-meta-row .val { color: var(--text-mid); }
+  .d-notes { font-size: 12px; color: var(--text-mid); margin-top: 6px; background: var(--row-alt); padding: 6px 10px; border-radius: 6px; }
+  .d-tracking { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: var(--text-mid); }
+  .d-tracking a { color: var(--blue); text-decoration: none; }
+  .d-tracking a:hover { text-decoration: underline; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 10px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .badge-carrier { background: #eef0f5; color: var(--navy); }
+  .badge-status-in-transit { background: #e6f0fc; color: var(--blue); }
+  .badge-status-out-for-delivery { background: #fef7e6; color: var(--amber-dark); }
+  .badge-status-delivered { background: #e8f8ef; color: var(--green); }
+  .badge-status-exception { background: #fdecea; color: var(--red); }
+  .badge-status-pending { background: #f0f1f5; color: var(--text-muted); }
+
+  .eta-pill {
+    font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 10px;
+    background: #eef0f5; color: var(--text-mid);
+  }
+  .eta-pill.today { background: #fef7e6; color: var(--amber-dark); }
+  .eta-pill.overdue { background: #fdecea; color: var(--red); }
+  .eta-pill.tomorrow { background: #e6f0fc; color: var(--blue); }
+
+  .d-actions { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+  .d-actions button {
+    font-size: 11px; padding: 5px 10px; border-radius: 6px; font-weight: 600;
+    border: 1px solid #d8dae0; background: #fff; cursor: pointer; color: var(--text-mid);
+    white-space: nowrap;
+  }
+  .d-actions button:hover { background: #f5f6fa; }
+  .d-actions .btn-deliver { color: var(--green); border-color: var(--green); }
+  .d-actions .btn-deliver:hover { background: var(--green); color: #fff; }
+  .d-actions .btn-del { color: var(--red); border-color: #f0c8c4; }
+  .d-actions .btn-del:hover { background: var(--red); color: #fff; border-color: var(--red); }
+
+  /* Delivered (minimal) list */
+  .delivered-list { display: flex; flex-direction: column; gap: 4px; }
+  .delivered-row-compact {
+    display: grid; grid-template-columns: auto 1fr auto auto; gap: 10px; align-items: center;
+    background: var(--card-bg); padding: 8px 12px; border-radius: 8px;
+    box-shadow: var(--shadow); font-size: 12px;
+  }
+  .delivered-row-compact .vendor-item { color: var(--text-dark); font-weight: 600; }
+  .delivered-row-compact .item-name { color: var(--text-muted); font-weight: 400; }
+  .delivered-row-compact .when { color: var(--text-muted); font-size: 11px; white-space: nowrap; }
+  .delivered-row-compact .row-actions { display: flex; gap: 4px; }
+  .delivered-row-compact .row-actions button {
+    font-size: 10px; padding: 3px 7px; border-radius: 5px; border: 1px solid #d8dae0;
+    background: #fff; cursor: pointer; color: var(--text-muted); font-weight: 600;
+  }
+  .delivered-row-compact .row-actions button:hover { background: #f5f6fa; color: var(--text-mid); }
+
+  .expand-toggle {
+    text-align: center; margin-top: 8px;
+  }
+  .expand-toggle button {
+    background: transparent; border: 1px dashed #d8dae0; padding: 8px 16px;
+    border-radius: 8px; cursor: pointer; font-size: 12px; color: var(--text-muted); font-weight: 600;
+  }
+  .expand-toggle button:hover { background: var(--card-bg); color: var(--text-mid); }
+
+  .empty-state {
+    text-align: center; padding: 30px 20px; color: var(--text-muted); font-size: 13px;
+    background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow);
+  }
+
+  /* Edit modal */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(27,42,74,0.5); z-index: 1000;
+    display: none; align-items: center; justify-content: center; padding: 20px;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal {
+    background: #fff; border-radius: var(--radius-lg); padding: 24px;
+    max-width: 540px; width: 100%; max-height: 90vh; overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  .modal h3 { font-size: 17px; margin-bottom: 16px; color: var(--text-dark); }
+  .modal .field { margin-bottom: 12px; }
+  .modal label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-label); margin-bottom: 4px; }
+  .modal input, .modal select, .modal textarea {
+    width: 100%; padding: 8px 10px; font-size: 13px;
+    border: 1px solid #d8dae0; border-radius: 8px; outline: none; font-family: inherit;
+  }
+  .modal textarea { resize: vertical; min-height: 60px; }
+  .modal .actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+
+  @media (max-width: 720px) {
+    .container { padding: 16px 12px; }
+    .header-banner { padding: 20px 18px; }
+    .nav-tabs a { padding: 8px 14px; font-size: 12px; }
+    .delivery-card { grid-template-columns: 1fr; }
+    .d-actions { flex-direction: row; align-self: stretch; justify-content: flex-end; }
+    .delivered-row-compact { grid-template-columns: 1fr auto; row-gap: 4px; }
+    .delivered-row-compact .when { grid-column: 2; }
+    .delivered-row-compact .row-actions { grid-column: 1 / -1; justify-content: flex-end; }
+  }
+</style>
+
+<script>
+(function() {
+  var AUTH_KEY = 'pd_auth_token';
+  var HASH = '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5';
+  
+  function checkAuth() {
+    return localStorage.getItem(AUTH_KEY) === HASH;
+  }
+  
+  async function hashPassword(pw) {
+    var enc = new TextEncoder().encode(pw);
+    var buf = await crypto.subtle.digest('SHA-256', enc);
+    return Array.from(new Uint8Array(buf)).map(function(b) { return b.toString(16).padStart(2, '0'); }).join('');
+  }
+  
+  if (checkAuth()) {
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('pd-gate').style.display = 'none';
+      document.getElementById('pd-content').style.display = 'block';
+    });
+  }
+  
+  window.pdUnlock = async function() {
+    var pw = document.getElementById('pd-pw').value;
+    var h = await hashPassword(pw);
+    if (h === HASH) {
+      localStorage.setItem(AUTH_KEY, HASH);
+      document.getElementById('pd-gate').style.display = 'none';
+      document.getElementById('pd-content').style.display = 'block';
+    } else {
+      document.getElementById('pd-error').style.display = 'block';
+      document.getElementById('pd-pw').value = '';
+      document.getElementById('pd-pw').focus();
+    }
+  };
+})();
+</script>
+<style>
+#pd-gate {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(135deg, #1B2A4A 0%, #2d3d6e 100%);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 99999; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+#pd-gate .gate-box {
+  background: #fff; border-radius: 16px; padding: 40px 36px; text-align: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2); max-width: 360px; width: 90%;
+}
+#pd-gate .gate-logo {
+  width: 56px; height: 56px; border-radius: 12px; background: #1B2A4A;
+  color: #D4A853; font-weight: 800; font-size: 22px; display: flex;
+  align-items: center; justify-content: center; margin: 0 auto 16px;
+}
+#pd-gate h2 { font-size: 20px; color: #1B2A4A; margin-bottom: 4px; }
+#pd-gate p { font-size: 13px; color: #888; margin-bottom: 20px; }
+#pd-gate input {
+  width: 100%; padding: 10px 14px; border: 2px solid #eee; border-radius: 8px;
+  font-size: 14px; margin-bottom: 12px; outline: none; box-sizing: border-box;
+}
+#pd-gate input:focus { border-color: #D4A853; }
+#pd-gate button {
+  width: 100%; padding: 10px; background: #1B2A4A; color: #fff; border: none;
+  border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;
+}
+#pd-gate button:hover { background: #2d3d6e; }
+#pd-error { display: none; color: #E74C3C; font-size: 12px; margin-top: 8px; }
+#pd-content { display: none; }
+</style>
+
+</head>
+<body>
+
+<div id="pd-gate">
+  <div class="gate-box">
+    <div class="gate-logo">PD</div>
+    <h2>Pour Decisions</h2>
+    <p>Enter the password to view this report</p>
+    <input type="password" id="pd-pw" placeholder="Password" onkeydown="if(event.key==='Enter')pdUnlock()">
+    <button onclick="pdUnlock()">Unlock</button>
+    <div id="pd-error">Incorrect password. Please try again.</div>
+  </div>
+</div>
+<div id="pd-content">
+
+<div class="container">
+
+  <!-- Navigation -->
+  <div class="nav-tabs">
+    <a href="index.html">Performance</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="pnl.html">P&amp;L</a>
+    <a href="deliveries.html" class="active">Delivery Tracking</a>
+  </div>
+
+  <!-- Header -->
+  <div class="header-banner">
+    <h1>Delivery Tracking</h1>
+    <div class="subtitle">Pour Decisions Craft Coffee &amp; Beer</div>
+    <div class="meta">Track active shipments from any carrier. Add a tracking number to start.</div>
+  </div>
+
+  <!-- Storage status -->
+  <div id="storage-banner" class="storage-banner local"></div>
+
+  <!-- Add form -->
+  <div class="add-form">
+    <div class="section-title" style="margin-bottom:14px;"><span class="section-bullet">&#9679;</span> Add a Delivery</div>
+    <div class="row">
+      <div>
+        <label for="f-tracking">Tracking Number *</label>
+        <input id="f-tracking" type="text" placeholder="e.g. 1Z999AA10123456784" autocomplete="off">
+      </div>
+      <div>
+        <label for="f-carrier">Carrier</label>
+        <select id="f-carrier">
+          <option value="auto">Auto-detect</option>
+          <option value="ups">UPS</option>
+          <option value="fedex">FedEx</option>
+          <option value="usps">USPS</option>
+          <option value="dhl">DHL</option>
+          <option value="ontrac">OnTrac</option>
+          <option value="amazon">Amazon Logistics</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div>
+        <label for="f-vendor">Vendor / Sender</label>
+        <input id="f-vendor" type="text" placeholder="e.g. Verve Coffee" autocomplete="off">
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label for="f-item">Item Description</label>
+        <input id="f-item" type="text" placeholder="e.g. 5lb whole-bean Streetlevel" autocomplete="off">
+      </div>
+      <div>
+        <label for="f-eta">ETA (arrival date)</label>
+        <input id="f-eta" type="date">
+      </div>
+      <div>
+        <label for="f-location">Recipient / Location</label>
+        <select id="f-location">
+          <option value="">(none)</option>
+          <option value="San Jose">San Jose</option>
+          <option value="Mountain View">Mountain View</option>
+          <option value="Fremont">Fremont</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label for="f-status">Initial Status</label>
+        <select id="f-status">
+          <option value="pending">Pending</option>
+          <option value="in-transit" selected>In Transit</option>
+          <option value="out-for-delivery">Out for Delivery</option>
+          <option value="exception">Exception / Delayed</option>
+        </select>
+      </div>
+      <div style="grid-column: span 2;">
+        <label for="f-notes">Notes</label>
+        <textarea id="f-notes" placeholder="Optional — anything to remember"></textarea>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="btn btn-secondary" onclick="clearForm()">Clear</button>
+      <button class="btn btn-primary" onclick="addDelivery()">Add Delivery</button>
+    </div>
+  </div>
+
+  <!-- Active deliveries -->
+  <div class="section">
+    <div class="section-title">
+      <span class="section-bullet">&#9679;</span> Active Deliveries
+      <span id="active-count" class="section-count">0</span>
+    </div>
+    <div id="active-list" class="delivery-list"></div>
+    <div id="active-empty" class="empty-state" style="display:none;">
+      No active deliveries. Add a tracking number above to get started.
+    </div>
+  </div>
+
+  <!-- Delivered -->
+  <div class="section">
+    <div class="section-title">
+      <span class="section-bullet">&#9679;</span> Delivered
+      <span id="delivered-count" class="section-count">0</span>
+    </div>
+    <div id="delivered-list" class="delivered-list"></div>
+    <div id="delivered-empty" class="empty-state" style="display:none;">No deliveries completed yet.</div>
+    <div id="delivered-expand" class="expand-toggle" style="display:none;">
+      <button id="expand-btn" onclick="toggleDeliveredExpanded()"></button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Edit modal -->
+<div id="modal" class="modal-overlay">
+  <div class="modal">
+    <h3 id="modal-title">Edit Delivery</h3>
+    <input type="hidden" id="m-id">
+    <div class="field">
+      <label for="m-tracking">Tracking Number</label>
+      <input id="m-tracking" type="text">
+    </div>
+    <div class="field">
+      <label for="m-carrier">Carrier</label>
+      <select id="m-carrier">
+        <option value="auto">Auto-detect</option>
+        <option value="ups">UPS</option>
+        <option value="fedex">FedEx</option>
+        <option value="usps">USPS</option>
+        <option value="dhl">DHL</option>
+        <option value="ontrac">OnTrac</option>
+        <option value="amazon">Amazon Logistics</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="m-vendor">Vendor / Sender</label>
+      <input id="m-vendor" type="text">
+    </div>
+    <div class="field">
+      <label for="m-item">Item Description</label>
+      <input id="m-item" type="text">
+    </div>
+    <div class="field">
+      <label for="m-eta">ETA</label>
+      <input id="m-eta" type="date">
+    </div>
+    <div class="field">
+      <label for="m-location">Recipient / Location</label>
+      <select id="m-location">
+        <option value="">(none)</option>
+        <option value="San Jose">San Jose</option>
+        <option value="Mountain View">Mountain View</option>
+        <option value="Fremont">Fremont</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="m-status">Status</label>
+      <select id="m-status">
+        <option value="pending">Pending</option>
+        <option value="in-transit">In Transit</option>
+        <option value="out-for-delivery">Out for Delivery</option>
+        <option value="exception">Exception / Delayed</option>
+        <option value="delivered">Delivered</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="m-notes">Notes</label>
+      <textarea id="m-notes"></textarea>
+    </div>
+    <div class="actions">
+      <button class="btn btn-danger" onclick="deleteFromModal()">Delete</button>
+      <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveFromModal()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Settings modal -->
+<div id="settings-modal" class="modal-overlay">
+  <div class="modal">
+    <h3>Shared Storage Settings</h3>
+    <p style="font-size:12px;color:var(--text-muted);margin-bottom:14px;">
+      To sync deliveries across devices and browsers, store them in a GitHub Gist.
+      Create a private Gist with a single file named <code>deliveries.json</code> containing <code>{"deliveries":[]}</code>,
+      then create a fine-grained Personal Access Token with <strong>gist</strong> scope.
+      Both values are saved in this browser only.
+    </p>
+    <div class="field">
+      <label for="s-gist-id">Gist ID</label>
+      <input id="s-gist-id" type="text" placeholder="e.g. 1a2b3c4d5e6f...">
+    </div>
+    <div class="field">
+      <label for="s-gist-token">GitHub Token (gist scope)</label>
+      <input id="s-gist-token" type="password" placeholder="github_pat_...">
+    </div>
+    <div class="actions">
+      <button class="btn btn-danger" onclick="clearGistConfig()">Disconnect</button>
+      <button class="btn btn-secondary" onclick="closeSettings()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveGistConfig()">Save &amp; Sync</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================================================================
+   Delivery Tracking — client-only page.
+
+   Persistence: hybrid.
+     - Primary: GitHub Gist (shared across devices/browsers when configured).
+     - Fallback: localStorage (per-browser only) when Gist is not configured.
+
+   Carrier detection: hybrid.
+     - Auto-detect carrier from tracking-number format (regex).
+     - Manual override + manual status/ETA updates always available.
+     - Tracking-number links route to the carrier's public tracking page.
+     - The persistence + UI layer is structured so a future tracking API
+       provider (e.g. Shippo, EasyPost) can be plugged into refreshOne()
+       to replace the manual status with a real-time fetch.
+================================================================ */
+
+const LS_DATA_KEY = 'pd_deliveries_data_v1';
+const LS_GIST_KEY = 'pd_deliveries_gist_cfg_v1';
+const DELIVERED_COLLAPSE_LIMIT = 25;
+
+let state = {
+  deliveries: [],
+  loaded: false,
+  mode: 'local', // 'local' or 'gist'
+  deliveredExpanded: false,
+};
+
+/* ----- Carrier detection (no API, regex-based) ----- */
+const CARRIER_PATTERNS = [
+  { id: 'ups',    name: 'UPS',     re: /^1Z[0-9A-Z]{16}$/i },
+  { id: 'fedex',  name: 'FedEx',   re: /^(\d{12}|\d{15}|\d{20}|\d{22})$/ },
+  { id: 'usps',   name: 'USPS',    re: /^(94\d{20}|92\d{20}|93\d{20}|94\d{18}|EC\d{9}US|\d{20}|\d{26})$/i },
+  { id: 'dhl',    name: 'DHL',     re: /^(\d{10}|\d{11})$/ },
+  { id: 'ontrac', name: 'OnTrac',  re: /^(C\d{14}|D\d{14})$/i },
+  { id: 'amazon', name: 'Amazon Logistics', re: /^TBA\d{9,12}$/i },
+];
+const CARRIER_NAMES = {
+  ups: 'UPS', fedex: 'FedEx', usps: 'USPS', dhl: 'DHL',
+  ontrac: 'OnTrac', amazon: 'Amazon Logistics', other: 'Other', auto: 'Auto-detect'
+};
+function detectCarrier(tracking) {
+  if (!tracking) return 'other';
+  const t = tracking.trim().replace(/\s+/g, '');
+  for (const p of CARRIER_PATTERNS) if (p.re.test(t)) return p.id;
+  return 'other';
+}
+function trackingUrl(tracking, carrier) {
+  const t = encodeURIComponent((tracking || '').trim().replace(/\s+/g, ''));
+  switch (carrier) {
+    case 'ups':    return `https://www.ups.com/track?tracknum=${t}`;
+    case 'fedex':  return `https://www.fedex.com/fedextrack/?trknbr=${t}`;
+    case 'usps':   return `https://tools.usps.com/go/TrackConfirmAction?tLabels=${t}`;
+    case 'dhl':    return `https://www.dhl.com/us-en/home/tracking/tracking-express.html?tracking-id=${t}`;
+    case 'ontrac': return `https://www.ontrac.com/tracking?number=${t}`;
+    case 'amazon': return `https://track.amazon.com/tracking/${t}`;
+    default:       return `https://www.google.com/search?q=${t}+tracking`;
+  }
+}
+
+/* ----- Persistence adapter ----- */
+function getGistCfg() {
+  try {
+    const raw = localStorage.getItem(LS_GIST_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch { return null; }
+}
+function setGistCfg(cfg) {
+  if (cfg) localStorage.setItem(LS_GIST_KEY, JSON.stringify(cfg));
+  else localStorage.removeItem(LS_GIST_KEY);
+}
+
+async function loadState() {
+  const cfg = getGistCfg();
+  if (cfg && cfg.gistId && cfg.token) {
+    try {
+      const res = await fetch(`https://api.github.com/gists/${cfg.gistId}`, {
+        headers: { 'Authorization': `token ${cfg.token}`, 'Accept': 'application/vnd.github+json' },
+      });
+      if (!res.ok) throw new Error('Gist fetch failed: ' + res.status);
+      const data = await res.json();
+      const file = data.files && (data.files['deliveries.json'] || Object.values(data.files)[0]);
+      if (!file) throw new Error('No file in Gist');
+      let content;
+      try { content = JSON.parse(file.content); } catch { content = { deliveries: [] }; }
+      state.deliveries = Array.isArray(content.deliveries) ? content.deliveries : [];
+      state.mode = 'gist';
+      state.loaded = true;
+      return;
+    } catch (e) {
+      console.warn('Gist load failed, falling back to local:', e);
+      alert('Could not load from Gist (' + e.message + '). Falling back to local storage for this session.');
+    }
+  }
+  // Local fallback
+  try {
+    const raw = localStorage.getItem(LS_DATA_KEY);
+    state.deliveries = raw ? (JSON.parse(raw).deliveries || []) : [];
+  } catch { state.deliveries = []; }
+  state.mode = 'local';
+  state.loaded = true;
+}
+
+async function saveState() {
+  const payload = { deliveries: state.deliveries, updated_at: new Date().toISOString() };
+  if (state.mode === 'gist') {
+    const cfg = getGistCfg();
+    try {
+      const res = await fetch(`https://api.github.com/gists/${cfg.gistId}`, {
+        method: 'PATCH',
+        headers: {
+          'Authorization': `token ${cfg.token}`,
+          'Accept': 'application/vnd.github+json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ files: { 'deliveries.json': { content: JSON.stringify(payload, null, 2) } } }),
+      });
+      if (!res.ok) throw new Error('Gist save failed: ' + res.status);
+      return;
+    } catch (e) {
+      console.warn('Gist save failed:', e);
+      alert('Could not save to Gist (' + e.message + '). Saved locally instead for this session.');
+    }
+  }
+  localStorage.setItem(LS_DATA_KEY, JSON.stringify(payload));
+}
+
+/* ----- Date helpers ----- */
+function todayISO() {
+  const d = new Date();
+  d.setHours(0, 0, 0, 0);
+  return d.toISOString().slice(0, 10);
+}
+function diffDays(isoDate) {
+  if (!isoDate) return null;
+  const t = new Date(todayISO() + 'T00:00:00');
+  const d = new Date(isoDate + 'T00:00:00');
+  return Math.round((d - t) / 86400000);
+}
+function fmtEta(isoDate) {
+  if (!isoDate) return { text: 'No ETA', cls: '' };
+  const dd = diffDays(isoDate);
+  const opts = { month: 'short', day: 'numeric' };
+  const txt = new Date(isoDate + 'T00:00:00').toLocaleDateString(undefined, opts);
+  if (dd === 0)  return { text: txt + ' (Today)', cls: 'today' };
+  if (dd === 1)  return { text: txt + ' (Tomorrow)', cls: 'tomorrow' };
+  if (dd < 0)    return { text: txt + ' (Overdue ' + Math.abs(dd) + 'd)', cls: 'overdue' };
+  return { text: txt + ' (' + dd + 'd)', cls: '' };
+}
+function fmtAgo(iso) {
+  if (!iso) return '';
+  const ms = Date.now() - new Date(iso).getTime();
+  const mins = Math.round(ms / 60000);
+  if (mins < 1) return 'just now';
+  if (mins < 60) return mins + 'm ago';
+  const hrs = Math.round(mins / 60);
+  if (hrs < 24) return hrs + 'h ago';
+  const days = Math.round(hrs / 24);
+  if (days < 30) return days + 'd ago';
+  return new Date(iso).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+}
+function escapeHtml(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  })[c]);
+}
+
+/* ----- Render ----- */
+function renderStorageBanner() {
+  const el = document.getElementById('storage-banner');
+  if (state.mode === 'gist') {
+    el.className = 'storage-banner shared';
+    el.innerHTML = `
+      <div>&#10003; Connected to shared Gist — changes sync across devices.</div>
+      <div class="actions">
+        <button onclick="openSettings()">Settings</button>
+        <button onclick="reload()">Refresh</button>
+        <button onclick="exportJson()">Export</button>
+      </div>`;
+  } else {
+    el.className = 'storage-banner local';
+    el.innerHTML = `
+      <div>&#9888; Local-only mode — deliveries are stored in this browser only. <a href="#" onclick="openSettings();return false;" style="color:inherit;text-decoration:underline;">Connect a shared Gist</a> to sync across devices.</div>
+      <div class="actions">
+        <button onclick="openSettings()">Settings</button>
+        <button onclick="exportJson()">Export</button>
+        <button onclick="importJson()">Import</button>
+      </div>`;
+  }
+}
+
+function renderActive() {
+  const list = document.getElementById('active-list');
+  const empty = document.getElementById('active-empty');
+  const count = document.getElementById('active-count');
+  const active = state.deliveries.filter(d => d.status !== 'delivered');
+  active.sort((a, b) => {
+    const aE = a.eta || '9999-12-31';
+    const bE = b.eta || '9999-12-31';
+    if (aE === bE) return (a.created_at || '').localeCompare(b.created_at || '');
+    return aE.localeCompare(bE);
+  });
+  count.textContent = active.length;
+  empty.style.display = active.length ? 'none' : 'block';
+  list.innerHTML = active.map(renderActiveCard).join('');
+}
+
+function renderActiveCard(d) {
+  const carrier = d.carrier === 'auto' ? detectCarrier(d.tracking) : d.carrier;
+  const eta = fmtEta(d.eta);
+  let urgencyCls = '';
+  const dd = diffDays(d.eta);
+  if (dd !== null) {
+    if (dd <= 0) urgencyCls = 'soon';
+    else if (dd > 3) urgencyCls = 'later';
+  }
+  const statusLabel = ({
+    'pending': 'Pending',
+    'in-transit': 'In Transit',
+    'out-for-delivery': 'Out for Delivery',
+    'exception': 'Exception',
+  })[d.status] || d.status;
+  const url = trackingUrl(d.tracking, carrier);
+  const vendor = d.vendor ? escapeHtml(d.vendor) : (d.item ? escapeHtml(d.item) : 'Untitled delivery');
+  const item = d.vendor && d.item ? escapeHtml(d.item) : '';
+  return `
+    <div class="delivery-card ${urgencyCls}">
+      <div class="d-main">
+        <div class="d-top-row">
+          <div class="d-vendor">${vendor}</div>
+          ${item ? `<div class="d-item">— ${item}</div>` : ''}
+          <span class="badge badge-status-${d.status}">${statusLabel}</span>
+          <span class="badge badge-carrier">${escapeHtml(CARRIER_NAMES[carrier] || carrier)}</span>
+          <span class="eta-pill ${eta.cls}">${eta.text}</span>
+        </div>
+        <div class="d-meta-row">
+          <div><span class="lbl">Tracking</span> <span class="d-tracking"><a href="${url}" target="_blank" rel="noopener">${escapeHtml(d.tracking)}</a></span></div>
+          ${d.recipient ? `<div><span class="lbl">For</span> <span class="val">${escapeHtml(d.recipient)}</span></div>` : ''}
+          <div><span class="lbl">Updated</span> <span class="val">${escapeHtml(fmtAgo(d.updated_at || d.created_at))}</span></div>
+        </div>
+        ${d.notes ? `<div class="d-notes">${escapeHtml(d.notes)}</div>` : ''}
+      </div>
+      <div class="d-actions">
+        <button class="btn-deliver" onclick="markDelivered('${d.id}')">Mark Delivered</button>
+        <button onclick="openEdit('${d.id}')">Edit</button>
+        <button class="btn-del" onclick="deleteDelivery('${d.id}')">Delete</button>
+      </div>
+    </div>`;
+}
+
+function renderDelivered() {
+  const list = document.getElementById('delivered-list');
+  const empty = document.getElementById('delivered-empty');
+  const count = document.getElementById('delivered-count');
+  const expandWrap = document.getElementById('delivered-expand');
+  const expandBtn = document.getElementById('expand-btn');
+  const all = state.deliveries.filter(d => d.status === 'delivered');
+  all.sort((a, b) => (b.delivered_at || '').localeCompare(a.delivered_at || ''));
+  count.textContent = all.length;
+  empty.style.display = all.length ? 'none' : 'block';
+  const shown = (all.length > DELIVERED_COLLAPSE_LIMIT && !state.deliveredExpanded)
+    ? all.slice(0, DELIVERED_COLLAPSE_LIMIT)
+    : all;
+  list.innerHTML = shown.map(renderDeliveredRow).join('');
+  if (all.length > DELIVERED_COLLAPSE_LIMIT) {
+    expandWrap.style.display = 'block';
+    expandBtn.textContent = state.deliveredExpanded
+      ? `Collapse (showing all ${all.length})`
+      : `Show all ${all.length} delivered (${all.length - DELIVERED_COLLAPSE_LIMIT} hidden)`;
+  } else {
+    expandWrap.style.display = 'none';
+  }
+}
+
+function renderDeliveredRow(d) {
+  const carrier = d.carrier === 'auto' ? detectCarrier(d.tracking) : d.carrier;
+  const when = d.delivered_at
+    ? new Date(d.delivered_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
+    : '';
+  const label = d.vendor || d.item || d.tracking;
+  const sub = d.vendor && d.item ? ' — ' + d.item : '';
+  return `
+    <div class="delivered-row-compact">
+      <span class="badge badge-status-delivered">&#10003;</span>
+      <div><span class="vendor-item">${escapeHtml(label)}</span><span class="item-name">${escapeHtml(sub)}</span> <span style="color:var(--text-muted);font-size:11px;">(${escapeHtml(CARRIER_NAMES[carrier] || carrier)})</span></div>
+      <span class="when">${escapeHtml(when)}</span>
+      <span class="row-actions">
+        <button onclick="restoreDelivery('${d.id}')">Restore</button>
+        <button onclick="deleteDelivery('${d.id}')">Delete</button>
+      </span>
+    </div>`;
+}
+
+function render() {
+  renderStorageBanner();
+  renderActive();
+  renderDelivered();
+}
+
+/* ----- Mutations ----- */
+function uid() {
+  return 'd_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
+}
+function nowIso() { return new Date().toISOString(); }
+
+async function addDelivery() {
+  const tracking = document.getElementById('f-tracking').value.trim();
+  if (!tracking) {
+    alert('Please enter a tracking number.');
+    document.getElementById('f-tracking').focus();
+    return;
+  }
+  const d = {
+    id: uid(),
+    tracking,
+    carrier: document.getElementById('f-carrier').value,
+    vendor: document.getElementById('f-vendor').value.trim(),
+    item: document.getElementById('f-item').value.trim(),
+    eta: document.getElementById('f-eta').value || '',
+    recipient: document.getElementById('f-location').value,
+    status: document.getElementById('f-status').value,
+    notes: document.getElementById('f-notes').value.trim(),
+    created_at: nowIso(),
+    updated_at: nowIso(),
+    delivered_at: null,
+  };
+  state.deliveries.push(d);
+  await saveState();
+  clearForm();
+  render();
+}
+
+function clearForm() {
+  ['f-tracking','f-vendor','f-item','f-eta','f-notes'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('f-carrier').value = 'auto';
+  document.getElementById('f-location').value = '';
+  document.getElementById('f-status').value = 'in-transit';
+  document.getElementById('f-tracking').focus();
+}
+
+async function markDelivered(id) {
+  const d = state.deliveries.find(x => x.id === id);
+  if (!d) return;
+  d.status = 'delivered';
+  d.delivered_at = nowIso();
+  d.updated_at = nowIso();
+  await saveState();
+  render();
+}
+
+async function restoreDelivery(id) {
+  const d = state.deliveries.find(x => x.id === id);
+  if (!d) return;
+  d.status = 'in-transit';
+  d.delivered_at = null;
+  d.updated_at = nowIso();
+  await saveState();
+  render();
+}
+
+async function deleteDelivery(id) {
+  if (!confirm('Delete this delivery record? This cannot be undone.')) return;
+  state.deliveries = state.deliveries.filter(x => x.id !== id);
+  await saveState();
+  render();
+}
+
+/* ----- Edit modal ----- */
+function openEdit(id) {
+  const d = state.deliveries.find(x => x.id === id);
+  if (!d) return;
+  document.getElementById('m-id').value = d.id;
+  document.getElementById('m-tracking').value = d.tracking || '';
+  document.getElementById('m-carrier').value = d.carrier || 'auto';
+  document.getElementById('m-vendor').value = d.vendor || '';
+  document.getElementById('m-item').value = d.item || '';
+  document.getElementById('m-eta').value = d.eta || '';
+  document.getElementById('m-location').value = d.recipient || '';
+  document.getElementById('m-status').value = d.status || 'in-transit';
+  document.getElementById('m-notes').value = d.notes || '';
+  document.getElementById('modal').classList.add('show');
+}
+function closeModal() { document.getElementById('modal').classList.remove('show'); }
+async function saveFromModal() {
+  const id = document.getElementById('m-id').value;
+  const d = state.deliveries.find(x => x.id === id);
+  if (!d) return;
+  const newStatus = document.getElementById('m-status').value;
+  const wasDelivered = d.status === 'delivered';
+  d.tracking  = document.getElementById('m-tracking').value.trim();
+  d.carrier   = document.getElementById('m-carrier').value;
+  d.vendor    = document.getElementById('m-vendor').value.trim();
+  d.item      = document.getElementById('m-item').value.trim();
+  d.eta       = document.getElementById('m-eta').value;
+  d.recipient = document.getElementById('m-location').value;
+  d.status    = newStatus;
+  d.notes     = document.getElementById('m-notes').value.trim();
+  d.updated_at = nowIso();
+  if (newStatus === 'delivered' && !wasDelivered) d.delivered_at = nowIso();
+  if (newStatus !== 'delivered' && wasDelivered)  d.delivered_at = null;
+  await saveState();
+  closeModal();
+  render();
+}
+async function deleteFromModal() {
+  const id = document.getElementById('m-id').value;
+  closeModal();
+  await deleteDelivery(id);
+}
+
+/* ----- Settings (Gist config) ----- */
+function openSettings() {
+  const cfg = getGistCfg();
+  document.getElementById('s-gist-id').value = cfg?.gistId || '';
+  document.getElementById('s-gist-token').value = cfg?.token || '';
+  document.getElementById('settings-modal').classList.add('show');
+}
+function closeSettings() { document.getElementById('settings-modal').classList.remove('show'); }
+async function saveGistConfig() {
+  const gistId = document.getElementById('s-gist-id').value.trim();
+  const token  = document.getElementById('s-gist-token').value.trim();
+  if (!gistId || !token) {
+    alert('Both Gist ID and token are required.');
+    return;
+  }
+  setGistCfg({ gistId, token });
+  closeSettings();
+  await reload();
+}
+async function clearGistConfig() {
+  if (!confirm('Disconnect shared Gist? Future changes will only save to this browser.')) return;
+  setGistCfg(null);
+  state.mode = 'local';
+  closeSettings();
+  render();
+}
+
+/* ----- Export / Import ----- */
+function exportJson() {
+  const payload = { deliveries: state.deliveries, exported_at: new Date().toISOString() };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'pour-decisions-deliveries-' + todayISO() + '.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+function importJson() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'application/json';
+  input.onchange = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const text = await file.text();
+    try {
+      const data = JSON.parse(text);
+      if (!Array.isArray(data.deliveries)) throw new Error('Missing deliveries[]');
+      if (!confirm(`Import ${data.deliveries.length} deliveries? This will REPLACE current data.`)) return;
+      state.deliveries = data.deliveries;
+      await saveState();
+      render();
+    } catch (err) {
+      alert('Invalid import file: ' + err.message);
+    }
+  };
+  input.click();
+}
+
+async function reload() {
+  await loadState();
+  render();
+}
+
+function toggleDeliveredExpanded() {
+  state.deliveredExpanded = !state.deliveredExpanded;
+  renderDelivered();
+}
+
+/* ----- Init ----- */
+window.addEventListener('DOMContentLoaded', async () => {
+  // Auto-detect carrier as user types
+  const trackingInput = document.getElementById('f-tracking');
+  trackingInput.addEventListener('blur', () => {
+    if (document.getElementById('f-carrier').value === 'auto' && trackingInput.value.trim()) {
+      const c = detectCarrier(trackingInput.value);
+      const sel = document.getElementById('f-carrier');
+      if ([...sel.options].some(o => o.value === c)) sel.value = c;
+    }
+  });
+  // Default ETA = today
+  document.getElementById('f-eta').value = todayISO();
+  // Close modals on overlay click
+  document.getElementById('modal').addEventListener('click', e => {
+    if (e.target.id === 'modal') closeModal();
+  });
+  document.getElementById('settings-modal').addEventListener('click', e => {
+    if (e.target.id === 'settings-modal') closeSettings();
+  });
+  await loadState();
+  render();
+});
+</script>
+
+</div>
+</body>
+</html>
